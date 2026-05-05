@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
+import logoSrc from '../../public/logo.png';
 
 const Header = () => {
   const location = useLocation();
@@ -28,7 +29,7 @@ const Header = () => {
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="relative block h-12 w-[230px] sm:w-[280px] overflow-hidden focus-visible-ring rounded-md" aria-label="NeuroDigital Support home">
             <img
-              src="/logo.png"
+              src={logoSrc}
               alt="NeuroDigital Support"
               className="absolute left-0 top-[-51px] w-[260px] max-w-none sm:top-[-59px] sm:w-[300px]"
             />
