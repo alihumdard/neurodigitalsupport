@@ -11,11 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import nurotokImage from '../../public/images/products/nurotok.jpeg';
-import altitokImage from '../../public/images/products/altitok.jpeg';
-import olitokImage from '../../public/images/products/olitok.jpeg';
-import loggingAppImage from '../../public/images/products/logging app.jpeg';
-import researchHubImage from '../../public/images/products/research and insight hub.jpeg';
 
 const ProductsHome = () => {
   const { reducedMotion } = useAccessibility();
@@ -34,7 +29,7 @@ const ProductsHome = () => {
 
   const coreModules = [
     {
-      logo: nurotokImage,
+      logo: '/images/products/nurotok.jpeg',
       name: 'NuroTok',
       subtitle: 'Sensory Regulation App',
       description: 'A calming wellbeing app helping users manage sensory overload, stress, and daily regulation in a supportive digital environment.',
@@ -42,7 +37,7 @@ const ProductsHome = () => {
       platforms: ['App Store', 'Google Play'],
       color: 'text-blue-500'
     }, {
-      logo: altitokImage,
+      logo: '/images/products/altitok.jpeg',
       name: 'AltiTok',
       subtitle: 'Sensory-Aware Social Platform',
       description: 'A new kind of social platform reimagining connection through emotionally safer, sensory-conscious features and calm interaction.',
@@ -50,7 +45,7 @@ const ProductsHome = () => {
       platforms: ['Mobile & Tablet'],
       color: 'text-purple-500'
     }, {
-      logo: olitokImage,
+      logo: '/images/products/olitok.jpeg',
       name: 'OliSupport',
       subtitle: 'Digital Advocacy Hub',
       description: 'Centralized digital advocacy hub connecting neurodivergent individuals with personalized resources, guides, and peer support.',
@@ -63,7 +58,7 @@ const ProductsHome = () => {
       platforms: ['JOIN'],
       color: 'text-orange-500'
     }, {
-      logo: loggingAppImage,
+      logo: '/images/products/logging%20app.jpeg',
       name: 'Care Logging App',
       subtitle: 'Secure Support System',
       description: 'Secure, intuitive logging system for support workers with offline sync, custom reporting, and a privacy-first design infrastructure.',
@@ -100,7 +95,7 @@ const ProductsHome = () => {
         ]
       }
     }, {
-      logo: researchHubImage,
+      logo: '/images/products/research%20and%20insight%20hub.jpeg',
       name: 'Research & Insights Hub',
       subtitle: 'Evidence-Led Innovation',
       description: 'Our Research Hub provides access to trusted studies, dashboards, and reports focused on neurodivergence and digital well-being.',
