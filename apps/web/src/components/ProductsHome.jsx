@@ -175,7 +175,6 @@ const ProductsHome = () => {
             </motion.div>
           ))}
         </div>
-        
       </div>
     </section>
   );
