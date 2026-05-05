@@ -154,38 +154,8 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              {/* SVG illustration */}
-              <div className="px-6 pt-10 pb-8 flex justify-center">
-                <svg
-                  viewBox="0 0 400 220"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full drop-shadow-sm"
-                  aria-hidden="true"
-                >
-                  <ellipse cx="200" cy="110" rx="185" ry="92" fill="hsl(var(--primary) / 0.03)" />
-                  <circle cx="200" cy="110" r="78" stroke="hsl(var(--primary) / 0.15)" strokeWidth="1" strokeDasharray="4 4" />
-                  <circle cx="200" cy="110" r="55" stroke="hsl(var(--primary) / 0.25)" strokeWidth="1.5" />
-                  <circle cx="200" cy="110" r="32" fill="hsl(var(--primary) / 0.08)" stroke="hsl(var(--primary) / 0.4)" strokeWidth="2" />
-                  <circle cx="200" cy="110" r="8" fill="hsl(var(--primary))" className="animate-pulse" />
-                  
-                  {/* Connecting Nodes */}
-                  <line x1="200" y1="110" x2="80" y2="60" stroke="hsl(var(--primary) / 0.2)" strokeWidth="1.5" />
-                  <circle cx="80" cy="60" r="5" fill="hsl(var(--accent))" />
-                  
-                  <line x1="200" y1="110" x2="320" y2="160" stroke="hsl(var(--primary) / 0.2)" strokeWidth="1.5" />
-                  <circle cx="320" cy="160" r="5" fill="hsl(var(--accent))" />
-                  
-                  <line x1="200" y1="110" x2="300" y2="40" stroke="hsl(var(--primary) / 0.2)" strokeWidth="1.5" />
-                  <circle cx="300" cy="40" r="4" fill="hsl(var(--foreground) / 0.3)" />
-                  
-                  <line x1="200" y1="110" x2="100" y2="170" stroke="hsl(var(--primary) / 0.2)" strokeWidth="1.5" />
-                  <circle cx="100" cy="170" r="4" fill="hsl(var(--foreground) / 0.3)" />
-                </svg>
-              </div>
-
               {/* Mini stats row - Glass styling */}
-              <div className="mx-6 mb-6 rounded-2xl px-5 py-4 grid grid-cols-3 divide-x divide-border/50 bg-muted/30 backdrop-blur-md border border-border/40">
+              <div className="mx-6 my-6 rounded-2xl px-5 py-4 grid grid-cols-3 divide-x divide-border/50 bg-muted/30 backdrop-blur-md border border-border/40">
                 {[
                   { label: 'Sensory Tools', value: '7+'    },
                   { label: 'Care Partners', value: '100+'  },

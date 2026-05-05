@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, Moon, Sun, Minimize2, Maximize2, Eye, Sparkles } from 'lucide-react';
+import { Menu, Moon, Sun, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -9,7 +9,7 @@ import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 const Header = () => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { darkMode, reducedMotion, highContrast, sensoryMode, toggleDarkMode, toggleReducedMotion, toggleHighContrast, toggleSensoryMode } = useAccessibility();
+  const { darkMode, highContrast, toggleDarkMode, toggleHighContrast } = useAccessibility();
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -26,8 +26,12 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2 focus-visible-ring rounded-md">
-            <span className="text-xl font-bold text-primary" style={{ letterSpacing: '-0.02em' }}>NeuroDigital Support</span>
+          <Link to="/" className="relative block h-12 w-[230px] sm:w-[280px] overflow-hidden focus-visible-ring rounded-md" aria-label="NeuroDigital Support home">
+            <img
+              src="/logo.png"
+              alt="NeuroDigital Support"
+              className="absolute left-0 top-[-51px] w-[260px] max-w-none sm:top-[-59px] sm:w-[300px]"
+            />
           </Link>
 
           <nav className="hidden md:flex items-center space-x-1" aria-label="Main navigation">
@@ -58,16 +62,6 @@ const Header = () => {
             </div>
 
             <div className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-muted/50">
-              <Maximize2 className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-              <Switch
-                checked={reducedMotion}
-                onCheckedChange={toggleReducedMotion}
-                aria-label="Toggle reduced motion"
-              />
-              <Minimize2 className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-            </div>
-
-            <div className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-muted/50">
               <Eye className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
               <Switch
                 checked={highContrast}
@@ -76,14 +70,6 @@ const Header = () => {
               />
             </div>
 
-            <div className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-muted/50">
-              <Sparkles className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-              <Switch
-                checked={sensoryMode}
-                onCheckedChange={toggleSensoryMode}
-                aria-label="Toggle sensory-safe mode"
-              />
-            </div>
           </div>
 
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
@@ -123,27 +109,11 @@ const Header = () => {
                   />
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Reduced motion</span>
-                  <Switch
-                    checked={reducedMotion}
-                    onCheckedChange={toggleReducedMotion}
-                    aria-label="Toggle reduced motion"
-                  />
-                </div>
-                <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">High contrast</span>
                   <Switch
                     checked={highContrast}
                     onCheckedChange={toggleHighContrast}
                     aria-label="Toggle high contrast"
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Sensory-safe mode</span>
-                  <Switch
-                    checked={sensoryMode}
-                    onCheckedChange={toggleSensoryMode}
-                    aria-label="Toggle sensory-safe mode"
                   />
                 </div>
               </div>
