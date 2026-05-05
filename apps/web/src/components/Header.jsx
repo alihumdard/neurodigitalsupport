@@ -27,7 +27,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="relative block h-12 w-[230px] sm:w-[280px] overflow-hidden focus-visible-ring rounded-md" aria-label="NeuroDigital Support home">
+          <Link to="/" className="relative -ml-7 block h-12 w-[230px] overflow-hidden focus-visible-ring rounded-md sm:-ml-10 sm:w-[280px] lg:-ml-16" aria-label="NeuroDigital Support home">
             <img
               src={logoSrc}
               alt="NeuroDigital Support"

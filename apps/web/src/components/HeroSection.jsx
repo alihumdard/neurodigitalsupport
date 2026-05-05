@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Sparkles, ArrowRight, Download, Brain, Shield, Calendar } from 'lucide-react';
+import { ArrowRight, Download, Brain, Shield, Calendar } from 'lucide-react';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 
 const HeroSection = () => {
   const { reducedMotion } = useAccessibility();
 
   return (
-    <section className="relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="relative overflow-hidden bg-emerald-50/60 dark:bg-emerald-950/10 transition-colors duration-300">
       {/* Premium ultra-tech background grid */}
       <div
         className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-20"
@@ -35,50 +35,39 @@ const HeroSection = () => {
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Adjusted padding and min-height to pull content closer to the header */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[70vh] pt-8 pb-12 lg:pt-12 lg:pb-16">
+        <div className="flex min-h-[70vh] items-center justify-center pt-24 pb-14 lg:pt-28 lg:pb-20">
           
           {/* LEFT — Text content */}
           <motion.div
-            className="flex flex-col justify-center max-w-2xl mx-auto lg:mx-0 space-y-7"
+            className="flex flex-col items-center justify-center max-w-4xl mx-auto space-y-8 text-center"
             {...(reducedMotion ? {} : {
               initial: { opacity: 0, y: 20 },
               animate: { opacity: 1, y: 0 },
               transition: { duration: 0.6, ease: "easeOut" },
             })}
           >
-            {/* Glassmorphic Eyebrow Pill */}
-            <div className="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-primary/10 text-primary border border-primary/20 backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
-              Sensory-Aware Technology
-            </div>
-
             {/* Main Content Grouping */}
-            <div className="space-y-5">
+            <div className="space-y-7">
               {/* Headline - Size Decreased */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]">
-                Technology Designed Around <br className="hidden sm:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">
+                Technology Designed Around{' '}
+                <span className="text-foreground">
                   Human Sensory
                 </span>{' '}
                 Needs
               </h1>
 
               {/* Subheadline */}
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
+              <p className="mx-auto max-w-3xl text-center text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
                 A premium digital ecosystem built to support autistic and neurodivergent adults across the UK through calming tools, safer online spaces, research intelligence, and inclusive support systems.
               </p>
 
               {/* Supporting text — Professional callout style */}
-              <div className="relative pl-4 py-1 border-l-2 border-primary/60">
-                <p className="text-sm text-muted-foreground/90 font-medium italic leading-relaxed">
-                  Most digital platforms ask neurodivergent people to adapt to overwhelming environments. We believe technology should adapt to people, not the other way around.
-                </p>
-              </div>
             </div>
 
             {/* CTA Buttons - Sized down to fit on one line */}
             <motion.div
-              className="flex flex-row flex-wrap items-center gap-2 sm:gap-3 pt-2"
+              className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 pt-3 sm:pt-4"
               {...(reducedMotion ? {} : {
                 initial: { opacity: 0 },
                 animate: { opacity: 1 },
@@ -112,9 +101,15 @@ const HeroSection = () => {
               </Button>
             </motion.div>
 
+            <div className="mx-auto max-w-3xl px-4 py-2 border-l-2 border-primary/60 text-left">
+              <p className="text-sm text-muted-foreground/90 font-medium italic leading-relaxed">
+                Most digital platforms ask neurodivergent people to adapt to overwhelming environments. We believe technology should adapt to people, not the other way around.
+              </p>
+            </div>
+
             {/* Trust strip */}
             <motion.div
-              className="pt-5 flex flex-wrap gap-x-5 gap-y-2 items-center border-t border-border/50"
+              className="pt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 items-center border-t border-border/50"
               {...(reducedMotion ? {} : {
                 initial: { opacity: 0 },
                 animate: { opacity: 1 },
@@ -131,14 +126,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* RIGHT — Glassmorphism Visual Card Cluster (Desktop only) */}
-          <motion.div
-            className="relative hidden lg:flex items-center justify-center"
-            {...(reducedMotion ? {} : {
-              initial: { opacity: 0, scale: 0.95 },
-              animate: { opacity: 1, scale: 1 },
-              transition: { duration: 0.7, delay: 0.1 },
-            })}
-          >
+          <div className="hidden">
             {/* Main Premium Card */}
             <div className="relative w-full max-w-md rounded-3xl overflow-hidden bg-background/60 backdrop-blur-xl border border-border shadow-2xl">
               
@@ -206,7 +194,7 @@ const HeroSection = () => {
                 <p className="text-[11px] font-medium text-muted-foreground leading-none">Safe social platform</p>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
 
         </div>
       </div>
