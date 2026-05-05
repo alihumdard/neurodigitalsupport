@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FileText, MessageSquare, BarChart3, TrendingUp, Download, Smartphone, Megaphone } from 'lucide-react';
+import { TrendingUp, Download, Smartphone, Megaphone } from 'lucide-react';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 import {
   Dialog,
@@ -11,6 +11,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import nurotokImage from '../../public/images/products/nurotok.jpeg';
+import altitokImage from '../../public/images/products/altitok.jpeg';
+import olitokImage from '../../public/images/products/olitok.jpeg';
+import loggingAppImage from '../../public/images/products/logging app.jpeg';
+import researchHubImage from '../../public/images/products/research and insight hub.jpeg';
 
 const ProductsHome = () => {
   const { reducedMotion } = useAccessibility();
@@ -29,7 +34,7 @@ const ProductsHome = () => {
 
   const coreModules = [
     {
-      logo: 'https://horizons-cdn.hostinger.com/74d8c2bd-be68-4613-8d19-cd6b1527ee02/9812e93bd770231b66c91ed8aeb5b7e3.jpg',
+      logo: nurotokImage,
       name: 'NuroTok',
       subtitle: 'Sensory Regulation App',
       description: 'A calming wellbeing app helping users manage sensory overload, stress, and daily regulation in a supportive digital environment.',
@@ -37,7 +42,7 @@ const ProductsHome = () => {
       platforms: ['App Store', 'Google Play'],
       color: 'text-blue-500'
     }, {
-      logo: 'https://horizons-cdn.hostinger.com/74d8c2bd-be68-4613-8d19-cd6b1527ee02/37f1e28818ba4db4db19abe709be42b1.png',
+      logo: altitokImage,
       name: 'AltiTok',
       subtitle: 'Sensory-Aware Social Platform',
       description: 'A new kind of social platform reimagining connection through emotionally safer, sensory-conscious features and calm interaction.',
@@ -45,7 +50,7 @@ const ProductsHome = () => {
       platforms: ['Mobile & Tablet'],
       color: 'text-purple-500'
     }, {
-      icon: MessageSquare,
+      logo: olitokImage,
       name: 'OliSupport',
       subtitle: 'Digital Advocacy Hub',
       description: 'Centralized digital advocacy hub connecting neurodivergent individuals with personalized resources, guides, and peer support.',
@@ -58,7 +63,7 @@ const ProductsHome = () => {
       platforms: ['JOIN'],
       color: 'text-orange-500'
     }, {
-      icon: FileText,
+      logo: loggingAppImage,
       name: 'Care Logging App',
       subtitle: 'Secure Support System',
       description: 'Secure, intuitive logging system for support workers with offline sync, custom reporting, and a privacy-first design infrastructure.',
@@ -95,7 +100,7 @@ const ProductsHome = () => {
         ]
       }
     }, {
-      icon: BarChart3,
+      logo: researchHubImage,
       name: 'Research & Insights Hub',
       subtitle: 'Evidence-Led Innovation',
       description: 'Our Research Hub provides access to trusted studies, dashboards, and reports focused on neurodivergence and digital well-being.',
