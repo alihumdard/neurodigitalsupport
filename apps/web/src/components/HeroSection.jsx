@@ -98,9 +98,9 @@ const HeroSection = () => {
               </Button>
 
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
-                className="rounded-full text-white transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/18 hover:border-white/50 hover:text-white"
+                className="rounded-full text-white transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/18 hover:border-white/50 hover:text-white"
               >
                 <Calendar className="w-3.5 h-3.5 mr-0.5" aria-hidden="true" />
                 Book a Demo

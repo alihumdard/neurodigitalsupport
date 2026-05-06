@@ -130,7 +130,7 @@ const HomeCTA = () => {
                 <img
                   src={logoSrc}
                   alt="NeuroDigital Support"
-                  className="absolute left-[-8px] top-[-50px] w-[260px] max-w-none"
+                  className="absolute left-[-33px] top-[-50px] w-[260px] max-w-none"
                 />
               </Link>
               <p className="mt-4 text-sm font-medium leading-relaxed text-slate-600 dark:text-muted-foreground">
