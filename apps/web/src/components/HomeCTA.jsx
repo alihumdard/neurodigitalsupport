@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 import { toast } from 'sonner';
+import logoSrc from '../../public/logo.png';
 
 const HomeCTA = () => {
   const { reducedMotion } = useAccessibility();
@@ -121,7 +122,17 @@ const HomeCTA = () => {
         <div className="mx-auto w-full max-w-[1240px] px-4 py-14 sm:px-6 lg:px-10">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-20 lg:gap-20">
             <div>
-              <span className="text-xl font-bold tracking-tight text-[#5aa88f] dark:text-foreground">NeuroDigital Support</span>
+              <Link
+                to="/"
+                className="relative block h-12 w-[250px] overflow-hidden rounded-md focus-visible-ring"
+                aria-label="NeuroDigital Support home"
+              >
+                <img
+                  src={logoSrc}
+                  alt="NeuroDigital Support"
+                  className="absolute left-[-8px] top-[-50px] w-[260px] max-w-none"
+                />
+              </Link>
               <p className="mt-4 text-sm font-medium leading-relaxed text-slate-600 dark:text-muted-foreground">
                 Creating sensory-aware digital spaces that support neurodivergent wellbeing and reduce overwhelm.
               </p>
@@ -149,9 +160,9 @@ const HomeCTA = () => {
                   <Mail className="h-4 w-4 text-[#5aa88f]" aria-hidden="true" />
                   <span>support@neurodigital.com</span>
                 </a>
-                <a href="tel:+441234567890" className="flex items-center gap-3 text-sm font-semibold text-slate-600 transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:text-muted-foreground dark:hover:text-foreground">
+                <a href="tel:+447825354088" className="flex items-center gap-3 text-sm font-semibold text-slate-600 transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:text-muted-foreground dark:hover:text-foreground">
                   <Phone className="h-4 w-4 text-[#5aa88f]" aria-hidden="true" />
-                  <span>+44 123 456 7890</span>
+                  <span>+447825354088</span>
                 </a>
                 <div className="inline-flex items-center gap-3 pt-1">
                   {socialLinks.map((social) => (

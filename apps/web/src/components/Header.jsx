@@ -27,11 +27,11 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="relative -ml-7 block h-12 w-[230px] overflow-hidden focus-visible-ring rounded-md sm:-ml-10 sm:w-[280px] lg:-ml-16" aria-label="NeuroDigital Support home">
+          <Link to="/" className="relative block h-14 w-[260px] overflow-hidden focus-visible-ring rounded-md sm:-ml-4 sm:w-[290px] lg:-ml-16" aria-label="NeuroDigital Support home">
             <img
               src={logoSrc}
               alt="NeuroDigital Support"
-              className="absolute left-0 top-[-51px] w-[260px] max-w-none sm:top-[-59px] sm:w-[300px]"
+              className="absolute left-0 top-[-53px] w-[270px] max-w-none sm:top-[-61px] sm:w-[310px]"
             />
           </Link>
 
@@ -75,8 +75,8 @@ const Header = () => {
 
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon" aria-label="Open menu">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="h-11 w-11" aria-label="Open menu">
+                <Menu className="h-7 w-7" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
