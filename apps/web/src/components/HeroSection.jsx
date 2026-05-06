@@ -10,24 +10,20 @@ const HeroSection = () => {
   return (
     <section className="relative overflow-hidden transition-colors duration-300">
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat grayscale-[18%] saturate-[0.82]"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat brightness-[0.84] grayscale-[8%] saturate-[0.9] contrast-[0.98]"
         style={{ backgroundImage: "url('/images/products/homepage.jpeg')" }}
         aria-hidden="true"
       />
 
       <div
-        className="absolute inset-0 z-0 bg-gradient-to-br from-gray-950/84 via-gray-900/70 to-gray-950/82"
-        aria-hidden="true"
-      />
-
-      <div
-        className="absolute inset-0 z-0 bg-stone-200/10 mix-blend-color"
+        className="absolute inset-0 z-0"
+        style={{ backgroundColor: 'rgba(45, 45, 45, 0.56)' }}
         aria-hidden="true"
       />
 
       {/* Subtle neutral grid for depth without green cast */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none opacity-25"
+        className="absolute inset-0 z-0 pointer-events-none opacity-10"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
