@@ -1,12 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '@/components/Header.jsx';
-import Footer from '@/components/Footer.jsx';
 import HeroSection from '@/components/HeroSection.jsx';
 import ProductsHome from '@/components/ProductsHome.jsx'; 
 // import AccesiblityFeatures from '@/components/AccesiblityFeatures.jsx';
 // import HowNurotokWorks from '@/components/HowNurotokWorks.jsx';
-// import HomeCTA from '@/components/HomeCTA.jsx';
+import HomeCTA from '@/components/HomeCTA.jsx';
 
 const HomePage = () => {
   return (
@@ -32,10 +31,8 @@ const HomePage = () => {
         {/* <HowNurotokWorks /> */}
 
         {/* ── CTA SECTIONS ── */}
-        {/* <HomeCTA /> */}
+        <HomeCTA />
       </main>
-
-      <Footer />
     </>
   );
 };

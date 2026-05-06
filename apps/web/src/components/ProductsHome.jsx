@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FileText, MessageSquare, BarChart3, TrendingUp, Download, Smartphone, Megaphone } from 'lucide-react';
+import { FileText, MessageSquare, BarChart3, TrendingUp, Download, Smartphone, Megaphone, ChevronLeft, ChevronRight, UserRound } from 'lucide-react';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 import {
   Dialog,
@@ -27,6 +27,43 @@ const ProductsHome = () => {
     transition: { duration: 0.5 }
   };
 
+  const principleItems = [
+    'Calm by design',
+    'Inclusive by default',
+    'Backed by evidence',
+    'Safe digital environments',
+    'Ethical use of AI',
+    'Built for long-term impact'
+  ];
+
+  const accessibilityItems = [
+    'Dark Mode',
+    'Reduced Motion',
+    'High Contrast',
+    'Adjustable Text Size',
+    'Dyslexia-Friendly Fonts',
+    'Screen Reader Support',
+    'Sensory Safe Mode'
+  ];
+
+  const testimonials = [
+    {
+      review: 'Finally, technology that feels calm instead of exhausting.',
+      name: '— Early User',
+      avatarClass: 'from-emerald-100 via-white to-teal-100 text-emerald-700 dark:from-emerald-900 dark:via-emerald-800 dark:to-teal-900 dark:text-emerald-100'
+    },
+    {
+      review: 'An important step forward for inclusive digital care.',
+      name: '— Support Worker',
+      avatarClass: 'from-white via-emerald-50 to-teal-100 text-emerald-800'
+    },
+    {
+      review: 'This platform could redefine neurodivergent wellbeing services.',
+      name: '— Research Professional',
+      avatarClass: 'from-teal-100 via-white to-emerald-100 text-teal-700 dark:from-teal-900 dark:via-emerald-900 dark:to-emerald-800 dark:text-emerald-100'
+    }
+  ];
+
   const coreModules = [
     {
       logo: 'https://horizons-cdn.hostinger.com/74d8c2bd-be68-4613-8d19-cd6b1527ee02/9812e93bd770231b66c91ed8aeb5b7e3.jpg',
@@ -35,6 +72,7 @@ const ProductsHome = () => {
       description: 'A calming wellbeing app helping users manage sensory overload, stress, and daily regulation in a supportive digital environment.',
       features: ['Home', 'Profile', 'Toolkit', 'Insights'],
       platforms: ['App Store', 'Google Play'],
+      logoCircle: true,
       color: 'text-blue-500'
     }, {
       logo: 'https://horizons-cdn.hostinger.com/74d8c2bd-be68-4613-8d19-cd6b1527ee02/37f1e28818ba4db4db19abe709be42b1.png',
@@ -43,6 +81,7 @@ const ProductsHome = () => {
       description: 'A new kind of social platform reimagining connection through emotionally safer, sensory-conscious features and calm interaction.',
       features: ['Scroll Speed', 'Reduced Motion', 'Content Filters'],
       platforms: ['Mobile & Tablet'],
+      logoCircle: true,
       color: 'text-purple-500'
     }, {
       icon: MessageSquare,
@@ -151,11 +190,21 @@ const ProductsHome = () => {
                 {/* Visual Header (Image or Icon) */}
                 <div className="h-24 w-full flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-105">
                   {module.logo ? (
-                    <img
-                      src={module.logo}
-                      alt={`${module.name} logo`}
-                      className="max-h-20 w-auto object-contain rounded-xl drop-shadow-md"
-                    />
+                    module.logoCircle ? (
+                      <div className="h-20 w-20 rounded-full flex items-center justify-center bg-slate-50 dark:bg-emerald-900/20 border border-slate-100 dark:border-transparent shadow-inner overflow-hidden">
+                        <img
+                          src={module.logo}
+                          alt={`${module.name} logo`}
+                          className="h-16 w-16 object-contain drop-shadow-sm"
+                        />
+                      </div>
+                    ) : (
+                      <img
+                        src={module.logo}
+                        alt={`${module.name} logo`}
+                        className="max-h-20 w-auto object-contain rounded-xl drop-shadow-md"
+                      />
+                    )
                   ) : (
                     <div className="h-20 w-20 rounded-full flex items-center justify-center bg-slate-50 dark:bg-emerald-900/20 border border-slate-100 dark:border-transparent shadow-inner">
                       {module.icon && <module.icon className={`h-9 w-9 ${module.color}`} aria-hidden="true" />}
@@ -269,6 +318,158 @@ const ProductsHome = () => {
             </motion.div>
           ))}
         </div>
+
+        <motion.div className="mt-24 text-center" variants={fadeInVariants} {...animationProps}>
+          <h3 className="text-sm font-bold tracking-[0.24em] text-emerald-700 dark:text-emerald-500 uppercase mb-3">
+            WHY
+          </h3>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">
+            NEURODIGITAL SUPPORT
+          </h2>
+        </motion.div>
+
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-7 max-w-7xl mx-auto">
+          <motion.div
+            className="h-full"
+            variants={fadeInVariants}
+            {...(reducedMotion ? {} : {
+              initial: "hidden",
+              whileInView: "visible",
+              viewport: { once: true, margin: "-50px" },
+              transition: { duration: 0.5 }
+            })}
+          >
+            <div className="h-full rounded-3xl border border-emerald-100/80 dark:border-emerald-800/30 bg-white/85 dark:bg-card/80 p-7 sm:p-9 text-left shadow-[0_10px_34px_rgb(15,23,42,0.08)]">
+              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground leading-tight">
+                Designed for Real Human Needs
+              </h3>
+              <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-muted-foreground">
+                Every feature is built with wellbeing, dignity, and accessibility at the centre.
+              </p>
+
+              <h4 className="mt-6 text-[11px] font-extrabold tracking-[0.16em] uppercase text-emerald-700 dark:text-emerald-500">
+                Our Principles
+              </h4>
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {principleItems.map((item) => (
+                  <div
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-xl border border-emerald-100 bg-emerald-50/65 px-3.5 py-2.5 text-sm font-semibold text-emerald-900 dark:border-emerald-800/30 dark:bg-emerald-900/20 dark:text-emerald-300"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400" aria-hidden="true" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="h-full"
+            variants={fadeInVariants}
+            {...(reducedMotion ? {} : {
+              initial: "hidden",
+              whileInView: "visible",
+              viewport: { once: true, margin: "-50px" },
+              transition: { duration: 0.5, delay: 0.08 }
+            })}
+          >
+            <div className="h-full rounded-3xl border border-emerald-100/80 dark:border-emerald-800/30 bg-white/85 dark:bg-card/80 p-7 sm:p-9 text-left shadow-[0_10px_34px_rgb(15,23,42,0.08)]">
+              <h4 className="text-[11px] font-extrabold tracking-[0.16em] uppercase text-emerald-700 dark:text-emerald-500">
+                Accessibility Settings
+              </h4>
+              <h3 className="mt-3 text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground leading-tight">
+                Personalise Your Experience
+              </h3>
+
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {accessibilityItems.map((item) => (
+                  <div
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-xl border border-emerald-100 bg-emerald-50/65 px-3.5 py-2.5 text-sm font-semibold text-emerald-900 dark:border-emerald-800/30 dark:bg-emerald-900/20 dark:text-emerald-300"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400" aria-hidden="true" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          className="mt-24 text-center"
+          variants={fadeInVariants}
+          {...animationProps}
+        >
+          <h3 className="text-sm font-bold tracking-[0.2em] text-emerald-700 dark:text-emerald-500 uppercase mb-4">
+            TESTIMONIALS
+          </h3>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">
+            Trusted by People Building Better Care
+          </h2>
+        </motion.div>
+
+        <motion.div
+          className="relative mt-12 max-w-6xl mx-auto px-10 sm:px-12 lg:px-14"
+          variants={fadeInVariants}
+          {...animationProps}
+        >
+          <button
+            type="button"
+            aria-label="Previous testimonial"
+            className="absolute left-0 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-emerald-200/80 bg-white/85 text-emerald-800 shadow-sm shadow-emerald-950/5 backdrop-blur transition-all hover:-translate-x-0.5 hover:bg-emerald-50 dark:border-emerald-800/50 dark:bg-card/85 dark:text-emerald-300 dark:hover:bg-emerald-950/40 sm:flex"
+          >
+            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+          </button>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:items-center lg:gap-6">
+            {testimonials.map((testimonial) => (
+              <article
+                key={testimonial.name}
+                className="flex min-h-[360px] flex-col items-center justify-center rounded-[1.75rem] bg-white/80 px-7 py-9 text-center text-foreground shadow-[0_12px_38px_rgb(15,23,42,0.08)] ring-1 ring-emerald-100/80 transition-all duration-300 dark:bg-card/80 dark:ring-emerald-800/30"
+              >
+                <div
+                  className={`mb-9 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br shadow-inner ring-1 ring-emerald-200/80 ${testimonial.avatarClass}`}
+                  aria-hidden="true"
+                >
+                  <UserRound className="h-10 w-10" />
+                </div>
+
+                <blockquote
+                  className="mx-auto max-w-[15rem] text-base font-extrabold leading-snug tracking-tight text-slate-900 dark:text-foreground"
+                >
+                  “{testimonial.review}”
+                </blockquote>
+
+                <p className="mt-7 text-xs font-bold tracking-wide text-emerald-800 dark:text-emerald-400">
+                  {testimonial.name}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            aria-label="Next testimonial"
+            className="absolute right-0 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-emerald-200/80 bg-white/85 text-emerald-800 shadow-sm shadow-emerald-950/5 backdrop-blur transition-all hover:translate-x-0.5 hover:bg-emerald-50 dark:border-emerald-800/50 dark:bg-card/85 dark:text-emerald-300 dark:hover:bg-emerald-950/40 sm:flex"
+          >
+            <ChevronRight className="h-4 w-4" aria-hidden="true" />
+          </button>
+
+          <div className="mt-8 flex items-center justify-center gap-2" aria-label="Testimonial carousel pagination">
+            {[0, 1, 2].map((dot) => (
+              <span
+                key={dot}
+                className={`h-2 rounded-full transition-all ${
+                  dot === 1
+                    ? 'w-6 bg-emerald-700 dark:bg-emerald-400'
+                    : 'w-2 bg-emerald-200 dark:bg-emerald-800'
+                }`}
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

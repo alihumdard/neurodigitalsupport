@@ -8,29 +8,30 @@ const HeroSection = () => {
   const { reducedMotion } = useAccessibility();
 
   return (
-    <section className="relative overflow-hidden bg-emerald-50/60 dark:bg-emerald-950/10 transition-colors duration-300">
-      {/* Premium ultra-tech background grid */}
+    <section className="relative overflow-hidden transition-colors duration-300">
       <div
-        className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-20"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, hsl(var(--foreground) / 0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, hsl(var(--foreground) / 0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px',
-          maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)'
-        }}
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/products/homepage.jpeg')" }}
+        aria-hidden="true"
       />
 
-      {/* Dynamic Glow Orbs for light/dark mode contrast */}
       <div
-        className="absolute -top-48 -right-48 w-[800px] h-[800px] rounded-full z-0 pointer-events-none blur-3xl opacity-50 dark:opacity-30"
-        style={{ background: 'radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, transparent 70%)' }}
+        className="absolute inset-0 z-0 bg-gradient-to-br from-black/70 via-black/58 to-black/68"
+        aria-hidden="true"
       />
+
+      {/* Subtle neutral grid for depth without green cast */}
       <div
-        className="absolute -bottom-24 -left-24 w-[500px] h-[500px] rounded-full z-0 pointer-events-none blur-3xl opacity-50 dark:opacity-30"
-        style={{ background: 'radial-gradient(circle, hsl(var(--accent) / 0.1) 0%, transparent 70%)' }}
+        className="absolute inset-0 z-0 pointer-events-none opacity-25"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+          maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)'
+        }}
       />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,16 +50,16 @@ const HeroSection = () => {
             {/* Main Content Grouping */}
             <div className="space-y-7">
               {/* Headline - Size Decreased */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
                 Technology Designed Around{' '}
-                <span className="text-foreground">
+                <span className="text-white">
                   Human Sensory
                 </span>{' '}
                 Needs
               </h1>
 
               {/* Subheadline */}
-              <p className="mx-auto max-w-3xl text-center text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
+              <p className="mx-auto max-w-3xl text-center text-sm sm:text-base text-white/90 leading-relaxed font-semibold">
                 A premium digital ecosystem built to support autistic and neurodivergent adults across the UK through calming tools, safer online spaces, research intelligence, and inclusive support systems.
               </p>
 
@@ -76,7 +77,7 @@ const HeroSection = () => {
             >
               <Button
                 size="sm"
-                className="rounded-full bg-primary text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold"
+                className="rounded-full bg-[#34967C] text-white transition-all duration-300 hover:bg-[#2a7a65] hover:shadow-lg hover:shadow-emerald-900/35 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold"
               >
                 Explore Our Ecosystem
                 <ArrowRight className="w-3.5 h-3.5 ml-0.5" aria-hidden="true" />
@@ -85,7 +86,7 @@ const HeroSection = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="rounded-full text-foreground transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold bg-background/50 backdrop-blur-sm border-border hover:bg-muted hover:border-border/80 hover:text-foreground"
+                className="rounded-full text-white transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/18 hover:border-white/50 hover:text-white"
               >
                 <Download className="w-3.5 h-3.5 mr-0.5" aria-hidden="true" />
                 Download NuroTok
@@ -94,22 +95,22 @@ const HeroSection = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="rounded-full text-foreground transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold hover:bg-accent hover:text-accent-foreground"
+                className="rounded-full text-white transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/18 hover:border-white/50 hover:text-white"
               >
                 <Calendar className="w-3.5 h-3.5 mr-0.5" aria-hidden="true" />
                 Book a Demo
               </Button>
             </motion.div>
 
-            <div className="mx-auto max-w-3xl px-4 py-2 border-l-2 border-primary/60 text-left">
-              <p className="text-sm text-muted-foreground/90 font-medium italic leading-relaxed">
+            <div className="mx-auto max-w-3xl px-4 py-2 border-l-2 border-white/55 text-left">
+              <p className="text-sm text-white/90 font-semibold italic leading-relaxed">
                 Most digital platforms ask neurodivergent people to adapt to overwhelming environments. We believe technology should adapt to people, not the other way around.
               </p>
             </div>
 
             {/* Trust strip */}
             <motion.div
-              className="pt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 items-center border-t border-border/50"
+              className="pt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 items-center border-t border-white/20"
               {...(reducedMotion ? {} : {
                 initial: { opacity: 0 },
                 animate: { opacity: 1 },
@@ -117,8 +118,8 @@ const HeroSection = () => {
               })}
             >
               {['Care Providers', 'Universities', 'Employers', 'Public Sector'].map((label) => (
-                <span key={label} className="text-xs sm:text-sm font-medium text-muted-foreground flex items-center gap-1.5">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/80" />
+                <span key={label} className="text-xs sm:text-sm font-semibold text-white/90 flex items-center gap-1.5">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/70" />
                   {label}
                 </span>
               ))}
