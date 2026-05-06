@@ -60,12 +60,16 @@ const Footer = () => {
           <div>
             <span className="text-sm font-semibold tracking-wide uppercase">Contact</span>
             <div className="mt-4 space-y-3">
-              <a href="mailto:support@neurodigital.com" className="flex items-center space-x-2 text-sm hover:text-primary transition-colors duration-200 focus-visible-ring rounded">
-                <Mail className="h-4 w-4" aria-hidden="true" />
-                <span>support@neurodigital.com</span>
+              <a href="mailto:info@neurodigitalsupport.com" className="flex items-center space-x-2 text-sm hover:text-primary transition-colors duration-200 focus-visible-ring rounded">
+                <span className="flex h-5 w-5 items-center justify-center">
+                  <Mail className="h-[18px] w-[18px]" aria-hidden="true" />
+                </span>
+                <span>info@neurodigitalsupport.com</span>
               </a>
               <a href="tel:+441234567890" className="flex items-center space-x-2 text-sm hover:text-primary transition-colors duration-200 focus-visible-ring rounded">
-                <Phone className="h-4 w-4" aria-hidden="true" />
+                <span className="flex h-5 w-5 items-center justify-center">
+                  <Phone className="h-[18px] w-[18px]" aria-hidden="true" />
+                </span>
                 <span>+44 123 456 7890</span>
               </a>
               <div className="flex space-x-3 pt-2">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FileText, MessageSquare, BarChart3, TrendingUp, Download, Smartphone, Megaphone, ChevronLeft, ChevronRight, UserRound } from 'lucide-react';
+import { FileText, BarChart3, TrendingUp, Download, Smartphone, Megaphone, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 import {
   Dialog,
@@ -50,16 +50,22 @@ const ProductsHome = () => {
     {
       review: 'Finally, technology that feels calm instead of exhausting.',
       name: '— Early User',
+      image: '/images/products/earlyuser.jpeg',
+      alt: 'Early user',
       avatarClass: 'from-emerald-100 via-white to-teal-100 text-emerald-700 dark:from-emerald-900 dark:via-emerald-800 dark:to-teal-900 dark:text-emerald-100'
     },
     {
       review: 'An important step forward for inclusive digital care.',
       name: '— Support Worker',
+      image: '/images/products/supportworker.jpeg',
+      alt: 'Support worker',
       avatarClass: 'from-white via-emerald-50 to-teal-100 text-emerald-800'
     },
     {
       review: 'This platform could redefine neurodivergent wellbeing services.',
       name: '— Research Professional',
+      image: '/images/products/researchworker.jpeg',
+      alt: 'Research professional',
       avatarClass: 'from-teal-100 via-white to-emerald-100 text-teal-700 dark:from-teal-900 dark:via-emerald-900 dark:to-emerald-800 dark:text-emerald-100'
     }
   ];
@@ -75,7 +81,7 @@ const ProductsHome = () => {
       logoCircle: true,
       color: 'text-blue-500'
     }, {
-      logo: 'https://horizons-cdn.hostinger.com/74d8c2bd-be68-4613-8d19-cd6b1527ee02/37f1e28818ba4db4db19abe709be42b1.png',
+      logo: '/images/products/AltiTok.png',
       name: 'AltiTok',
       subtitle: 'Sensory-Aware Social Platform',
       description: 'A new kind of social platform reimagining connection through emotionally safer, sensory-conscious features and calm interaction.',
@@ -84,7 +90,7 @@ const ProductsHome = () => {
       logoCircle: true,
       color: 'text-purple-500'
     }, {
-      icon: MessageSquare,
+      logo: '/images/products/oiltok.jpeg',
       name: 'OliSupport',
       subtitle: 'Digital Advocacy Hub',
       description: 'Centralized digital advocacy hub connecting neurodivergent individuals with personalized resources, guides, and peer support.',
@@ -95,6 +101,7 @@ const ProductsHome = () => {
       description: 'A safe, structured companionship platform connecting neurodivergent individuals with trained volunteers for meaningful friendship and emotional support.',
       features: ['Volunteer Matching', 'Safe Messaging', 'Group Hangouts'],
       platforms: ['JOIN'],
+      logoCircle: true,
       color: 'text-orange-500'
     }, {
       icon: FileText,
@@ -430,10 +437,13 @@ const ProductsHome = () => {
                 className="flex min-h-[360px] flex-col items-center justify-center rounded-[1.75rem] bg-white/80 px-7 py-9 text-center text-foreground shadow-[0_12px_38px_rgb(15,23,42,0.08)] ring-1 ring-emerald-100/80 transition-all duration-300 dark:bg-card/80 dark:ring-emerald-800/30"
               >
                 <div
-                  className={`mb-9 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br shadow-inner ring-1 ring-emerald-200/80 ${testimonial.avatarClass}`}
-                  aria-hidden="true"
+                  className={`mb-8 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br p-1.5 shadow-inner ring-1 ring-emerald-200/80 ${testimonial.avatarClass}`}
                 >
-                  <UserRound className="h-10 w-10" />
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.alt}
+                    className="h-full w-full rounded-full object-cover"
+                  />
                 </div>
 
                 <blockquote

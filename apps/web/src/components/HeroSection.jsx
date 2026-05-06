@@ -16,7 +16,7 @@ const HeroSection = () => {
       />
 
       <div
-        className="absolute inset-0 z-0 bg-gradient-to-br from-neutral-950/62 via-neutral-800/48 to-neutral-950/60"
+        className="absolute inset-0 z-0 bg-gradient-to-br from-gray-950/84 via-gray-900/70 to-gray-950/82"
         aria-hidden="true"
       />
 
@@ -98,9 +98,9 @@ const HeroSection = () => {
               </Button>
 
               <Button
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                className="rounded-full text-white transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/18 hover:border-white/50 hover:text-white"
+                className="rounded-full text-white transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/18 hover:border-white/50 hover:text-white"
               >
                 <Calendar className="w-3.5 h-3.5 mr-0.5" aria-hidden="true" />
                 Book a Demo

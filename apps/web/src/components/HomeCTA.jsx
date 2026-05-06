@@ -156,12 +156,16 @@ const HomeCTA = () => {
             <div className="min-w-0">
               <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-foreground">Contact</span>
               <div className="mt-5 space-y-4">
-                <a href="mailto:support@neurodigital.com" className="flex items-center gap-3 text-sm font-semibold text-slate-600 transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:text-muted-foreground dark:hover:text-foreground">
-                  <Mail className="h-4 w-4 text-[#5aa88f]" aria-hidden="true" />
-                  <span>support@neurodigital.com</span>
+                <a href="mailto:info@neurodigitalsupport.com" className="flex items-center gap-3 text-sm font-semibold text-slate-600 transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:text-muted-foreground dark:hover:text-foreground">
+                  <span className="flex h-5 w-5 items-center justify-center">
+                    <Mail className="h-[18px] w-[18px] text-[#5aa88f]" aria-hidden="true" />
+                  </span>
+                  <span>info@neurodigitalsupport.com</span>
                 </a>
                 <a href="tel:+447825354088" className="flex items-center gap-3 text-sm font-semibold text-slate-600 transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:text-muted-foreground dark:hover:text-foreground">
-                  <Phone className="h-4 w-4 text-[#5aa88f]" aria-hidden="true" />
+                  <span className="flex h-5 w-5 items-center justify-center">
+                    <Phone className="h-[18px] w-[18px] text-[#5aa88f]" aria-hidden="true" />
+                  </span>
                   <span>+447825354088</span>
                 </a>
                 <div className="inline-flex items-center gap-3 pt-1">
