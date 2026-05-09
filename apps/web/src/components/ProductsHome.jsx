@@ -79,6 +79,7 @@ const ProductsHome = () => {
       features: ['Home', 'Profile', 'Toolkit', 'Insights'],
       platforms: ['App Store', 'Google Play'],
       logoCircle: true,
+      path: '/nurotok',
       color: 'text-blue-500'
     }, {
       logo: '/images/products/AltiTok.png',
@@ -88,6 +89,7 @@ const ProductsHome = () => {
       features: ['Scroll Speed', 'Reduced Motion', 'Content Filters'],
       platforms: ['Mobile & Tablet'],
       logoCircle: true,
+      path: '/altitok',
       color: 'text-purple-500'
     }, {
       logo: '/images/products/oiltok.jpeg',
@@ -102,6 +104,7 @@ const ProductsHome = () => {
       features: ['Volunteer Matching', 'Safe Messaging', 'Group Hangouts'],
       platforms: ['JOIN'],
       logoCircle: true,
+      path: '/olitok',
       color: 'text-orange-500'
     }, {
       icon: FileText,
@@ -113,6 +116,7 @@ const ProductsHome = () => {
       description: 'A professional digital companion for care teams, providing simple and reliable record-keeping for supported living environments.',
       features: ['Daily Logs', 'Mood Tracking', 'Incident Reports'],
       platforms: ['Mobile & Tablet'],
+      path: '/care-logging',
       color: 'text-emerald-500'
     }, {
       icon: Megaphone,
@@ -122,6 +126,7 @@ const ProductsHome = () => {
       features: ['Awareness Campaigns', 'Policy Support', 'Workplace Inclusion'],
       platforms: ['RESOURCES'],
       color: 'text-emerald-500',
+      path: '/digital-advocacy-hub',
       details: {
         includes: [
           'Neurodiversity awareness campaign guides',
@@ -147,6 +152,7 @@ const ProductsHome = () => {
       description: 'Our Research Hub provides access to trusted studies, dashboards, and reports focused on neurodivergence and digital well-being.',
       features: ['Research Library', 'Published Studies', 'Visual Analytics'],
       platforms: ['Web'],
+      path: '/research-insights-hub',
       color: 'text-teal-500'
     }, {
       icon: TrendingUp,
@@ -155,6 +161,7 @@ const ProductsHome = () => {
       description: 'AI-powered analytics monitoring public conversations to identify emerging trends for neurodivergent communities.',
       features: ['Trend Graphs', 'Topic Clusters', 'Community Alerts'],
       platforms: ['Web', 'AI', 'SOURCES'],
+      path: '/social-listening-dashboard',
       color: 'text-pink-500'
     }
   ];
@@ -263,7 +270,7 @@ const ProductsHome = () => {
                   </div>
 
                   {/* Action Button */}
-                  {module.details ? (
+                  {module.details && !module.path ? (
                     <Dialog>
                       <DialogTrigger asChild>
                         <button
@@ -313,7 +320,7 @@ const ProductsHome = () => {
                     </Dialog>
                   ) : (
                     <Link
-                      to="/modules"
+                      to={module.path || "/modules"}
                       className="inline-flex items-center justify-center px-4 py-1.5 sm:px-6 sm:py-2 rounded-full bg-[#34967C] hover:bg-[#2a7a65] dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-[10px] sm:text-[11px] font-bold tracking-wider transition-all hover:-translate-y-0.5 shadow-md shadow-emerald-500/20"
                     >
                       MORE
