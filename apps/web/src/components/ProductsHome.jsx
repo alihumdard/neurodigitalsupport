@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FileText, MessageSquare, BarChart3, TrendingUp, Download } from 'lucide-react';
+import { FileText, MessageSquare, BarChart3, TrendingUp, Download, Megaphone } from 'lucide-react';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 
 const ProductsHome = () => {
@@ -24,36 +24,6 @@ const ProductsHome = () => {
       logo: 'https://horizons-cdn.hostinger.com/74d8c2bd-be68-4613-8d19-cd6b1527ee02/9812e93bd770231b66c91ed8aeb5b7e3.jpg',
       name: 'NuroTok',
       subtitle: 'Sensory Regulation App',
-<<<<<<< Updated upstream
-      description: 'A calming wellbeing app designed to help users manage sensory overload, emotional stress, and daily regulation in a supportive digital environment.',
-      features: ['Sensory Profile', 'Regulation Toolkit', 'Predictive Alerts'],
-      platforms: ['iOS', 'Android'],
-      color: 'text-blue-500'
-    }, {
-      icon: FileText,
-      name: 'Care Logging App',
-      subtitle: 'Secure Support System',
-      description: 'Secure, intuitive logging system for support workers with offline sync, custom reporting, and a privacy-first design infrastructure.',
-      features: ['Offline Sync', 'Custom Reports', 'Privacy-First'],
-      platforms: ['iOS', 'Android', 'Web'],
-      color: 'text-emerald-500'
-    }, {
-      logo: 'https://horizons-cdn.hostinger.com/74d8c2bd-be68-4613-8d19-cd6b1527ee02/37f1e28818ba4db4db19abe709be42b1.png',
-      name: 'AltiTok',
-      subtitle: 'Safe Social Platform',
-      description: 'Sensory-aware social platform with adjustable stimulation levels, filtered timelines, and inclusive, safe community spaces.',
-      features: ['Adjustable UI', 'Safe Spaces', 'Filtered Feeds'],
-      platforms: ['iOS', 'Android'],
-      color: 'text-purple-500'
-    }, {
-      icon: MessageSquare,
-      name: 'OliSupport',
-      subtitle: 'Digital Advocacy Hub',
-      description: 'Centralized digital advocacy hub connecting neurodivergent individuals with personalized resources, guides, and peer support.',
-      features: ['Peer Support', 'Resource Hub', 'Direct Advocacy'],
-      platforms: ['Web'],
-      color: 'text-orange-500'
-=======
       description: 'A calming wellbeing app helping users manage sensory overload, stress, and daily regulation in a supportive digital environment.',
       features: ['Home', 'Profile', 'Toolkit', 'Insights'],
       platforms: ['App Store', 'Google Play'],
@@ -98,7 +68,6 @@ const ProductsHome = () => {
       platforms: ['RESOURCES'],
       color: 'text-emerald-500',
       slug: 'advocacy-hub'
->>>>>>> Stashed changes
     }, {
       icon: BarChart3,
       name: 'Research & Insights',
@@ -110,14 +79,6 @@ const ProductsHome = () => {
       slug: 'research-hub'
     }, {
       icon: TrendingUp,
-<<<<<<< Updated upstream
-      name: 'Social Listening',
-      subtitle: 'Trend Intelligence',
-      description: 'AI-powered trend intelligence tracking neurodiversity conversations, emerging community needs, and sentiment analysis.',
-      features: ['AI Tracking', 'Sentiment Analysis', 'Live Trends'],
-      platforms: ['Web'],
-      color: 'text-pink-500'
-=======
       name: 'Social Listening Dashboard',
       subtitle: 'Real-Time AI Insights',
       description: 'AI-powered analytics monitoring public conversations to identify emerging trends for neurodivergent communities.',
@@ -125,7 +86,6 @@ const ProductsHome = () => {
       platforms: ['Web', 'AI', 'SOURCES'],
       color: 'text-pink-500',
       slug: 'social-listening'
->>>>>>> Stashed changes
     }
   ];
 
@@ -221,21 +181,12 @@ const ProductsHome = () => {
                   </div>
 
                   {/* Action Button */}
-<<<<<<< Updated upstream
-                  <Link 
-                    to="/modules" 
-                    className="inline-flex items-center justify-center px-6 py-2 rounded-full bg-[#34967C] hover:bg-[#2a7a65] dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-[11px] font-bold tracking-wider transition-all hover:-translate-y-0.5 shadow-md shadow-emerald-500/20"
+                  <Link
+                    to={`/product/${module.slug}`}
+                    className="inline-flex items-center justify-center px-4 py-1.5 sm:px-6 sm:py-2 rounded-full bg-[#34967C] hover:bg-[#2a7a65] dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-[10px] sm:text-[11px] font-bold tracking-wider transition-all hover:-translate-y-0.5 shadow-md shadow-emerald-500/20"
                   >
                     MORE
                   </Link>
-=======
-                    <Link
-                      to={`/product/${module.slug}`}
-                      className="inline-flex items-center justify-center px-4 py-1.5 sm:px-6 sm:py-2 rounded-full bg-[#34967C] hover:bg-[#2a7a65] dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-[10px] sm:text-[11px] font-bold tracking-wider transition-all hover:-translate-y-0.5 shadow-md shadow-emerald-500/20"
-                    >
-                      MORE
-                    </Link>
->>>>>>> Stashed changes
                 </div>
                 
               </div>

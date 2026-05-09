@@ -32,6 +32,8 @@ export default function SocialListeningDetails() {
   const { darkMode } = useAccessibility();
   const { scrollYProgress } = useScroll();
 
+  const parallaxY = useTransform(scrollYProgress, [0.8, 1], [-50, 150]);
+
   const features = [
     {
       icon: Activity,
