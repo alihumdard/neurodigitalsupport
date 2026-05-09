@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 import { toast } from 'sonner';
-import logoSrc from '../../public/logo.png';
+import logoSrc from '../../src/images/Picture1-removebg-preview.png';
 
 const Footer = () => {
   const { reducedMotion } = useAccessibility();
@@ -14,9 +14,9 @@ const Footer = () => {
 
   const navigationLinks = [
     { name: 'About', path: '/about' },
-    { name: 'Features', path: '/features' },
-    { name: 'Ecosystem', path: '/modules' },
-    { name: 'Research', path: '/research' },
+    { name: 'Features', path: '/#features' },
+    { name: 'Ecosystem', path: '/#modules' },
+    { name: 'Research', path: '/product/research-hub' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' }
   ];
@@ -47,7 +47,7 @@ const Footer = () => {
               <img
                 src={logoSrc}
                 alt="NeuroDigital Support"
-                className="absolute left-[-33px] top-[-50px] w-[260px] max-w-none"
+                className="w-56"
               />
             </Link>
             <p className="mt-4 text-sm font-medium leading-relaxed text-slate-600 dark:text-muted-foreground">
@@ -60,7 +60,7 @@ const Footer = () => {
             <nav className="mt-5 space-y-3" aria-label="Footer navigation">
               {navigationLinks.map((link) => (
                 <Link
-                  key={link.path}
+                  key={link.name}
                   to={link.path}
                   className="block text-sm font-semibold text-slate-600 transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:text-muted-foreground dark:hover:text-foreground"
                 >
@@ -70,18 +70,6 @@ const Footer = () => {
             </nav>
           </div>
 
-<<<<<<< Updated upstream
-          <div>
-            <span className="text-sm font-semibold tracking-wide uppercase">Contact</span>
-            <div className="mt-4 space-y-3">
-              <a href="mailto:support@neurodigital.com" className="flex items-center space-x-2 text-sm hover:text-primary transition-colors duration-200 focus-visible-ring rounded">
-                <Mail className="h-4 w-4" aria-hidden="true" />
-                <span>support@neurodigital.com</span>
-              </a>
-              <a href="tel:+441234567890" className="flex items-center space-x-2 text-sm hover:text-primary transition-colors duration-200 focus-visible-ring rounded">
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                <span>+44 123 456 7890</span>
-=======
           <div className="min-w-0">
             <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-foreground">Contact</span>
             <div className="mt-5 space-y-4">
@@ -96,7 +84,6 @@ const Footer = () => {
                   <Phone className="h-[18px] w-[18px] text-[#5aa88f]" aria-hidden="true" />
                 </span>
                 <span>+447825354088</span>
->>>>>>> Stashed changes
               </a>
               <div className="inline-flex items-center gap-3 pt-1">
                 {socialLinks.map((social) => (
@@ -161,9 +148,4 @@ const Footer = () => {
   );
 };
 
-<<<<<<< Updated upstream
 export default Footer;
-=======
-export default Footer;
-
->>>>>>> Stashed changes
