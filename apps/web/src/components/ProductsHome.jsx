@@ -24,6 +24,7 @@ const ProductsHome = () => {
       logo: 'https://horizons-cdn.hostinger.com/74d8c2bd-be68-4613-8d19-cd6b1527ee02/9812e93bd770231b66c91ed8aeb5b7e3.jpg',
       name: 'NuroTok',
       subtitle: 'Sensory Regulation App',
+<<<<<<< Updated upstream
       description: 'A calming wellbeing app designed to help users manage sensory overload, emotional stress, and daily regulation in a supportive digital environment.',
       features: ['Sensory Profile', 'Regulation Toolkit', 'Predictive Alerts'],
       platforms: ['iOS', 'Android'],
@@ -52,6 +53,52 @@ const ProductsHome = () => {
       features: ['Peer Support', 'Resource Hub', 'Direct Advocacy'],
       platforms: ['Web'],
       color: 'text-orange-500'
+=======
+      description: 'A calming wellbeing app helping users manage sensory overload, stress, and daily regulation in a supportive digital environment.',
+      features: ['Home', 'Profile', 'Toolkit', 'Insights'],
+      platforms: ['App Store', 'Google Play'],
+      logoCircle: true,
+      color: 'text-blue-500',
+      slug: 'nurotok'
+    }, {
+      logo: '/images/products/AltiTok.png',
+      name: 'AltiTok',
+      subtitle: 'Sensory-Aware Social Platform',
+      description: 'A new kind of social platform reimagining connection through emotionally safer, sensory-conscious features and calm interaction.',
+      features: ['Scroll Speed', 'Reduced Motion', 'Content Filters'],
+      platforms: ['Mobile & Tablet'],
+      logoCircle: true,
+      color: 'text-purple-500',
+      slug: 'altitok'
+    }, {
+      logo: '/images/products/olitok.jpeg',
+      name: 'OliTok',
+      subtitle: 'Online Friendship & Support Network',
+      description: 'A safe, structured companionship platform connecting neurodivergent individuals with trained volunteers for meaningful friendship and emotional support.',
+      features: ['Volunteer Matching', 'Safe Messaging', 'Group Hangouts'],
+      platforms: ['JOIN'],
+      logoCircle: true,
+      color: 'text-orange-500',
+      slug: 'olitok'
+    }, {
+      icon: FileText,
+      name: 'Care Logging App',
+      subtitle: 'Secure Support System',
+      description: 'A professional digital companion for care teams, providing simple and reliable record-keeping for supported living environments.',
+      features: ['Daily Logs', 'Mood Tracking', 'Incident Reports'],
+      platforms: ['Mobile & Tablet'],
+      color: 'text-emerald-500',
+      slug: 'care-logging'
+    }, {
+      icon: Megaphone,
+      name: 'Digital Advocacy Hub',
+      subtitle: 'Awareness & Inclusion',
+      description: 'A dedicated resource centre supporting neurodiversity awareness, policy progress, and accessible society initiatives through practical advocacy tools.',
+      features: ['Awareness Campaigns', 'Policy Support', 'Workplace Inclusion'],
+      platforms: ['RESOURCES'],
+      color: 'text-emerald-500',
+      slug: 'advocacy-hub'
+>>>>>>> Stashed changes
     }, {
       icon: BarChart3,
       name: 'Research & Insights',
@@ -59,15 +106,26 @@ const ProductsHome = () => {
       description: 'Data-driven knowledge centre equipped with evidence-based strategies, accessibility research, and systemic clinical insights.',
       features: ['Clinical Data', 'Accessibility', 'Trend Analysis'],
       platforms: ['Web'],
-      color: 'text-teal-500'
+      color: 'text-teal-500',
+      slug: 'research-hub'
     }, {
       icon: TrendingUp,
+<<<<<<< Updated upstream
       name: 'Social Listening',
       subtitle: 'Trend Intelligence',
       description: 'AI-powered trend intelligence tracking neurodiversity conversations, emerging community needs, and sentiment analysis.',
       features: ['AI Tracking', 'Sentiment Analysis', 'Live Trends'],
       platforms: ['Web'],
       color: 'text-pink-500'
+=======
+      name: 'Social Listening Dashboard',
+      subtitle: 'Real-Time AI Insights',
+      description: 'AI-powered analytics monitoring public conversations to identify emerging trends for neurodivergent communities.',
+      features: ['Trend Graphs', 'Topic Clusters', 'Community Alerts'],
+      platforms: ['Web', 'AI', 'SOURCES'],
+      color: 'text-pink-500',
+      slug: 'social-listening'
+>>>>>>> Stashed changes
     }
   ];
 
@@ -163,12 +221,21 @@ const ProductsHome = () => {
                   </div>
 
                   {/* Action Button */}
+<<<<<<< Updated upstream
                   <Link 
                     to="/modules" 
                     className="inline-flex items-center justify-center px-6 py-2 rounded-full bg-[#34967C] hover:bg-[#2a7a65] dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-[11px] font-bold tracking-wider transition-all hover:-translate-y-0.5 shadow-md shadow-emerald-500/20"
                   >
                     MORE
                   </Link>
+=======
+                    <Link
+                      to={`/product/${module.slug}`}
+                      className="inline-flex items-center justify-center px-4 py-1.5 sm:px-6 sm:py-2 rounded-full bg-[#34967C] hover:bg-[#2a7a65] dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-[10px] sm:text-[11px] font-bold tracking-wider transition-all hover:-translate-y-0.5 shadow-md shadow-emerald-500/20"
+                    >
+                      MORE
+                    </Link>
+>>>>>>> Stashed changes
                 </div>
                 
               </div>
