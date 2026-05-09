@@ -72,14 +72,14 @@ const ProductsHome = () => {
 
   const coreModules = [
     {
-      logo: 'https://horizons-cdn.hostinger.com/74d8c2bd-be68-4613-8d19-cd6b1527ee02/9812e93bd770231b66c91ed8aeb5b7e3.jpg',
+      logo: '/images/products/nurotok-logo.jpeg',
       name: 'NuroTok',
       subtitle: 'Sensory Regulation App',
       description: 'A calming wellbeing app helping users manage sensory overload, stress, and daily regulation in a supportive digital environment.',
       features: ['Home', 'Profile', 'Toolkit', 'Insights'],
       platforms: ['App Store', 'Google Play'],
       logoCircle: true,
-      path: '/nurotok',
+      path: '/features#nurotok',
       color: 'text-blue-500'
     }, {
       logo: '/images/products/AltiTok.png',
@@ -89,7 +89,7 @@ const ProductsHome = () => {
       features: ['Scroll Speed', 'Reduced Motion', 'Content Filters'],
       platforms: ['Mobile & Tablet'],
       logoCircle: true,
-      path: '/altitok',
+      path: '/features#altitok',
       color: 'text-purple-500'
     }, {
       logo: '/images/products/oiltok.jpeg',
@@ -104,7 +104,7 @@ const ProductsHome = () => {
       features: ['Volunteer Matching', 'Safe Messaging', 'Group Hangouts'],
       platforms: ['JOIN'],
       logoCircle: true,
-      path: '/olitok',
+      path: '/features#olitok',
       color: 'text-orange-500'
     }, {
       icon: FileText,
@@ -116,7 +116,7 @@ const ProductsHome = () => {
       description: 'A professional digital companion for care teams, providing simple and reliable record-keeping for supported living environments.',
       features: ['Daily Logs', 'Mood Tracking', 'Incident Reports'],
       platforms: ['Mobile & Tablet'],
-      path: '/care-logging',
+      path: '/features#care-logging',
       color: 'text-emerald-500'
     }, {
       icon: Megaphone,
@@ -126,7 +126,7 @@ const ProductsHome = () => {
       features: ['Awareness Campaigns', 'Policy Support', 'Workplace Inclusion'],
       platforms: ['RESOURCES'],
       color: 'text-emerald-500',
-      path: '/digital-advocacy-hub',
+      path: '/features#advocacy-hub',
       details: {
         includes: [
           'Neurodiversity awareness campaign guides',
@@ -152,7 +152,7 @@ const ProductsHome = () => {
       description: 'Our Research Hub provides access to trusted studies, dashboards, and reports focused on neurodivergence and digital well-being.',
       features: ['Research Library', 'Published Studies', 'Visual Analytics'],
       platforms: ['Web'],
-      path: '/research-insights-hub',
+      path: '/features#research-hub',
       color: 'text-teal-500'
     }, {
       icon: TrendingUp,
@@ -161,7 +161,7 @@ const ProductsHome = () => {
       description: 'AI-powered analytics monitoring public conversations to identify emerging trends for neurodivergent communities.',
       features: ['Trend Graphs', 'Topic Clusters', 'Community Alerts'],
       platforms: ['Web', 'AI', 'SOURCES'],
-      path: '/social-listening-dashboard',
+      path: '/features#social-listening',
       color: 'text-pink-500'
     }
   ];

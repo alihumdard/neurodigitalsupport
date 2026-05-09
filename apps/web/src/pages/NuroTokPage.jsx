@@ -344,13 +344,20 @@ const NuroTokPage = () => {
 
       <Header />
 
-      <main className="bg-[#f7fffb] text-slate-950">
-        <section className="overflow-hidden bg-gradient-to-br from-[#effbf6] via-white to-[#daf3eb]">
+      <main className="product-detail-page bg-[#f7fffb] text-slate-950 transition-colors duration-300 dark:bg-background dark:text-foreground">
+        <section className="overflow-hidden bg-gradient-to-br from-[#effbf6] via-white to-[#daf3eb] dark:from-background dark:via-card/35 dark:to-background">
           <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-[1180px] items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_0.72fr] lg:px-10">
             <div className="text-center lg:text-left">
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_18px_46px_rgba(15,23,42,0.12)] ring-1 ring-emerald-100 lg:mx-0">
+                <img
+                  src="/images/products/nurotok-logo.jpeg"
+                  alt="NuroTok logo"
+                  className="h-full w-full object-cover"
+                />
+              </div>
               <p className="text-6xl font-black tracking-tight text-[#46987d] drop-shadow-[0_10px_24px_rgba(79,159,132,0.18)] sm:text-7xl lg:text-8xl">NuroTok</p>
-              <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">Sensory Regulation App</h1>
-              <p className="mx-auto mt-5 max-w-xl text-lg font-semibold leading-relaxed text-slate-700 lg:mx-0">
+              <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-slate-950 dark:text-foreground sm:text-4xl">Sensory Regulation App</h1>
+              <p className="mx-auto mt-5 max-w-xl text-lg font-semibold leading-relaxed text-slate-700 dark:text-muted-foreground lg:mx-0">
                 A calming wellbeing companion designed to help you manage sensory overload and emotional stress.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
@@ -364,12 +371,12 @@ const NuroTokPage = () => {
           </div>
         </section>
 
-        <section className="bg-white py-20">
+        <section className="bg-white py-20 dark:bg-background">
           <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
               <div>
-                <h2 className="text-3xl font-extrabold tracking-tight text-emerald-800 sm:text-4xl">Designed for Sensory Harmony</h2>
-                <div className="mt-6 grid gap-4 text-sm font-medium leading-relaxed text-slate-600 sm:grid-cols-2">
+                <h2 className="text-3xl font-extrabold tracking-tight text-emerald-800 dark:text-emerald-300 sm:text-4xl">Designed for Sensory Harmony</h2>
+                <div className="mt-6 grid gap-4 text-sm font-medium leading-relaxed text-slate-600 dark:text-muted-foreground sm:grid-cols-2">
                   <p>
                     Most digital platforms are overwhelming. They compete for attention, increase noise, and make regulation harder during already difficult moments.
                   </p>
@@ -392,7 +399,7 @@ const NuroTokPage = () => {
           </div>
         </section>
 
-        <section className="bg-[#f4fbf8] py-20">
+        <section className="bg-[#f4fbf8] py-20 dark:bg-card/25">
           <div className="mx-auto max-w-[1180px] px-4 text-center sm:px-6 lg:px-10">
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">Adaptive Features for Wellbeing</h2>
             <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

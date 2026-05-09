@@ -250,21 +250,28 @@ const OliTokPage = () => {
 
       <Header />
 
-      <main className="min-h-screen overflow-hidden bg-[#f8fffb] text-[#10231d]">
-        <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7fffb_38%,#dff6ed_100%)]">
-          <div className="absolute left-1/2 top-16 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/32 blur-3xl" />
+      <main className="product-detail-page min-h-screen overflow-hidden bg-[#f8fffb] text-[#10231d] transition-colors duration-300 dark:bg-background dark:text-foreground">
+        <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7fffb_38%,#dff6ed_100%)] dark:bg-none dark:bg-background">
+          <div className="absolute left-1/2 top-16 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/32 blur-3xl dark:bg-emerald-900/15" />
           <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-[1200px] items-center gap-12 px-5 py-14 sm:px-8 lg:grid-cols-[1fr_0.82fr] lg:px-10">
             <div className="text-center lg:text-left">
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_18px_46px_rgba(15,23,42,0.12)] ring-1 ring-[#dceee7] lg:mx-0">
+                <img
+                  src="/images/products/oiltok.jpeg"
+                  alt="OliTok logo"
+                  className="h-full w-full object-cover"
+                />
+              </div>
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Safe Digital Companionship
               </div>
               <h1 className="mt-8 text-5xl font-extrabold tracking-tight text-[#226f59] drop-shadow-[0_20px_46px_rgba(74,163,132,0.16)] sm:text-7xl lg:text-8xl lg:leading-[0.9]">
                 OliTok
               </h1>
-              <p className="mt-6 text-2xl font-extrabold tracking-tight text-[#082f27] sm:text-3xl">
+              <p className="mt-6 text-2xl font-extrabold tracking-tight text-[#082f27] dark:text-foreground sm:text-3xl">
                 Safe Friendship & Support Online
               </p>
-              <p className="mx-auto mt-7 max-w-2xl text-lg font-semibold leading-relaxed text-[#314b41] sm:text-xl lg:mx-0">
+              <p className="mx-auto mt-7 max-w-2xl text-lg font-semibold leading-relaxed text-[#314b41] dark:text-muted-foreground sm:text-xl lg:mx-0">
                 OliTok connects neurodivergent individuals with trained volunteers for safe friendship, encouragement, and emotional support in a respectful online space.
               </p>
               <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
@@ -276,7 +283,7 @@ const OliTokPage = () => {
           </div>
         </section>
 
-        <section className="bg-white py-24 sm:py-32">
+        <section className="bg-white py-24 dark:bg-background sm:py-32">
           <div className="mx-auto grid max-w-[1240px] items-center gap-16 px-5 sm:px-8 lg:grid-cols-[0.95fr_0.8fr] lg:px-10">
             <div>
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">

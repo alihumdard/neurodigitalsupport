@@ -161,6 +161,41 @@
   transition-duration: 0.2s !important;
 }
 
+.dark .product-detail-page {
+  background: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .product-detail-page section {
+  background: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .product-detail-page section:nth-of-type(even) {
+  background: hsl(var(--card)) !important;
+}
+
+.dark .product-detail-page article,
+.dark .product-detail-page form,
+.dark .product-detail-page .product-surface {
+  background: hsl(var(--card)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .product-detail-page h1,
+.dark .product-detail-page h2,
+.dark .product-detail-page h3,
+.dark .product-detail-page h4,
+.dark .product-detail-page p {
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .product-detail-page .text-\[\#2f8066\],
+.dark .product-detail-page .text-\[\#226f59\],
+.dark .product-detail-page .text-emerald-800 {
+  color: rgb(110 231 183) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

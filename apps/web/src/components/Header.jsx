@@ -15,16 +15,31 @@ const Header = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Features', path: '/features' },
-    { name: 'Modules', path: '/modules' },
     { name: 'Research', path: '/research' },
     { name: 'Blog', path: '/blog' },
+    { name: 'ABOUT', path: '/about' },
     { name: 'Contact', path: '/contact' }
   ];
 
-  const isActive = (path) => location.pathname === path;
+  const featurePaths = [
+    '/features',
+    '/nurotok',
+    '/altitok',
+    '/olitok',
+    '/care-logging',
+    '/digital-advocacy-hub',
+    '/research-insights-hub',
+    '/social-listening-dashboard'
+  ];
+
+  const isActive = (path) => (
+    path === '/features'
+      ? featurePaths.includes(location.pathname)
+      : location.pathname === path
+  );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 shadow-sm shadow-slate-950/5 backdrop-blur supports-[backdrop-filter]:bg-background/75 dark:shadow-none">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="relative block h-14 w-[260px] overflow-hidden focus-visible-ring rounded-md sm:-ml-4 sm:w-[290px] lg:-ml-16" aria-label="NeuroDigital Support home">
@@ -42,7 +57,7 @@ const Header = () => {
                 to={link.path}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 focus-visible-ring ${
                   isActive(link.path)
-                    ? 'text-primary bg-primary/10'
+                    ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-200'
                     : 'text-foreground hover:text-primary hover:bg-muted'
                 }`}
               >
@@ -51,8 +66,8 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center space-x-4">
-            <div className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-muted/50">
+          <div className="hidden lg:flex items-center space-x-3">
+            <div className="flex items-center space-x-2 rounded-lg border border-border/60 bg-muted/50 px-3 py-1.5 dark:bg-muted/35">
               <Sun className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
               <Switch
                 checked={darkMode}
@@ -62,7 +77,7 @@ const Header = () => {
               <Moon className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
             </div>
 
-            <div className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-muted/50">
+            <div className="flex items-center space-x-2 rounded-lg border border-border/60 bg-muted/50 px-3 py-1.5 dark:bg-muted/35">
               <Eye className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
               <Switch
                 checked={highContrast}
@@ -91,7 +106,7 @@ const Header = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-4 py-2 text-base font-medium rounded-md transition-all duration-200 focus-visible-ring ${
                       isActive(link.path)
-                        ? 'text-primary bg-primary/10'
+                        ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-200'
                         : 'text-foreground hover:text-primary hover:bg-muted'
                     }`}
                   >

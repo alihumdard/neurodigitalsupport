@@ -157,7 +157,7 @@ const ResearchInsightsHubPage = () => {
 
       <Header />
 
-      <main className="min-h-screen overflow-hidden bg-[#f8fffb] text-[#10231d]">
+      <main className="product-detail-page min-h-screen overflow-hidden bg-[#f8fffb] text-[#10231d]">
         <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7fffb_38%,#dff6ed_100%)]">
           <div className="absolute left-1/2 top-16 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/32 blur-3xl" />
           <div className="relative mx-auto grid min-h-screen max-w-[1240px] items-center gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[0.9fr_1fr] lg:px-10">
