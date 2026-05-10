@@ -9,19 +9,19 @@ const slides = [
     image: '/images/products/homepage.jpeg',
     imagePosition: 'center 42%',
     title: 'Technology Designed Around Human Sensory Needs',
-    text: 'A premium digital ecosystem built to support autistic and neurodivergent adults across the UK.',
+    text: 'A premium digital ecosystem built to support autistic and neurodivergent adults across the UK',
   },
   {
     image: '/images/products/2image.jpeg',
     imagePosition: 'center 48%',
     title: '',
-    text: 'Through calming tools, safer online spaces, research intelligence, and inclusive support systems.',
+    text: 'Through calming tools, safer online spaces, research intelligence, and inclusive support systems',
   },
   {
     image: '/images/products/3image.jpeg',
     imagePosition: 'center center',
     title: '',
-    text: 'Most digital platforms ask neurodivergent people to adapt to overwhelming environments. We believe technology should adapt to people, not the other way around.',
+    text: 'We believe technology should adapt to people, not the other way around',
   },
 ];
 
@@ -118,11 +118,11 @@ const HeroSection = () => {
                         {currentSlide.text}
                       </p>
                     </>
-                  ) : (
+                  ) : currentSlide.text ? (
                     <p className="mx-auto max-w-4xl text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.18]">
                       {currentSlide.text}
                     </p>
-                  )}
+                  ) : null}
                 </motion.div>
               </AnimatePresence>
 

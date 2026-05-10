@@ -99,7 +99,7 @@ const products = [
     name: 'Digital Advocacy Hub',
     label: 'Awareness & Inclusion',
     description: 'A resource centre for neurodiversity awareness, workplace inclusion, public education, policy support, and practical campaign materials.',
-    image: '/images/products/oiltok.jpeg',
+    image: '/images/products/Digital Advocacy Hub.jpeg',
     detailPath: '/digital-advocacy-hub',
     accent: 'sky',
     icon: Megaphone,
@@ -245,7 +245,7 @@ const FeaturesPage = () => {
                   NeuroDigital Support Ecosystem
                 </p>
                 <h1 className="mt-5 max-w-4xl text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl">
-                  Seven dedicated products, connected by one support vision.
+                  7 products, 1 support vision.
                 </h1>
                 <p className="mt-6 max-w-3xl text-base font-semibold leading-relaxed text-slate-600 dark:text-slate-300 sm:text-lg">
                   A complete digital ecosystem for sensory regulation, safer social connection, care documentation, advocacy, research intelligence, and real-time community insight.
@@ -270,7 +270,6 @@ const FeaturesPage = () => {
                   <div className="flex items-center justify-between border-b border-slate-100 pb-4 dark:border-white/10">
                     <div>
                       <p className="text-[11px] font-black uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400">Product Suite</p>
-                      <p className="mt-1 text-sm font-bold text-slate-500 dark:text-slate-400">Long-scroll feature overview</p>
                     </div>
                     <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-slate-950 text-xl font-black text-white dark:bg-white dark:text-slate-950">
                       7
