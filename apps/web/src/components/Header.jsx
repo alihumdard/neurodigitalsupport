@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, Moon, Sun, Eye } from 'lucide-react';
+import { Menu } from 'lucide-react';
+import AccessibilityWidget from '@/components/AccessibilityWidget.jsx';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -40,13 +41,13 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 shadow-sm shadow-slate-950/5 backdrop-blur supports-[backdrop-filter]:bg-background/75 dark:shadow-none">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="relative block h-14 w-[260px] overflow-hidden focus-visible-ring rounded-md sm:-ml-4 sm:w-[290px] lg:-ml-16" aria-label="NeuroDigital Support home">
+      <div className="container mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex h-[4.4rem] items-center justify-between gap-2 sm:h-16">
+          <Link to="/" className="relative block h-12 min-w-0 flex-1 overflow-hidden focus-visible-ring rounded-md sm:-ml-4 sm:h-14 sm:w-[290px] sm:flex-none lg:-ml-16" aria-label="NeuroDigital Support home">
             <img
               src={logoSrc}
               alt="NeuroDigital Support"
-              className="absolute left-0 top-[-53px] w-[270px] max-w-none sm:top-[-61px] sm:w-[310px]"
+              className="absolute left-[-16px] top-[-42px] w-[230px] max-w-none sm:left-0 sm:top-[-61px] sm:w-[310px]"
             />
           </Link>
 
@@ -66,32 +67,14 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center space-x-3">
-            <div className="flex items-center space-x-2 rounded-lg border border-border/60 bg-muted/50 px-3 py-1.5 dark:bg-muted/35">
-              <Sun className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-              <Switch
-                checked={darkMode}
-                onCheckedChange={toggleDarkMode}
-                aria-label="Toggle dark mode"
-              />
-              <Moon className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-            </div>
-
-            <div className="flex items-center space-x-2 rounded-lg border border-border/60 bg-muted/50 px-3 py-1.5 dark:bg-muted/35">
-              <Eye className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-              <Switch
-                checked={highContrast}
-                onCheckedChange={toggleHighContrast}
-                aria-label="Toggle high contrast"
-              />
-            </div>
-
+          <div className="flex shrink-0 items-center">
+            <AccessibilityWidget />
           </div>
 
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon" className="h-14 w-14" aria-label="Open menu">
-                <Menu className="h-9 w-9" />
+              <Button variant="ghost" size="icon" className="h-10 w-10 rounded-2xl" aria-label="Open menu">
+                <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
@@ -116,6 +99,10 @@ const Header = () => {
               </nav>
 
               <div className="mt-8 space-y-4 border-t pt-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium">Accessibility menu</span>
+                  <AccessibilityWidget />
+                </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">Dark mode</span>
                   <Switch

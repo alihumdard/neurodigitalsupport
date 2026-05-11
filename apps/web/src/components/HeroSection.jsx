@@ -8,18 +8,21 @@ const slides = [
   {
     image: '/images/products/homepage.jpeg',
     imagePosition: 'center 42%',
+    mobilePosition: 'center center',
     title: 'Technology Designed Around Human Sensory Needs',
     text: 'A premium digital ecosystem built to support autistic and neurodivergent adults across the UK',
   },
   {
     image: '/images/products/2image.jpeg',
     imagePosition: 'center 48%',
+    mobilePosition: 'center center',
     title: '',
     text: 'Through calming tools, safer online spaces, research intelligence, and inclusive support systems',
   },
   {
     image: '/images/products/3image.jpeg',
     imagePosition: 'center center',
+    mobilePosition: 'center center',
     title: '',
     text: 'We believe technology should adapt to people, not the other way around',
   },
@@ -48,10 +51,11 @@ const HeroSection = () => {
       <AnimatePresence initial={false}>
         <motion.div
           key={currentSlide.image}
-          className="absolute inset-0 z-0 h-full w-full bg-cover bg-no-repeat brightness-[0.84] grayscale-[8%] saturate-[0.9] contrast-[0.98]"
+          className="hero-slide-bg absolute inset-0 z-0 h-full w-full bg-no-repeat brightness-[0.84] grayscale-[8%] saturate-[0.9] contrast-[0.98]"
           style={{
             backgroundImage: `url('${currentSlide.image}')`,
-            backgroundPosition: currentSlide.imagePosition,
+            '--hero-bg-position': currentSlide.imagePosition,
+            '--hero-mobile-bg-position': currentSlide.mobilePosition,
           }}
           aria-hidden="true"
           {...(reducedMotion ? {} : {

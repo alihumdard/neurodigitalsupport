@@ -1,93 +1,101 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useEffect, useMemo, useState } from 'react';
 
 export const AccessibilityContext = createContext();
 
-export const AccessibilityProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved ? JSON.parse(saved) : false;
-  });
+const STORAGE_KEY = 'accessibilitySettings';
 
-  const [reducedMotion, setReducedMotion] = useState(() => {
-    const saved = localStorage.getItem('reducedMotion');
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    return saved ? JSON.parse(saved) : prefersReduced;
-  });
+const defaultSettings = {
+  darkMode: false,
+  highContrast: false,
+  reducedMotion: false,
+  sensoryMode: false,
+  hideImages: false,
+  highlightLinks: false,
+  fontSize: 'medium',
+  bigCursor: false,
+  dyslexiaFont: false,
+  textSpacing: false,
+  lineHeight: false
+};
 
-  const [highContrast, setHighContrast] = useState(() => {
-    const saved = localStorage.getItem('highContrast');
-    return saved ? JSON.parse(saved) : false;
-  });
+const legacyKeys = ['darkMode', 'highContrast', 'reducedMotion', 'sensoryMode', 'fontSize'];
 
-  const [sensoryMode, setSensoryMode] = useState(() => {
-    const saved = localStorage.getItem('sensoryMode');
-    return saved ? JSON.parse(saved) : false;
-  });
+const readStoredSettings = () => {
+  const saved = localStorage.getItem(STORAGE_KEY);
 
-  const [fontSize, setFontSize] = useState(() => {
-    const saved = localStorage.getItem('fontSize');
-    return saved || 'medium';
-  });
+  if (saved) {
+    return { ...defaultSettings, ...JSON.parse(saved) };
+  }
 
-  useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
-
-  useEffect(() => {
-    localStorage.setItem('reducedMotion', JSON.stringify(reducedMotion));
-    if (reducedMotion) {
-      document.documentElement.classList.add('reduced-motion-mode');
-    } else {
-      document.documentElement.classList.remove('reduced-motion-mode');
-    }
-  }, [reducedMotion]);
-
-  useEffect(() => {
-    localStorage.setItem('highContrast', JSON.stringify(highContrast));
-    if (highContrast) {
-      document.documentElement.classList.add('high-contrast-mode');
-    } else {
-      document.documentElement.classList.remove('high-contrast-mode');
-    }
-  }, [highContrast]);
-
-  useEffect(() => {
-    localStorage.setItem('sensoryMode', JSON.stringify(sensoryMode));
-    if (sensoryMode) {
-      document.documentElement.classList.add('sensory-safe-mode');
-    } else {
-      document.documentElement.classList.remove('sensory-safe-mode');
-    }
-  }, [sensoryMode]);
-
-  useEffect(() => {
-    localStorage.setItem('fontSize', fontSize);
-    document.documentElement.style.fontSize = fontSize === 'large' ? '18px' : fontSize === 'small' ? '14px' : '16px';
-  }, [fontSize]);
-
-  const toggleDarkMode = () => setDarkMode(prev => !prev);
-  const toggleReducedMotion = () => setReducedMotion(prev => !prev);
-  const toggleHighContrast = () => setHighContrast(prev => !prev);
-  const toggleSensoryMode = () => setSensoryMode(prev => !prev);
-  const changeFontSize = (size) => setFontSize(size);
-
-  const value = {
-    darkMode,
-    reducedMotion,
-    highContrast,
-    sensoryMode,
-    fontSize,
-    toggleDarkMode,
-    toggleReducedMotion,
-    toggleHighContrast,
-    toggleSensoryMode,
-    changeFontSize
+  return {
+    ...defaultSettings,
+    darkMode: JSON.parse(localStorage.getItem('darkMode') || 'false'),
+    highContrast: JSON.parse(localStorage.getItem('highContrast') || 'false'),
+    reducedMotion:
+      JSON.parse(localStorage.getItem('reducedMotion') || 'false') ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    sensoryMode: JSON.parse(localStorage.getItem('sensoryMode') || 'false'),
+    fontSize: localStorage.getItem('fontSize') || 'medium'
   };
+};
+
+export const AccessibilityProvider = ({ children }) => {
+  const [settings, setSettings] = useState(readStoredSettings);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+    legacyKeys.forEach((key) => localStorage.removeItem(key));
+
+    const root = document.documentElement;
+    const classMap = {
+      dark: settings.darkMode,
+      'high-contrast-mode': settings.highContrast,
+      'reduced-motion-mode': settings.reducedMotion,
+      'sensory-safe-mode': settings.sensoryMode,
+      'hide-images-mode': settings.hideImages,
+      'highlight-links-mode': settings.highlightLinks,
+      'big-cursor-mode': settings.bigCursor,
+      'dyslexia-font-mode': settings.dyslexiaFont,
+      'text-spacing-mode': settings.textSpacing,
+      'line-height-mode': settings.lineHeight
+    };
+
+    Object.entries(classMap).forEach(([className, enabled]) => {
+      root.classList.toggle(className, enabled);
+    });
+
+    root.style.fontSize =
+      settings.fontSize === 'xlarge' ? '150%' : settings.fontSize === 'large' ? '120%' : '100%';
+  }, [settings]);
+
+  const updateSetting = (key, value) => {
+    setSettings((current) => ({
+      ...current,
+      [key]: typeof value === 'function' ? value(current[key]) : value
+    }));
+  };
+
+  const toggleSetting = (key) => updateSetting(key, (value) => !value);
+
+  const resetSettings = () => {
+    setSettings(defaultSettings);
+  };
+
+  const value = useMemo(
+    () => ({
+      ...settings,
+      settings,
+      updateSetting,
+      toggleSetting,
+      resetSettings,
+      toggleDarkMode: () => toggleSetting('darkMode'),
+      toggleReducedMotion: () => toggleSetting('reducedMotion'),
+      toggleHighContrast: () => toggleSetting('highContrast'),
+      toggleSensoryMode: () => toggleSetting('sensoryMode'),
+      changeFontSize: (fontSize) => updateSetting('fontSize', fontSize)
+    }),
+    [settings]
+  );
 
   return (
     <AccessibilityContext.Provider value={value}>
