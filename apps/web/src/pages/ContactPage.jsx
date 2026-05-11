@@ -16,12 +16,15 @@ import {
   Send,
   ShieldAlert
 } from 'lucide-react';
+import { toast } from 'sonner';
 import Footer from '@/components/Footer.jsx';
 import Header from '@/components/Header.jsx';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+
+const DEFAULT_API_BASE_URL = 'http://localhost/neurodigitalsupport/backend/neurodigital/public/api';
 
 const contactCategories = [
   {
@@ -75,7 +78,142 @@ const subjectOptions = [
 ];
 
 const ContactPage = () => {
-  const [selectedSubject, setSelectedSubject] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    responseMethod: 'email',
+    phoneNumber: '',
+    consent: false
+  });
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const apiBaseUrl = DEFAULT_API_BASE_URL;
+
+  const handleInputChange = (field) => (event) => {
+    const value = event?.target?.value ?? '';
+
+    setFormData((current) => ({
+      ...current,
+      [field]: value
+    }));
+
+    setFieldErrors((current) => ({
+      ...current,
+      [field]: undefined
+    }));
+  };
+
+  const handleConsentChange = (checked) => {
+    setFormData((current) => ({
+      ...current,
+      consent: checked === true
+    }));
+
+    setFieldErrors((current) => ({
+      ...current,
+      consent: undefined
+    }));
+  };
+
+  const handleResponseMethodChange = (event) => {
+    const value = event.target.value;
+
+    setFormData((current) => ({
+      ...current,
+      responseMethod: value
+    }));
+
+    setFieldErrors((current) => ({
+      ...current,
+      responseMethod: undefined,
+      email: value === 'email' ? current.email : undefined,
+      phoneNumber: value === 'phone' ? current.phoneNumber : undefined
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const nextErrors = {};
+
+    if (!formData.subject) {
+      nextErrors.subject = 'Please select a subject.';
+    }
+
+    if (!formData.consent) {
+      nextErrors.consent = 'Please confirm consent before sending your message.';
+    }
+
+    if (formData.responseMethod === 'email' && !formData.email.trim()) {
+      nextErrors.email = 'Email is required when email is your preferred response method.';
+    }
+
+    if (formData.responseMethod === 'phone' && !formData.phoneNumber.trim()) {
+      nextErrors.phoneNumber = 'Phone number is required when phone is your preferred response method.';
+    }
+
+    if (Object.keys(nextErrors).length > 0) {
+      setFieldErrors(nextErrors);
+      toast.error('Please fix the highlighted fields and try again.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setFieldErrors({});
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/contact-us`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name.trim() || null,
+          email: formData.email.trim() || null,
+          subject: formData.subject,
+          message: formData.message.trim() || null,
+          response_method: formData.responseMethod,
+          phone_number: formData.phoneNumber.trim() || null
+        })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        if (response.status === 422 && data?.errors) {
+          setFieldErrors({
+            name: data.errors.name?.[0],
+            email: data.errors.email?.[0],
+            subject: data.errors.subject?.[0],
+            message: data.errors.message?.[0],
+            responseMethod: data.errors.response_method?.[0],
+            phoneNumber: data.errors.phone_number?.[0]
+          });
+        }
+
+        throw new Error(data?.message || 'Unable to send your message right now.');
+      }
+
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        responseMethod: 'email',
+        phoneNumber: '',
+        consent: false
+      });
+      toast.success(data?.message || 'Your message has been sent successfully.');
+    } catch (error) {
+      toast.error(error.message || 'Something went wrong while sending your message.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -158,64 +296,107 @@ const ContactPage = () => {
               </h2>
             </div>
 
-            <form className="mt-7 grid gap-4">
+            <form className="mt-7 grid gap-4" onSubmit={handleSubmit}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <Input
                   aria-label="Full name (optional)"
                   placeholder="Full name (optional)"
+                  value={formData.name}
+                  onChange={handleInputChange('name')}
                   className="h-12 rounded-xl border-[#d2e7df] bg-white px-4 text-sm font-medium shadow-none"
                 />
                 <Input
-                  aria-label="Email address (required)"
-                  placeholder="Email address (required)"
+                  aria-label={formData.responseMethod === 'email' ? 'Email address (required)' : 'Email address (optional)'}
+                  placeholder={formData.responseMethod === 'email' ? 'Email address (required)' : 'Email address (optional)'}
                   type="email"
-                  required
+                  value={formData.email}
+                  onChange={handleInputChange('email')}
                   className="h-12 rounded-xl border-[#d2e7df] bg-white px-4 text-sm font-medium shadow-none"
                 />
               </div>
+              {fieldErrors.name ? <p className="text-sm font-medium text-[#a42d22]">{fieldErrors.name}</p> : null}
+              {fieldErrors.email ? <p className="text-sm font-medium text-[#a42d22]">{fieldErrors.email}</p> : null}
               <select
                 aria-label="Subject Dropdown"
                 className="h-12 rounded-xl border border-[#d2e7df] bg-white px-4 text-sm font-medium text-[#102f28] shadow-none outline-none transition focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2"
-                value={selectedSubject}
-                onChange={(event) => setSelectedSubject(event.target.value)}
+                value={formData.subject}
+                onChange={handleInputChange('subject')}
               >
                 <option value="" disabled hidden>Select a subject</option>
                 {subjectOptions.map((option) => (
                   <option key={option} value={option}>{option}</option>
                 ))}
               </select>
+              {fieldErrors.subject ? <p className="text-sm font-medium text-[#a42d22]">{fieldErrors.subject}</p> : null}
               <Textarea
                 aria-label="Message"
                 placeholder="Message"
+                value={formData.message}
+                onChange={handleInputChange('message')}
                 className="min-h-36 rounded-xl border-[#d2e7df] bg-white px-4 py-3 text-sm font-medium shadow-none"
               />
+              {fieldErrors.message ? <p className="text-sm font-medium text-[#a42d22]">{fieldErrors.message}</p> : null}
 
               <fieldset className="rounded-2xl border border-[#dbece5] bg-[#fbfffd] p-4">
                 <legend className="px-2 text-sm font-semibold text-[#102f28]">Preferred response method</legend>
                 <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3">
                   <label className="inline-flex items-center gap-2 text-sm font-medium text-[#31544c]">
-                    <input type="radio" name="response-method" value="email" className="h-4 w-4 accent-[#167158]" defaultChecked />
+                    <input
+                      type="radio"
+                      name="response-method"
+                      value="email"
+                      className="h-4 w-4 accent-[#167158]"
+                      checked={formData.responseMethod === 'email'}
+                      onChange={handleResponseMethodChange}
+                    />
                     Email
                   </label>
                   <label className="inline-flex items-center gap-2 text-sm font-medium text-[#31544c]">
-                    <input type="radio" name="response-method" value="phone" className="h-4 w-4 accent-[#167158]" />
+                    <input
+                      type="radio"
+                      name="response-method"
+                      value="phone"
+                      className="h-4 w-4 accent-[#167158]"
+                      checked={formData.responseMethod === 'phone'}
+                      onChange={handleResponseMethodChange}
+                    />
                     Phone
                   </label>
-                  <span className="text-xs font-medium text-[#637a73]">please provide number in message</span>
+                  <span className="text-xs font-medium text-[#637a73]">we will use your selected method to reply</span>
                 </div>
               </fieldset>
+              {fieldErrors.responseMethod ? <p className="text-sm font-medium text-[#a42d22]">{fieldErrors.responseMethod}</p> : null}
+
+              {formData.responseMethod === 'phone' ? (
+                <>
+                  <Input
+                    aria-label="Phone number"
+                    placeholder="Phone number"
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange('phoneNumber')}
+                    className="h-12 rounded-xl border-[#d2e7df] bg-white px-4 text-sm font-medium shadow-none"
+                  />
+                  {fieldErrors.phoneNumber ? <p className="text-sm font-medium text-[#a42d22]">{fieldErrors.phoneNumber}</p> : null}
+                </>
+              ) : null}
 
               <label className="flex items-start gap-3 rounded-2xl border border-[#dbece5] bg-white p-4 text-xs font-medium leading-5 text-[#405b54]">
-                <Checkbox className="mt-0.5 h-4 w-4 rounded border-[#9fcdbc] data-[state=checked]:bg-[#167158] data-[state=checked]:text-white" />
+                <Checkbox
+                  checked={formData.consent}
+                  onCheckedChange={handleConsentChange}
+                  className="mt-0.5 h-4 w-4 rounded border-[#9fcdbc] data-[state=checked]:bg-[#167158] data-[state=checked]:text-white"
+                />
                 <span>I agree to NeuroDigital Support storing my message and contacting me about this enquiry. We do not use your data for marketing unless you opt in separately.</span>
               </label>
+              {fieldErrors.consent ? <p className="text-sm font-medium text-[#a42d22]">{fieldErrors.consent}</p> : null}
 
               <Button
                 type="submit"
+                disabled={isSubmitting}
                 className="mt-2 h-12 rounded-xl bg-[#087653] text-sm font-semibold text-white shadow-[0_14px_34px_rgba(8,118,83,0.24)] transition duration-300 hover:bg-[#075f45]"
               >
                 <Send className="mr-2 h-4 w-4" aria-hidden="true" />
-                Send message
+                {isSubmitting ? 'Sending...' : 'Send message'}
               </Button>
             </form>
           </div>
