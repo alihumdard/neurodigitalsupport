@@ -265,7 +265,7 @@ const OliTokPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Safe Digital Companionship
               </div>
-              <h1 className="mt-8 text-5xl font-extrabold tracking-tight text-[#226f59] drop-shadow-[0_20px_46px_rgba(74,163,132,0.16)] sm:text-7xl lg:text-8xl lg:leading-[0.9]">
+              <h1 className="mt-8 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#226f59] drop-shadow-[0_20px_46px_rgba(74,163,132,0.16)] sm:text-4xl lg:text-5xl">
                 OliTok
               </h1>
               <p className="mt-6 text-2xl font-extrabold tracking-tight text-[#082f27] dark:text-foreground sm:text-3xl">
@@ -289,7 +289,7 @@ const OliTokPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Why OliTok?
               </div>
-              <h2 className="mt-8 max-w-2xl text-5xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-6xl">
+              <h2 className="mt-8 max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Built Around
                 <br />
                 <span className="text-[#2f8066]">Trust & Human Connection</span>
@@ -328,7 +328,7 @@ const OliTokPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Platform Features
               </div>
-              <h2 className="mt-7 text-4xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-5xl">
+              <h2 className="mt-7 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Thoughtful Features
                 <br />
                 <span className="text-[#2f8066]">Designed For Safe Connection</span>
@@ -372,7 +372,7 @@ const OliTokPage = () => {
         <section className="bg-white py-20">
           <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-10">
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-5xl">
+              <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Positive Support.
                 <br />
                 <span className="text-[#2f8066]">Meaningful Growth.</span>
@@ -397,7 +397,7 @@ const OliTokPage = () => {
 
         <section className="bg-[linear-gradient(135deg,#dff6ed_0%,#effbf7_52%,#ffffff_100%)] py-24">
           <div className="mx-auto flex max-w-[980px] flex-col items-center px-5 text-center sm:px-8">
-            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-[#10231d] sm:text-5xl">
+            <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-[#10231d] sm:text-4xl lg:text-5xl">
               Everyone Deserves
               <br />
               <span className="text-[#2f8066]">Safe Human Connection</span>

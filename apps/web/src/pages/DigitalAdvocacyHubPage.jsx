@@ -188,7 +188,7 @@ const DigitalAdvocacyHubPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Advocacy & Inclusion Platform
               </div>
-              <h1 className="mt-8 text-4xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-8 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Empowering Awareness,
                 <br />
                 <span className="text-[#2f8066]">Inclusion & Change</span>
@@ -211,7 +211,7 @@ const DigitalAdvocacyHubPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Why It Matters
               </div>
-              <h2 className="mt-8 max-w-2xl text-5xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-6xl">
+              <h2 className="mt-8 max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Building A More
                 <br />
                 <span className="text-[#2f8066]">Inclusive Society</span>
@@ -249,7 +249,7 @@ const DigitalAdvocacyHubPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Resources & Tools
               </div>
-              <h2 className="mt-7 text-4xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-5xl">
+              <h2 className="mt-7 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Practical Resources
                 <br />
                 <span className="text-[#2f8066]">For Real Change</span>
@@ -278,7 +278,7 @@ const DigitalAdvocacyHubPage = () => {
 
         <section className="bg-[linear-gradient(135deg,#dff6ed_0%,#effbf7_52%,#ffffff_100%)] py-24">
           <div className="mx-auto flex max-w-[980px] flex-col items-center px-5 text-center sm:px-8">
-            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-[#10231d] sm:text-5xl">
+            <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-[#10231d] sm:text-4xl lg:text-5xl">
               Awareness Starts
               <br />
               <span className="text-[#2f8066]">With Accessible Conversations</span>

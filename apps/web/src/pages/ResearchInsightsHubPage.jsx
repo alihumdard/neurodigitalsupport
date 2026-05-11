@@ -1,301 +1,302 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import {
-  AreaChart,
   BarChart3,
+  Bell,
   BookOpen,
   Database,
   FileText,
-  LineChart,
-  Library,
+  Mail,
+  Network,
   Search,
   ShieldCheck,
-  TrendingUp
+  TrendingUp,
+  Users
 } from 'lucide-react';
 import Footer from '@/components/Footer.jsx';
 import Header from '@/components/Header.jsx';
 
-const focusCards = [
+const researchCards = [
   {
-    title: 'Searchable Research Library',
-    description: 'Quickly access studies, reports, and publications by topic or category.',
-    icon: Search
+    title: 'Algorithmic Exclusion and Neurodivergent Users: How Platform Design Shapes Belonging and Mental Health Online',
+    metadata: 'Author: Kofi Ofori-Mensah (2026) | Type: Conceptual review | Read time: ~25 min',
+    highlightTitle: 'The NAM Framework Highlight:',
+    intro:
+      'This paper introduces the Neurodivergent Algorithmic Misfit (NAM) framework, identifying four structural mechanisms of exclusion:',
+    points: [
+      'Attentional exploitation: how infinite scroll and variable rewards harm users with ADHD.',
+      'Social ambiguity amplification: how algorithmic curation worsens the “double empathy problem”.',
+      'Identity suppression: how content moderation penalises neurodivergent modes of expression.',
+      'Community fragmentation: how segmentation isolates while also enabling connection.'
+    ],
+    download: 'Download PDF (320 KB)',
+    documentHref: '/documents/Algorithmic Exclusion_Neurodivergent Users How Platform Design Shapes Belonging and Mental Health Online.pdf',
+    documentName: 'Algorithmic Exclusion_Neurodivergent Users How Platform Design Shapes Belonging and Mental Health Online.pdf',
+    icon: Network
   },
   {
-    title: 'Digital Sensory Reports',
-    description: 'Explore how digital environments affect neurodivergent users and wellbeing.',
-    icon: FileText
-  },
-  {
-    title: 'Visual Analytics',
-    description: 'Transform complex data into accessible charts, trends, and summaries.',
-    icon: AreaChart
+    title: 'Diagnosis Based on Content: The Role of Social Media in Late Autism and ADHD Self-Identification Among Adults in the UK',
+    metadata: 'Author: Kofi Ofori-Mensah (2026) | Type: Systematic narrative review | Read time: ~20 min',
+    highlightTitle: 'The 4 Tensions Highlight:',
+    intro:
+      'This paper examines the phenomenon of social media-mediated self-identification through four key tensions:',
+    points: [
+      'Epistemic legitimacy vs. clinical accuracy',
+      'Community affirmation vs. misinformation',
+      'Empowerment vs. exploitation',
+      'Digital access vs. diagnostic inequity'
+    ],
+    download: 'Download PDF (410 KB)',
+    documentHref: '/documents/Diagnosis Based on Content_The Role of Social Media in Late Autism and ADHD Self-Identification Among Adults in the UK.pdf',
+    documentName: 'Diagnosis Based on Content_The Role of Social Media in Late Autism and ADHD Self-Identification Among Adults in the UK.pdf',
+    icon: Users
   }
 ];
 
-const features = [
+const hubCards = [
   {
     title: 'Searchable Research Library',
-    description: 'Browse studies, publications, and evidence resources efficiently.',
-    icon: Library
+    description: 'Find studies, reports, and publications by topic, keyword, or category.',
+    icon: Search
   },
   {
     title: 'Published Studies',
-    description: 'Peer-reviewed research focused on autism and neurodiversity.',
+    description: 'Peer-reviewed work on autism, sensory environments, workplace inclusion, and digital wellbeing.',
     icon: BookOpen
   },
   {
     title: 'Digital Sensory Environment Reports',
-    description: 'Insights into interfaces, notifications, and digital wellbeing experiences.',
-    icon: FileText
+    description: 'How notifications, interface patterns, and app design affect neurodivergent users.',
+    icon: Bell
   },
   {
     title: 'Ethical Anonymised Data Sets',
-    description: 'Privacy-safe datasets supporting ethical innovation and research.',
+    description: 'Privacy-safe data for researchers and innovators.',
     icon: Database
   },
   {
     title: 'Visual Analytics Dashboards',
-    description: 'Clear visual summaries, trends, and accessible research insights.',
+    description: 'Charts, maps, and trend summaries that make complex data easy to interpret.',
     icon: BarChart3
   },
   {
     title: 'Trend Reports',
-    description: 'Track emerging topics and patterns across neurodiversity research.',
+    description: 'Regular updates on neurodiversity conversations from our Social Listening Dashboard.',
     icon: TrendingUp
   }
 ];
 
-const ActionButton = ({ children, variant = 'primary' }) => (
+const collaborationItems = [
+  'Use our anonymised datasets (subject to ethics agreement)',
+  'Request custom analytics from the Social Listening Dashboard',
+  'Partner on co-produced studies with our community.'
+];
+
+const ButtonLink = ({ children, variant = 'primary' }) => (
   <button
     type="button"
-    className={`inline-flex h-13 items-center justify-center rounded-full px-7 py-4 text-sm font-extrabold transition-all duration-300 active:translate-y-0 ${
+    className={`inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-center text-sm font-semibold transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4aa384] focus-visible:ring-offset-2 sm:px-7 ${
       variant === 'primary'
-        ? 'bg-[#4aa384] text-white shadow-[0_18px_42px_rgba(29,118,88,0.24),inset_0_1px_0_rgba(255,255,255,0.34)] ring-1 ring-white/45 hover:-translate-y-0.5 hover:bg-[#3f9275] hover:shadow-[0_26px_64px_rgba(29,118,88,0.32)]'
-        : 'border border-[#b7dcca] bg-white/70 text-[#17483b] shadow-[0_12px_34px_rgba(15,50,40,0.06)] hover:-translate-y-0.5 hover:border-[#8bc7ad] hover:bg-white'
+        ? 'bg-[#0f3d32] text-white shadow-[0_18px_40px_rgba(15,61,50,0.18)] hover:-translate-y-0.5 hover:bg-[#165846]'
+        : 'border border-[#b8ded0] bg-white/80 text-[#123d32] shadow-[0_14px_34px_rgba(15,61,50,0.08)] hover:-translate-y-0.5 hover:border-[#7abda4] hover:bg-white'
     }`}
   >
     {children}
   </button>
 );
 
-const ResearchDashboardMockup = () => (
-  <div className="relative mx-auto w-full max-w-[560px]">
-    <div className="absolute -inset-8 rounded-full bg-[#6bc5a7]/18 blur-3xl" />
-    <div className="relative rounded-[2.2rem] border border-white/80 bg-white/84 p-4 shadow-[0_38px_110px_rgba(11,43,33,0.18)] backdrop-blur-sm">
-      <div className="rounded-[1.6rem] bg-[#f7fffb] p-5 ring-1 ring-[#dceee7]">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#eaf5f0] text-[#2f8066]">
-              <LineChart className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <div className="space-y-2">
-              <span className="block h-3 w-36 rounded-full bg-[#b9dfd1]" />
-              <span className="block h-2.5 w-24 rounded-full bg-[#dceee7]" />
-            </div>
-          </div>
-          <span className="h-8 w-20 rounded-full bg-white shadow-sm ring-1 ring-[#dceee7]" />
+const SectionHeading = ({ children, className = '' }) => (
+  <h2 className={`text-3xl font-semibold leading-[1.15] tracking-normal text-[#0e332b] sm:text-4xl lg:text-5xl ${className}`}>
+    {children}
+  </h2>
+);
+
+const HeroImageMockup = () => (
+  <div className="relative mx-auto w-full max-w-[520px] lg:ml-auto">
+    <div className="absolute -inset-8 rounded-full bg-[#9de5cb]/28 blur-3xl" />
+    <div className="relative rounded-[2rem] border border-white/80 bg-white/70 p-3 shadow-[0_34px_90px_rgba(15,61,50,0.18)] backdrop-blur-xl">
+      <div className="overflow-hidden rounded-[1.45rem] border border-[#d8eee6] bg-white shadow-inner">
+        <div className="flex items-center gap-2 border-b border-[#e4f1ec] bg-[#fbfffd] px-5 py-3">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#88ceb7]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#b8e4d6]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#dcefe9]" />
         </div>
-
-        <div className="mt-6 grid gap-4 md:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-[1.4rem] bg-white p-4 shadow-[0_14px_34px_rgba(15,50,40,0.06)] ring-1 ring-white">
-            <div className="flex items-center justify-between">
-              <span className="h-3 w-28 rounded-full bg-[#b9dfd1]" />
-              <span className="h-7 w-16 rounded-full bg-[#eaf5f0]" />
-            </div>
-            <svg viewBox="0 0 260 150" className="mt-5 h-40 w-full text-[#2f8066]" aria-hidden="true">
-              <path d="M12 118 C46 78, 70 94, 96 68 S158 38, 190 64 S224 104, 248 42" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" opacity="0.82" />
-              <path d="M12 126 C54 110, 82 116, 112 92 S166 76, 194 92 S230 104, 248 82" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" opacity="0.22" />
-              {[40, 98, 162, 218].map((cx) => (
-                <circle key={cx} cx={cx} cy={cx === 40 ? 88 : cx === 98 ? 68 : cx === 162 ? 50 : 74} r="7" fill="currentColor" opacity="0.18" />
-              ))}
-            </svg>
-          </div>
-
-          <div className="space-y-4">
-            <div className="rounded-[1.4rem] bg-white p-4 shadow-[0_14px_34px_rgba(15,50,40,0.06)] ring-1 ring-white">
-              <span className="block h-3 w-24 rounded-full bg-[#b9dfd1]" />
-              <div className="mt-5 flex h-28 items-end gap-2">
-                {[44, 78, 56, 92, 66].map((height) => (
-                  <span key={height} className="flex-1 rounded-t-xl bg-[#98ccb7]" style={{ height }} />
-                ))}
-              </div>
-            </div>
-            <div className="rounded-[1.4rem] bg-[#102f27] p-4 text-white shadow-[0_16px_42px_rgba(15,50,40,0.12)]">
-              <div className="flex items-center gap-3">
-                <span className="h-9 w-9 rounded-full bg-white/16" />
-                <span className="h-2.5 flex-1 rounded-full bg-white/30" />
-              </div>
-              <div className="mt-4 space-y-2">
-                <span className="block h-2.5 rounded-full bg-white/18" />
-                <span className="block h-2.5 w-2/3 rounded-full bg-white/18" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-4 grid grid-cols-3 gap-3">
-          <span className="h-20 rounded-[1.25rem] bg-white shadow-[0_12px_28px_rgba(15,50,40,0.05)] ring-1 ring-white" />
-          <span className="h-20 rounded-[1.25rem] bg-[#eaf5f0] shadow-[0_12px_28px_rgba(15,50,40,0.05)]" />
-          <span className="h-20 rounded-[1.25rem] bg-white shadow-[0_12px_28px_rgba(15,50,40,0.05)] ring-1 ring-white" />
+        <div className="relative aspect-[1.36/1] overflow-hidden bg-[#eef8f4]">
+          <img
+            src="/images/products/research and insight hub.jpeg"
+            alt="Research & Insights Hub"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0)_38%,rgba(17,75,61,0.1)_100%)]" />
         </div>
       </div>
     </div>
+    <div className="mx-auto h-4 w-[64%] rounded-b-[2rem] bg-[#d7e9e3] shadow-[0_22px_44px_rgba(15,61,50,0.14)]" />
   </div>
 );
 
-const ResearchInsightsHubPage = () => {
-  return (
-    <>
-      <Helmet>
-        <title>Research & Insights Hub</title>
-        <meta
-          name="description"
-          content="The Research & Insights Hub provides trusted studies, reports, dashboards, and evidence-based insights focused on neurodiversity and digital wellbeing."
-        />
-      </Helmet>
+const ResearchInsightsHubPage = () => (
+  <>
+    <Helmet>
+      <title>Research & Insights Hub</title>
+    </Helmet>
 
-      <Header />
+    <Header />
 
-      <main className="product-detail-page min-h-screen overflow-hidden bg-[#f8fffb] text-[#10231d]">
-        <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7fffb_38%,#dff6ed_100%)]">
-          <div className="absolute left-1/2 top-16 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/32 blur-3xl" />
-          <div className="relative mx-auto grid min-h-screen max-w-[1240px] items-center gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[0.9fr_1fr] lg:px-10">
-            <div className="text-center lg:text-left">
-              <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
-                Evidence-Led Research Platform
-              </div>
-              <h1 className="mt-8 text-5xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-6xl lg:text-7xl">
-                Innovation For
-                <br />
-                <span className="text-[#2f8066]">Inclusive Digital Futures</span>
-              </h1>
-              <p className="mx-auto mt-7 max-w-2xl text-lg font-semibold leading-relaxed text-[#314b41] sm:text-xl lg:mx-0">
-                The Research & Insights Hub provides trusted studies, reports, dashboards, and evidence-based insights focused on neurodiversity and digital wellbeing.
-              </p>
-              <div className="mt-10 flex justify-center lg:justify-start">
-                <ActionButton>Explore Research</ActionButton>
-              </div>
-            </div>
-            <ResearchDashboardMockup />
-          </div>
-        </section>
-
-        <section className="bg-white py-24 sm:py-32">
-          <div className="mx-auto grid max-w-[1240px] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[0.85fr_1fr] lg:px-10">
-            <div>
-              <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
-                Research Focus
-              </div>
-              <h2 className="mt-8 max-w-2xl text-5xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-6xl">
-                Trusted Research
-                <br />
-                <span className="text-[#2f8066]">Designed For Impact</span>
-              </h2>
-              <p className="mt-7 max-w-xl text-lg font-semibold leading-relaxed text-[#536862]">
-                Access evidence-based insights, studies, and sensory environment research that support inclusive digital experiences and informed decision-making.
-              </p>
-            </div>
-
-            <div className="grid gap-4">
-              {focusCards.map(({ title, description, icon: Icon }) => (
-                <article
-                  key={title}
-                  className="group rounded-[1.5rem] border border-[#dceee7] bg-[#f7fffb] p-6 shadow-[0_18px_50px_rgba(15,50,40,0.045)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(15,50,40,0.08)]"
-                >
-                  <div className="flex gap-5">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-[#2f8066] shadow-sm">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-extrabold tracking-tight text-[#082f27]">{title}</h3>
-                      <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">{description}</p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="relative overflow-hidden bg-[#f7fffb] py-24 sm:py-32">
-          <div className="absolute left-1/2 top-16 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-[#dff6ed]/36 blur-3xl" />
-          <div className="relative mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-10">
-            <div className="mx-auto max-w-3xl text-center">
-              <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
-                Core Features
-              </div>
-              <h2 className="mt-7 text-4xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-5xl">
-                Research Tools
-                <br />
-                <span className="text-[#2f8066]">& Evidence Resources</span>
-              </h2>
-              <p className="mx-auto mt-6 max-w-2xl text-base font-semibold leading-relaxed text-[#536862]">
-                Designed to support researchers, institutions, charities, and policymakers with accessible and evidence-led insights.
-              </p>
-            </div>
-
-            <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {features.map(({ title, description, icon: Icon }) => (
-                <article
-                  key={title}
-                  className="group rounded-[1.6rem] border border-[#e0eee8] bg-white p-8 shadow-[0_18px_54px_rgba(15,50,40,0.045)] transition-all duration-300 hover:-translate-y-1 hover:border-[#cde8dd] hover:shadow-[0_26px_72px_rgba(15,50,40,0.08)]"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf5f0] text-[#2f8066] transition-colors duration-300 group-hover:bg-[#dff3ec]">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <h3 className="mt-7 text-base font-extrabold tracking-tight text-[#082f27]">{title}</h3>
-                  <p className="mt-4 text-sm font-medium leading-relaxed text-[#536862]">{description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white py-24 sm:py-32">
-          <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10">
-            <article className="overflow-hidden rounded-[2rem] border border-[#dceee7] bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(247,255,251,0.84))] p-8 shadow-[0_28px_90px_rgba(15,50,40,0.075)] sm:p-12">
-              <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
-                Featured Dissertation
-              </div>
-              <h2 className="mt-8 max-w-4xl text-4xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-5xl">
-                Exploring The Lived Experiences
-                <br />
-                <span className="text-[#2f8066]">Of Autistic Adults With Social Media Marketing In The UK</span>
-              </h2>
-              <p className="mt-7 max-w-3xl text-lg font-semibold leading-relaxed text-[#536862]">
-                A lived-experience research project exploring digital interaction, accessibility, and social media experiences for autistic adults in the UK.
-              </p>
-              <p className="mt-5 text-sm font-extrabold text-[#2f8066]">
-                Designed for researchers, institutions, charities, and policymakers.
-              </p>
-              <div className="mt-9">
-                <ActionButton variant="outline">View Dissertation</ActionButton>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section className="bg-[linear-gradient(135deg,#dff6ed_0%,#effbf7_52%,#ffffff_100%)] py-24">
-          <div className="mx-auto flex max-w-[980px] flex-col items-center px-5 text-center sm:px-8">
-            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-[#10231d] sm:text-5xl">
-              Supporting Inclusive
-              <br />
-              <span className="text-[#2f8066]">Research & Innovation</span>
-            </h2>
-            <p className="mt-7 max-w-3xl text-lg font-semibold leading-relaxed text-[#536862]">
-              Helping organisations and researchers access trustworthy neurodiversity-focused insights and evidence.
+    <main className="theme-aware-page min-h-screen overflow-hidden bg-[#fbfffd] text-[#142d26]">
+      <section className="relative bg-[linear-gradient(140deg,#ffffff_0%,#fbfffd_46%,#e8f8f2_100%)]">
+        <div className="absolute left-1/2 top-20 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-[#bceada]/24 blur-3xl" />
+        <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-[1180px] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:px-10">
+          <div className="max-w-[640px] text-center lg:text-left">
+            <h1 className="text-3xl font-semibold leading-[1.15] tracking-normal text-[#0c3028] sm:text-4xl lg:text-5xl">
+              Research & Insights Hub
+            </h1>
+            <p className="mt-7 max-w-xl text-2xl font-semibold leading-tight text-[#28745f] sm:text-3xl">
+              Evidence-Led Innovation for Inclusive Digital Futures
             </p>
-            <div className="mt-10">
-              <ActionButton>Explore Research</ActionButton>
-            </div>
+            <p className="mt-8 max-w-xl text-lg font-medium leading-8 text-[#4f665f] sm:text-xl">
+              Our Research Hub provides access to trusted studies, dashboards, reports, and insights focused on autism, neurodivergence, and digital well-being.
+            </p>
+            <p className="mt-7 max-w-xl text-base font-semibold leading-7 text-[#173f34] sm:text-lg">
+              Every resource is shaped by lived experience, peer-reviewed academic work, and a commitment to making knowledge accessible.
+            </p>
           </div>
-        </section>
-      </main>
 
-      <Footer />
-    </>
-  );
-};
+          <HeroImageMockup />
+        </div>
+      </section>
+
+      <section className="bg-white py-24 sm:py-28">
+        <div className="mx-auto max-w-[1180px] px-5 sm:px-8 lg:px-10">
+          <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+            <SectionHeading className="max-w-4xl text-balance">Featured Research – Available for Download</SectionHeading>
+            <p className="mt-6 max-w-3xl text-balance text-lg font-medium leading-8 text-[#536b64]">
+              Two landmark papers from Kofi Ofori-Mensah (MSc, University of Roehampton), founder of NeuroDigital Support, form the evidence base for our ecosystem.
+            </p>
+            <p className="mt-5 max-w-3xl text-balance text-base font-semibold leading-7 text-[#173f34]">
+              These works directly inform the design of NuroTok, AltiTok, the Social Listening Dashboard, and every other tool we build.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-7 lg:grid-cols-2">
+            {researchCards.map(({ title, metadata, highlightTitle, intro, points, download, documentHref, documentName, icon: Icon }) => (
+              <article
+                key={title}
+                className="flex flex-col rounded-[2rem] border border-[#d9eee6] bg-[linear-gradient(145deg,#ffffff_0%,#f7fffb_100%)] p-7 shadow-[0_24px_80px_rgba(15,61,50,0.08)] sm:p-9"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#e7f7f1] text-[#28745f]">
+                  <Icon className="h-6 w-6" aria-hidden="true" />
+                </div>
+                <h3 className="mt-8 text-2xl font-semibold leading-tight tracking-normal text-[#0c3028]">
+                  {title}
+                </h3>
+                <p className="mt-5 text-sm font-semibold leading-6 text-[#5b716a]">{metadata}</p>
+                <div className="mt-7 rounded-[1.5rem] bg-white/82 p-5 ring-1 ring-[#e2f1ec]">
+                  <p className="text-base font-semibold text-[#123d32]">{highlightTitle}</p>
+                  <p className="mt-3 text-sm font-medium leading-6 text-[#536b64]">{intro}</p>
+                  <ul className="mt-4 space-y-3">
+                    {points.map((point) => (
+                      <li key={point} className="flex gap-3 text-sm font-medium leading-6 text-[#344d45]">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#63b898]" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <a
+                  href={documentHref}
+                  download={documentName}
+                  className="mt-auto inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-[#b8ded0] bg-white px-6 text-sm font-semibold text-[#123d32] shadow-[0_14px_34px_rgba(15,61,50,0.08)] transition duration-300 hover:-translate-y-0.5 hover:border-[#7abda4] hover:bg-[#f7fffb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#63b898] focus-visible:ring-offset-2"
+                >
+                  <FileText className="h-4 w-4" aria-hidden="true" />
+                  {download}
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative bg-[#f7fffb] py-24 sm:py-28">
+        <div className="absolute right-0 top-10 h-80 w-80 rounded-full bg-[#c8efe1]/28 blur-3xl" />
+        <div className="relative mx-auto max-w-[1180px] px-5 sm:px-8 lg:px-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionHeading>More from the Research Hub</SectionHeading>
+          </div>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {hubCards.map(({ title, description, icon: Icon }) => (
+              <article
+                key={title}
+                className="rounded-[1.6rem] border border-[#d9eee6] bg-white p-7 shadow-[0_18px_54px_rgba(15,61,50,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,61,50,0.09)]"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e7f7f1] text-[#28745f]">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h3 className="mt-6 text-xl font-semibold leading-tight tracking-normal text-[#0c3028]">{title}</h3>
+                <p className="mt-4 text-sm font-medium leading-6 text-[#536b64]">{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-24 sm:py-28">
+        <div className="mx-auto grid max-w-[1180px] gap-7 px-5 sm:px-8 lg:grid-cols-2 lg:px-10">
+          <article className="rounded-[2rem] border border-[#d9eee6] bg-[#fbfffd] p-8 shadow-[0_22px_70px_rgba(15,61,50,0.07)] sm:p-10">
+            <SectionHeading className="max-w-xl !text-2xl sm:!text-3xl lg:!text-[2.15rem]">For Researchers, Institutions, Charities & Policymakers</SectionHeading>
+            <ul className="mt-8 space-y-4">
+              {collaborationItems.map((item) => (
+                <li key={item} className="flex gap-3 text-base font-medium leading-7 text-[#3b554d]">
+                  <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-[#28745f]" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 text-base font-semibold text-[#123d32]">
+              Research enquiries: info@neurodigitalsupport.com
+            </p>
+          </article>
+
+          <article className="rounded-[2rem] border border-[#d9eee6] bg-[linear-gradient(145deg,#e7f7f1_0%,#ffffff_100%)] p-8 shadow-[0_22px_70px_rgba(15,61,50,0.07)] sm:p-10">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#28745f] shadow-sm">
+              <Mail className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <SectionHeading className="mt-8 !text-2xl sm:!text-3xl lg:!text-[2.15rem]">Stay Updated</SectionHeading>
+            <p className="mt-6 text-base font-medium leading-7 text-[#3b554d]">
+              Subscribe to our research newsletter to receive new studies, sensory environment reports, and data briefs.
+            </p>
+            <form className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <input
+                type="email"
+                placeholder="Email Input"
+                className="min-h-[52px] flex-1 rounded-full border border-[#b8ded0] bg-white px-5 text-sm font-medium text-[#123d32] outline-none transition placeholder:text-[#78928a] focus:border-[#63b898] focus:ring-2 focus:ring-[#c8efe1]"
+              />
+              <ButtonLink>Subscribe to Research Updates</ButtonLink>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section className="bg-[linear-gradient(135deg,#e3f7f0_0%,#fbfffd_52%,#ffffff_100%)] py-24">
+        <div className="mx-auto max-w-[1000px] px-5 text-center sm:px-8 lg:px-10">
+          <p className="mx-auto max-w-4xl text-sm font-semibold leading-7 text-[#536b64]">
+            Both papers are unpublished manuscripts deposited in the University of Roehampton institutional repository and made available under open access for non-commercial use.
+          </p>
+          <h2 className="mt-9 text-3xl font-semibold leading-[1.15] tracking-normal text-[#0c3028] sm:text-4xl lg:text-5xl">
+            Explore the Evidence
+          </h2>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+            <ButtonLink>Browse the Research Library</ButtonLink>
+            <ButtonLink variant="outline">Request Data Access</ButtonLink>
+            <ButtonLink variant="outline">Book a Demo of the Social Listening Dashboard</ButtonLink>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </>
+);
 
 export default ResearchInsightsHubPage;

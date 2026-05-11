@@ -205,7 +205,7 @@ const CareLoggingPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Professional Care Support Tools
               </div>
-              <h1 className="mt-8 text-5xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-6xl lg:text-7xl">
+              <h1 className="mt-8 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Smarter Support
                 <br />
                 <span className="text-[#2f8066]">For Care Teams</span>
@@ -228,7 +228,7 @@ const CareLoggingPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Why Care Teams Use It
               </div>
-              <h2 className="mt-8 max-w-2xl text-5xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-6xl">
+              <h2 className="mt-8 max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Designed For
                 <br />
                 <span className="text-[#2f8066]">Everyday Care Support</span>
@@ -266,7 +266,7 @@ const CareLoggingPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Core Features
               </div>
-              <h2 className="mt-7 text-4xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-5xl">
+              <h2 className="mt-7 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Simple Logging.
                 <br />
                 <span className="text-[#2f8066]">Professional Reporting.</span>
@@ -299,7 +299,7 @@ const CareLoggingPage = () => {
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Why Care Teams Choose It
               </div>
-              <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-[#082f27] sm:text-5xl">
+              <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-5xl">
                 Simple Enough For
                 <br />
                 <span className="text-[#2f8066]">Everyday Use</span>
@@ -325,7 +325,7 @@ const CareLoggingPage = () => {
 
         <section className="bg-[linear-gradient(135deg,#dff6ed_0%,#effbf7_52%,#ffffff_100%)] py-24">
           <div className="mx-auto flex max-w-[980px] flex-col items-center px-5 text-center sm:px-8">
-            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-[#10231d] sm:text-5xl">
+            <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-[#10231d] sm:text-4xl lg:text-5xl">
               Care Documentation
               <br />
               <span className="text-[#2f8066]">Made Simpler</span>

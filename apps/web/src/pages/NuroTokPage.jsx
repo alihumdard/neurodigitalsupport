@@ -355,8 +355,8 @@ const NuroTokPage = () => {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <p className="text-6xl font-black tracking-tight text-[#46987d] drop-shadow-[0_10px_24px_rgba(79,159,132,0.18)] sm:text-7xl lg:text-8xl">NuroTok</p>
-              <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-slate-950 dark:text-foreground sm:text-4xl">Sensory Regulation App</h1>
+              <p className="text-3xl font-black leading-[1.15] tracking-tight text-[#46987d] drop-shadow-[0_10px_24px_rgba(79,159,132,0.18)] sm:text-4xl lg:text-5xl">NuroTok</p>
+              <h1 className="mt-5 text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 dark:text-foreground sm:text-4xl lg:text-5xl">Sensory Regulation App</h1>
               <p className="mx-auto mt-5 max-w-xl text-lg font-semibold leading-relaxed text-slate-700 dark:text-muted-foreground lg:mx-0">
                 A calming wellbeing companion designed to help you manage sensory overload and emotional stress.
               </p>
@@ -375,7 +375,7 @@ const NuroTokPage = () => {
           <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
               <div>
-                <h2 className="text-3xl font-extrabold tracking-tight text-emerald-800 dark:text-emerald-300 sm:text-4xl">Designed for Sensory Harmony</h2>
+                <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-emerald-800 dark:text-emerald-300 sm:text-4xl lg:text-5xl">Designed for Sensory Harmony</h2>
                 <div className="mt-6 grid gap-4 text-sm font-medium leading-relaxed text-slate-600 dark:text-muted-foreground sm:grid-cols-2">
                   <p>
                     Most digital platforms are overwhelming. They compete for attention, increase noise, and make regulation harder during already difficult moments.
@@ -401,7 +401,7 @@ const NuroTokPage = () => {
 
         <section className="bg-[#f4fbf8] py-20 dark:bg-card/25">
           <div className="mx-auto max-w-[1180px] px-4 text-center sm:px-6 lg:px-10">
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">Adaptive Features for Wellbeing</h2>
+            <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">Adaptive Features for Wellbeing</h2>
             <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {features.map(({ title, description, icon: Icon }) => (
                 <article key={title} className="rounded-2xl border border-emerald-100 bg-white p-7 text-center shadow-[0_14px_34px_rgba(15,23,42,0.08)]">
@@ -418,7 +418,7 @@ const NuroTokPage = () => {
 
         <section className="bg-gradient-to-br from-[#eaf9f2] via-[#fbfffd] to-[#dcf4ea] py-20">
           <div className="mx-auto max-w-[1180px] px-4 text-center sm:px-6 lg:px-10">
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">A Calming, Intuitive Experience</h2>
+            <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">A Calming, Intuitive Experience</h2>
             <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-slate-950">Distraction-free, easy navigation.</p>
             <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
               {screens.map((screen) => <MiniScreen key={screen.label} {...screen} />)}
@@ -433,7 +433,7 @@ const NuroTokPage = () => {
 
         <section className="bg-gradient-to-br from-[#e9f9f3] via-[#f7fffb] to-[#dff4ec] py-16">
           <div className="mx-auto max-w-[1180px] px-4 text-center sm:px-6 lg:px-10">
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">Ready to manage your sensory wellbeing?</h2>
+            <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">Ready to manage your sensory wellbeing?</h2>
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               {storeButtons.map((button) => <StoreButton key={button.label} {...button} light />)}
             </div>

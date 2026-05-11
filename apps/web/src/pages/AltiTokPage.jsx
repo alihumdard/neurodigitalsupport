@@ -186,7 +186,7 @@ const AltiTokPage = () => {
                   className="h-16 w-16 object-contain"
                 />
               </div>
-              <h1 className="text-5xl font-extrabold tracking-tight text-[#226f59] drop-shadow-[0_20px_46px_rgba(74,163,132,0.16)] dark:text-emerald-300 sm:text-7xl lg:text-8xl lg:leading-[0.9]">
+              <h1 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-[#226f59] drop-shadow-[0_20px_46px_rgba(74,163,132,0.16)] dark:text-emerald-300 sm:text-4xl lg:text-5xl">
                 AltiTok
               </h1>
               <p className="mx-auto mt-7 max-w-2xl text-lg font-semibold leading-relaxed text-[#314b41] dark:text-muted-foreground sm:text-xl lg:mx-0">
@@ -210,7 +210,7 @@ const AltiTokPage = () => {
                 <Leaf className="h-4 w-4" aria-hidden="true" />
                 Designed for Well-Being
               </div>
-              <h2 className="mt-12 max-w-xl text-5xl font-extrabold leading-[1.08] tracking-tight text-[#082f27] dark:text-foreground sm:text-6xl">
+              <h2 className="mt-12 max-w-xl text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] dark:text-foreground sm:text-4xl lg:text-5xl">
                 A Social Space Built Around <span className="text-[#2f8066]">Human Comfort</span>
               </h2>
               <div className="mt-8 h-1 w-16 rounded-full bg-[#2f8066]" />
@@ -250,7 +250,7 @@ const AltiTokPage = () => {
                 <Star className="h-3.5 w-3.5" aria-hidden="true" />
                 Our Features
               </div>
-              <h2 className="mt-7 text-4xl font-extrabold leading-tight tracking-tight text-[#082f27] dark:text-foreground sm:text-5xl">
+              <h2 className="mt-7 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] dark:text-foreground sm:text-4xl lg:text-5xl">
                 Thoughtful Features.
                 <br />
                 <span className="text-[#2f8066]">Healthier Experiences.</span>
@@ -279,7 +279,7 @@ const AltiTokPage = () => {
 
         <section className="bg-[linear-gradient(135deg,#dff6ed_0%,#effbf7_52%,#ffffff_100%)] py-24 dark:bg-none dark:bg-card/35">
           <div className="mx-auto flex max-w-[980px] flex-col items-center px-5 text-center sm:px-8">
-            <h2 className="text-4xl font-black tracking-normal text-[#10231d] dark:text-foreground sm:text-6xl">
+            <h2 className="text-3xl font-black leading-[1.15] tracking-normal text-[#10231d] dark:text-foreground sm:text-4xl lg:text-5xl">
               Create your free account today.
             </h2>
             <div className="mt-10">

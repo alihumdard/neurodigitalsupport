@@ -196,6 +196,83 @@
   color: rgb(110 231 183) !important;
 }
 
+.dark .theme-aware-page {
+  background: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .theme-aware-page section {
+  background: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .theme-aware-page section:nth-of-type(even) {
+  background: hsl(var(--card)) !important;
+}
+
+.dark .theme-aware-page article,
+.dark .theme-aware-page aside,
+.dark .theme-aware-page form,
+.dark .theme-aware-page fieldset,
+.dark .theme-aware-page .theme-surface {
+  background: hsl(var(--card)) !important;
+  border-color: hsl(var(--border)) !important;
+  box-shadow: 0 18px 56px rgba(0, 0, 0, 0.24) !important;
+}
+
+.dark .theme-aware-page h1,
+.dark .theme-aware-page h2,
+.dark .theme-aware-page h3,
+.dark .theme-aware-page h4,
+.dark .theme-aware-page p,
+.dark .theme-aware-page li,
+.dark .theme-aware-page label,
+.dark .theme-aware-page legend,
+.dark .theme-aware-page span {
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .theme-aware-page a:not([class*="text-white"]),
+.dark .theme-aware-page button:not([class*="text-white"]) {
+  color: rgb(110 231 183) !important;
+}
+
+.dark .theme-aware-page input,
+.dark .theme-aware-page textarea,
+.dark .theme-aware-page select {
+  background: hsl(var(--background)) !important;
+  border-color: hsl(var(--border)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .theme-aware-page input::placeholder,
+.dark .theme-aware-page textarea::placeholder {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.dark .theme-aware-page [class*="bg-white"],
+.dark .theme-aware-page [class*="bg-[#fbfffd]"],
+.dark .theme-aware-page [class*="bg-[#f7fffb]"],
+.dark .theme-aware-page [class*="bg-[#f8fffb]"],
+.dark .theme-aware-page [class*="bg-[#f1faf6]"],
+.dark .theme-aware-page [class*="bg-[#f2faf7]"],
+.dark .theme-aware-page [class*="bg-[#f3fbf7]"],
+.dark .theme-aware-page [class*="bg-[#e7f7f1]"],
+.dark .theme-aware-page [class*="bg-[#e8f7f1]"],
+.dark .theme-aware-page [class*="bg-[#e8f5ef]"] {
+  background: hsl(var(--card)) !important;
+}
+
+.dark .theme-aware-page [class*="border-[#"] {
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .theme-aware-page [class*="text-[#28745f]"],
+.dark .theme-aware-page [class*="text-[#167158]"],
+.dark .theme-aware-page [class*="text-[#0f765a]"] {
+  color: rgb(110 231 183) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

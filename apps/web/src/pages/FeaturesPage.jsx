@@ -244,8 +244,8 @@ const FeaturesPage = () => {
                 <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-emerald-700 dark:text-emerald-400">
                   NeuroDigital Support Ecosystem
                 </p>
-                <h1 className="mt-5 max-w-4xl text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl">
-                  7 products, 1 support vision.
+                <h1 className="mt-5 max-w-4xl text-3xl font-black leading-[1.15] tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">
+                  7 products, 1 support vision
                 </h1>
                 <p className="mt-6 max-w-3xl text-base font-semibold leading-relaxed text-slate-600 dark:text-slate-300 sm:text-lg">
                   A complete digital ecosystem for sensory regulation, safer social connection, care documentation, advocacy, research intelligence, and real-time community insight.
@@ -341,7 +341,7 @@ const FeaturesPage = () => {
                     <p className={`mt-6 text-xs font-black uppercase tracking-[0.22em] ${tone.text}`}>
                       {String(index + 1).padStart(2, '0')} / {product.label}
                     </p>
-                    <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">
+                    <h2 className="mt-3 text-3xl font-black leading-[1.15] tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">
                       {product.name}
                     </h2>
                     <p className="mt-5 text-base font-semibold leading-relaxed text-slate-600 dark:text-slate-300 sm:text-lg">

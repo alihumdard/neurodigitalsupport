@@ -205,11 +205,11 @@ const ProductsHome = () => {
                 <div className="h-24 w-full flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-105">
                   {module.logo ? (
                     module.logoCircle ? (
-                      <div className="h-20 w-20 rounded-full flex items-center justify-center bg-slate-50 dark:bg-emerald-900/20 border border-slate-100 dark:border-transparent shadow-inner overflow-hidden">
+                      <div className="h-20 w-20 rounded-full flex items-center justify-center bg-white p-1.5 border border-emerald-100 shadow-inner overflow-hidden dark:bg-white dark:border-emerald-900/30">
                         <img
                           src={module.logo}
                           alt={`${module.name} logo`}
-                          className="h-16 w-16 object-contain drop-shadow-sm"
+                          className="h-full w-full rounded-full object-contain drop-shadow-sm"
                         />
                       </div>
                     ) : (
@@ -220,7 +220,7 @@ const ProductsHome = () => {
                       />
                     )
                   ) : (
-                    <div className="h-20 w-20 rounded-full flex items-center justify-center bg-slate-50 dark:bg-emerald-900/20 border border-slate-100 dark:border-transparent shadow-inner">
+                    <div className="h-20 w-20 rounded-full flex items-center justify-center bg-white border border-emerald-100 shadow-inner dark:bg-white dark:border-emerald-900/30">
                       {module.icon && <module.icon className={`h-9 w-9 ${module.color}`} aria-hidden="true" />}
                     </div>
                   )}
@@ -441,10 +441,10 @@ const ProductsHome = () => {
             {testimonials.map((testimonial) => (
               <article
                 key={testimonial.name}
-                className="flex min-h-[360px] flex-col items-center justify-center rounded-[1.75rem] bg-white/80 px-7 py-9 text-center text-foreground shadow-[0_12px_38px_rgb(15,23,42,0.08)] ring-1 ring-emerald-100/80 transition-all duration-300 dark:bg-card/80 dark:ring-emerald-800/30"
+                className="flex min-h-[390px] flex-col items-center justify-center rounded-[1.75rem] bg-white/80 px-7 py-9 text-center text-foreground shadow-[0_12px_38px_rgb(15,23,42,0.08)] ring-1 ring-emerald-100/80 transition-all duration-300 dark:bg-card/80 dark:ring-emerald-800/30"
               >
                 <div
-                  className={`mb-8 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br p-1.5 shadow-inner ring-1 ring-emerald-200/80 ${testimonial.avatarClass}`}
+                  className={`mb-8 flex h-40 w-40 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br p-2 shadow-inner ring-1 ring-emerald-200/80 sm:h-44 sm:w-44 ${testimonial.avatarClass}`}
                 >
                   <img
                     src={testimonial.image}

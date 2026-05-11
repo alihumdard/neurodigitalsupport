@@ -119,8 +119,8 @@ const HomeCTA = () => {
       </motion.div>
 
       <footer className="w-full border-t border-emerald-100 bg-[#fbfdfc] dark:border-border dark:bg-background">
-        <div className="mx-auto w-full max-w-[1240px] px-4 py-14 sm:px-6 lg:px-10">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-20 lg:gap-20">
+        <div className="mx-auto w-full max-w-[1240px] px-4 pb-6 pt-10 sm:px-6 lg:px-10">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-14 lg:gap-16">
             <div>
               <Link
                 to="/"
@@ -210,7 +210,7 @@ const HomeCTA = () => {
             </div>
           </div>
 
-          <div className="mt-12 border-t border-gray-100 py-7 dark:border-border">
+          <div className="mt-8 border-t border-gray-100 py-4 dark:border-border">
             <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
               <p className="text-sm font-semibold text-slate-600 dark:text-muted-foreground">© 2026 NeuroDigital Support. All rights reserved.</p>
               <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-semibold text-slate-600 dark:text-muted-foreground">
