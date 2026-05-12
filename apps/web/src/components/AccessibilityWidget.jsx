@@ -54,14 +54,14 @@ const AccessibilityWidget = () => {
 
       <SheetContent
         side="right"
-        className="accessibility-panel w-[min(92vw,420px)] border-l border-emerald-100/80 bg-white/78 p-0 shadow-[0_28px_90px_rgba(15,61,50,0.18)] backdrop-blur-2xl dark:border-emerald-400/20 dark:bg-[#111614]/94"
+        className="accessibility-panel w-[min(92vw,420px)] border-l border-emerald-400/20 bg-[#111614]/94 p-0 text-white shadow-[0_28px_90px_rgba(15,61,50,0.18)] backdrop-blur-2xl"
       >
         <div className="flex h-full flex-col">
-          <SheetHeader className="border-b border-emerald-100/80 px-6 py-6 text-left dark:border-border">
-            <SheetTitle className="mt-4 text-2xl font-semibold tracking-normal text-[#102f28] text-white" style={darkTextStyle}>
+          <SheetHeader className="border-b border-emerald-400/20 px-6 py-6 text-left">
+            <SheetTitle className="mt-4 text-2xl font-semibold tracking-normal text-white" style={darkTextStyle}>
               Accessibility
             </SheetTitle>
-            <p className="text-sm font-medium leading-6 text-[#536b64] text-white" style={darkTextStyle}>
+            <p className="text-sm font-medium leading-6 text-white" style={darkTextStyle}>
               Apply comfortable viewing settings across the whole website.
             </p>
           </SheetHeader>
@@ -69,20 +69,20 @@ const AccessibilityWidget = () => {
           <div className="flex-1 overflow-y-auto px-6 py-6">
             <div className="mb-5">
               <div className="mb-3 flex items-center gap-2">
-                <Eye className="h-4 w-4 text-[#167158] dark:text-emerald-200" aria-hidden="true" />
-                <h3 className="text-sm font-semibold text-[#102f28] dark:!text-white" style={darkTextStyle}>Bigger Text</h3>
+                <Eye className="h-4 w-4 text-white" aria-hidden="true" />
+                <h3 className="text-sm font-semibold text-white" style={darkTextStyle}>Bigger Text</h3>
               </div>
-              <div className="grid grid-cols-3 gap-2 rounded-2xl border border-emerald-100 bg-white/72 p-2 dark:border-emerald-200/70 dark:bg-white/[0.03]">
+              <div className="grid grid-cols-3 gap-2 rounded-2xl border border-emerald-200/70 bg-white/[0.03] p-2">
                 {fontSizeOptions.map((option) => (
                   <button
                     key={option.value}
                     type="button"
                     onClick={() => updateSetting('fontSize', option.value)}
                     style={darkTextStyle}
-                    className={`h-11 rounded-xl text-sm font-semibold transition dark:!text-white ${
+                    className={`h-11 rounded-xl text-sm font-semibold text-white transition ${
                       fontSize === option.value
                         ? 'bg-[#167158] text-white shadow-sm'
-                        : 'text-[#31544c] hover:bg-[#e8f7f1] dark:!text-white dark:hover:bg-white/10'
+                        : 'hover:bg-white/10'
                     }`}
                   >
                     {option.label}
@@ -103,23 +103,23 @@ const AccessibilityWidget = () => {
                     data-active={active}
                     onClick={() => toggleSetting(key)}
                     style={darkTextStyle}
-                    className={`flex min-h-[112px] flex-col justify-between rounded-2xl border p-4 text-left shadow-sm transition dark:!text-white ${
+                    className={`flex min-h-[112px] flex-col justify-between rounded-2xl border p-4 text-left text-white shadow-sm transition ${
                       active
-                        ? 'border-[#167158] bg-[#e8f7f1] text-[#0f4a3d] shadow-emerald-900/10 dark:!text-white dark:border-emerald-300 dark:bg-emerald-400/14'
-                        : 'border-emerald-100 bg-white/76 text-[#31544c] hover:border-[#9ccfbd] hover:bg-[#f5fbf8] dark:!text-white dark:border-emerald-200/70 dark:bg-white/[0.03] dark:hover:bg-white/10'
+                        ? 'border-emerald-300 bg-emerald-400/14 shadow-emerald-900/10'
+                        : 'border-emerald-200/70 bg-white/[0.03] hover:bg-white/10'
                     }`}
                   >
                     <span data-accessibility-icon className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#167158] shadow-sm dark:bg-white dark:text-[#167158]">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
-                    <span className="mt-4 text-sm font-semibold leading-snug text-[#31544c] dark:!text-white" style={darkTextStyle}>{label}</span>
+                    <span className="mt-4 text-sm font-semibold leading-snug text-white" style={darkTextStyle}>{label}</span>
                   </button>
                 );
               })}
             </div>
           </div>
 
-          <div className="border-t border-emerald-100/80 p-6 dark:border-border">
+          <div className="border-t border-emerald-400/20 p-6">
             <button
               type="button"
               onClick={resetSettings}
