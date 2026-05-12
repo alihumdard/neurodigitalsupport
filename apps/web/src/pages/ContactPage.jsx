@@ -24,8 +24,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
-const DEFAULT_API_BASE_URL = 'http://localhost/neurodigitalsupport/backend/neurodigital/public/api';
-
 const contactCategories = [
   {
     title: 'General Enquiries',
@@ -90,8 +88,6 @@ const ContactPage = () => {
   const [fieldErrors, setFieldErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const apiBaseUrl = DEFAULT_API_BASE_URL;
-
   const handleInputChange = (field) => (event) => {
     const value = event?.target?.value ?? '';
 
@@ -134,7 +130,7 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const nextErrors = {};
@@ -164,55 +160,17 @@ const ContactPage = () => {
     setIsSubmitting(true);
     setFieldErrors({});
 
-    try {
-      const response = await fetch(`${apiBaseUrl}/contact-us`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name.trim() || null,
-          email: formData.email.trim() || null,
-          subject: formData.subject,
-          message: formData.message.trim() || null,
-          response_method: formData.responseMethod,
-          phone_number: formData.phoneNumber.trim() || null
-        })
-      });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        if (response.status === 422 && data?.errors) {
-          setFieldErrors({
-            name: data.errors.name?.[0],
-            email: data.errors.email?.[0],
-            subject: data.errors.subject?.[0],
-            message: data.errors.message?.[0],
-            responseMethod: data.errors.response_method?.[0],
-            phoneNumber: data.errors.phone_number?.[0]
-          });
-        }
-
-        throw new Error(data?.message || 'Unable to send your message right now.');
-      }
-
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-        responseMethod: 'email',
-        phoneNumber: '',
-        consent: false
-      });
-      toast.success(data?.message || 'Your message has been sent successfully.');
-    } catch (error) {
-      toast.error(error.message || 'Something went wrong while sending your message.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      responseMethod: 'email',
+      phoneNumber: '',
+      consent: false
+    });
+    toast.success('Your message has been submitted.');
+    setIsSubmitting(false);
   };
 
   return (

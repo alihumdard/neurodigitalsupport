@@ -5,6 +5,7 @@ import { AccessibilityProvider } from '@/contexts/AccessibilityContext.jsx';
 import ScrollToTop from './components/ScrollToTop';
 import AboutPage from './pages/AboutPage.jsx';
 import AltiTokPage from './pages/AltiTokPage.jsx';
+import BlogPage from './pages/BlogPage.jsx';
 import CareLoggingPage from './pages/CareLoggingPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import DigitalAdvocacyHubPage from './pages/DigitalAdvocacyHubPage.jsx';
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/nurotok" element={<NuroTokPage />} />

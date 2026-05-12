@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Accessibility,
   AlignLeft,
   BookOpen,
   Contrast,
@@ -36,8 +35,8 @@ const fontSizeOptions = [
 
 const AccessibilityWidget = () => {
   const accessibility = useAccessibility();
-  const { darkMode, fontSize, resetSettings, toggleSetting, updateSetting } = accessibility;
-  const darkTextStyle = darkMode ? { color: '#ffffff' } : undefined;
+  const { darkMode, highContrast, fontSize, resetSettings, toggleSetting, updateSetting } = accessibility;
+  const darkTextStyle = darkMode || highContrast ? { color: '#ffffff' } : undefined;
 
   return (
     <Sheet>
@@ -59,13 +58,10 @@ const AccessibilityWidget = () => {
       >
         <div className="flex h-full flex-col">
           <SheetHeader className="border-b border-emerald-100/80 px-6 py-6 text-left dark:border-border">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#e8f7f1] text-[#167158] shadow-sm dark:bg-white dark:text-[#167158]">
-              <Accessibility className="h-8 w-8 stroke-[2.25]" aria-hidden="true" />
-            </div>
-            <SheetTitle className="mt-4 text-2xl font-semibold tracking-normal text-[#102f28] dark:!text-white" style={darkTextStyle}>
+            <SheetTitle className="mt-4 text-2xl font-semibold tracking-normal text-[#102f28] text-white" style={darkTextStyle}>
               Accessibility
             </SheetTitle>
-            <p className="text-sm font-medium leading-6 text-[#536b64] dark:!text-white" style={darkTextStyle}>
+            <p className="text-sm font-medium leading-6 text-[#536b64] text-white" style={darkTextStyle}>
               Apply comfortable viewing settings across the whole website.
             </p>
           </SheetHeader>
@@ -127,11 +123,11 @@ const AccessibilityWidget = () => {
             <button
               type="button"
               onClick={resetSettings}
-              style={darkTextStyle}
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl border border-[#b8ded0] bg-white/86 text-sm font-semibold text-[#123d32] shadow-sm transition hover:bg-[#e8f7f1] dark:!text-white dark:border-emerald-200/70 dark:bg-white/[0.04] dark:hover:bg-white/10"
+              data-reset-button
+              className="group flex h-12 w-full items-center justify-center gap-2 rounded-2xl border border-[#0f765a] bg-[#0f765a] text-sm font-semibold text-white shadow-sm transition duration-300 hover:bg-white hover:text-[#0f765a] dark:border-emerald-200/70 dark:bg-[#0f765a] dark:text-white dark:hover:bg-white dark:hover:text-[#0f765a]"
             >
-              <RotateCcw className="h-4 w-4" aria-hidden="true" />
-              <span className="dark:!text-white" style={darkTextStyle}>Reset Settings</span>
+              <RotateCcw className="h-4 w-4 text-current" aria-hidden="true" />
+              <span className="text-current">Reset Settings</span>
             </button>
           </div>
         </div>

@@ -378,6 +378,26 @@
   color: rgb(226 232 240) !important;
 }
 
+.high-contrast-mode .accessibility-panel {
+  background: rgb(17 22 20 / 0.94) !important;
+  border-color: rgb(255 255 255 / 0.72) !important;
+}
+
+.high-contrast-mode .accessibility-panel h2,
+.high-contrast-mode .accessibility-panel h3,
+.high-contrast-mode .accessibility-panel p,
+.high-contrast-mode .accessibility-panel span,
+.high-contrast-mode .accessibility-panel button,
+.high-contrast-mode .accessibility-panel [class*="text-[#"] {
+  color: rgb(255 255 255) !important;
+}
+
+.accessibility-panel [data-reset-button]:hover,
+.accessibility-panel [data-reset-button]:hover span,
+.accessibility-panel [data-reset-button]:hover svg {
+  color: rgb(15 118 90) !important;
+}
+
 .dark .accessibility-panel [data-accessibility-icon],
 .dark .theme-aware-page .accessibility-panel [data-accessibility-icon] {
   color: rgb(22 113 88) !important;
