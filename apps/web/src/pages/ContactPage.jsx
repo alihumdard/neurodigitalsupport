@@ -19,6 +19,7 @@ import {
 import { toast } from 'sonner';
 import Footer from '@/components/Footer.jsx';
 import Header from '@/components/Header.jsx';
+import { submitContactForm } from '@/api/api.js';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
@@ -130,13 +131,21 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const nextErrors = {};
 
+    if (!formData.name.trim()) {
+      nextErrors.name = 'Please enter your name.';
+    }
+
     if (!formData.subject) {
       nextErrors.subject = 'Please select a subject.';
+    }
+
+    if (!formData.message.trim()) {
+      nextErrors.message = 'Please enter your message.';
     }
 
     if (!formData.consent) {
@@ -160,17 +169,36 @@ const ContactPage = () => {
     setIsSubmitting(true);
     setFieldErrors({});
 
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-      responseMethod: 'email',
-      phoneNumber: '',
-      consent: false
-    });
-    toast.success('Your message has been submitted.');
-    setIsSubmitting(false);
+    try {
+      const payload = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subject: formData.subject,
+        message: formData.message.trim(),
+        response_method: formData.responseMethod
+      };
+
+      if (formData.responseMethod === 'phone' && formData.phoneNumber.trim()) {
+        payload.phone_number = formData.phoneNumber.trim();
+      }
+
+      const response = await submitContactForm(payload);
+
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        responseMethod: 'email',
+        phoneNumber: '',
+        consent: false
+      });
+      toast.success(response?.message || 'Your message has been submitted.');
+    } catch (error) {
+      toast.error(error.message || 'We could not submit your message right now.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
