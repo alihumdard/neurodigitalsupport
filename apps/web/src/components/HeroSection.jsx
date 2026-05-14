@@ -104,11 +104,11 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-center py-8 sm:pb-14 sm:pt-24 lg:pb-16 lg:pt-24">
+      <div className="relative z-10 container mx-auto flex min-h-[calc(100svh-4rem)] items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
+        <div className="flex w-full items-center justify-center">
           {/* LEFT — Text content */}
           <motion.div
-            className="flex w-full max-w-4xl flex-col items-center justify-center text-center sm:mx-auto sm:space-y-8"
+            className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center text-center sm:space-y-8"
             {...(reducedMotion
               ? {}
               : {
@@ -122,7 +122,7 @@ const HeroSection = () => {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeSlide}
-                  className="mx-auto max-w-[19rem] space-y-3 sm:max-w-none sm:space-y-7"
+                  className="mx-auto w-full max-w-[19rem] space-y-3 sm:max-w-none sm:space-y-7"
                   {...(reducedMotion
                     ? {}
                     : {
@@ -134,13 +134,15 @@ const HeroSection = () => {
                 >
                   {currentSlide.title ? (
                     <>
-                      <h1 className="text-[1.7rem] font-extrabold leading-[1.08] xl:max-w-auto tracking-tight text-white sm:text-4xl sm:leading-[1.15] lg:text-5xl">
+                      <h1 className="mx-auto max-w-[19rem] text-center text-[1.7rem] font-extrabold leading-[1.08] tracking-tight text-white sm:max-w-4xl sm:text-4xl sm:leading-[1.15] lg:text-5xl">
                         {currentSlide.title}
                       </h1>
 
-                      <p className="mx-auto max-w-3xl pt-10 xl:pt-0 text-center text-xs font-semibold leading-5 text-white/90 sm:text-base sm:leading-relaxed">
-                        {currentSlide.text}
-                      </p>
+                      {currentSlide.text ? (
+                        <p className="mx-auto max-w-3xl pt-10 text-center text-xs font-semibold leading-5 text-white/90 sm:text-base sm:leading-relaxed xl:pt-0">
+                          {currentSlide.text}
+                        </p>
+                      ) : null}
                     </>
                   ) : currentSlide.text ? (
                     <p className="mx-auto max-w-[19rem] text-[1.45rem] font-extrabold leading-[1.12] tracking-tight text-white sm:max-w-4xl sm:text-3xl sm:leading-[1.18] lg:text-5xl">

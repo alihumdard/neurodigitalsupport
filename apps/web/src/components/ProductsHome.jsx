@@ -270,7 +270,7 @@ const ProductsHome = () => {
                   </div>
 
                   {/* Action Button */}
-                  {module.details && !module.path ? (
+                  {!module.path && module.details ? (
                     <Dialog>
                       <DialogTrigger asChild>
                         <button
@@ -320,7 +320,7 @@ const ProductsHome = () => {
                     </Dialog>
                   ) : (
                     <Link
-                      to={module.path || "/modules"}
+                      to={module.path}
                       className="inline-flex items-center justify-center px-4 py-1.5 sm:px-6 sm:py-2 rounded-full bg-[#34967C] hover:bg-[#2a7a65] dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-[10px] sm:text-[11px] font-bold tracking-wider transition-all hover:-translate-y-0.5 shadow-md shadow-emerald-500/20"
                     >
                       MORE

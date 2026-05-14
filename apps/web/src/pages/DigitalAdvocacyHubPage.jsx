@@ -107,10 +107,10 @@ const ActionButton = ({ children, variant = 'primary' }) => (
 );
 
 const BrowserMockup = () => (
-  <div className="relative mx-auto w-full max-w-[560px]">
-    <div className="absolute -inset-8 rounded-full bg-[#6bc5a7]/18 blur-3xl" />
-    <div className="relative rounded-[2.2rem] border border-white/80 bg-white/84 p-4 shadow-[0_38px_110px_rgba(11,43,33,0.18)] backdrop-blur-sm">
-      <div className="rounded-[1.6rem] bg-[#f7fffb] p-5 ring-1 ring-[#dceee7]">
+  <div className="relative mx-auto w-full max-w-[430px] lg:ml-auto">
+    <div className="absolute -inset-5 rounded-[2rem] bg-[#dff3ec]/55 blur-2xl" aria-hidden="true" />
+    <div className="relative overflow-hidden rounded-[1.7rem] border border-[#d7eee5] bg-white/72 p-3 shadow-[0_28px_80px_rgba(15,61,50,0.13)] backdrop-blur-xl">
+      <div className="rounded-[1.25rem] bg-[#f7fffb] p-4 ring-1 ring-[#dceee7]">
         <div className="flex items-center justify-between border-b border-[#dceee7] pb-4">
           <div className="flex gap-2">
             <span className="h-3 w-3 rounded-full bg-[#b9dfd1]" />
@@ -120,7 +120,7 @@ const BrowserMockup = () => (
           <span className="h-7 w-40 rounded-full bg-white shadow-sm ring-1 ring-[#dceee7]" />
         </div>
 
-        <div className="mt-5 grid gap-4 md:grid-cols-[0.9fr_1.1fr]">
+        <div className="mt-5 grid gap-3 md:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-4">
             <div className="rounded-[1.4rem] bg-white p-4 shadow-[0_14px_34px_rgba(15,50,40,0.06)] ring-1 ring-white">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf5f0] text-[#2f8066]">
@@ -130,8 +130,8 @@ const BrowserMockup = () => (
               <span className="mt-3 block h-2.5 w-36 rounded-full bg-[#dceee7]" />
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <span className="h-24 rounded-[1.25rem] bg-[#eaf5f0] shadow-[0_12px_28px_rgba(15,50,40,0.05)]" />
-              <span className="h-24 rounded-[1.25rem] bg-white shadow-[0_12px_28px_rgba(15,50,40,0.05)] ring-1 ring-white" />
+              <span className="h-20 rounded-[1.25rem] bg-[#eaf5f0] shadow-[0_12px_28px_rgba(15,50,40,0.05)]" />
+              <span className="h-20 rounded-[1.25rem] bg-white shadow-[0_12px_28px_rgba(15,50,40,0.05)] ring-1 ring-white" />
             </div>
           </div>
 
@@ -183,7 +183,7 @@ const DigitalAdvocacyHubPage = () => {
       <main className="product-detail-page min-h-screen overflow-hidden bg-[#f8fffb] text-[#10231d]">
         <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7fffb_38%,#dff6ed_100%)]">
           <div className="absolute left-1/2 top-16 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/32 blur-3xl" />
-          <div className="relative mx-auto grid min-h-screen max-w-[1240px] items-center gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[0.9fr_1fr] lg:px-10">
+          <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-[1220px] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[0.95fr_0.72fr] lg:px-10">
             <div className="text-center lg:text-left">
               <div className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066]">
                 Advocacy & Inclusion Platform
