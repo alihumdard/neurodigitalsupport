@@ -104,7 +104,7 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="relative z-10 container mx-auto flex min-h-[calc(100svh-4rem)] items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative z-10 container mx-auto flex min-h-[calc(100svh-4rem)] items-start justify-center px-4 pb-10 pt-14 sm:items-center sm:px-6 sm:py-16 lg:px-8">
         <div className="flex w-full items-center justify-center">
           {/* LEFT — Text content */}
           <motion.div
@@ -122,7 +122,7 @@ const HeroSection = () => {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeSlide}
-                  className="mx-auto w-full max-w-[19rem] space-y-3 sm:max-w-none sm:space-y-7"
+                  className="mx-auto flex min-h-[14.5rem] w-full max-w-[19rem] flex-col justify-start space-y-3 sm:min-h-0 sm:max-w-none sm:space-y-7"
                   {...(reducedMotion
                     ? {}
                     : {
@@ -138,11 +138,13 @@ const HeroSection = () => {
                         {currentSlide.title}
                       </h1>
 
-                      {currentSlide.text ? (
-                        <p className="mx-auto max-w-3xl pt-10 text-center text-xs font-semibold leading-5 text-white/90 sm:text-base sm:leading-relaxed xl:pt-0">
+                      <div className="flex min-h-[5rem] items-start justify-center pt-6 sm:min-h-0 sm:pt-0">
+                        {currentSlide.text ? (
+                        <p className="mx-auto max-w-3xl text-center text-xs font-semibold leading-5 text-white/90 sm:text-base sm:leading-relaxed">
                           {currentSlide.text}
                         </p>
-                      ) : null}
+                        ) : null}
+                      </div>
                     </>
                   ) : currentSlide.text ? (
                     <p className="mx-auto max-w-[19rem] text-[1.45rem] font-extrabold leading-[1.12] tracking-tight text-white sm:max-w-4xl sm:text-3xl sm:leading-[1.18] lg:text-5xl">
