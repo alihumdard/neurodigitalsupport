@@ -22,7 +22,7 @@ const toggleItems = [
   { key: 'hideImages', label: 'Hide Images', icon: ImageOff },
   { key: 'highlightLinks', label: 'Highlight Links', icon: LinkIcon },
   { key: 'bigCursor', label: 'Big Cursor', icon: MousePointer2 },
-  { key: 'dyslexiaFont', label: 'Dyslexia Font', icon: BookOpen },
+  { key: 'dyslexiaFont', label: 'Dyslexia Friendly', icon: BookOpen, mark: 'Df' },
   { key: 'textSpacing', label: 'Text Spacing', icon: Type },
   { key: 'lineHeight', label: 'Line Height', icon: AlignLeft }
 ];
@@ -92,7 +92,7 @@ const AccessibilityWidget = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              {toggleItems.map(({ key, label, icon: Icon }) => {
+              {toggleItems.map(({ key, label, icon: Icon, mark }) => {
                 const active = Boolean(accessibility[key]);
 
                 return (
@@ -110,9 +110,16 @@ const AccessibilityWidget = () => {
                     }`}
                   >
                     <span data-accessibility-icon className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#167158] shadow-sm dark:bg-white dark:text-[#167158]">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
+                      {mark ? (
+                        <span className="text-lg font-semibold leading-none tracking-normal">{mark}</span>
+                      ) : (
+                        <Icon className="h-5 w-5" aria-hidden="true" />
+                      )}
                     </span>
-                    <span className="mt-4 text-sm font-semibold leading-snug text-white" style={darkTextStyle}>{label}</span>
+                    <span className="mt-4 text-sm font-semibold leading-snug text-white" style={darkTextStyle}>
+                      {label}
+                      {mark ? <span className="mt-2 block h-1 w-14 rounded-full bg-[#8ee0c3]" aria-hidden="true" /> : null}
+                    </span>
                   </button>
                 );
               })}

@@ -88,11 +88,11 @@ const HeroSection = () => {
       />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex min-h-[calc(100svh-4rem)] items-center justify-center pt-20 pb-12 sm:pt-24 sm:pb-14 lg:pt-24 lg:pb-16">
+        <div className="flex min-h-[calc(100svh-4rem)] items-center justify-center py-8 sm:pb-14 sm:pt-24 lg:pb-16 lg:pt-24">
           
           {/* LEFT — Text content */}
           <motion.div
-            className="flex flex-col items-center justify-center max-w-4xl mx-auto space-y-8 text-center"
+            className="flex w-full max-w-4xl flex-col items-center justify-center text-center sm:mx-auto sm:space-y-8"
             {...(reducedMotion ? {} : {
               initial: { opacity: 0, y: 20 },
               animate: { opacity: 1, y: 0 },
@@ -100,11 +100,11 @@ const HeroSection = () => {
             })}
           >
             {/* Main Content Grouping */}
-            <div className="space-y-7">
+            <div className="w-full sm:space-y-7">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeSlide}
-                  className="space-y-7"
+                  className="mx-auto max-w-[19rem] space-y-3 sm:max-w-none sm:space-y-7"
                   {...(reducedMotion ? {} : {
                     initial: { opacity: 0, y: 12 },
                     animate: { opacity: 1, y: 0 },
@@ -114,16 +114,16 @@ const HeroSection = () => {
                 >
                   {currentSlide.title ? (
                     <>
-                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
+                      <h1 className="text-[1.7rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl sm:leading-[1.15] lg:text-5xl">
                         {currentSlide.title}
                       </h1>
 
-                      <p className="mx-auto max-w-3xl text-center text-sm sm:text-base text-white/90 leading-relaxed font-semibold">
+                      <p className="mx-auto max-w-3xl text-center text-xs font-semibold leading-5 text-white/90 sm:text-base sm:leading-relaxed">
                         {currentSlide.text}
                       </p>
                     </>
                   ) : currentSlide.text ? (
-                    <p className="mx-auto max-w-4xl text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.18]">
+                    <p className="mx-auto max-w-[19rem] text-[1.45rem] font-extrabold leading-[1.12] tracking-tight text-white sm:max-w-4xl sm:text-3xl sm:leading-[1.18] lg:text-5xl">
                       {currentSlide.text}
                     </p>
                   ) : null}
@@ -135,7 +135,7 @@ const HeroSection = () => {
 
             {/* CTA Buttons - Sized down to fit on one line */}
             <motion.div
-              className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 pt-3 sm:pt-4"
+              className="mt-4 flex flex-col items-center justify-center gap-2 sm:mt-0 sm:flex-row sm:flex-wrap sm:gap-3 sm:pt-3 lg:pt-4"
               {...(reducedMotion ? {} : {
                 initial: { opacity: 0 },
                 animate: { opacity: 1 },
@@ -144,7 +144,7 @@ const HeroSection = () => {
             >
               <Button
                 size="sm"
-                className="rounded-full bg-[#34967C] text-white transition-all duration-300 hover:bg-[#2a7a65] hover:shadow-lg hover:shadow-emerald-900/35 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold"
+                className="inline-flex h-10 min-w-[14rem] items-center justify-center gap-1.5 rounded-full bg-[#34967C] px-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#2a7a65] hover:shadow-lg hover:shadow-emerald-900/35 active:scale-[0.98] sm:min-w-0 sm:px-5"
               >
                 Explore Our Ecosystem
                 <ArrowRight className="w-3.5 h-3.5 ml-0.5" aria-hidden="true" />
@@ -153,7 +153,7 @@ const HeroSection = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="rounded-full text-white transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold bg-white/10 backdrop-blur-sm border-white/30 hover:bg-white/18 hover:border-white/50 hover:text-white"
+                className="inline-flex h-10 min-w-[12.5rem] items-center justify-center gap-1.5 rounded-full border-white/30 bg-white/10 px-4 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/18 hover:text-white active:scale-[0.98] sm:min-w-0 sm:px-5"
               >
                 <Download className="w-3.5 h-3.5 mr-0.5" aria-hidden="true" />
                 Download NuroTok
@@ -162,14 +162,14 @@ const HeroSection = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="rounded-full text-white transition-all duration-300 active:scale-[0.98] inline-flex items-center gap-1.5 h-10 px-4 sm:px-5 text-sm font-semibold bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/18 hover:border-white/50 hover:text-white"
+                className="inline-flex h-10 min-w-[12.5rem] items-center justify-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-4 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/18 hover:text-white active:scale-[0.98] sm:min-w-0 sm:px-5"
               >
                 <Calendar className="w-3.5 h-3.5 mr-0.5" aria-hidden="true" />
                 Book a Demo
               </Button>
             </motion.div>
 
-            <div className="flex items-center justify-center gap-2 pt-1" aria-label="Hero slides">
+            <div className="mt-4 flex items-center justify-center gap-2 sm:mt-0 sm:pt-1" aria-label="Hero slides">
               {slides.map((slide, index) => (
                 <button
                   key={slide.image}
@@ -186,7 +186,7 @@ const HeroSection = () => {
 
             {/* Trust strip */}
             <motion.div
-              className="pt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 items-center border-t border-white/20"
+              className="mt-4 flex max-w-[19rem] flex-wrap items-center justify-center gap-x-3 gap-y-1.5 border-t border-white/20 pt-4 sm:mt-0 sm:max-w-none sm:gap-x-5 sm:gap-y-2 sm:pt-6"
               {...(reducedMotion ? {} : {
                 initial: { opacity: 0 },
                 animate: { opacity: 1 },
@@ -194,8 +194,8 @@ const HeroSection = () => {
               })}
             >
               {['Care Providers', 'Universities', 'Employers', 'Public Sector'].map((label) => (
-                <span key={label} className="text-xs sm:text-sm font-semibold text-white/90 flex items-center gap-1.5">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/70" />
+                <span key={label} className="flex items-center gap-1.5 text-[0.7rem] font-semibold text-white/90 sm:text-sm">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-white/70" />
                   {label}
                 </span>
               ))}

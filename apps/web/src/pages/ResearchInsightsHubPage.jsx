@@ -112,26 +112,15 @@ const SectionHeading = ({ children, className = '' }) => (
 );
 
 const HeroImageMockup = () => (
-  <div className="relative mx-auto w-full max-w-[520px] lg:ml-auto">
-    <div className="absolute -inset-8 rounded-full bg-[#9de5cb]/28 blur-3xl" />
-    <div className="relative rounded-[2rem] border border-white/80 bg-white/70 p-3 shadow-[0_34px_90px_rgba(15,61,50,0.18)] backdrop-blur-xl">
-      <div className="overflow-hidden rounded-[1.45rem] border border-[#d8eee6] bg-white shadow-inner">
-        <div className="flex items-center gap-2 border-b border-[#e4f1ec] bg-[#fbfffd] px-5 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#88ceb7]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#b8e4d6]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#dcefe9]" />
-        </div>
-        <div className="relative aspect-[1.36/1] overflow-hidden bg-[#eef8f4]">
-          <img
-            src="/images/products/research and insight hub.jpeg"
-            alt="Research & Insights Hub"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0)_38%,rgba(17,75,61,0.1)_100%)]" />
-        </div>
-      </div>
+  <div className="relative mx-auto w-full max-w-[430px] -translate-y-4 lg:-translate-y-8 lg:ml-auto">
+    <div className="absolute -inset-5 rounded-[2rem] bg-[#dff3ec]/55 blur-2xl dark:bg-emerald-500/10" aria-hidden="true" />
+    <div className="relative overflow-hidden rounded-[1.7rem] border border-[#d7eee5] bg-white/72 p-3 shadow-[0_28px_80px_rgba(15,61,50,0.13)] backdrop-blur-xl dark:border-border dark:bg-card/85 dark:shadow-[0_28px_80px_rgba(0,0,0,0.34)]">
+      <img
+        src="/images/products/research and insight hub.jpeg"
+        alt="Research & Insights Hub"
+        className="aspect-[4/3] w-full rounded-[1.25rem] object-cover"
+      />
     </div>
-    <div className="mx-auto h-4 w-[64%] rounded-b-[2rem] bg-[#d7e9e3] shadow-[0_22px_44px_rgba(15,61,50,0.14)]" />
   </div>
 );
 
@@ -146,15 +135,15 @@ const ResearchInsightsHubPage = () => (
     <main className="theme-aware-page min-h-screen overflow-hidden bg-[#fbfffd] text-[#142d26]">
       <section className="relative bg-[linear-gradient(140deg,#ffffff_0%,#fbfffd_46%,#e8f8f2_100%)]">
         <div className="absolute left-1/2 top-20 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-[#bceada]/24 blur-3xl" />
-        <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-[1180px] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:px-10">
+        <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-[1220px] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[0.95fr_0.72fr] lg:px-10">
           <div className="max-w-[640px] text-center lg:text-left">
-            <h1 className="text-3xl font-semibold leading-[1.15] tracking-normal text-[#0c3028] sm:text-4xl lg:text-5xl">
+            <h1 className="text-balance text-4xl font-semibold leading-[1.08] tracking-normal text-[#0c3028] sm:text-5xl lg:text-[4rem]">
               Research & Insights Hub
             </h1>
-            <p className="mt-7 max-w-xl text-2xl font-semibold leading-tight text-[#28745f] sm:text-3xl">
+            <p className="mt-8 max-w-xl text-balance text-2xl font-semibold leading-snug text-[#28745f] sm:text-3xl">
               Evidence-Led Innovation for Inclusive Digital Futures
             </p>
-            <p className="mt-8 max-w-xl text-lg font-medium leading-8 text-[#4f665f] sm:text-xl">
+            <p className="mt-7 max-w-xl text-lg font-medium leading-8 text-[#4f665f] sm:text-xl">
               Our Research Hub provides access to trusted studies, dashboards, reports, and insights focused on autism, neurodivergence, and digital well-being.
             </p>
             <p className="mt-7 max-w-xl text-base font-semibold leading-7 text-[#173f34] sm:text-lg">

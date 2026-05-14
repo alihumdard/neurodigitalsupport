@@ -111,7 +111,7 @@
 .hero-slide-bg {
   background-color: #111;
   background-position: var(--hero-mobile-bg-position, center center);
-  background-size: contain;
+  background-size: cover;
 }
 
 @media (min-width: 640px) {
@@ -199,12 +199,30 @@
   cursor: url("data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 5L34 25L22 28L17 39L8 5Z' fill='white' stroke='%230f4a3d' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") 8 5, auto !important;
 }
 
+.dyslexia-font-mode,
 .dyslexia-font-mode body,
+.dyslexia-font-mode h1,
+.dyslexia-font-mode h2,
+.dyslexia-font-mode h3,
+.dyslexia-font-mode h4,
+.dyslexia-font-mode h5,
+.dyslexia-font-mode h6,
+.dyslexia-font-mode p,
+.dyslexia-font-mode li,
+.dyslexia-font-mode a,
+.dyslexia-font-mode label,
+.dyslexia-font-mode span,
 .dyslexia-font-mode button,
 .dyslexia-font-mode input,
 .dyslexia-font-mode textarea,
 .dyslexia-font-mode select {
   font-family: "Trebuchet MS", Verdana, Arial, sans-serif !important;
+}
+
+.dyslexia-font-mode body {
+  font-variant-ligatures: none;
+  letter-spacing: 0.015em;
+  word-spacing: 0.08em;
 }
 
 .text-spacing-mode body {

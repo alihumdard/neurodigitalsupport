@@ -17,8 +17,7 @@ const posts = [
     category: 'Research Insights',
     date: 'Apr 12, 2025',
     readTime: '5 min read',
-    image: '/images/products/research and insight hub.jpeg',
-    visual: 'mist'
+    image: '/images/products/research and insight hub.jpeg'
   },
   {
     title: '5 Ways to Reduce Digital Sensory Overload Today',
@@ -26,8 +25,7 @@ const posts = [
     category: 'Digital Safety',
     date: 'Apr 10, 2025',
     readTime: '5 min read',
-    image: '/images/products/homepage.jpeg',
-    visual: 'leaf'
+    image: '/images/products/homepage.jpeg'
   },
   {
     title: 'Building a Neuroinclusive Workplace: A Guide for HR',
@@ -35,8 +33,7 @@ const posts = [
     category: 'Community',
     date: 'Apr 8, 2025',
     readTime: '5 min read',
-    image: '/images/products/supportworker.jpeg',
-    visual: 'vessels'
+    image: '/images/products/supportworker.jpeg'
   },
   {
     title: 'The Role of AI in Ethical Moderation for Autistic Users',
@@ -44,8 +41,7 @@ const posts = [
     category: 'Research Insights',
     date: 'Apr 5, 2025',
     readTime: '6 min read',
-    image: '/images/products/Digital Advocacy Hub.jpeg',
-    visual: 'steps'
+    image: '/images/products/Digital Advocacy Hub.jpeg'
   },
   {
     title: 'Self-Identification in the Digital Age: Community vs. Clinical',
@@ -53,8 +49,7 @@ const posts = [
     category: 'Community',
     date: 'Apr 3, 2025',
     readTime: '5 min read',
-    image: '/images/products/about.png',
-    visual: 'arch'
+    image: '/images/products/about.png'
   },
   {
     title: 'How NuroTok is Redefining Social Interaction for ADHD Adults',
@@ -62,8 +57,7 @@ const posts = [
     category: 'News',
     date: 'Apr 1, 2025',
     readTime: '5 min read',
-    image: '/images/products/nurotok.jpeg',
-    visual: 'window'
+    image: '/images/products/nurotok.jpeg'
   }
 ];
 
@@ -82,43 +76,8 @@ const BlogVisual = ({ post, featured = false }) => (
       src={post.image}
       alt=""
       aria-hidden="true"
-      className="h-full w-full object-cover opacity-70"
+      className="h-full w-full object-cover"
     />
-    <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(245,252,249,0.78)_0%,rgba(209,235,225,0.24)_48%,rgba(255,255,255,0.68)_100%)]" />
-    <div className="absolute inset-0 opacity-95">
-      {post.visual === 'mist' ? (
-        <>
-          <div className="absolute -left-10 bottom-4 h-28 w-72 rounded-[100%] bg-[#dbece2]/80" />
-          <div className="absolute left-20 bottom-10 h-24 w-72 rounded-[100%] bg-[#cfe6d8]/70" />
-        </>
-      ) : null}
-      {post.visual === 'leaf' ? (
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(80,139,101,0.2),transparent_24%),radial-gradient(circle_at_70%_45%,rgba(74,149,126,0.16),transparent_24%)] blur-[1px]" />
-      ) : null}
-      {post.visual === 'vessels' ? (
-        <>
-          <div className="absolute bottom-7 right-12 h-24 w-24 rounded-full bg-white/72" />
-          <div className="absolute bottom-6 right-8 h-20 w-6 rounded-full bg-[#d8e5dc]" />
-          <div className="absolute bottom-6 right-28 h-14 w-16 rounded-b-full rounded-t-[2rem] bg-[#c3d9cb]" />
-        </>
-      ) : null}
-      {post.visual === 'steps' ? (
-        <>
-          <div className="absolute bottom-0 left-24 h-28 w-40 bg-[#b8dac9]/72" />
-          <div className="absolute bottom-0 left-32 h-20 w-28 bg-[linear-gradient(135deg,transparent_0_32%,#edf8f3_32%_45%,transparent_45%)]" />
-          <div className="absolute bottom-10 left-10 h-16 w-16 rounded-full bg-white/80 shadow-[0_18px_35px_rgba(15,61,50,0.12)]" />
-        </>
-      ) : null}
-      {post.visual === 'arch' ? (
-        <div className="absolute bottom-0 left-1/2 h-32 w-28 -translate-x-1/2 rounded-t-full bg-white/68 ring-1 ring-white/50" />
-      ) : null}
-      {post.visual === 'window' ? (
-        <>
-          <div className="absolute bottom-0 right-0 h-full w-1/2 bg-[#9ecfb8]/28" />
-          <div className="absolute bottom-4 left-10 h-28 w-52 rounded-t-full bg-[#7bb595]/40" />
-        </>
-      ) : null}
-    </div>
   </div>
 );
 
@@ -204,7 +163,7 @@ const BlogPage = () => {
         <section className="bg-white py-10 sm:py-14">
           <div className="mx-auto max-w-[980px] px-5 sm:px-8 lg:px-10">
             <article className="grid overflow-hidden rounded-[1.5rem] border border-[#dcece6] bg-white p-3 shadow-[0_24px_80px_rgba(15,61,50,0.08)] md:grid-cols-[1.05fr_0.95fr] md:gap-4">
-              <BlogVisual post={{ ...featuredPost, visual: 'arch' }} featured />
+              <BlogVisual post={featuredPost} featured />
               <div className="flex flex-col justify-center px-4 py-8 sm:px-8 md:py-10">
                 <p className="text-xs font-bold uppercase tracking-widest text-[#0f765a]">Featured</p>
                 <h2 className="mt-5 text-2xl font-semibold leading-tight tracking-normal text-[#0b3b31] sm:text-3xl">
