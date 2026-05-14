@@ -1,73 +1,37 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Mail, PencilLine, Search } from 'lucide-react';
 import { toast } from 'sonner';
+import { getBlogs } from '@/api/api.js';
 import Footer from '@/components/Footer.jsx';
 import Header from '@/components/Header.jsx';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-const categories = ['All', 'Research Insights', 'Digital Safety', 'Community', 'News'];
+const fallbackImage = '/images/products/research and insight hub.jpeg';
+const visualCycle = ['mist', 'leaf', 'vessels', 'steps', 'arch', 'window'];
 
-const posts = [
-  {
-    title: 'Understanding the Neurodivergent Algorithmic Misfit (NAM) Framework',
-    excerpt: 'A deep dive into how digital systems often misinterpret neurodivergent behaviours and how we can change that.',
-    category: 'Research Insights',
-    date: 'Apr 12, 2025',
-    readTime: '5 min read',
-    image: '/images/products/research and insight hub.jpeg'
-  },
-  {
-    title: '5 Ways to Reduce Digital Sensory Overload Today',
-    excerpt: 'Simple, actionable strategies to create a calmer, more manageable online experience for neurodivergent minds.',
-    category: 'Digital Safety',
-    date: 'Apr 10, 2025',
-    readTime: '5 min read',
-    image: '/images/products/homepage.jpeg'
-  },
-  {
-    title: 'Building a Neuroinclusive Workplace: A Guide for HR',
-    excerpt: 'Practical steps HR leaders can take to foster inclusion, support wellbeing, and unlock neurodivergent talent.',
-    category: 'Community',
-    date: 'Apr 8, 2025',
-    readTime: '5 min read',
-    image: '/images/products/supportworker.jpeg'
-  },
-  {
-    title: 'The Role of AI in Ethical Moderation for Autistic Users',
-    excerpt: 'Exploring how AI can be designed and trained to better serve autistic and neurodivergent communities.',
-    category: 'Research Insights',
-    date: 'Apr 5, 2025',
-    readTime: '6 min read',
-    image: '/images/products/Digital Advocacy Hub.jpeg'
-  },
-  {
-    title: 'Self-Identification in the Digital Age: Community vs. Clinical',
-    excerpt: 'Why self-identification matters and how online communities are shaping new models of understanding.',
-    category: 'Community',
-    date: 'Apr 3, 2025',
-    readTime: '5 min read',
-    image: '/images/products/about.png'
-  },
-  {
-    title: 'How NuroTok is Redefining Social Interaction for ADHD Adults',
-    excerpt: 'Inside NuroTok&apos;s mission to build engaging, dopamine-friendly spaces that put users first.',
-    category: 'News',
-    date: 'Apr 1, 2025',
-    readTime: '5 min read',
-    image: '/images/products/nurotok.jpeg'
+const stripHtml = (value = '') => value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+
+const truncateText = (value, maxLength = 140) => {
+  if (value.length <= maxLength) {
+    return value;
   }
-];
 
-const featuredPost = {
-  title: 'The Future of Sensory-Aware Design in Social Media',
-  excerpt: 'As digital spaces evolve, sensory-aware design is becoming essential for inclusive experiences. Here is what the future holds.',
-  author: 'Kofi Ofori-Mensah',
-  date: 'March 28, 2025',
-  readTime: '7 min read',
-  image: '/images/products/earlyuser.jpeg'
+  return `${value.slice(0, maxLength).trimEnd()}...`;
+};
+
+const normalizeImageUrl = (image) => {
+  if (!image) {
+    return fallbackImage;
+  }
+
+  if (/^https?:\/\//i.test(image)) {
+    return image;
+  }
+
+  return `https://neurodigital.oraclesforce.com/${image.replace(/^\/+/, '')}`;
 };
 
 const BlogVisual = ({ post, featured = false }) => (
@@ -85,16 +49,81 @@ const BlogPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [email, setEmail] = useState('');
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadBlogs = async () => {
+      try {
+        setIsLoading(true);
+        setError('');
+
+        const data = await getBlogs();
+
+        if (!isMounted) {
+          return;
+        }
+
+        const normalizedPosts = data.map((post, index) => {
+          const plainContent = stripHtml(post.content || '');
+          const minutes = Number(post.Time);
+
+          return {
+            id: post.id ?? `${post.title}-${index}`,
+            title: post.title || 'Untitled article',
+            excerpt: truncateText(plainContent || 'No content available yet.'),
+            content: plainContent,
+            category: post.category || 'Uncategorized',
+            date: post.date || '',
+            readTime: `${Number.isFinite(minutes) && minutes > 0 ? minutes : 0} min read`,
+            image: normalizeImageUrl(post.image),
+            isFeatured: Number(post.is_featured) === 1,
+            visual: visualCycle[index % visualCycle.length]
+          };
+        });
+
+        setPosts(normalizedPosts);
+      } catch (loadError) {
+        if (!isMounted) {
+          return;
+        }
+
+        setError(loadError.message || 'We could not load blog articles right now.');
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadBlogs();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const categories = useMemo(
+    () => ['All', ...new Set(posts.map((post) => post.category).filter(Boolean))],
+    [posts]
+  );
+
+  const featuredPost = useMemo(() => posts.find((post) => post.isFeatured) || posts[0] || null, [posts]);
 
   const visiblePosts = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
 
     return posts.filter((post) => {
       const matchesCategory = activeCategory === 'All' || post.category === activeCategory;
-      const matchesSearch = !query || `${post.title} ${post.excerpt} ${post.category}`.toLowerCase().includes(query);
-      return matchesCategory && matchesSearch;
+      const matchesSearch = !query || `${post.title} ${post.excerpt} ${post.content} ${post.category}`.toLowerCase().includes(query);
+      const isNotFeatured = posts.length === 1 || !featuredPost || post.id !== featuredPost.id;
+
+      return matchesCategory && matchesSearch && isNotFeatured;
     });
-  }, [activeCategory, searchTerm]);
+  }, [activeCategory, featuredPost, posts, searchTerm]);
 
   const handleSubscribe = (event) => {
     event.preventDefault();
@@ -162,30 +191,46 @@ const BlogPage = () => {
 
         <section className="bg-white py-10 sm:py-14">
           <div className="mx-auto max-w-[980px] px-5 sm:px-8 lg:px-10">
-            <article className="grid overflow-hidden rounded-[1.5rem] border border-[#dcece6] bg-white p-3 shadow-[0_24px_80px_rgba(15,61,50,0.08)] md:grid-cols-[1.05fr_0.95fr] md:gap-4">
-              <BlogVisual post={featuredPost} featured />
-              <div className="flex flex-col justify-center px-4 py-8 sm:px-8 md:py-10">
-                <p className="text-xs font-bold uppercase tracking-widest text-[#0f765a]">Featured</p>
-                <h2 className="mt-5 text-2xl font-semibold leading-tight tracking-normal text-[#0b3b31] sm:text-3xl">
-                  {featuredPost.title}
-                </h2>
-                <p className="mt-5 text-base font-medium leading-7 text-[#536b64]">{featuredPost.excerpt}</p>
-                <div className="mt-8 flex items-center gap-3">
-                  <img
-                    src="/images/products/researchworker.jpeg"
-                    alt=""
-                    aria-hidden="true"
-                    className="h-10 w-10 rounded-full object-cover"
-                  />
-                  <div className="text-left">
-                    <p className="text-sm font-semibold text-[#102f28]">{featuredPost.author}</p>
-                    <p className="mt-1 text-xs font-medium text-[#536b64]">
-                      {featuredPost.date} <span aria-hidden="true"> • </span> {featuredPost.readTime}
-                    </p>
+            {isLoading ? (
+              <div className="rounded-[1.5rem] border border-[#dcece6] bg-[#fbfffd] p-8 text-center">
+                <p className="text-base font-semibold text-[#31544c]">Loading articles...</p>
+              </div>
+            ) : error ? (
+              <div className="rounded-[1.5rem] border border-[#f1d5d5] bg-[#fff8f8] p-8 text-center">
+                <p className="text-base font-semibold text-[#8a2f2f]">{error}</p>
+              </div>
+            ) : featuredPost ? (
+              <article className="grid overflow-hidden rounded-[1.5rem] border border-[#dcece6] bg-white p-3 shadow-[0_24px_80px_rgba(15,61,50,0.08)] md:grid-cols-[1.05fr_0.95fr] md:gap-4">
+                <BlogVisual post={featuredPost} featured />
+                <div className="flex flex-col justify-center px-4 py-8 sm:px-8 md:py-10">
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#0f765a]">Featured</p>
+                  <h2 className="mt-5 text-2xl font-semibold leading-tight tracking-normal text-[#0b3b31] sm:text-3xl">
+                    {featuredPost.title}
+                  </h2>
+                  <p className="mt-5 text-base font-medium leading-7 text-[#536b64]">{featuredPost.excerpt}</p>
+                  <div className="mt-8 flex items-center gap-3">
+                    <img
+                      src={featuredPost.image}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-10 w-10 rounded-full object-cover"
+                    />
+                    <div className="text-left">
+                      <p className="text-sm font-semibold text-[#102f28]">{featuredPost.category}</p>
+                      <p className="mt-1 text-xs font-medium text-[#536b64]">
+                        {featuredPost.date && featuredPost.readTime
+                          ? `${featuredPost.date} | ${featuredPost.readTime}`
+                          : featuredPost.date || featuredPost.readTime}
+                      </p>
+                    </div>
                   </div>
                 </div>
+              </article>
+            ) : (
+              <div className="rounded-[1.5rem] border border-[#dcece6] bg-[#fbfffd] p-8 text-center">
+                <p className="text-base font-semibold text-[#31544c]">No featured article is available yet.</p>
               </div>
-            </article>
+            )}
           </div>
         </section>
 
@@ -194,23 +239,25 @@ const BlogPage = () => {
             <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
               {visiblePosts.map((post) => (
                 <article
-                  key={post.title}
+                  key={post.id}
                   className="overflow-hidden rounded-[1.4rem] border border-[#dcece6] bg-white shadow-[0_18px_56px_rgba(15,61,50,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_74px_rgba(15,61,50,0.1)]"
                 >
                   <BlogVisual post={post} />
                   <div className="p-5">
                     <p className="text-[0.68rem] font-bold uppercase tracking-wide text-[#0f765a]">{post.category}</p>
                     <h3 className="mt-3 text-lg font-semibold leading-snug tracking-normal text-[#102f28]">{post.title}</h3>
-                    <p className="mt-4 text-sm font-medium leading-6 text-[#536b64]" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                    <p className="mt-4 text-sm font-medium leading-6 text-[#536b64]">{post.excerpt}</p>
                     <p className="mt-5 text-sm font-semibold text-[#102f28]">
-                      {post.readTime} <span aria-hidden="true"> • </span> {post.date}
+                      {post.date && post.readTime
+                        ? `${post.date} | ${post.readTime}`
+                        : post.date || post.readTime}
                     </p>
                   </div>
                 </article>
               ))}
             </div>
 
-            {visiblePosts.length === 0 ? (
+            {!isLoading && !error && visiblePosts.length === 0 ? (
               <div className="rounded-[1.4rem] border border-[#dcece6] bg-[#fbfffd] p-8 text-center">
                 <p className="text-base font-semibold text-[#31544c]">No articles match your search yet.</p>
               </div>
