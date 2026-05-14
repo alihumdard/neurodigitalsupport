@@ -118,9 +118,9 @@ const BlogPage = () => {
 
       <main className="theme-aware-page min-h-screen overflow-hidden bg-[#fbfffd] text-[#102f28]">
         <section className="relative border-b border-[#e2f0ea] bg-[linear-gradient(180deg,#fbfffd_0%,#f1faf6_100%)] pb-14 pt-16 sm:pb-20 sm:pt-24">
-          <div className="absolute left-[7%] top-28 h-56 w-56 rounded-full bg-[#d9efe6]/70 blur-[1px]" aria-hidden="true" />
-          <div className="absolute right-[8%] top-14 h-56 w-56 rounded-full bg-[#d9efe6]/70 blur-[1px]" aria-hidden="true" />
-          <div className="absolute right-[16%] top-44 hidden h-48 w-48 bg-[radial-gradient(circle,#bfe2d4_1.5px,transparent_1.5px)] [background-size:18px_18px] opacity-65 lg:block" aria-hidden="true" />
+          <div className="absolute left-[7%] top-28 h-56 w-56 rounded-full bg-[#d9efe6]/70 blur-[1px] dark:bg-emerald-400/10 dark:blur-2xl" aria-hidden="true" />
+          <div className="absolute right-[8%] top-14 h-56 w-56 rounded-full bg-[#d9efe6]/70 blur-[1px] dark:bg-emerald-400/10 dark:blur-2xl" aria-hidden="true" />
+          <div className="absolute right-[16%] top-44 hidden h-48 w-48 bg-[radial-gradient(circle,#bfe2d4_1.5px,transparent_1.5px)] [background-size:18px_18px] opacity-65 dark:bg-[radial-gradient(circle,rgba(52,211,153,0.28)_1.5px,transparent_1.5px)] dark:opacity-35 lg:block" aria-hidden="true" />
 
           <div className="relative mx-auto max-w-[1040px] px-5 text-center sm:px-8 lg:px-10">
             <h1 className="text-balance text-4xl font-semibold leading-[1.08] tracking-normal text-[#0b3b31] sm:text-5xl lg:text-6xl">

@@ -196,6 +196,7 @@ const HeroSection = () => {
             <div
               className="mt-4 flex items-center justify-center gap-2 sm:mt-0 sm:pt-1"
               aria-label="Hero slides"
+              data-focus-distraction
             >
               {slides.map((slide, index) => (
                 <button
@@ -216,6 +217,7 @@ const HeroSection = () => {
             {/* Trust strip */}
             <motion.div
               className="mt-4 flex max-w-[19rem] flex-wrap items-center justify-center gap-x-3 gap-y-1.5 border-t border-white/20 pt-4 sm:mt-0 sm:max-w-none sm:gap-x-5 sm:gap-y-2 sm:pt-6"
+              data-focus-distraction
               {...(reducedMotion
                 ? {}
                 : {
@@ -331,6 +333,7 @@ const HeroSection = () => {
         type="button"
         className="absolute left-2 sm:left-6 top-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/18 hover:border-white/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
         aria-label="Previous hero slide"
+        data-focus-distraction
         onClick={goToPrevious}
       >
         <ChevronLeft className="h-5 w-5" aria-hidden="true" />
@@ -340,6 +343,7 @@ const HeroSection = () => {
         type="button"
         className="absolute right-2 sm:right-6 top-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/18 hover:border-white/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
         aria-label="Next hero slide"
+        data-focus-distraction
         onClick={goToNext}
       >
         <ChevronRight className="h-5 w-5" aria-hidden="true" />

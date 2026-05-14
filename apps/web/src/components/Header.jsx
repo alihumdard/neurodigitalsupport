@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu } from 'lucide-react';
+import { Eye, Menu, Moon, Sun } from 'lucide-react';
 import AccessibilityWidget from '@/components/AccessibilityWidget.jsx';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -11,7 +11,14 @@ import logoSrc from '../../public/logo.png';
 const Header = () => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { darkMode, highContrast, toggleDarkMode, toggleHighContrast } = useAccessibility();
+  const {
+    darkMode,
+    focusMode,
+    highContrast,
+    toggleDarkMode,
+    toggleFocusMode,
+    toggleHighContrast
+  } = useAccessibility();
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -51,7 +58,7 @@ const Header = () => {
             />
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-1" aria-label="Main navigation">
+          <nav className="hidden xl:flex items-center space-x-1" aria-label="Main navigation" data-focus-distraction>
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -67,12 +74,37 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center">
+          <div className="hidden shrink-0 items-center gap-2 rounded-2xl border border-emerald-100 bg-white/86 px-3 py-2 shadow-[0_10px_28px_rgba(15,61,50,0.08)] backdrop-blur-xl dark:border-emerald-400/20 dark:bg-white/10 lg:flex" data-focus-keep>
+            <div className="flex items-center gap-2" title="Light / dark mode">
+              <Sun className="h-4 w-4 text-slate-500 dark:text-slate-300" aria-hidden="true" />
+              <Switch
+                checked={darkMode}
+                onCheckedChange={toggleDarkMode}
+                aria-label="Toggle dark mode"
+                className="data-[state=checked]:bg-[#34967C] data-[state=unchecked]:bg-slate-200"
+              />
+              <Moon className="h-4 w-4 text-slate-500 dark:text-slate-300" aria-hidden="true" />
+            </div>
+
+            <div className="mx-1 h-6 w-px bg-emerald-100 dark:bg-white/15" aria-hidden="true" />
+
+            <div className="flex items-center gap-2" title="Focus mode">
+              <Eye className="h-4 w-4 text-slate-500 dark:text-slate-300" aria-hidden="true" />
+              <Switch
+                checked={focusMode}
+                onCheckedChange={toggleFocusMode}
+                aria-label="Toggle focus mode"
+                className="data-[state=checked]:bg-[#34967C] data-[state=unchecked]:bg-slate-200"
+              />
+            </div>
+          </div>
+
+          <div className="flex shrink-0 items-center" data-focus-distraction>
             <AccessibilityWidget />
           </div>
 
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild className="md:hidden">
+            <SheetTrigger asChild className="xl:hidden">
               <Button variant="ghost" size="icon" className="h-10 w-10 rounded-2xl" aria-label="Open menu">
                 <Menu className="h-5 w-5" />
               </Button>
@@ -99,17 +131,36 @@ const Header = () => {
               </nav>
 
               <div className="mt-8 space-y-4 border-t pt-6">
+                <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4 dark:border-emerald-800/40 dark:bg-emerald-950/25">
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-2 text-sm font-medium">
+                      <Sun className="h-4 w-4" aria-hidden="true" />
+                      Light / dark
+                      <Moon className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <Switch
+                      checked={darkMode}
+                      onCheckedChange={toggleDarkMode}
+                      aria-label="Toggle dark mode"
+                      className="data-[state=checked]:bg-[#34967C]"
+                    />
+                  </div>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-2 text-sm font-medium">
+                      <Eye className="h-4 w-4" aria-hidden="true" />
+                      Focus mode
+                    </span>
+                    <Switch
+                      checked={focusMode}
+                      onCheckedChange={toggleFocusMode}
+                      aria-label="Toggle focus mode"
+                      className="data-[state=checked]:bg-[#34967C]"
+                    />
+                  </div>
+                </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">Accessibility menu</span>
                   <AccessibilityWidget />
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Dark mode</span>
-                  <Switch
-                    checked={darkMode}
-                    onCheckedChange={toggleDarkMode}
-                    aria-label="Toggle dark mode"
-                  />
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">High contrast</span>

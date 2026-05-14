@@ -289,6 +289,74 @@
   transition-duration: 0.2s !important;
 }
 
+.focus-mode {
+  scroll-behavior: smooth;
+}
+
+.focus-mode body {
+  background: #fbfffd !important;
+}
+
+.focus-mode main section {
+  background-image: none !important;
+}
+
+.focus-mode main section:not(:first-child) {
+  background-color: #fbfffd !important;
+}
+
+.focus-mode [data-focus-distraction],
+.focus-mode [data-sonner-toaster] {
+  display: none !important;
+}
+
+.focus-mode header {
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow: 0 8px 24px rgba(15, 61, 50, 0.06) !important;
+}
+
+.focus-mode.dark header {
+  background: rgba(8, 16, 14, 0.96) !important;
+}
+
+.focus-mode header .container {
+  max-width: 860px !important;
+}
+
+.focus-mode main {
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.focus-mode main > section {
+  border-inline: 1px solid rgba(22, 113, 88, 0.08);
+}
+
+.focus-mode img,
+.focus-mode picture,
+.focus-mode video,
+.focus-mode .hero-slide-bg {
+  filter: saturate(0.78) contrast(0.94) brightness(0.98) !important;
+}
+
+.focus-mode .hero-slide-bg {
+  filter: saturate(0.72) contrast(0.9) brightness(0.72) !important;
+}
+
+.focus-mode article,
+.focus-mode aside,
+.focus-mode form,
+.focus-mode .theme-surface,
+.focus-mode [class*="shadow-"] {
+  box-shadow: 0 12px 36px rgba(15, 61, 50, 0.08) !important;
+}
+
+.focus-mode * {
+  text-shadow: none !important;
+  transition-duration: 0.15s !important;
+  animation-duration: 0.15s !important;
+}
+
 .dark .product-detail-page {
   background: hsl(var(--background)) !important;
   color: hsl(var(--foreground)) !important;

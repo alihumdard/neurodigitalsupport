@@ -32,7 +32,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full border-t border-emerald-100 bg-[#fbfdfc] dark:border-border dark:bg-background">
+    <footer className="w-full border-t border-emerald-100 bg-[#fbfdfc] dark:border-border dark:bg-background" data-focus-distraction>
       <div className="mx-auto w-full max-w-[1240px] px-4 pb-6 pt-10 sm:px-6 lg:px-10">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-14 lg:gap-16">
           <div>

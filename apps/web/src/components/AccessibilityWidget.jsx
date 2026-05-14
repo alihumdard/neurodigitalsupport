@@ -6,7 +6,6 @@ import {
   Eye,
   ImageOff,
   Link as LinkIcon,
-  Moon,
   MousePointer2,
   RotateCcw,
   SlidersHorizontal,
@@ -17,7 +16,6 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 
 const toggleItems = [
-  { key: 'darkMode', label: 'Dark Mode', icon: Moon },
   { key: 'highContrast', label: 'Contrast', icon: Contrast },
   { key: 'hideImages', label: 'Hide Images', icon: ImageOff },
   { key: 'highlightLinks', label: 'Highlight Links', icon: LinkIcon },

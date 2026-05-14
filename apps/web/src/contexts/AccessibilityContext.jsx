@@ -9,6 +9,7 @@ const defaultSettings = {
   highContrast: false,
   reducedMotion: false,
   sensoryMode: false,
+  focusMode: false,
   hideImages: false,
   highlightLinks: false,
   fontSize: 'medium',
@@ -52,6 +53,7 @@ export const AccessibilityProvider = ({ children }) => {
       'high-contrast-mode': settings.highContrast,
       'reduced-motion-mode': settings.reducedMotion,
       'sensory-safe-mode': settings.sensoryMode,
+      'focus-mode': settings.focusMode,
       'hide-images-mode': settings.hideImages,
       'highlight-links-mode': settings.highlightLinks,
       'big-cursor-mode': settings.bigCursor,
@@ -90,6 +92,7 @@ export const AccessibilityProvider = ({ children }) => {
       resetSettings,
       toggleDarkMode: () => toggleSetting('darkMode'),
       toggleReducedMotion: () => toggleSetting('reducedMotion'),
+      toggleFocusMode: () => toggleSetting('focusMode'),
       toggleHighContrast: () => toggleSetting('highContrast'),
       toggleSensoryMode: () => toggleSetting('sensoryMode'),
       changeFontSize: (fontSize) => updateSetting('fontSize', fontSize)
