@@ -111,7 +111,7 @@ const BrowserMockup = () => (
     <div className="absolute -inset-5 rounded-[2rem] bg-[#dff3ec]/55 blur-2xl" aria-hidden="true" />
     <div className="relative overflow-hidden rounded-[1.7rem] border border-[#d7eee5] bg-white/72 p-3 shadow-[0_28px_80px_rgba(15,61,50,0.13)] backdrop-blur-xl">
       <div className="rounded-[1.25rem] bg-[#f7fffb] p-4 ring-1 ring-[#dceee7]">
-        <div className="flex items-center justify-between border-b border-[#dceee7] pb-4">
+        <div className="flex items-center justify-between border-b border-[#dceee7] pb-3">
           <div className="flex gap-2">
             <span className="h-3 w-3 rounded-full bg-[#b9dfd1]" />
             <span className="h-3 w-3 rounded-full bg-[#dceee7]" />
@@ -120,29 +120,29 @@ const BrowserMockup = () => (
           <span className="h-7 w-40 rounded-full bg-white shadow-sm ring-1 ring-[#dceee7]" />
         </div>
 
-        <div className="mt-5 grid gap-3 md:grid-cols-[0.9fr_1.1fr]">
-          <div className="space-y-4">
+        <div className="mt-4 grid gap-3 md:grid-cols-[0.9fr_1.1fr]">
+          <div className="space-y-3">
             <div className="rounded-[1.4rem] bg-white p-4 shadow-[0_14px_34px_rgba(15,50,40,0.06)] ring-1 ring-white">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf5f0] text-[#2f8066]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#eaf5f0] text-[#2f8066]">
                 <Megaphone className="h-6 w-6" aria-hidden="true" />
               </div>
-              <span className="mt-5 block h-3 w-28 rounded-full bg-[#b9dfd1]" />
-              <span className="mt-3 block h-2.5 w-36 rounded-full bg-[#dceee7]" />
+              <span className="mt-4 block h-3 w-28 rounded-full bg-[#b9dfd1]" />
+              <span className="mt-2.5 block h-2.5 w-36 rounded-full bg-[#dceee7]" />
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <span className="h-20 rounded-[1.25rem] bg-[#eaf5f0] shadow-[0_12px_28px_rgba(15,50,40,0.05)]" />
-              <span className="h-20 rounded-[1.25rem] bg-white shadow-[0_12px_28px_rgba(15,50,40,0.05)] ring-1 ring-white" />
+              <span className="h-16 rounded-[1.25rem] bg-[#eaf5f0] shadow-[0_12px_28px_rgba(15,50,40,0.05)]" />
+              <span className="h-16 rounded-[1.25rem] bg-white shadow-[0_12px_28px_rgba(15,50,40,0.05)] ring-1 ring-white" />
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {[0, 1, 2].map((item) => (
-              <div key={item} className="rounded-[1.35rem] bg-white p-4 shadow-[0_14px_34px_rgba(15,50,40,0.055)] ring-1 ring-white">
+              <div key={item} className="rounded-[1.35rem] bg-white p-3.5 shadow-[0_14px_34px_rgba(15,50,40,0.055)] ring-1 ring-white">
                 <div className="flex items-center gap-3">
-                  <span className="h-10 w-10 rounded-2xl bg-[#eaf5f0]" />
+                  <span className="h-9 w-9 rounded-2xl bg-[#eaf5f0]" />
                   <span className="h-3 flex-1 rounded-full bg-[#b9dfd1]" />
                 </div>
-                <div className="mt-4 grid grid-cols-3 gap-2">
+                <div className="mt-3 grid grid-cols-3 gap-2">
                   <span className="h-2.5 rounded-full bg-[#dceee7]" />
                   <span className="h-2.5 rounded-full bg-[#dceee7]" />
                   <span className="h-2.5 rounded-full bg-[#dceee7]" />
@@ -152,7 +152,7 @@ const BrowserMockup = () => (
           </div>
         </div>
 
-        <div className="mt-4 rounded-[1.4rem] bg-[#102f27] p-4 text-white shadow-[0_16px_42px_rgba(15,50,40,0.12)]">
+        <div className="mt-3 rounded-[1.4rem] bg-[#102f27] p-3.5 text-white shadow-[0_16px_42px_rgba(15,50,40,0.12)]">
           <div className="flex items-center justify-between">
             <span className="h-3 w-36 rounded-full bg-white/32" />
             <div className="flex gap-2">
