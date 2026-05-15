@@ -261,7 +261,7 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              {/* Mini stats row - Glass styling */}
+              {/* Mini stats row - Glass styling  jojo ji */}
               <div className="mx-6 my-6 rounded-2xl px-5 py-4 grid grid-cols-3 divide-x divide-border/50 bg-muted/30 backdrop-blur-md border border-border/40">
                 {[
                   { label: "Sensory Tools", value: "7+" },
