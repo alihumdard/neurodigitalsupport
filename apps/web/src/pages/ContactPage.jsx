@@ -204,7 +204,11 @@ const ContactPage = () => {
   return (
     <>
     <Helmet>
-      <title>Contact Us</title>
+      <title>Contact NeuroDigital Support | Demo, partnership, support</title>
+      <meta
+        name="description"
+        content="Contact NeuroDigital Support for demos, partnerships, accessibility advice, research enquiries, or support for autistic and neurodivergent adults."
+      />
     </Helmet>
 
     <Header />

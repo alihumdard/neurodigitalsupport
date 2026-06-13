@@ -338,8 +338,8 @@ const NuroTokPage = () => {
   return (
     <>
       <Helmet>
-        <title>NuroTok - Sensory Regulation App</title>
-        <meta name="description" content="NuroTok is a calming wellbeing companion designed to support sensory regulation and emotional stress." />
+        <title>NuroTok | Sensory regulation app for neurodivergent adults</title>
+        <meta name="description" content="NuroTok is a calming digital companion that supports sensory regulation, emotional wellbeing, and stress reduction for autistic and neurodivergent adults." />
       </Helmet>
 
       <Header />

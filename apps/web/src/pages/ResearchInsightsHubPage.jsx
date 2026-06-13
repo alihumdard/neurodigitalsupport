@@ -127,7 +127,11 @@ const HeroImageMockup = () => (
 const ResearchInsightsHubPage = () => (
   <>
     <Helmet>
-      <title>Research & Insights Hub</title>
+      <title>Research & Insights Hub | NeuroDigital Support</title>
+      <meta
+        name="description"
+        content="Access research, datasets, and evidence-led insights from NeuroDigital Support to better understand neurodivergent digital experiences and inclusive design."
+      />
     </Helmet>
 
     <Header />

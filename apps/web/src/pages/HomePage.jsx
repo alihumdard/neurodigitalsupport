@@ -11,8 +11,8 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>NeuroDigital Support - Digital spaces designed for neurodivergent minds</title>
-        <meta name="description" content="Sensory-aware technology that supports your wellbeing, not your overwhelm. Discover tools built specifically for neurodivergent individuals." />
+        <title>NeuroDigital Support | Inclusive digital support for neurodivergent adults</title>
+        <meta name="description" content="NeuroDigital Support builds sensory-aware digital platforms for autistic and neurodivergent adults, offering calm interfaces, wellbeing tools, and inclusive support services." />
       </Helmet>
 
       <Header />

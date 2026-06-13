@@ -72,7 +72,11 @@ const SectionHeading = ({ children, className = '' }) => (
 const AboutPage = () => (
   <>
     <Helmet>
-      <title>About NeuroDigital Support</title>
+      <title>About NeuroDigital Support | Inclusive digital well-being</title>
+      <meta
+        name="description"
+        content="Learn how NeuroDigital Support designs research-driven digital products that prioritise neurodivergent wellbeing, accessibility, and inclusive support."
+      />
     </Helmet>
 
     <Header />

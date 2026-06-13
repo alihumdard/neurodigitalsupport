@@ -140,7 +140,11 @@ const BlogPage = () => {
   return (
     <>
       <Helmet>
-        <title>The NeuroDigital Blog</title>
+        <title>NeuroDigital Support Blog | Neurodivergent wellbeing insights</title>
+        <meta
+          name="description"
+          content="Read the NeuroDigital Support blog for stories, research updates, and practical insights on accessible digital wellbeing for autistic and neurodivergent adults."
+        />
       </Helmet>
 
       <Header />

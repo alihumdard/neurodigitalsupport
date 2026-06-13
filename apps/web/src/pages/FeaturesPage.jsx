@@ -227,8 +227,11 @@ const FeaturesPage = () => {
   return (
     <>
       <Helmet>
-        <title>Features - NeuroDigital Support Ecosystem</title>
-        <meta name="description" content="Explore every NeuroDigital Support product in one long-scroll master features page." />
+        <title>Features | NeuroDigital Support ecosystem</title>
+        <meta
+          name="description"
+          content="Explore NeuroDigital Support’s full digital ecosystem, including wellbeing, social, advocacy, research, and care tools built for neurodivergent adults and teams."
+        />
       </Helmet>
 
       <Header />
