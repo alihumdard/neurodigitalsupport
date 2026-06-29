@@ -4,7 +4,7 @@ import { Instagram, Linkedin, Mail, Phone, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
-import logoSrc from '../../public/logo.png';
+const logoSrc = '/logo.jpeg';
 
 const navigationLinks = [
   { name: 'About', path: '/about' },
@@ -38,13 +38,13 @@ const Footer = () => {
           <div>
             <Link
               to="/"
-              className="relative block h-12 w-[250px] overflow-hidden rounded-md focus-visible-ring"
+              className="relative flex h-16 w-auto items-center overflow-hidden rounded-md focus-visible-ring"
               aria-label="NeuroDigital Support home"
             >
               <img
                 src={logoSrc}
                 alt="NeuroDigital Support"
-                className="absolute left-[-33px] top-[-50px] w-[260px] max-w-none"
+                className="h-full w-auto object-contain"
               />
             </Link>
             <p className="mt-4 text-sm font-medium leading-relaxed text-slate-600 dark:text-muted-foreground">

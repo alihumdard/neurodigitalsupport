@@ -19,7 +19,7 @@ import {
   Zap
 } from 'lucide-react';
 import Header from '@/components/Header.jsx';
-import logoSrc from '../../public/logo.png';
+const logoSrc = '/logo.jpeg';
 
 const storeButtons = [
   { label: 'App Store', icon: Apple },
