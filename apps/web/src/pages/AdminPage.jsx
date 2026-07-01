@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { FileText, FolderKanban, Inbox, LogOut, Pencil, Plus, Trash2 } from 'lucide-react';
+import { FileText, FolderKanban, Inbox, LogOut, Pencil, Plus, Trash2, X } from 'lucide-react';
 import { toast } from 'sonner';
 import {
   login,
@@ -24,6 +24,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
+import RichTextEditor from '@/components/ui/rich-text-editor.jsx';
 import {
   Table,
   TableBody,
@@ -56,7 +58,8 @@ const emptyBlogForm = {
   content: '',
   read_time: '',
   blog_category_id: '',
-  blog_image: null
+  blog_image: null,
+  is_featured: false
 };
 
 const inquiryTypeLabels = {
@@ -249,7 +252,8 @@ const AdminPage = () => {
       content: blog.content || '',
       read_time: blog.Time || '',
       blog_category_id: blog.blog_category_id ? String(blog.blog_category_id) : '',
-      blog_image: null
+      blog_image: null,
+      is_featured: Boolean(blog.is_featured)
     });
     setBlogDialogOpen(true);
   };
@@ -286,6 +290,7 @@ const AdminPage = () => {
       formData.append('content', blogForm.content || '');
       formData.append('read_time', blogForm.read_time || '');
       formData.append('blog_category_id', blogForm.blog_category_id);
+      formData.append('is_featured', blogForm.is_featured ? '1' : '0');
 
       if (blogForm.blog_image) {
         formData.append('blog_image', blogForm.blog_image);
@@ -703,8 +708,24 @@ const AdminPage = () => {
       </div>
 
       <Dialog open={blogDialogOpen} onOpenChange={setBlogDialogOpen}>
-        <DialogContent className="max-h-[90vh] max-w-lg overflow-y-auto">
-          <DialogHeader>
+        <DialogContent className="max-h-[90vh] w-[95vw] max-w-4xl overflow-visible p-0 [&>button]:hidden">
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={() => setBlogDialogOpen(false)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                setBlogDialogOpen(false);
+              }
+            }}
+            aria-label="Close"
+            className="absolute -right-12 top-1 z-20 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-[#dcece6] bg-white text-[#31544c] shadow-[0_10px_28px_rgba(15,61,50,0.18)] transition-colors hover:bg-[#f1faf6]"
+          >
+            <X className="h-4 w-4" />
+          </span>
+
+          <div className="max-h-[90vh] overflow-y-auto rounded-lg bg-background p-6">
+          <DialogHeader className="mb-4">
             <DialogTitle>{blogForm.id ? 'Edit Blog' : 'Add New Blog'}</DialogTitle>
           </DialogHeader>
 
@@ -732,12 +753,10 @@ const AdminPage = () => {
 
             <div className="grid gap-2">
               <Label htmlFor="content">Content</Label>
-              <Textarea
-                id="content"
+              <RichTextEditor
                 value={blogForm.content}
-                onChange={handleBlogFieldChange('content')}
-                placeholder="Blog content"
-                className="min-h-32"
+                onChange={(html) => setBlogForm((current) => ({ ...current, content: html }))}
+                placeholder="Write your blog content..."
               />
             </div>
 
@@ -779,6 +798,17 @@ const AdminPage = () => {
               <Input id="blog_image" type="file" accept="image/jpeg,image/jpg,image/png,image/webp" onChange={handleBlogImageChange} />
             </div>
 
+            <div className="flex items-center gap-2">
+              <Checkbox
+                id="is_featured"
+                checked={blogForm.is_featured}
+                onCheckedChange={(checked) => setBlogForm((current) => ({ ...current, is_featured: checked === true }))}
+              />
+              <Label htmlFor="is_featured" className="cursor-pointer font-normal">
+                Set as Featured
+              </Label>
+            </div>
+
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setBlogDialogOpen(false)}>
                 Cancel
@@ -788,6 +818,7 @@ const AdminPage = () => {
               </Button>
             </DialogFooter>
           </form>
+          </div>
         </DialogContent>
       </Dialog>
 

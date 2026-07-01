@@ -211,3 +211,14 @@ export const deleteInquiry = async (id) =>
     { method: 'DELETE', isProtected: true },
     'We could not delete this inquiry right now. Please try again.'
   );
+
+export const uploadContentImage = async (file) => {
+  const formData = new FormData();
+  formData.append('image', file);
+
+  return request(
+    '/upload-image',
+    { method: 'POST', body: formData, isProtected: true },
+    'We could not upload the image right now. Please try again.'
+  );
+};

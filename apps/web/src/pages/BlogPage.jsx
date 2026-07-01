@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, Mail, PencilLine, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Mail, Search } from 'lucide-react';
 import { toast } from 'sonner';
 import { getBlogs } from '@/api/api.js';
 import Footer from '@/components/Footer.jsx';
@@ -45,6 +45,8 @@ const BlogVisual = ({ post, featured = false }) => (
   </div>
 );
 
+const POSTS_PER_PAGE = 6;
+
 const BlogPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
@@ -52,6 +54,7 @@ const BlogPage = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     let isMounted = true;
@@ -73,6 +76,7 @@ const BlogPage = () => {
 
           return {
             id: post.id ?? `${post.title}-${index}`,
+            slug: post.slug || post.id,
             title: post.title || 'Untitled article',
             excerpt: truncateText(plainContent || 'No content available yet.'),
             content: plainContent,
@@ -111,7 +115,15 @@ const BlogPage = () => {
     [posts]
   );
 
-  const featuredPost = useMemo(() => posts.find((post) => post.isFeatured) || posts[0] || null, [posts]);
+  const isFiltering = Boolean(searchTerm.trim()) || activeCategory !== 'All';
+
+  const featuredPost = useMemo(() => {
+    if (isFiltering) {
+      return null;
+    }
+
+    return posts.find((post) => post.isFeatured) || posts[0] || null;
+  }, [isFiltering, posts]);
 
   const visiblePosts = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
@@ -119,11 +131,34 @@ const BlogPage = () => {
     return posts.filter((post) => {
       const matchesCategory = activeCategory === 'All' || post.category === activeCategory;
       const matchesSearch = !query || `${post.title} ${post.excerpt} ${post.content} ${post.category}`.toLowerCase().includes(query);
-      const isNotFeatured = posts.length === 1 || !featuredPost || post.id !== featuredPost.id;
+      const isNotFeatured = !featuredPost || post.id !== featuredPost.id;
 
       return matchesCategory && matchesSearch && isNotFeatured;
     });
   }, [activeCategory, featuredPost, posts, searchTerm]);
+
+  const totalPages = Math.max(1, Math.ceil(visiblePosts.length / POSTS_PER_PAGE));
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, searchTerm, posts]);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const paginatedPosts = useMemo(() => {
+    const start = (currentPage - 1) * POSTS_PER_PAGE;
+    return visiblePosts.slice(start, start + POSTS_PER_PAGE);
+  }, [visiblePosts, currentPage]);
+
+  const goToPage = (page) => {
+    const nextPage = Math.min(Math.max(page, 1), totalPages);
+    setCurrentPage(nextPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleSubscribe = (event) => {
     event.preventDefault();
@@ -203,9 +238,9 @@ const BlogPage = () => {
               <div className="rounded-[1.5rem] border border-[#f1d5d5] bg-[#fff8f8] p-8 text-center">
                 <p className="text-base font-semibold text-[#8a2f2f]">{error}</p>
               </div>
-            ) : featuredPost ? (
+            ) : isFiltering ? null : featuredPost ? (
               <Link
-                to={`/blog/${featuredPost.id}`}
+                to={`/blog/${featuredPost.slug}`}
                 className="grid overflow-hidden rounded-[1.5rem] border border-[#dcece6] bg-white p-3 shadow-[0_24px_80px_rgba(15,61,50,0.08)] transition duration-300 hover:shadow-[0_30px_90px_rgba(15,61,50,0.12)] md:grid-cols-[1.05fr_0.95fr] md:gap-4">
                 <BlogVisual post={featuredPost} featured />
                 <div className="flex flex-col justify-center px-4 py-8 sm:px-8 md:py-10">
@@ -243,10 +278,10 @@ const BlogPage = () => {
         <section className="bg-white pb-10 sm:pb-14">
           <div className="mx-auto max-w-[980px] px-5 sm:px-8 lg:px-10">
             <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-              {visiblePosts.map((post) => (
+              {paginatedPosts.map((post) => (
                 <Link
                   key={post.id}
-                  to={`/blog/${post.id}`}
+                  to={`/blog/${post.slug}`}
                   className="block overflow-hidden rounded-[1.4rem] border border-[#dcece6] bg-white shadow-[0_18px_56px_rgba(15,61,50,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_74px_rgba(15,61,50,0.1)]"
                 >
                   <BlogVisual post={post} />
@@ -272,7 +307,42 @@ const BlogPage = () => {
           </div>
         </section>
 
-        <section className="bg-white pb-10 sm:pb-14">
+        {!isLoading && !error && totalPages > 1 ? (
+          <section className="bg-white pb-10">
+            <div className="mx-auto flex max-w-[980px] items-center justify-center gap-2 px-5 sm:px-8 lg:px-10">
+              <button
+                type="button"
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="flex h-9 w-9 items-center justify-center rounded-full text-[#102f28] hover:bg-[#edf8f3] disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Previous page"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                <button
+                  key={page}
+                  type="button"
+                  onClick={() => goToPage(page)}
+                  className={`h-9 w-9 rounded-full text-sm font-semibold ${page === currentPage ? 'bg-[#0f765a] text-white' : 'text-[#102f28] hover:bg-[#edf8f3]'}`}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="flex h-9 w-9 items-center justify-center rounded-full text-[#102f28] hover:bg-[#edf8f3] disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Next page"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </section>
+        ) : null}
+
+        <section className="bg-white pb-16 sm:pb-20">
           <div className="mx-auto max-w-[980px] px-5 sm:px-8 lg:px-10">
             <form
               onSubmit={handleSubscribe}
@@ -301,50 +371,6 @@ const BlogPage = () => {
                 </Button>
               </div>
             </form>
-          </div>
-        </section>
-
-        <section className="bg-white pb-10">
-          <div className="mx-auto flex max-w-[980px] items-center justify-center gap-2 px-5 sm:px-8 lg:px-10">
-            <button type="button" className="flex h-9 w-9 items-center justify-center rounded-full text-[#102f28] hover:bg-[#edf8f3]" aria-label="Previous page">
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            {[1, 2, 3, 4].map((page) => (
-              <button
-                key={page}
-                type="button"
-                className={`h-9 w-9 rounded-full text-sm font-semibold ${page === 1 ? 'bg-[#0f765a] text-white' : 'text-[#102f28] hover:bg-[#edf8f3]'}`}
-              >
-                {page}
-              </button>
-            ))}
-            <span className="px-2 text-sm font-semibold text-[#536b64]">...</span>
-            <button type="button" className="h-9 w-9 rounded-full text-sm font-semibold text-[#102f28] hover:bg-[#edf8f3]">8</button>
-            <button type="button" className="flex h-9 w-9 items-center justify-center rounded-full text-[#102f28] hover:bg-[#edf8f3]" aria-label="Next page">
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </section>
-
-        <section className="bg-white pb-16 sm:pb-20">
-          <div className="mx-auto max-w-[980px] px-5 sm:px-8 lg:px-10">
-            <div className="grid items-center gap-6 rounded-[1.4rem] border border-[#dcece6] bg-white p-7 shadow-[0_18px_56px_rgba(15,61,50,0.06)] sm:grid-cols-[auto_1fr_auto]">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#e8f7f1] text-[#0f765a]">
-                <PencilLine className="h-8 w-8" aria-hidden="true" />
-              </div>
-              <div>
-                <h2 className="text-2xl font-semibold leading-tight tracking-normal text-[#0b3b31]">
-                  Have a story to share or a research topic to suggest?
-                </h2>
-                <p className="mt-2 text-xl font-semibold text-[#0b3b31]">Contact our editorial team.</p>
-              </div>
-              <Button asChild className="h-12 rounded-full border border-[#9fd0bd] bg-white px-7 text-sm font-semibold text-[#0b5f49] shadow-none hover:bg-[#f1faf6]">
-                <Link to="/contact">
-                  Contact Us
-                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                </Link>
-              </Button>
-            </div>
           </div>
         </section>
       </main>
