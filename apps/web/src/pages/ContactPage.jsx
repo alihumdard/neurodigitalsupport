@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 import {
   Accessibility,
   ArrowRight,
@@ -77,6 +78,7 @@ const subjectOptions = [
 ];
 
 const ContactPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -193,7 +195,9 @@ const ContactPage = () => {
         phoneNumber: '',
         consent: false
       });
-      toast.success(response?.message || 'Your message has been submitted.');
+      navigate('/thank-you', {
+        state: { message: response?.message || 'Your message has been submitted. We will be in touch soon.' }
+      });
     } catch (error) {
       toast.error(error.message || 'We could not submit your message right now.');
     } finally {

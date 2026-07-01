@@ -204,7 +204,9 @@ const BlogPage = () => {
                 <p className="text-base font-semibold text-[#8a2f2f]">{error}</p>
               </div>
             ) : featuredPost ? (
-              <article className="grid overflow-hidden rounded-[1.5rem] border border-[#dcece6] bg-white p-3 shadow-[0_24px_80px_rgba(15,61,50,0.08)] md:grid-cols-[1.05fr_0.95fr] md:gap-4">
+              <Link
+                to={`/blog/${featuredPost.id}`}
+                className="grid overflow-hidden rounded-[1.5rem] border border-[#dcece6] bg-white p-3 shadow-[0_24px_80px_rgba(15,61,50,0.08)] transition duration-300 hover:shadow-[0_30px_90px_rgba(15,61,50,0.12)] md:grid-cols-[1.05fr_0.95fr] md:gap-4">
                 <BlogVisual post={featuredPost} featured />
                 <div className="flex flex-col justify-center px-4 py-8 sm:px-8 md:py-10">
                   <p className="text-xs font-bold uppercase tracking-widest text-[#0f765a]">Featured</p>
@@ -229,7 +231,7 @@ const BlogPage = () => {
                     </div>
                   </div>
                 </div>
-              </article>
+              </Link>
             ) : (
               <div className="rounded-[1.5rem] border border-[#dcece6] bg-[#fbfffd] p-8 text-center">
                 <p className="text-base font-semibold text-[#31544c]">No featured article is available yet.</p>
@@ -242,9 +244,10 @@ const BlogPage = () => {
           <div className="mx-auto max-w-[980px] px-5 sm:px-8 lg:px-10">
             <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
               {visiblePosts.map((post) => (
-                <article
+                <Link
                   key={post.id}
-                  className="overflow-hidden rounded-[1.4rem] border border-[#dcece6] bg-white shadow-[0_18px_56px_rgba(15,61,50,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_74px_rgba(15,61,50,0.1)]"
+                  to={`/blog/${post.id}`}
+                  className="block overflow-hidden rounded-[1.4rem] border border-[#dcece6] bg-white shadow-[0_18px_56px_rgba(15,61,50,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_74px_rgba(15,61,50,0.1)]"
                 >
                   <BlogVisual post={post} />
                   <div className="p-5">
@@ -257,7 +260,7 @@ const BlogPage = () => {
                         : post.date || post.readTime}
                     </p>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
 

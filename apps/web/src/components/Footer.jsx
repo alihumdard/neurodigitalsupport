@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Instagram, Linkedin, Mail, Phone, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
+import { submitNewsletterSignup } from '@/api/api.js';
 const logoSrc = '/logo.jpeg';
 
 const navigationLinks = [
@@ -22,13 +23,25 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const navigate = useNavigate();
   const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNewsletterSubmit = (e) => {
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     if (!newsletterEmail) return;
-    toast('Thanks for subscribing to our newsletter');
-    setNewsletterEmail('');
+
+    setIsSubmitting(true);
+
+    try {
+      await submitNewsletterSignup(newsletterEmail);
+      setNewsletterEmail('');
+      navigate('/thank-you', { state: { message: 'Thanks for subscribing to our newsletter.' } });
+    } catch (error) {
+      toast.error(error.message || 'We could not subscribe you right now.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -116,9 +129,10 @@ const Footer = () => {
               />
               <Button
                 type="submit"
+                disabled={isSubmitting}
                 className="h-11 w-full shrink-0 rounded-lg bg-[#5aa88f] px-4 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#4a957e] active:scale-[0.98] sm:w-auto"
               >
-                Subscribe
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
               </Button>
             </form>
           </div>

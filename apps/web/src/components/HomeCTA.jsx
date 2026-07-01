@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Instagram, Linkedin, Mail, Phone, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 import { toast } from 'sonner';
+import { submitGetStartedForm, submitNewsletterSignup } from '@/api/api.js';
 const logoSrc = '/logo.jpeg';
 
 const HomeCTA = () => {
   const { reducedMotion } = useAccessibility();
+  const navigate = useNavigate();
   const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [getStartedForm, setGetStartedForm] = useState({ fullName: '', email: '', organizationRole: '' });
+  const [isStarting, setIsStarting] = useState(false);
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -39,11 +44,52 @@ const HomeCTA = () => {
     { name: 'Instagram', icon: Instagram, url: 'https://instagram.com' }
   ];
 
-  const handleNewsletterSubmit = (e) => {
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     if (!newsletterEmail) return;
-    toast('Thanks for subscribing to our newsletter');
-    setNewsletterEmail('');
+
+    setIsSubscribing(true);
+
+    try {
+      await submitNewsletterSignup(newsletterEmail);
+      setNewsletterEmail('');
+      navigate('/thank-you', { state: { message: 'Thanks for subscribing to our newsletter.' } });
+    } catch (error) {
+      toast.error(error.message || 'We could not subscribe you right now.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
+  const handleGetStartedChange = (field) => (event) => {
+    setGetStartedForm((current) => ({ ...current, [field]: event.target.value }));
+  };
+
+  const handleGetStartedSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!getStartedForm.fullName.trim() || !getStartedForm.email.trim()) {
+      toast.error('Please enter your name and email.');
+      return;
+    }
+
+    setIsStarting(true);
+
+    try {
+      await submitGetStartedForm({
+        name: getStartedForm.fullName.trim(),
+        email: getStartedForm.email.trim(),
+        message: getStartedForm.organizationRole.trim()
+          ? `Organization/Role: ${getStartedForm.organizationRole.trim()}`
+          : ''
+      });
+      setGetStartedForm({ fullName: '', email: '', organizationRole: '' });
+      navigate('/thank-you', { state: { message: 'Thanks for getting started with NeuroDigital Support. We will be in touch shortly.' } });
+    } catch (error) {
+      toast.error(error.message || 'We could not submit your request right now.');
+    } finally {
+      setIsStarting(false);
+    }
   };
 
   return (
@@ -85,30 +131,37 @@ const HomeCTA = () => {
                   <p className="mt-1 text-sm font-medium text-slate-500 dark:text-muted-foreground">No credit card required</p>
                 </div>
 
-                <form className="space-y-3.5">
+                <form className="space-y-3.5" onSubmit={handleGetStartedSubmit}>
                   <input
                     type="text"
                     name="fullName"
                     placeholder="Full Name"
+                    value={getStartedForm.fullName}
+                    onChange={handleGetStartedChange('fullName')}
                     className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-900 shadow-sm outline-none transition-all placeholder:text-slate-400 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 dark:border-border dark:bg-background dark:text-foreground dark:placeholder:text-muted-foreground dark:focus:border-border dark:focus:ring-ring/30"
                   />
                   <input
                     type="email"
                     name="email"
                     placeholder="Email"
+                    value={getStartedForm.email}
+                    onChange={handleGetStartedChange('email')}
                     className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-900 shadow-sm outline-none transition-all placeholder:text-slate-400 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 dark:border-border dark:bg-background dark:text-foreground dark:placeholder:text-muted-foreground dark:focus:border-border dark:focus:ring-ring/30"
                   />
                   <input
                     type="text"
                     name="organizationRole"
                     placeholder="Org"
+                    value={getStartedForm.organizationRole}
+                    onChange={handleGetStartedChange('organizationRole')}
                     className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-900 shadow-sm outline-none transition-all placeholder:text-slate-400 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 dark:border-border dark:bg-background dark:text-foreground dark:placeholder:text-muted-foreground dark:focus:border-border dark:focus:ring-ring/30"
                   />
                   <Button
                     type="submit"
+                    disabled={isStarting}
                     className="h-12 w-full rounded-xl bg-[#5aa88f] text-sm font-extrabold text-white shadow-sm transition-all hover:bg-[#4a957e] active:scale-[0.98]"
                   >
-                    Start Now
+                    {isStarting ? 'Submitting...' : 'Start Now'}
                     <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                   </Button>
                 </form>
@@ -202,9 +255,10 @@ const HomeCTA = () => {
                 />
                 <Button
                   type="submit"
+                  disabled={isSubscribing}
                   className="h-11 w-full shrink-0 rounded-lg bg-[#5aa88f] px-4 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#4a957e] active:scale-[0.98] sm:w-auto"
                 >
-                  Subscribe
+                  {isSubscribing ? 'Subscribing...' : 'Subscribe'}
                 </Button>
               </form>
             </div>
