@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 import { toast } from 'sonner';
 import { submitGetStartedForm, submitNewsletterSignup } from '@/api/api.js';
-const logoSrc = '/logo.jpeg';
+const logoSrc = '/logo-footer.jpeg';
 
 const HomeCTA = () => {
   const { reducedMotion } = useAccessibility();
