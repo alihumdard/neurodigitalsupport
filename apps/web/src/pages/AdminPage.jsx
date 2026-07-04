@@ -1029,15 +1029,6 @@ const AdminPage = () => {
                 </div>
               </div>
             </div>
-
-            <DialogFooter className="lg:col-span-2">
-              <Button type="button" variant="outline" onClick={() => setBlogDialogOpen(false)}>
-                Cancel
-              </Button>
-              <Button type="submit" disabled={isSavingBlog}>
-                {isSavingBlog ? 'Saving...' : 'Save'}
-              </Button>
-            </DialogFooter>
           </form>
           </div>
         </DialogContent>
