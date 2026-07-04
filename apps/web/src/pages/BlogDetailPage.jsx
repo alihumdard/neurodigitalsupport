@@ -208,9 +208,6 @@ const BlogDetailPage = () => {
         ) : (
           <>
             <section className="relative border-b border-[#e2f0ea] bg-[linear-gradient(180deg,#fbfffd_0%,#f1faf6_100%)] pb-0 pt-14 sm:pt-20">
-              <div className="absolute left-[6%] top-24 h-56 w-56 rounded-full bg-[#d9efe6]/60 blur-[2px]" aria-hidden="true" />
-              <div className="absolute right-[8%] top-8 h-56 w-56 rounded-full bg-[#d9efe6]/60 blur-[2px]" aria-hidden="true" />
-
               <div className="relative mx-auto max-w-[860px] px-5 sm:px-8 lg:px-10">
                 <div className="flex flex-wrap items-center gap-3">
                   <Button
