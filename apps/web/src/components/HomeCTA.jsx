@@ -34,7 +34,7 @@ const HomeCTA = () => {
     { name: 'Features', path: '/features' },
     { name: 'Ecosystem', path: '/modules' },
     { name: 'Research', path: '/research' },
-    { name: 'Blog', path: '/blogs' },
+    { name: 'Blogs', path: '/blogs' },
     { name: 'Contact', path: '/contact' }
   ];
 
