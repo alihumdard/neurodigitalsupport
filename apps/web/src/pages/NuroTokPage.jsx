@@ -72,7 +72,7 @@ const navigationLinks = [
   { name: 'Features', path: '/features' },
   { name: 'Ecosystem', path: '/modules' },
   { name: 'Research', path: '/research' },
-  { name: 'Blog', path: '/blog' },
+  { name: 'Blog', path: '/blogs' },
   { name: 'Contact', path: '/contact' }
 ];
 
