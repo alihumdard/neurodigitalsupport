@@ -799,12 +799,20 @@ const AdminPage = () => {
             <X className="h-4 w-4" />
           </span>
 
-          <div className="max-h-[90vh] overflow-y-auto rounded-lg bg-background p-6">
-          <DialogHeader className="mb-4">
+          <div className="max-h-[90vh] overflow-y-auto rounded-lg bg-background">
+          <DialogHeader className="sticky top-0 z-10 flex-row items-center justify-between gap-4 border-b border-[#dcece6] bg-background px-6 py-4">
             <DialogTitle>{blogForm.id ? 'Edit Blog' : 'Add New Blog'}</DialogTitle>
+            <div className="flex gap-2">
+              <Button type="button" variant="outline" size="sm" onClick={() => setBlogDialogOpen(false)}>
+                Cancel
+              </Button>
+              <Button type="submit" form="blog-form" size="sm" disabled={isSavingBlog}>
+                {isSavingBlog ? 'Saving...' : 'Save'}
+              </Button>
+            </div>
           </DialogHeader>
 
-          <form onSubmit={handleBlogSubmit} className="grid gap-6 lg:grid-cols-[1fr_320px]">
+          <form id="blog-form" onSubmit={handleBlogSubmit} className="grid gap-6 p-6 lg:grid-cols-[1fr_320px]">
             <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="blog_title">Title</Label>
