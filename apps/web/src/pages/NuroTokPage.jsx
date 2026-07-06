@@ -19,7 +19,6 @@ import {
   Zap
 } from 'lucide-react';
 import Header from '@/components/Header.jsx';
-const logoSrc = '/logo.jpeg';
 
 const storeButtons = [
   { label: 'App Store', icon: Apple },
@@ -445,8 +444,8 @@ const NuroTokPage = () => {
         <div className="mx-auto w-full max-w-[1240px] px-4 py-14 sm:px-6 lg:px-10">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-20 lg:gap-20">
             <div>
-              <Link to="/" className="relative block h-12 w-[250px] overflow-hidden rounded-md focus-visible-ring" aria-label="NeuroDigital Support home">
-                <img src={logoSrc} alt="NeuroDigital Support" className="absolute left-[-33px] top-[-50px] w-[260px] max-w-none" />
+              <Link to="/" className="relative flex h-16 w-auto items-center overflow-hidden rounded-md focus-visible-ring" aria-label="NeuroDigital Support home">
+                <img src="/logo-footer.jpeg" alt="NeuroDigital Support" className="h-full w-auto object-contain" />
               </Link>
               <p className="mt-4 text-sm font-medium leading-relaxed text-slate-600 dark:text-muted-foreground">
                 Creating sensory-aware digital spaces that support neurodivergent wellbeing and reduce overwhelm.

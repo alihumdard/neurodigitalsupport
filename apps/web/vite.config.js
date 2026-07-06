@@ -10,7 +10,7 @@ import pocketbaseAuthPlugin from './plugins/vite-plugin-pocketbase-auth.js';
 import { readFileSync } from 'node:fs';
 
 const pkg = JSON.parse(readFileSync('./package.json', 'utf-8'));
-const allDeps = Object.keys(pkg.dependencies || {});
+const allDeps = Object.keys(pkg.dependencies || {}).filter((dep) => dep !== '@tiptap/pm');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
