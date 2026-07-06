@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import {
   Activity,
   Bell,
@@ -188,11 +189,12 @@ const CareLoggingPage = () => {
   return (
     <>
       <Helmet>
-        <title>Care Logging App</title>
+        <title>Care Logging | NeuroDigital Support</title>
         <meta
           name="description"
-          content="The Care Logging App helps care homes and supported living teams record daily support, wellbeing observations, incidents, and communication in a secure and easy-to-use system."
+          content="Care Logging lets care homes and supported living teams securely record daily routines, incidents, mood and sensory observations, and generate exportable reports for reviews and audits."
         />
+        <link rel="canonical" href={canonicalFor('/care-logging')} />
       </Helmet>
 
       <Header />

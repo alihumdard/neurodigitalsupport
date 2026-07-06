@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import {
   Bell,
   BrainCircuit,
@@ -179,11 +180,12 @@ const SocialListeningDashboardPage = () => {
   return (
     <>
       <Helmet>
-        <title>Social Listening Dashboard</title>
+        <title>Social Listening Dashboard | NeuroDigital Support</title>
         <meta
           name="description"
           content="A smart analytics dashboard designed to monitor public conversations, identify emerging themes, and support evidence-led understanding of neurodivergent digital experiences."
         />
+        <link rel="canonical" href={canonicalFor('/social-listening-dashboard')} />
       </Helmet>
 
       <Header />

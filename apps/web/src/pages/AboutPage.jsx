@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import {
   ArrowRight,
   Brain,
@@ -77,7 +78,8 @@ const AboutPage = () => (
         name="description"
         content="Learn how NeuroDigital Support designs research-driven digital products that prioritise neurodivergent wellbeing, accessibility, and inclusive support."
       />
-    </Helmet>
+            <link rel="canonical" href={canonicalFor('/about')} />
+</Helmet>
 
     <Header />
 

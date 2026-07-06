@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
 import {
   BarChart3,
   Bell,
@@ -13,6 +14,7 @@ import {
   TrendingUp,
   Users
 } from 'lucide-react';
+import { canonicalFor } from '@/lib/seo';
 import Footer from '@/components/Footer.jsx';
 import Header from '@/components/Header.jsx';
 
@@ -124,14 +126,32 @@ const HeroImageMockup = () => (
   </div>
 );
 
-const ResearchInsightsHubPage = () => (
+const ResearchInsightsHubPage = () => {
+  const { pathname } = useLocation();
+  const isResearchAlias = pathname === '/research';
+
+  return (
   <>
     <Helmet>
-      <title>Research & Insights Hub | NeuroDigital Support</title>
-      <meta
-        name="description"
-        content="Access research, datasets, and evidence-led insights from NeuroDigital Support to better understand neurodivergent digital experiences and inclusive design."
-      />
+      {isResearchAlias ? (
+        <>
+          <title>Research | NeuroDigital Support</title>
+          <meta
+            name="description"
+            content="Explore NeuroDigital Support's ongoing research initiatives and evidence-based approach to neurodivergent digital care."
+          />
+          <link rel="canonical" href={canonicalFor('/research-insights-hub')} />
+        </>
+      ) : (
+        <>
+          <title>Research & Insights Hub | NeuroDigital Support</title>
+          <meta
+            name="description"
+            content="A research intelligence hub offering a searchable research library, ethical data intelligence, and visual analytics for evidence-led decision making."
+          />
+          <link rel="canonical" href={canonicalFor('/research-insights-hub')} />
+        </>
+      )}
     </Helmet>
 
     <Header />
@@ -290,6 +310,7 @@ const ResearchInsightsHubPage = () => (
 
     <Footer />
   </>
-);
+  );
+};
 
 export default ResearchInsightsHubPage;

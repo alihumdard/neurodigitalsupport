@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import Footer from '@/components/Footer.jsx';
@@ -14,7 +15,8 @@ const ThankYouPage = () => {
     <>
       <Helmet>
         <title>Thank You | NeuroDigital Support</title>
-      </Helmet>
+              <link rel="canonical" href={canonicalFor('/thank-you')} />
+</Helmet>
 
       <Header />
 

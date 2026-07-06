@@ -507,6 +507,7 @@ const AdminPage = () => {
     <>
       <Helmet>
         <title>Admin Dashboard | NeuroDigital Support</title>
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <div className="flex min-h-screen bg-[#fbfffd] text-[#102f28]">

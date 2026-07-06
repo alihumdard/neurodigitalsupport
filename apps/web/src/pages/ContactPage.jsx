@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import { useNavigate } from 'react-router-dom';
 import {
   Accessibility,
@@ -213,7 +214,8 @@ const ContactPage = () => {
         name="description"
         content="Contact NeuroDigital Support for demos, partnerships, accessibility advice, research enquiries, or support for autistic and neurodivergent adults."
       />
-    </Helmet>
+            <link rel="canonical" href={canonicalFor('/contact')} />
+</Helmet>
 
     <Header />
 

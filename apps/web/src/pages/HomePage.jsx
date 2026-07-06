@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import Header from '@/components/Header.jsx';
 import HeroSection from '@/components/HeroSection.jsx';
 import ProductsHome from '@/components/ProductsHome.jsx'; 
@@ -13,7 +14,8 @@ const HomePage = () => {
       <Helmet>
         <title>NeuroDigital Support | Inclusive digital support for neurodivergent adults</title>
         <meta name="description" content="NeuroDigital Support builds sensory-aware digital platforms for autistic and neurodivergent adults, offering calm interfaces, wellbeing tools, and inclusive support services." />
-      </Helmet>
+              <link rel="canonical" href={canonicalFor('/')} />
+</Helmet>
 
       <Header />
 

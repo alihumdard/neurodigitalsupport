@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import { Link } from 'react-router-dom';
 import {
   Activity,
@@ -339,7 +340,8 @@ const NuroTokPage = () => {
       <Helmet>
         <title>NuroTok | Sensory regulation app for neurodivergent adults</title>
         <meta name="description" content="NuroTok is a calming digital companion that supports sensory regulation, emotional wellbeing, and stress reduction for autistic and neurodivergent adults." />
-      </Helmet>
+              <link rel="canonical" href={canonicalFor('/nurotok')} />
+</Helmet>
 
       <Header />
 

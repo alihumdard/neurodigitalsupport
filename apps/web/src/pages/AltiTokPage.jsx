@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import {
   Gauge,
   HeartHandshake,
@@ -164,11 +165,12 @@ const AltiTokPage = () => {
   return (
     <>
       <Helmet>
-        <title>AltiTok</title>
+        <title>AltiTok | NeuroDigital Support</title>
         <meta
           name="description"
-          content="A new kind of social media platform designed around safety, calm interaction, and meaningful connection rather than addictive engagement."
+          content="AltiTok is a new kind of social media platform designed around safety, calm interaction, and meaningful connection rather than addictive engagement."
         />
+        <link rel="canonical" href={canonicalFor('/altitok')} />
       </Helmet>
 
       <Header />

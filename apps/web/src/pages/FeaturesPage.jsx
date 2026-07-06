@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -232,7 +233,8 @@ const FeaturesPage = () => {
           name="description"
           content="Explore NeuroDigital Support’s full digital ecosystem, including wellbeing, social, advocacy, research, and care tools built for neurodivergent adults and teams."
         />
-      </Helmet>
+              <link rel="canonical" href={canonicalFor('/features')} />
+</Helmet>
 
       <Header />
 

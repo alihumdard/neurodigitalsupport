@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import {
   BadgeCheck,
   Building2,
@@ -241,11 +242,12 @@ const OliTokPage = () => {
   return (
     <>
       <Helmet>
-        <title>OliTok</title>
+        <title>OliTok | NeuroDigital Support</title>
         <meta
           name="description"
           content="OliTok is a safe, structured companionship platform that connects autistic and neurodivergent individuals with trained volunteers who provide friendship, encouragement, conversation, and emotional support in a respectful online environment."
         />
+        <link rel="canonical" href={canonicalFor('/olitok')} />
       </Helmet>
 
       <Header />

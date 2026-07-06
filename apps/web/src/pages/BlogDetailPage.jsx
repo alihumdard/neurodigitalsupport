@@ -8,6 +8,7 @@ import { getBlogs } from '@/api/api.js';
 import Footer from '@/components/Footer.jsx';
 import Header from '@/components/Header.jsx';
 import { Button } from '@/components/ui/button';
+import { canonicalFor } from '@/lib/seo';
 import { Input } from '@/components/ui/input';
 
 const fallbackImage = '/images/products/research and insight hub.jpeg';
@@ -180,6 +181,7 @@ const BlogDetailPage = () => {
             content={[post.targetKeyword, post.secondaryKeywords].filter(Boolean).join(', ')}
           />
         ) : null}
+        <link rel="canonical" href={canonicalFor(`/blogs/${slug}`)} />
       </Helmet>
 
       <Header />

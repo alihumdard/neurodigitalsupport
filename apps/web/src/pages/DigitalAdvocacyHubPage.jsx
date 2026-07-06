@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import {
   BookOpen,
   BriefcaseBusiness,
@@ -171,11 +172,12 @@ const DigitalAdvocacyHubPage = () => {
   return (
     <>
       <Helmet>
-        <title>Digital Advocacy Hub</title>
+        <title>Digital Advocacy Hub | NeuroDigital Support</title>
         <meta
           name="description"
           content="The Digital Advocacy Hub brings together campaigns, educational resources, and practical tools that support neurodiversity awareness and accessible societal change."
         />
+        <link rel="canonical" href={canonicalFor('/digital-advocacy-hub')} />
       </Helmet>
 
       <Header />

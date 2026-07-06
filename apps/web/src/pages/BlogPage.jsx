@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { canonicalFor } from '@/lib/seo';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Mail, Search } from 'lucide-react';
 import { toast } from 'sonner';
@@ -180,7 +181,8 @@ const BlogPage = () => {
           name="description"
           content="Read the NeuroDigital Support blog for stories, research updates, and practical insights on accessible digital wellbeing for autistic and neurodivergent adults."
         />
-      </Helmet>
+              <link rel="canonical" href={canonicalFor('/blogs')} />
+</Helmet>
 
       <Header />
 
