@@ -47,7 +47,11 @@ const normalizePost = (item) => {
     category: item.category || 'Uncategorized',
     date: item.date || '',
     readTime: `${Number.isFinite(minutes) && minutes > 0 ? minutes : 0} min read`,
-    image: normalizeImageUrl(item.image)
+    image: normalizeImageUrl(item.image),
+    metaTitle: item.meta_title || '',
+    metaDescription: item.meta_description || '',
+    targetKeyword: item.target_keyword || '',
+    secondaryKeywords: item.secondary_keywords || ''
   };
 };
 
@@ -168,8 +172,14 @@ const BlogDetailPage = () => {
   return (
     <>
       <Helmet>
-        <title>{post ? `${post.title} | NeuroDigital Support Blog` : 'NeuroDigital Support Blog'}</title>
-        {post?.excerpt ? <meta name="description" content={post.excerpt} /> : null}
+        <title>{post ? (post.metaTitle || `${post.title} | NeuroDigital Support Blog`) : 'NeuroDigital Support Blog'}</title>
+        {post ? <meta name="description" content={post.metaDescription || post.excerpt} /> : null}
+        {post && (post.targetKeyword || post.secondaryKeywords) ? (
+          <meta
+            name="keywords"
+            content={[post.targetKeyword, post.secondaryKeywords].filter(Boolean).join(', ')}
+          />
+        ) : null}
       </Helmet>
 
       <Header />
@@ -188,7 +198,7 @@ const BlogDetailPage = () => {
                 <p className="text-base font-semibold text-[#8a2f2f]">{error || 'This article could not be found.'}</p>
               </div>
               <Button asChild className="mt-6 rounded-full bg-[#0b5f49] px-6 text-sm font-semibold text-white hover:bg-[#084d3c]">
-                <Link to="/blog">
+                <Link to="/blogs">
                   <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
                   Back to Blog
                 </Link>
@@ -198,9 +208,6 @@ const BlogDetailPage = () => {
         ) : (
           <>
             <section className="relative border-b border-[#e2f0ea] bg-[linear-gradient(180deg,#fbfffd_0%,#f1faf6_100%)] pb-0 pt-14 sm:pt-20">
-              <div className="absolute left-[6%] top-24 h-56 w-56 rounded-full bg-[#d9efe6]/60 blur-[2px]" aria-hidden="true" />
-              <div className="absolute right-[8%] top-8 h-56 w-56 rounded-full bg-[#d9efe6]/60 blur-[2px]" aria-hidden="true" />
-
               <div className="relative mx-auto max-w-[860px] px-5 sm:px-8 lg:px-10">
                 <div className="flex flex-wrap items-center gap-3">
                   <Button
@@ -208,7 +215,7 @@ const BlogDetailPage = () => {
                     variant="outline"
                     className="rounded-full border-[#d7e6e0] bg-white/85 px-5 text-sm font-semibold text-[#163d34] shadow-none backdrop-blur hover:bg-white hover:text-[#0b5f49]"
                   >
-                    <Link to="/blog">
+                    <Link to="/blogs">
                       <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
                       Back to Blog
                     </Link>
@@ -288,6 +295,24 @@ const BlogDetailPage = () => {
                 <article className="max-w-[720px]">
                   <ArticleContent content={post.content} />
 
+                  {post.secondaryKeywords ? (
+                    <div className="mt-8 flex flex-wrap items-center gap-2">
+                      <span className="text-xs font-bold uppercase tracking-widest text-[#7a8f88]">Related topics</span>
+                      {post.secondaryKeywords
+                        .split(',')
+                        .map((keyword) => keyword.trim())
+                        .filter(Boolean)
+                        .map((keyword) => (
+                          <span
+                            key={keyword}
+                            className="rounded-full border border-[#dcece6] bg-[#f1faf6] px-3 py-1 text-xs font-semibold text-[#0b5f49]"
+                          >
+                            {keyword}
+                          </span>
+                        ))}
+                    </div>
+                  ) : null}
+
                   <div className="mt-12 flex flex-wrap items-center justify-between gap-4 rounded-[1.4rem] border border-[#dcece6] bg-[#fbfffd] p-6">
                     <div>
                       <p className="text-sm font-bold uppercase tracking-widest text-[#0f765a]">Written by</p>
@@ -310,7 +335,7 @@ const BlogDetailPage = () => {
                         {relatedPosts.map((related) => (
                           <Link
                             key={related.id}
-                            to={`/blog/${related.slug}`}
+                            to={`/blogs/${related.slug}`}
                             className="group flex items-center gap-3"
                           >
                             <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-[#edf8f3]">
