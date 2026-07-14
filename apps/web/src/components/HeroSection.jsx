@@ -331,7 +331,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <button
+      {/* <button
         type="button"
         className="absolute left-2 sm:left-6 top-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/18 hover:border-white/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
         aria-label="Previous hero slide"
@@ -349,7 +349,7 @@ const HeroSection = () => {
         onClick={goToNext}
       >
         <ChevronRight className="h-5 w-5" aria-hidden="true" />
-      </button>
+      </button> */}
     </section>
   );
 };
