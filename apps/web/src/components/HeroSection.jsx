@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -42,6 +42,8 @@ const slides = [
   },
 ];
 
+const AUTO_SLIDE_INTERVAL = 5000;
+
 const HeroSection = () => {
   const { reducedMotion } = useAccessibility();
   const [activeSlide, setActiveSlide] = useState(0);
@@ -57,6 +59,17 @@ const HeroSection = () => {
   const goToNext = useCallback(() => {
     setActiveSlide((current) => (current + 1) % slides.length);
   }, []);
+
+  // Auto slider — advances automatically every AUTO_SLIDE_INTERVAL ms
+  useEffect(() => {
+    if (reducedMotion) return undefined;
+
+    const timer = setInterval(() => {
+      goToNext();
+    }, AUTO_SLIDE_INTERVAL);
+
+    return () => clearInterval(timer);
+  }, [goToNext, reducedMotion, activeSlide]);
 
   const currentSlide = slides[activeSlide];
 
@@ -331,7 +344,8 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* <button
+      {/* Arrows disabled — slider now advances automatically
+      <button
         type="button"
         className="absolute left-2 sm:left-6 top-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/18 hover:border-white/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
         aria-label="Previous hero slide"
@@ -349,7 +363,8 @@ const HeroSection = () => {
         onClick={goToNext}
       >
         <ChevronRight className="h-5 w-5" aria-hidden="true" />
-      </button> */}
+      </button>
+      */}
     </section>
   );
 };
