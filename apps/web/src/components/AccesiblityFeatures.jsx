@@ -8,7 +8,6 @@
                 Comprehensive controls to customize your digital experience
               </p>
             </motion.div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {accessibilityFeatures.map((feature, index) => (
                 <motion.div key={index} variants={fadeInVariants} {...(reducedMotion ? {} : {
