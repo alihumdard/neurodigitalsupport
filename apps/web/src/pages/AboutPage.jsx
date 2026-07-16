@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import Footer from '@/components/Footer.jsx';
 import Header from '@/components/Header.jsx';
+import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 
 const principles = [
   {
@@ -299,6 +300,7 @@ const AboutPage = () => (
       </section>
     </main>
 
+    <AffiliationsSection />
     <Footer />
   </>
 );

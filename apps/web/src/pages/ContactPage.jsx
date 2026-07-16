@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import Footer from '@/components/Footer.jsx';
+import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 import Header from '@/components/Header.jsx';
 import { submitContactForm } from '@/api/api.js';
 import { Button } from '@/components/ui/button';
@@ -501,6 +502,7 @@ const ContactPage = () => {
       </section>
     </main>
 
+    <AffiliationsSection />
     <Footer />
     </>
   );

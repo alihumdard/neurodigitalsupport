@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -45,6 +45,7 @@ const slides = [
 const HeroSection = () => {
   const { reducedMotion } = useAccessibility();
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const goToSlide = useCallback((index) => {
     setActiveSlide((index + slides.length) % slides.length);
@@ -58,10 +59,26 @@ const HeroSection = () => {
     setActiveSlide((current) => (current + 1) % slides.length);
   }, []);
 
+  useEffect(() => {
+    if (reducedMotion || isPaused) return undefined;
+
+    const timer = setInterval(() => {
+      setActiveSlide((current) => (current + 1) % slides.length);
+    }, 6000);
+
+    return () => clearInterval(timer);
+  }, [reducedMotion, isPaused]);
+
   const currentSlide = slides[activeSlide];
 
   return (
-    <section className="relative min-h-[calc(100svh-4rem)] overflow-hidden transition-colors duration-300">
+    <section
+      className="relative min-h-[calc(100svh-4rem)] overflow-hidden transition-colors duration-300"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+    >
       <AnimatePresence initial={false}>
         <motion.div
           key={currentSlide.image}

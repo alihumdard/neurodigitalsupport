@@ -24,6 +24,7 @@ import {
   UsersRound
 } from 'lucide-react';
 import Footer from '@/components/Footer.jsx';
+import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 import Header from '@/components/Header.jsx';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 
@@ -376,6 +377,7 @@ const FeaturesPage = () => {
         })}
       </main>
 
+      <AffiliationsSection />
       <Footer />
     </>
   );

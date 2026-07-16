@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { canonicalFor } from '@/lib/seo';
 import Footer from '@/components/Footer.jsx';
+import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 import Header from '@/components/Header.jsx';
 
 const researchCards = [
@@ -130,28 +131,19 @@ const ResearchInsightsHubPage = () => {
   const { pathname } = useLocation();
   const isResearchAlias = pathname === '/research';
 
+  const pageTitle = isResearchAlias
+    ? 'Research | NeuroDigital Support'
+    : 'Research & Insights Hub | NeuroDigital Support';
+  const pageDescription = isResearchAlias
+    ? "Explore NeuroDigital Support's ongoing research initiatives and evidence-based approach to neurodivergent digital care."
+    : 'A research intelligence hub offering a searchable research library, ethical data intelligence, and visual analytics for evidence-led decision making.';
+
   return (
   <>
     <Helmet>
-      {isResearchAlias ? (
-        <>
-          <title>Research | NeuroDigital Support</title>
-          <meta
-            name="description"
-            content="Explore NeuroDigital Support's ongoing research initiatives and evidence-based approach to neurodivergent digital care."
-          />
-          <link rel="canonical" href={canonicalFor('/research-insights-hub')} />
-        </>
-      ) : (
-        <>
-          <title>Research & Insights Hub | NeuroDigital Support</title>
-          <meta
-            name="description"
-            content="A research intelligence hub offering a searchable research library, ethical data intelligence, and visual analytics for evidence-led decision making."
-          />
-          <link rel="canonical" href={canonicalFor('/research-insights-hub')} />
-        </>
-      )}
+      <title>{pageTitle}</title>
+      <meta name="description" content={pageDescription} />
+      <link rel="canonical" href={canonicalFor('/research-insights-hub')} />
     </Helmet>
 
     <Header />
@@ -308,6 +300,7 @@ const ResearchInsightsHubPage = () => {
       </section>
     </main>
 
+    <AffiliationsSection />
     <Footer />
   </>
   );

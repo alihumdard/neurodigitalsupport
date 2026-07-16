@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import DOMPurify from 'dompurify';
 import { getBlogs } from '@/api/api.js';
 import Footer from '@/components/Footer.jsx';
+import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 import Header from '@/components/Header.jsx';
 import { Button } from '@/components/ui/button';
 import { canonicalFor } from '@/lib/seo';
@@ -170,17 +171,16 @@ const BlogDetailPage = () => {
     setEmail('');
   };
 
+  const pageTitle = post ? (post.metaTitle || `${post.title} | NeuroDigital Support Blog`) : 'NeuroDigital Support Blog';
+  const pageDescription = post ? (post.metaDescription || post.excerpt || '') : '';
+  const pageKeywords = post ? [post.targetKeyword, post.secondaryKeywords].filter(Boolean).join(', ') : '';
+
   return (
     <>
       <Helmet>
-        <title>{post ? (post.metaTitle || `${post.title} | NeuroDigital Support Blog`) : 'NeuroDigital Support Blog'}</title>
-        {post ? <meta name="description" content={post.metaDescription || post.excerpt} /> : null}
-        {post && (post.targetKeyword || post.secondaryKeywords) ? (
-          <meta
-            name="keywords"
-            content={[post.targetKeyword, post.secondaryKeywords].filter(Boolean).join(', ')}
-          />
-        ) : null}
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content={pageKeywords} />
         <link rel="canonical" href={canonicalFor(`/blogs/${slug}`)} />
       </Helmet>
 
@@ -386,6 +386,7 @@ const BlogDetailPage = () => {
         )}
       </main>
 
+      <AffiliationsSection />
       <Footer />
     </>
   );

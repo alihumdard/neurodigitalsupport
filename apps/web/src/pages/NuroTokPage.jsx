@@ -20,6 +20,7 @@ import {
   Zap
 } from 'lucide-react';
 import Header from '@/components/Header.jsx';
+import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 
 const storeButtons = [
   { label: 'App Store', icon: Apple },
@@ -441,6 +442,8 @@ const NuroTokPage = () => {
           </div>
         </section>
       </main>
+
+      <AffiliationsSection />
 
       <footer className="w-full border-t border-emerald-100 bg-[#fbfdfc] dark:border-border dark:bg-background">
         <div className="mx-auto w-full max-w-[1240px] px-4 py-14 sm:px-6 lg:px-10">

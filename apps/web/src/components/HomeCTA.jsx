@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 import { toast } from 'sonner';
 import { submitGetStartedForm, submitNewsletterSignup } from '@/api/api.js';
+import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 const logoSrc = '/logo-footer.jpeg';
 
 const HomeCTA = () => {
@@ -170,6 +171,8 @@ const HomeCTA = () => {
           </div>
         </div>
       </motion.div>
+
+      <AffiliationsSection />
 
       <footer className="w-full border-t border-emerald-100 bg-[#fbfdfc] dark:border-border dark:bg-background">
         <div className="mx-auto w-full max-w-[1240px] px-4 pb-6 pt-10 sm:px-6 lg:px-10">

@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Mail, Search } from 'lucide-react';
 import { toast } from 'sonner';
 import { getBlogs } from '@/api/api.js';
 import Footer from '@/components/Footer.jsx';
+import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 import Header from '@/components/Header.jsx';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -373,6 +374,7 @@ const BlogPage = () => {
         </section>
       </main>
 
+      <AffiliationsSection />
       <Footer />
     </>
   );
