@@ -177,11 +177,23 @@ const AboutPage = () => (
 
             <div className="theme-surface mt-7 grid gap-5 rounded-2xl border border-[#d9eee6] bg-white/70 p-5 shadow-[0_18px_54px_rgba(15,61,50,0.055)] backdrop-blur-xl sm:grid-cols-[0.76fr_1fr] sm:p-6">
               <div className="flex items-center gap-4">
-                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-white shadow-[0_14px_34px_rgba(15,61,50,0.2)]">
+                <a
+                  href="https://kofioforimensah.neurodigitalsupport.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-white shadow-[0_14px_34px_rgba(15,61,50,0.2)]"
+                >
                   <img src="/images/products/kofi-ofori-mensah.jpeg" alt="Kofi Ofori-Mensah" className="h-full w-full object-cover" />
-                </div>
+                </a>
                 <div>
-                  <p className="text-base font-semibold text-[#0c3028]">Kofi Ofori-Mensah</p>
+                  <a
+                    href="https://kofioforimensah.neurodigitalsupport.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base font-semibold text-[#0c3028] hover:text-[#0f765a] hover:underline"
+                  >
+                    Kofi Ofori-Mensah
+                  </a>
                   <p className="text-sm font-medium text-[#28745f]">Researcher & Advocate</p>
                 </div>
               </div>
@@ -190,10 +202,12 @@ const AboutPage = () => (
               </p>
             </div>
             <a
-              href="/research"
+              href="https://kofioforimensah.neurodigitalsupport.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-7 inline-flex min-h-[48px] items-center justify-center gap-3 rounded-lg border border-[#0f765a] bg-white/70 px-6 text-sm font-semibold text-[#0f765a] transition duration-300 hover:-translate-y-0.5 hover:bg-[#eaf8f2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f765a] focus-visible:ring-offset-2"
             >
-              Learn more about our research
+              Explore personal project and portfolio
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </article>
