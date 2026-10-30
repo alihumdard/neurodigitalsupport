@@ -1,6 +1,6 @@
 # NuroTok Terms and Conditions
 
-Effective date: 27 October 2026.
+Effective date: 30 October 2026.
 
 ## Provider and agreement
 These terms govern NuroTok on Android and iOS, including free and premium services. Provider: NeuroDigital Support Ltd. Contact info@neurodigitalsupport.com; +44 7825 354088; https://neurodigitalsupport.com.
@@ -8,7 +8,13 @@ These terms govern NuroTok on Android and iOS, including free and premium servic
 Read these terms before using the app and use any acceptance mechanism provided. If you do not agree, do not use the service. Mandatory consumer rights continue to apply. The Privacy Policy explains processing; it is not blanket consent for optional data uses.
 
 ## Eligibility and accounts
-NuroTok is intended for adults aged 18 and over. By using the service, you confirm that you are at least 18 and have the legal capacity to agree to these terms and make purchases. Do not use another person's identity. Protect your credentials and contact us about unauthorised access. Sign-in is optional for supported local features. Account methods and cross-platform entitlements depend on configuration. Signing in does not synchronise local journals, settings or practice history.
+You must be 18 or over to create a NuroTok account and make purchases, or 13 to 17 with your parent's or guardian's permission. A child under 13 may use NuroTok only on a phone a parent or guardian has set up and linked to their own account; the parent accepts these terms on the child's behalf and is responsible for that use. Do not use another person's identity. Protect your credentials and contact us about unauthorised access. Sign-in is optional for local features. If you switch on usage sharing, your NuroTok usage and protection settings are synchronised to our server as described in the Privacy Policy; journals, moods, sensory profiles and chat are never synchronised.
+
+## Family linking and parent controls
+A parent or guardian may link their account to a child's phone with a code entered on that phone, then view that phone's NuroTok usage and change its protective settings. Only link a phone you are responsible for, and talk with the child about it: NuroTok always shows on the linked phone that a parent is linked. Either side can end the link. Parent controls, Hard Mode and the parent PIN are deterrents that make settings harder to change on impulse; they are not a guarantee that a determined person cannot change or remove them.
+
+## Referrals
+Each account has a referral code. When a new account enters a friend's code within 14 days of joining, both accounts receive the Premium period shown in the app. Each account can be referred once. Rewards have no cash value and cannot be transferred. We may withhold or remove rewards obtained through fake or duplicate accounts, and may change or end the programme with notice in the app; rewards already given are honoured.
 
 ## Service and protection limits
 Features can include app restrictions, content covering, Lite website views, meditation, breathing, journaling, self-checks and optional AI conversation. Availability differs between Android and iOS. Permissions, operating systems, battery management, website changes and network availability can affect operation. Filters may miss unwanted content or cover harmless content. Blocking is not guaranteed safety or a tamper-proof parental-control system. Choose appropriate settings and maintain access to essential apps and communications.

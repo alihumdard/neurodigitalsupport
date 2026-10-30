@@ -29,10 +29,10 @@ export const clearAdminToken = () => {
 };
 
 export class UnauthorizedError extends Error {
-  constructor(message) {
+  constructor(message, status = 401) {
     super(message);
     this.name = 'UnauthorizedError';
-    this.status = 401;
+    this.status = status;
   }
 }
 
@@ -60,7 +60,10 @@ const request = async (path, { method = 'GET', headers = {}, body, isProtected =
   const data = await parseJsonResponse(response);
 
   if (response.status === 401 || response.status === 403) {
-    throw new UnauthorizedError(data?.message || 'Your session has expired. Please log in again.');
+    throw new UnauthorizedError(
+      response.status === 403 ? data?.message || 'Your account can’t open this section.' : data?.message || 'Your session has expired. Please log in again.',
+      response.status
+    );
   }
 
   if (!response.ok) {
@@ -83,6 +86,11 @@ export const login = async (email, password) => {
   );
 
   setAdminToken(data.token);
+  try {
+    sessionStorage.setItem('adminRole', data?.user?.role || 'admin');
+  } catch {
+    // ignore storage errors
+  }
 
   return data.user;
 };
@@ -92,6 +100,11 @@ export const logout = async () => {
     await request('/logout', { method: 'POST', isProtected: true }, 'Logout failed.');
   } finally {
     clearAdminToken();
+    try {
+      sessionStorage.removeItem('adminRole');
+    } catch {
+      // ignore storage errors
+    }
   }
 };
 
@@ -222,3 +235,77 @@ export const uploadContentImage = async (file) => {
     'We could not upload the image right now. Please try again.'
   );
 };
+
+// ── NuroTok admin (app users, CMS, config) ──────────────────────────────────
+
+const ROLE_STORAGE = 'adminRole';
+
+export const getAdminRole = () => {
+  try {
+    return sessionStorage.getItem(ROLE_STORAGE) || 'admin';
+  } catch {
+    return 'admin';
+  }
+};
+
+const setAdminRole = (role) => {
+  try {
+    sessionStorage.setItem(ROLE_STORAGE, role || 'admin');
+  } catch {
+    // ignore storage errors
+  }
+};
+
+/** Who is signed in, and their role (admin or editor). Called after login and on page load. */
+export const fetchAdminMe = async () => {
+  const data = await request('/admin/me', { isProtected: true }, 'We could not check your account.');
+  setAdminRole(data?.user?.role);
+  return data?.user;
+};
+
+const json = (method, payload) => ({
+  method,
+  isProtected: true,
+  headers: { 'Content-Type': 'application/json' },
+  body: payload === undefined ? undefined : JSON.stringify(payload)
+});
+
+const qs = (params = {}) => {
+  const entries = Object.entries(params).filter(([, v]) => v !== undefined && v !== null && v !== '');
+  return entries.length ? `?${new URLSearchParams(entries).toString()}` : '';
+};
+
+export const getDashboard = () => request('/admin/dashboard', { isProtected: true }, 'We could not load the dashboard.');
+export const getAnalytics = (days = 30) => request(`/admin/analytics${qs({ days })}`, { isProtected: true }, 'We could not load analytics.');
+
+export const listAppUsers = (params) => request(`/admin/app-users${qs(params)}`, { isProtected: true }, 'We could not load app users.');
+export const getAppUser = (id) => request(`/admin/app-users/${id}`, { isProtected: true }, 'We could not load this user.');
+export const updateAppUser = (id, payload) => request(`/admin/app-users/${id}`, json('POST', payload), 'We could not update this user.');
+export const deleteAppUser = (id) => request(`/admin/app-users/${id}`, json('DELETE'), 'We could not delete this user.');
+export const exportAppUser = (id) => request(`/admin/app-users/${id}/export`, { isProtected: true }, 'We could not export this user.');
+export const pushDeviceSettings = (id, deviceId, settings) =>
+  request(`/admin/app-users/${id}/devices/${deviceId}/settings`, json('POST', { settings }), 'We could not send these settings.');
+
+export const listFamilies = (params) => request(`/admin/families${qs(params)}`, { isProtected: true }, 'We could not load families.');
+export const revokeFamily = (id) => request(`/admin/families/${id}/revoke`, json('POST', {}), 'We could not end this link.');
+export const listReferrals = (page = 1) => request(`/admin/referrals${qs({ page })}`, { isProtected: true }, 'We could not load referrals.');
+
+export const listPages = () => request('/admin/pages', { isProtected: true }, 'We could not load pages.');
+export const savePage = (id, payload) => request(id ? `/admin/pages/${id}` : '/admin/pages', json('POST', payload), 'We could not save this page.');
+export const deletePage = (id) => request(`/admin/pages/${id}`, json('DELETE'), 'We could not delete this page.');
+
+export const listConfigs = () => request('/admin/configs', { isProtected: true }, 'We could not load app settings.');
+export const saveConfig = (payload) => request('/admin/configs', json('POST', payload), 'We could not save this setting.');
+export const deleteConfig = (key) => request(`/admin/configs/${encodeURIComponent(key)}`, json('DELETE'), 'We could not remove this setting.');
+
+export const listAnnouncements = () => request('/admin/announcements', { isProtected: true }, 'We could not load announcements.');
+export const saveAnnouncement = (id, payload) =>
+  request(id ? `/admin/announcements/${id}` : '/admin/announcements', json('POST', payload), 'We could not save this announcement.');
+export const sendAnnouncement = (id) => request(`/admin/announcements/${id}/send`, json('POST', {}), 'We could not send this announcement.');
+export const deleteAnnouncement = (id) => request(`/admin/announcements/${id}`, json('DELETE'), 'We could not delete this announcement.');
+
+export const listAdmins = () => request('/admin/admins', { isProtected: true }, 'We could not load admin accounts.');
+export const saveAdmin = (id, payload) => request(id ? `/admin/admins/${id}` : '/admin/admins', json('POST', payload), 'We could not save this admin.');
+export const deleteAdmin = (id) => request(`/admin/admins/${id}`, json('DELETE'), 'We could not remove this admin.');
+
+export const listAudit = (params) => request(`/admin/audit${qs(params)}`, { isProtected: true }, 'We could not load the activity log.');

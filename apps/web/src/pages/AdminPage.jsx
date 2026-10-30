@@ -1,7 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { Eye, FileText, FolderKanban, Inbox, LogOut, Pencil, Plus, Trash2, X } from 'lucide-react';
+import { Activity, BarChart3, Eye, FileText, FolderKanban, Gift, Inbox, LayoutDashboard, LogOut, Megaphone, Pencil, Plus, ScrollText, Settings2, ShieldCheck, Trash2, Users, UsersRound, X } from 'lucide-react';
+import { AnalyticsSection, DashboardSection } from '@/components/admin/DashboardSection.jsx';
+import { AppUsersSection } from '@/components/admin/AppUsersSection.jsx';
+import {
+  AdminsSection,
+  AnnouncementsSection,
+  AppConfigSection,
+  AuditSection,
+  FamiliesSection,
+  PagesSection,
+  ReferralsSection
+} from '@/components/admin/ContentSections.jsx';
 import { toast } from 'sonner';
 import {
   login,
@@ -18,7 +29,9 @@ import {
   deleteCategory,
   listInquiries,
   updateInquiry,
-  deleteInquiry
+  deleteInquiry,
+  fetchAdminMe,
+  getAdminRole
 } from '@/api/adminApi.js';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -86,10 +99,21 @@ const inquiryTypeLabels = {
   get_started: 'Get Started'
 };
 
-const navItems = [
+// `adminOnly` sections need the admin role; editors see the rest.
+const allNavItems = [
+  { key: 'dashboard', label: 'Overview', icon: LayoutDashboard },
+  { key: 'analytics', label: 'Analytics', icon: BarChart3, adminOnly: true },
+  { key: 'app-users', label: 'App users', icon: Users, adminOnly: true },
+  { key: 'families', label: 'Families', icon: UsersRound, adminOnly: true },
+  { key: 'referrals', label: 'Referrals', icon: Gift, adminOnly: true },
+  { key: 'announcements', label: 'Announcements', icon: Megaphone },
+  { key: 'pages', label: 'Pages', icon: ScrollText },
+  { key: 'app-config', label: 'App settings', icon: Settings2, adminOnly: true },
   { key: 'blogs', label: 'Blogs', icon: FileText },
   { key: 'categories', label: 'Categories', icon: FolderKanban },
-  { key: 'inquiries', label: 'Inquiries', icon: Inbox }
+  { key: 'inquiries', label: 'Inquiries', icon: Inbox },
+  { key: 'admins', label: 'Admin accounts', icon: ShieldCheck, adminOnly: true },
+  { key: 'audit', label: 'Activity log', icon: Activity, adminOnly: true }
 ];
 
 const AdminLogin = ({ onSuccess, errorMessage }) => {
@@ -174,7 +198,9 @@ const AdminLogin = ({ onSuccess, errorMessage }) => {
 const AdminPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => Boolean(getAdminToken()));
   const [loginError, setLoginError] = useState('');
-  const [activeSection, setActiveSection] = useState('blogs');
+  const [activeSection, setActiveSection] = useState('dashboard');
+  const [role, setRole] = useState(() => getAdminRole());
+  const navItems = allNavItems.filter((item) => !item.adminOnly || role === 'admin');
 
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -208,6 +234,11 @@ const AdminPage = () => {
     return false;
   };
 
+  // New sections report auth failures here; only an expired session (401) signs out.
+  const sectionUnauthorized = (error) => {
+    if (error?.status === 401) handleUnauthorized(error, '');
+  };
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -238,6 +269,15 @@ const AdminPage = () => {
     }
   };
 
+  // The role decides which sections show; ask the server rather than trust what's stored.
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    fetchAdminMe()
+      .then((user) => setRole(user?.role || 'admin'))
+      .catch((error) => handleUnauthorized(error, 'We could not check your account.'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
+
   useEffect(() => {
     if (isAuthenticated) {
       loadData();
@@ -245,17 +285,6 @@ const AdminPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
-  if (!isAuthenticated) {
-    return (
-      <AdminLogin
-        onSuccess={() => {
-          setLoginError('');
-          setIsAuthenticated(true);
-        }}
-        errorMessage={loginError}
-      />
-    );
-  }
 
   const openCreateBlogDialog = () => {
     setBlogForm(emptyBlogForm);
@@ -327,6 +356,19 @@ const AdminPage = () => {
       }
     };
   }, [blogImagePreview, blogForm.blog_image]);
+
+  // After every hook: React needs the same hooks in the same order on every render.
+  if (!isAuthenticated) {
+    return (
+      <AdminLogin
+        onSuccess={() => {
+          setLoginError('');
+          setIsAuthenticated(true);
+        }}
+        errorMessage={loginError}
+      />
+    );
+  }
 
   const handleBlogSubmit = async (event) => {
     event.preventDefault();
@@ -777,6 +819,16 @@ const AdminPage = () => {
                     </div>
                   </section>
                 ) : null}
+                {activeSection === 'dashboard' ? <DashboardSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'analytics' ? <AnalyticsSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'app-users' ? <AppUsersSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'families' ? <FamiliesSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'referrals' ? <ReferralsSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'announcements' ? <AnnouncementsSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'pages' ? <PagesSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'app-config' ? <AppConfigSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'admins' ? <AdminsSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'audit' ? <AuditSection onUnauthorized={sectionUnauthorized} /> : null}
               </>
             )}
           </div>

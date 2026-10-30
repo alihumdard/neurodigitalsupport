@@ -1,6 +1,6 @@
 # NuroTok Support and Contact
 
-Effective date: 27 October 2026.
+Effective date: 30 October 2026.
 
 ## Contact
 NeuroDigital Support Ltd.: info@neurodigitalsupport.com; +44 7825 354088; https://neurodigitalsupport.com.

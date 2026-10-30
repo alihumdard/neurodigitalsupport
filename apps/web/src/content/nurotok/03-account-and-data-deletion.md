@@ -1,20 +1,26 @@
 # NuroTok Account and Data Deletion
 
-Effective date: 27 October 2026.
+Effective date: 30 October 2026.
+
+## Delete your account in the app
+Open You > Account > Delete account and confirm. This deletes, from our server, your NuroTok account and everything linked to it: your devices, synced usage (daily totals and reel events), synced settings, family links and referral records. Your Firebase sign-in is removed too. It happens straight away; backup copies on our hosting are overwritten within 30 days.
+
+## Stop usage sharing and delete what was sent
+Open You > Privacy and switch off Usage sharing. Usage already stored on our server (daily totals and reel events) is deleted at once, and nothing more is sent. Your account stays.
 
 ## Request deletion without the app
-Email info@neurodigitalsupport.com with subject “NuroTok account/data deletion”. You do not need to reinstall the app or sign in to this website to start a request. Include the account email or sign-in method, whether you want account deletion, other personal-data deletion or both, and a contact address. If you use Apple Hide My Email, include the relay address if known. Never send passwords, verification codes or full card details. We may request proportionate ownership verification and respond within applicable legal deadlines. Any information that must be retained for legal obligations, disputes or fraud prevention is limited to what is necessary. Provider-held records are subject to the relevant provider's deletion process and retention terms.
+Email info@neurodigitalsupport.com with subject "NuroTok account/data deletion". You do not need to reinstall the app. Include the account email or sign-in method and whether you want the whole account deleted or only usage data. Never send passwords, verification codes or card details. We may ask for proportionate proof that the account is yours and respond within the legal deadline.
 
-## Remove sign-in in the app
-Open You > Account > Delete account and confirm. If recent authentication is required, sign in again and retry, or contact us. This removes the Firebase sign-in account. It does not automatically erase local notes, third-party website accounts, store records or every billing and telemetry record. Our support deletion process addresses other information under our control where applicable.
-
-## Remove local information
-Open You > Privacy. Delete insights removes insights history. Delete all data is intended to clear locally stored profiles, settings and histories and restart onboarding while lifting restrictions. Account deletion and local deletion are separate. Repeat on each device. Email requests cannot remotely wipe local-only phone information. Device app-data removal is an alternative where available. Delete exported backups, shared copies and operating-system backups separately. Closing chat clears the in-app conversation; provider copies follow their own processes.
+## Remove information on your phone
+Open You > Privacy. Delete insights removes insights history. Delete all data clears locally stored profiles, settings and histories and restarts onboarding. Repeat on each device. Delete exported backups and shared copies separately.
 
 ## Information that may remain
-Limited financial, transaction, security or support records may need to remain for legal obligations, disputes or fraud prevention. Deleting a Firebase user alone does not delete RevenueCat customer records or previously sent analytics and crash reports. Request associated-data deletion through the contact above. Third-party websites and stores control their own records. See the Privacy Policy for how retention is determined and contact us about a specific record.
+Limited financial, transaction, security or support records may need to remain for legal obligations, disputes or fraud prevention. Records held by Google (Firebase Analytics, Crashlytics), RevenueCat and the app stores follow their own deletion processes; ask us and we will request deletion where we can.
+
+## Family links
+Deleting a parent's account ends every link it had. Deleting a child's account ends its link and removes its usage from the parent's view. Either side can also end a link without deleting the account.
 
 ## Cancel subscriptions separately
-Deleting data, an account or the app does not cancel billing. Use You > Account > Manage or cancel, https://apps.apple.com/account/subscriptions or https://play.google.com/store/account/subscriptions. Cancellation is not a condition for submitting a deletion request; it prevents unwanted future renewal. Account deletion may affect cross-platform premium linking.
+Deleting data, an account or the app does not cancel billing. Use https://apps.apple.com/account/subscriptions or https://play.google.com/store/account/subscriptions.
 
 Contact NeuroDigital Support at info@neurodigitalsupport.com or +44 7825 354088 for deletion, access, correction or privacy help.
