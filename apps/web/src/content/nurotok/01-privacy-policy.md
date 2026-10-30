@@ -50,6 +50,15 @@ The parent creates the code in their app. It works once and stops working after 
 
 Battles are off until you switch them on. With them on, friends you add with a friend code see your first name (or the part of your email before the @), your reel count for today and your goal, and you see theirs. Nothing else about your day or your usage is shared, and this is separate from Usage sharing. Scores are kept for 30 days. Switching battles off removes your friends and scores from our server straight away. Battle codes you share yourself in messages never reach our server.
 
+## Sharing with a therapist (optional)
+Nothing is shared with a therapist unless you make a link in Profile > Share with a therapist. You choose who it is for, how long it works (30 or 90 days) and what it shows: short-video use (only if Usage sharing is on), mood check-ins (the 1 to 5 score and the word you picked, never your journal text), self-check scores, and calming practice. Anyone with the link can open the summary, so send it only to the person it is for; we store only a scrambled (hashed) form of the link, record how many times and when it was opened so you can see it, and you can stop it at any time. Mood check-ins, self-checks and practice are sent to our server only while an active link includes them, and are deleted when no active link does. Expired links are deleted 30 days after they end.
+
+## Asking for more time and the weekly email (optional)
+On a phone linked to a parent, the child can ask that parent for 10 to 60 more minutes from the blocked screen. We keep the request (how long, which app, an optional short note, and the answer) and send the parent a notification; requests lapse after 30 minutes and are deleted with the family link. The weekly email is off until you switch it on in Usage sharing: each Monday it emails you last week's shared counts, and a parent the shared counts of each child linked to them. Nothing that wasn't shared through Usage sharing appears in it.
+
+## Family Premium
+If a parent has Premium, the first five children linked to them get Premium too, for as long as the parent has it and the link is active. This shares no extra information: it uses the family link that already exists.
+
 ## Referrals
 Each account has a referral code. When a new account enters a friend's code, both accounts receive a period of NuroTok Premium (currently 7 days each). We store who referred whom and when, to apply the reward and prevent misuse.
 
@@ -63,7 +72,7 @@ Firebase Analytics and Crashlytics can process app interactions, event parameter
 Local reminders use your chosen schedule. When you allow notifications, Firebase Cloud Messaging processes a registration token to deliver announcements we send from our admin panel. Revoke notification permission in device settings at any time.
 
 ## AI conversation and speech
-AI chat shows a consent notice for each conversation. Sending a message transmits recent conversation turns and app instructions to Groq and Google Gemini. NuroTok does not attach your mood history, journal, profiles or filter history. Messages are not saved as a NuroTok chat history. Avoid identifying, medical or confidential information. Microphone access is used only when you start dictation; recognition prefers on-device processing.
+AI chat shows a consent notice for each conversation and needs a NuroTok account. Sending a message passes your recent conversation turns through our server, which adds NuroTok's instructions and forwards them to Groq and, if Groq can't answer, Google Gemini; our server does not store the messages, and keeps only a daily count per account so the feature can't be misused. NuroTok does not attach your mood history, journal, profiles or filter history. Messages are not saved as a NuroTok chat history. Avoid identifying, medical or confidential information. Microphone access is used only when you start dictation; recognition prefers on-device processing.
 
 ## Backups, websites and support
 Export creates a readable JSON backup on your phone that NuroTok does not encrypt; protect and remove exported copies yourself. Lite mode loads third-party websites in a WebView, and those sites have their own privacy practices. Support messages give us your email, message and any information you include. The NeuroDigital Support website uses Google Analytics only if you accept analytics in Cookie settings.
@@ -80,7 +89,7 @@ In short, for the main uses:
 Where a child is below the age at which they can consent for themselves (13 in the UK; between 13 and 16 in EU countries, depending on the country), consent-based features must be agreed by a parent or guardian. See Children below.
 
 ## Who receives information
-Depending on the features you use: our hosting provider for api.neurodigitalsupport.com; Google (Google Sign-In, Firebase Analytics, Crashlytics, Cloud Messaging, Gemini); Apple; RevenueCat; Groq; Cloudflare (website blocking); system speech providers; a parent you link with; and support providers. Information may also be disclosed when required by law, to protect rights and safety, or in a business transfer with appropriate safeguards. We do not sell personal information.
+Depending on the features you use: our hosting provider for api.neurodigitalsupport.com; Google (Google Sign-In, Firebase Analytics, Crashlytics, Cloud Messaging, Gemini); Apple; RevenueCat; Groq; Cloudflare (website blocking); system speech providers; a parent you link with; a therapist you choose to send a share link to; and support providers. Information may also be disclosed when required by law, to protect rights and safety, or in a business transfer with appropriate safeguards. We do not sell personal information.
 
 The main providers who handle information for us:
 - **Hosting:** Hostinger International Ltd runs the server for api.neurodigitalsupport.com, in a data centre in the United Kingdom (Manchester). Your account, devices, settings and any shared usage are stored in a MySQL database on that server.
