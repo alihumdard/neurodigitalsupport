@@ -21,6 +21,7 @@ import ResearchInsightsHubPage from './pages/ResearchInsightsHubPage.jsx';
 import SocialListeningDashboardPage from './pages/SocialListeningDashboardPage.jsx';
 import ThankYouPage from './pages/ThankYouPage.jsx';
 import SeoFoundation from './components/SeoFoundation.jsx';
+import SharePage from './pages/SharePage.jsx';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/research-insights-hub" element={<ResearchInsightsHubPage />} />
           <Route path="/social-listening-dashboard" element={<SocialListeningDashboardPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/share/:token" element={<SharePage />} />
         </Routes>
         <CookieConsent />
         <Toaster />
