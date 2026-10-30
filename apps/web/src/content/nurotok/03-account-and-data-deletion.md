@@ -3,7 +3,7 @@
 Effective date: 30 October 2026.
 
 ## Delete your account in the app
-Open You > Account > Delete account and confirm. This deletes, from our server, your NuroTok account and everything linked to it: your devices, synced usage (daily totals and reel events), synced settings, family links and referral records. Your Firebase sign-in is removed too. It happens straight away; backup copies on our hosting are overwritten within 30 days.
+Open You > Account > Delete account and confirm. This deletes, from our server, your NuroTok account and everything linked to it: your devices, synced usage (daily totals and reel events), synced settings, family links and referral records. Your sign-in details go with it: your password, your Google or Apple link, friend battles and plan history. It happens straight away; backup copies on our hosting are overwritten within 30 days.
 
 ## Stop usage sharing and delete what was sent
 Open You > Privacy and switch off Usage sharing. Usage already stored on our server (daily totals and reel events) is deleted at once, and nothing more is sent. Your account stays.

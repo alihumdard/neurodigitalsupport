@@ -27,7 +27,7 @@ If you switch on website blocking, NuroTok starts a VPN connection that stays on
 If you turn on Hard Mode, NuroTok becomes a device administrator with no administrator powers listed. While it is on, Android prevents NuroTok from being uninstalled until Hard Mode is switched off. It cannot lock, wipe or monitor your phone, and it collects no information.
 
 ## Accounts
-You may sign in using email and password, Google or Apple. Firebase Authentication (Google) processes account identifiers, email, authentication credentials and provider information; a display name and photo may be supplied by the provider. When you sign in, the app exchanges a Firebase sign-in token with our server, which creates a NuroTok account record containing your Firebase user identifier, email, name, sign-in provider, plan, referral code and the dates you joined and were last active. Each phone you sign in on is recorded as a device: platform, operating-system version, model, app version, an installation identifier and a push-notification token.
+You may sign in using email and password, Google or Apple. Our own server handles sign-in: for email it stores your address and your password, which is kept only as a one-way hash we cannot read back, and it emails six-digit codes to confirm your address or reset your password. For Google or Apple, their sign-in screen runs on your phone and our server checks the token it returns; we receive your Google or Apple account identifier, email (which may be an Apple private relay address) and, if the provider supplies them, a display name and photo. We never see your Google or Apple password. Your NuroTok account record contains a public account identifier, email, whether it is confirmed, name, how you sign in, plan, referral code and the dates you joined and were last active. Accounts created before NuroTok ran its own sign-in may also hold a Firebase user identifier. Each phone you sign in on is recorded as a device: platform, operating-system version, model, app version, an installation identifier and a push-notification token.
 
 While you are signed in, your phone also sends our server a copy of your NuroTok protection settings (app modes, limits, reel goal and allowance, app switches, focus sessions, sleep schedule and website block list). This happens whether or not usage sharing is on. We keep it so your settings follow your account, so a parent you link with can see and change them, and so changes a parent makes reach your phone. It never includes your journal, moods, self-checks, sensory profile or chat.
 
@@ -44,6 +44,11 @@ We use this to show your usage to you and to a parent you link with, to provide 
 A parent can link their NuroTok account to a child's phone with a six-digit code entered on that phone. Once linked, the parent can see the child phone's usage (if usage sharing is on for that account), its NuroTok settings, and can change its protective settings: app modes and limits, reel goal and allowance, app switches, focus sessions, sleep schedule and website blocking. The parent cannot read the child's journal, moods, sensory profile, chat or anything shown in other apps. Either side can end the link at any time, and the child can leave the link from their own phone.
 
 The parent creates the code in their app. It works once and stops working after 30 minutes; unused codes are deleted automatically. While a link is active, the child's phone shows that a parent is linked and what the parent can see and change, so the child is never monitored without knowing it.
+
+
+## Friend battles
+
+Battles are off until you switch them on. With them on, friends you add with a friend code see your first name (or the part of your email before the @), your reel count for today and your goal, and you see theirs. Nothing else about your day or your usage is shared, and this is separate from Usage sharing. Scores are kept for 30 days. Switching battles off removes your friends and scores from our server straight away. Battle codes you share yourself in messages never reach our server.
 
 ## Referrals
 Each account has a referral code. When a new account enters a friend's code, both accounts receive a period of NuroTok Premium (currently 7 days each). We store who referred whom and when, to apply the reward and prevent misuse.
@@ -75,11 +80,11 @@ In short, for the main uses:
 Where a child is below the age at which they can consent for themselves (13 in the UK; between 13 and 16 in EU countries, depending on the country), consent-based features must be agreed by a parent or guardian. See Children below.
 
 ## Who receives information
-Depending on the features you use: our hosting provider for api.neurodigitalsupport.com; Google (Firebase Authentication, Analytics, Crashlytics, Cloud Messaging, Gemini); Apple; RevenueCat; Groq; Cloudflare (website blocking); system speech providers; a parent you link with; and support providers. Information may also be disclosed when required by law, to protect rights and safety, or in a business transfer with appropriate safeguards. We do not sell personal information.
+Depending on the features you use: our hosting provider for api.neurodigitalsupport.com; Google (Google Sign-In, Firebase Analytics, Crashlytics, Cloud Messaging, Gemini); Apple; RevenueCat; Groq; Cloudflare (website blocking); system speech providers; a parent you link with; and support providers. Information may also be disclosed when required by law, to protect rights and safety, or in a business transfer with appropriate safeguards. We do not sell personal information.
 
 The main providers who handle information for us:
 - **Hosting:** Hostinger International Ltd runs the server for api.neurodigitalsupport.com, in a data centre in the United Kingdom (Manchester). Your account, devices, settings and any shared usage are stored in a MySQL database on that server.
-- **Sign-in:** Google Firebase Authentication (Google LLC).
+- **Sign-in:** handled by our own server; Google Sign-In (Google LLC) and Sign in with Apple (Apple Inc.) when you choose them. Sign-in emails are sent through our hosting's mail service.
 - **Push notifications:** Firebase Cloud Messaging (Google LLC).
 - **Analytics and crash reports, if you switch them on:** Firebase Analytics and Crashlytics (Google LLC).
 - **Subscriptions:** RevenueCat, Inc. (United States), and Google Play or the Apple App Store, which take the payment.
