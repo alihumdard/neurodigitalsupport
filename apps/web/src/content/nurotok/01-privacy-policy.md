@@ -1,6 +1,6 @@
 # NuroTok Privacy Policy
 
-Effective date: 30 October 2026.
+Effective date: 31 October 2026.
 
 ## Who we are
 NuroTok is an Android and iOS sensory regulation and digital wellbeing app provided by NeuroDigital Support Ltd ("we", "us"). Contact: info@neurodigitalsupport.com; +44 7825 354088; https://neurodigitalsupport.com. We are the controller of the personal information described in this policy. This policy covers the app, the NuroTok account service at api.neurodigitalsupport.com and related support. Features vary by platform and version.
@@ -14,6 +14,8 @@ NuroTok is an Android and iOS sensory regulation and digital wellbeing app provi
 
 ## Information kept on your device
 Profiles, preferences, selected apps and schedules help apply your chosen protections. Local insights include times, categories, service or surface identifiers and counts of filtering, blocking and temporary unlocks. If you say what a temporary unlock is for, NuroTok keeps that purpose, how long it lasted, your optional answer afterwards on how it went and whether you took the calming step it offered; these stay on your phone and are not sent anywhere. Corrections you make to the filter ("not a problem for me") are kept the same way: the category, the date and the setting it replaced, so you can undo it. Wellbeing records can include completed sessions, favourites, programme and challenge progress, reminders, moods and journal text. Self-check history stores a summary score, number answered and time, rather than a saved list of individual answers. This information can reveal sensitive details about your wellbeing. Journal text, moods, self-checks, sensory profiles and chat are never sent to our server.
+
+Some tools work only on your phone and send nothing to our server. Routines keep their steps, reminder time and the days you finished them. A calm card (an NFC sticker set to "calm") keeps the sound it starts and, if you add one, a contact it offers to message; the message is only ever sent by you, from your own messaging app. The walk challenge counts steps with your phone's motion sensor while it is open (Android asks for "physical activity" permission first). Screen time today is read from Android's own usage records on your phone (usage access), to show time per app. The pace check, your calm score and your companion's growth are worked out on your phone from counts it already holds.
 
 On supported Android devices, screen filtering processes visible frames and recognised content locally to decide whether to cover content. Frames are analysed in memory and are not saved or uploaded. A photo selected for a filter preview is also analysed locally. Installed-app visibility and usage access help list selectable apps and identify the foreground app. On iOS, Screen Time frameworks use app selections and activity schedules for supported restrictions.
 
@@ -56,6 +58,9 @@ Nothing is shared with a therapist unless you make a link in Profile > Share wit
 ## Asking for more time and the weekly email (optional)
 On a phone linked to a parent, the child can ask that parent for 10 to 60 more minutes from the blocked screen. We keep the request (how long, which app, an optional short note, and the answer) and send the parent a notification; requests lapse after 30 minutes and are deleted with the family link. The weekly email is off until you switch it on in Usage sharing: each Monday it emails you last week's shared counts, and a parent the shared counts of each child linked to them. Nothing that wasn't shared through Usage sharing appears in it.
 
+## Breathing together (optional)
+A parent and a linked child can breathe to the same pace on their own phones. When one of you starts, we keep which family link it is for, who started it, the pace and number of breaths, when it starts, and when each of you joined or stopped, and we notify the other person. Nothing is recorded while you breathe. These records are deleted with the family link or your account.
+
 ## Family Premium
 If a parent has Premium, the first five children linked to them get Premium too, for as long as the parent has it and the link is active. This shares no extra information: it uses the family link that already exists.
 
@@ -73,6 +78,12 @@ Local reminders use your chosen schedule. When you allow notifications, Firebase
 
 ## AI conversation and speech
 AI chat shows a consent notice for each conversation and needs a NuroTok account. Sending a message passes your recent conversation turns through our server, which adds NuroTok's instructions and forwards them to Groq and, if Groq can't answer, Google Gemini; our server does not store the messages, and keeps only a daily count per account so the feature can't be misused. NuroTok does not attach your mood history, journal, profiles or filter history. Messages are not saved as a NuroTok chat history. Avoid identifying, medical or confidential information. Microphone access is used only when you start dictation; recognition prefers on-device processing.
+
+## Your account on our website
+You can sign in at neurodigitalsupport.com/nurotok/account with your NuroTok email and password to see your plan, your phones, your last 30 days of shared counts, download a copy of your data, or delete your account. A website session lasts up to 12 hours, is kept only in that browser tab, and can't change anything in the app. Signing out ends it at once.
+
+## NuroTok for Chrome
+Our optional Chrome extension hides Shorts and Reels on YouTube, Instagram and Facebook and can pause before them. Its settings are stored by Chrome (and synced with your Chrome profile if you use sync), and its daily counts stay on your computer. It sends nothing to us.
 
 ## Backups, websites and support
 Export creates a readable JSON backup on your phone that NuroTok does not encrypt; protect and remove exported copies yourself. Lite mode loads third-party websites in a WebView, and those sites have their own privacy practices. Support messages give us your email, message and any information you include. The NeuroDigital Support website uses Google Analytics only if you accept analytics in Cookie settings.
@@ -110,6 +121,8 @@ Our own server and database are in the UK. Google (Firebase) and RevenueCat are 
 - Family links and referral records: while the account exists.
 - Admin audit records of changes made to your account: up to 24 months.
 - Unused family-link codes: deleted once they expire (after 30 minutes).
+- Breathing-together sessions and time requests: while the family link exists.
+- Website sessions: up to 12 hours, or until you sign out.
 - On your phone: until you delete them; counted reels are kept 60 days.
 
 An automatic job runs every day on our server to delete information that has passed these periods.
@@ -117,7 +130,7 @@ An automatic job runs every day on our server to delete information that has pas
 Provider records (Firebase, RevenueCat, stores) follow their own retention terms.
 
 ## Your rights and choices
-Switch usage sharing on or off under You > Privacy. Delete your account and all server data under You > Account > Delete account, or see the Account and Data Deletion page. Depending on your location, you have rights of access, correction, erasure, restriction, objection, portability and to withdraw consent, and to complain to a supervisory authority. Contact us to exercise them; we respond within the legal deadline. UK users can complain to the ICO: https://ico.org.uk/make-a-complaint/.
+Switch usage sharing on or off under You > Privacy. Delete your account and all server data under You > Account > Delete account, or see the Account and Data Deletion page. You can also download a copy of your data, or delete your account, at neurodigitalsupport.com/nurotok/account. Depending on your location, you have rights of access, correction, erasure, restriction, objection, portability and to withdraw consent, and to complain to a supervisory authority. Contact us to exercise them; we respond within the legal deadline. UK users can complain to the ICO: https://ico.org.uk/make-a-complaint/.
 
 In plain terms, you can ask us for a copy of your information, to correct it, to delete it, to limit or object to how we use it, or to receive it in a machine-readable format. Email info@neurodigitalsupport.com. It is free, and we normally reply within one month (we will tell you if a complex request needs longer, as the law allows). We may ask for proportionate proof that the account is yours. We would like the chance to help first, but you can complain to the Information Commissioner's Office (ICO) in the UK, or to the data protection authority where you live in the EU, at any time.
 

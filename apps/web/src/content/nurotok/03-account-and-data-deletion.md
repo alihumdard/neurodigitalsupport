@@ -1,9 +1,12 @@
 # NuroTok Account and Data Deletion
 
-Effective date: 30 October 2026.
+Effective date: 31 October 2026.
 
 ## Delete your account in the app
 Open You > Account > Delete account and confirm. This deletes, from our server, your NuroTok account and everything linked to it: your devices, synced usage (daily totals and reel events), synced settings, family links and referral records. Your sign-in details go with it: your password, your Google or Apple link, friend battles and plan history. It happens straight away; backup copies on our hosting are overwritten within 30 days.
+
+## Delete your account on the website
+Sign in at neurodigitalsupport.com/nurotok/account with your NuroTok email and password, choose Delete my account, and enter your password again to confirm. It deletes the same things as deleting in the app, straight away. The same page lets you download a copy of your data first. If you sign in to the app with Google or Apple, add a password first (in the app, use Forgot password with the same email), or email us as below.
 
 ## Stop usage sharing and delete what was sent
 Open You > Privacy and switch off Usage sharing. Usage already stored on our server (daily totals and reel events) is deleted at once, and nothing more is sent. Your account stays.
