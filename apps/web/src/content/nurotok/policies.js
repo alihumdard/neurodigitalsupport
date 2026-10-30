@@ -6,12 +6,16 @@ import wellbeing from './05-wellbeing-and-ai-disclaimer.md?raw';
 import permissions from './06-permissions-and-device-data.md?raw';
 import support from './07-support-and-contact.md?raw';
 import cookies from './08-cookies-and-third-party-websites.md?raw';
+import accessibility from './09-accessibility-statement.md?raw';
+import safeguarding from './10-safeguarding-and-crisis-support.md?raw';
+
+// Built-in copies. The live text comes from the CMS (admin > Pages) and falls back to these.
 
 export const nuroTokPolicies = [
   {
     slug: 'privacy',
     title: 'Privacy Policy',
-    description: 'What NuroTok handles on your device, online services, your choices, and data rights.',
+    description: 'What stays on your device, what usage sharing sends, your choices and your data rights.',
     content: privacy
   },
   {
@@ -55,5 +59,17 @@ export const nuroTokPolicies = [
     title: 'Cookies and Third-Party Websites',
     description: 'How embedded Lite websites and third-party services may use cookies and similar storage.',
     content: cookies
+  },
+  {
+    slug: 'accessibility',
+    title: 'Accessibility Statement',
+    description: 'How NuroTok and this website are made to be usable, known limits, and how to ask for help.',
+    content: accessibility
+  },
+  {
+    slug: 'safeguarding',
+    title: 'Safeguarding and Crisis Support',
+    description: 'Where to get urgent help, how parent controls protect children, and reporting a concern.',
+    content: safeguarding
   }
 ];

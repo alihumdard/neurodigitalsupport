@@ -1,6 +1,6 @@
 # NuroTok Subscription, Cancellation and Refund Policy
 
-Effective date: 27 October 2026.
+Effective date: 30 October 2026.
 
 ## Checkout and renewal
 NuroTok may offer free features and monthly or annual Premium plans. Availability varies by region, platform and build. The store checkout gives the actual price, currency, billing interval, included access, trial conditions and applicable taxes. Only the offer shown to you applies. A trial, introductory offer or earlier-user entitlement is available only if you qualify under that offer.
@@ -21,3 +21,6 @@ Cancellation does not automatically refund earlier charges. Nothing here removes
 Use You > Account > Restore purchases with the original store account. Where enabled, optional NuroTok sign-in can link supported entitlements across Android and iOS. Billing remains with the purchasing store; linking does not transfer or cancel a subscription. Check existing access before buying again on another platform. Restoring purchases does not synchronise local journals, settings or histories.
 
 Support: NeuroDigital Support, info@neurodigitalsupport.com; +44 7825 354088. Include platform, approximate purchase date, order reference if available and a brief description. Never send passwords or complete card information.
+
+## Premium from referrals or from us
+Premium can also come from a referral reward or be granted by NeuroDigital Support (for example for testing, accessibility or support reasons). These periods end on the date shown in the app, do not renew and are never charged. They do not change or cancel a store subscription.

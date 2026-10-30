@@ -1,6 +1,6 @@
 # NuroTok Wellbeing and AI Disclaimer
 
-Effective date: 27 October 2026.
+Effective date: 30 October 2026.
 
 ## General wellbeing
 NuroTok provides sensory regulation and digital wellbeing tools, including meditation, breathing, journaling and self-checks where available. It is not a medical device or a service for diagnosis, treatment or prevention of illness. Self-check scores cannot establish or rule out a diagnosis. Do not change prescribed treatment or delay professional care because of app content.

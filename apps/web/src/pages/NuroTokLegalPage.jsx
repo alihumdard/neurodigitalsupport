@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { ArrowLeft, ArrowUpRight, FileText, ShieldCheck } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
@@ -6,6 +6,7 @@ import Footer from '@/components/Footer.jsx';
 import Header from '@/components/Header.jsx';
 import { nuroTokPolicies } from '@/content/nurotok/policies.js';
 import { canonicalFor } from '@/lib/seo';
+import API_BASE_URL from '@/api/api.js';
 
 function renderInline(text, keyPrefix) {
   const segments = [];
@@ -135,10 +136,47 @@ function renderMarkdown(markdown) {
   });
 }
 
+/**
+ * The page as published in the CMS (admin > Pages), or null while loading or if it can't be
+ * reached, in which case the built-in copy is shown. Its text uses the same Markdown.
+ */
+function useCmsPage(slug) {
+  // undefined while loading, null when there is no CMS copy.
+  const [page, setPage] = useState(undefined);
+  useEffect(() => {
+    if (!slug || slug === 'legal') return undefined;
+    let live = true;
+    setPage(undefined);
+    fetch(`${API_BASE_URL}/pages/${encodeURIComponent(slug)}`, { headers: { Accept: 'application/json' } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (live) setPage(data?.page || null);
+      })
+      .catch(() => {
+        if (live) setPage(null);
+      });
+    return () => {
+      live = false;
+    };
+  }, [slug]);
+  return page;
+}
+
 const NuroTokLegalPage = () => {
   const { policy: slug } = useParams();
   const isHub = !slug || slug === 'legal';
-  const policy = isHub ? null : nuroTokPolicies.find((item) => item.slug === slug);
+  const builtIn = isHub ? null : nuroTokPolicies.find((item) => item.slug === slug);
+  const cms = useCmsPage(slug);
+  // The CMS body has no title line; the renderer skips the first line, so put the title back.
+  const policy = cms
+    ? { slug: cms.slug, title: cms.title, description: builtIn?.description || cms.meta_description || cms.summary || '', content: `# ${cms.title}
+${cms.body || ''}` }
+    : builtIn;
+
+  // A page that exists only in the CMS: wait for it rather than flash "not found".
+  if (!isHub && !policy && cms === undefined) {
+    return <div className="min-h-screen bg-white dark:bg-slate-950" aria-busy="true" />;
+  }
 
   if (!isHub && !policy) {
     return (
