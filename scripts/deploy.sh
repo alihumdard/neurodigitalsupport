@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Deploys the website on the server. Run from the repo folder (/var/www/neurodigitalsupport);
-# GitHub Actions runs it over SSH after the build passes on main. Safe to run by hand too.
+# scripts/auto-deploy.sh runs it from cron when main has moved. Safe to run by hand too.
 #
 # Builds into a fresh folder and swaps it in only when the build succeeded, so visitors never see
 # a half-written site and a failed build leaves the current one up.
