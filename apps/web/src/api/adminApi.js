@@ -68,22 +68,38 @@ const request = async (path, { method = 'GET', headers = {}, body, isProtected =
 
   if (!response.ok) {
     const message = data?.message || data?.error || fallbackMessage;
-    throw new Error(message);
+    const error = new Error(message);
+    error.data = data;
+    throw error;
   }
 
   return data;
 };
 
-export const login = async (email, password) => {
-  const data = await request(
-    '/login',
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    },
-    'Invalid email or password.'
-  );
+/** Thrown when the password was right and the account needs its authenticator code too. */
+export class TwoFactorRequired extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'TwoFactorRequired';
+  }
+}
+
+export const login = async (email, password, code) => {
+  let data;
+  try {
+    data = await request(
+      '/login',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(code ? { email, password, code } : { email, password })
+      },
+      'Invalid email or password.'
+    );
+  } catch (error) {
+    if (error?.data?.two_factor) throw new TwoFactorRequired(error.message);
+    throw error;
+  }
 
   setAdminToken(data.token);
   try {
@@ -262,6 +278,10 @@ export const fetchAdminMe = async () => {
   setAdminRole(data?.user?.role);
   return data?.user;
 };
+
+export const setupTwoFactor = () => request('/admin/me/2fa/setup', json('POST', {}), 'We could not start two-step sign-in.');
+export const confirmTwoFactor = (code) => request('/admin/me/2fa/confirm', json('POST', { code }), 'We could not turn on two-step sign-in.');
+export const disableTwoFactor = (code) => request('/admin/me/2fa/disable', json('POST', { code }), 'We could not turn off two-step sign-in.');
 
 const json = (method, payload) => ({
   method,

@@ -27,6 +27,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { LoadState, Pager, Pill, SectionHeader, formatDate, useAdminData } from './shared.jsx';
+import { TwoFactorCard } from './TwoFactorCard.jsx';
 
 const run = async (fn, success, after) => {
   try {
@@ -480,6 +481,7 @@ export function AdminsSection({ onUnauthorized }) {
           <Plus className="h-4 w-4" aria-hidden="true" /> Add admin
         </Button>
       </SectionHeader>
+      <TwoFactorCard />
       <LoadState isLoading={isLoading} error={error} onRetry={reload}>
         <div className="mt-4 overflow-hidden rounded-2xl border border-[#dcece6] bg-white">
           <Table>

@@ -31,8 +31,7 @@ import {
   updateInquiry,
   deleteInquiry,
   fetchAdminMe,
-  getAdminRole
-} from '@/api/adminApi.js';
+  getAdminRole, TwoFactorRequired } from '@/api/adminApi.js';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -120,6 +119,9 @@ const AdminLogin = ({ onSuccess, errorMessage }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  /** Shown once the password was right and the account uses two-step sign-in. */
+  const [needsCode, setNeedsCode] = useState(false);
+  const [code, setCode] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -132,10 +134,15 @@ const AdminLogin = ({ onSuccess, errorMessage }) => {
     setIsSubmitting(true);
 
     try {
-      const user = await login(email.trim(), password);
+      const user = await login(email.trim(), password, needsCode ? code.trim() : undefined);
       onSuccess(user);
     } catch (error) {
       clearAdminToken();
+      if (error instanceof TwoFactorRequired) {
+        if (needsCode) toast.error(error.message);
+        setNeedsCode(true);
+        return;
+      }
       toast.error(error.message || 'We could not sign you in right now. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -182,9 +189,25 @@ const AdminLogin = ({ onSuccess, errorMessage }) => {
               className="h-12 rounded-xl border-[#d2e7df] bg-white px-4 text-sm font-medium shadow-none"
             />
           </div>
+          {needsCode ? (
+            <div className="grid gap-2">
+              <Label htmlFor="admin-code">Code from your authenticator app</Label>
+              <Input
+                id="admin-code"
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                maxLength={6}
+                autoFocus
+                value={code}
+                onChange={(event) => setCode(event.target.value.replace(/\D/g, ''))}
+                placeholder="6-digit code"
+                className="h-12 rounded-xl border-[#d2e7df] bg-white px-4 text-sm font-medium tracking-widest shadow-none"
+              />
+            </div>
+          ) : null}
           <Button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || (needsCode && code.trim().length !== 6)}
             className="h-12 rounded-xl bg-[#087653] text-sm font-semibold text-white shadow-[0_14px_34px_rgba(8,118,83,0.24)] hover:bg-[#075f45]"
           >
             {isSubmitting ? 'Signing in...' : 'Sign In'}
