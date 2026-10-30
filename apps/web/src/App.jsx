@@ -25,6 +25,7 @@ import SeoFoundation from './components/SeoFoundation.jsx';
 // never open them.
 const AdminPage = lazy(() => import('./pages/AdminPage.jsx'));
 const SharePage = lazy(() => import('./pages/SharePage.jsx'));
+const AccountPage = lazy(() => import('./pages/AccountPage.jsx'));
 
 const PageLoading = () => <p className="p-8 text-center text-sm text-muted-foreground">Loading…</p>;
 
@@ -43,6 +44,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/nurotok" element={<NuroTokPage />} />
+          <Route path="/nurotok/account" element={<Suspense fallback={<PageLoading />}><AccountPage /></Suspense>} />
           <Route path="/nurotok/legal" element={<NuroTokLegalPage />} />
           <Route path="/nurotok/:policy" element={<NuroTokLegalPage />} />
           <Route path="/altitok" element={<AltiTokPage />} />
