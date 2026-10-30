@@ -14,7 +14,12 @@ cd "$APP_DIR"
 exec 9>"/tmp/$(basename "$APP_DIR")-deploy.lock"
 flock -n 9 || exit 0
 
-git fetch --quiet origin main || { echo "$(date -Is) fetch failed" >> "$LOG"; exit 1; }
+# Never wait for a password nobody will type; give up after a minute and say why.
+export GIT_TERMINAL_PROMPT=0
+if ! out="$(timeout 60 git fetch --quiet origin main 2>&1)"; then
+  echo "$(date -Is) fetch failed: $out" >> "$LOG"
+  exit 1
+fi
 [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" ] && exit 0
 
 {
