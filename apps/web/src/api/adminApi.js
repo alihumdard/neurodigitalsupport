@@ -281,6 +281,10 @@ export const getAnalytics = (days = 30) => request(`/admin/analytics${qs({ days 
 export const listAppUsers = (params) => request(`/admin/app-users${qs(params)}`, { isProtected: true }, 'We could not load app users.');
 export const getAppUser = (id) => request(`/admin/app-users/${id}`, { isProtected: true }, 'We could not load this user.');
 export const updateAppUser = (id, payload) => request(`/admin/app-users/${id}`, json('POST', payload), 'We could not update this user.');
+export const createAppUser = (payload) => request('/admin/app-users', json('POST', payload), 'We could not add this customer.');
+export const assignAppUserPlan = (id, payload) => request(`/admin/app-users/${id}/plan`, json('POST', payload), 'We could not change the plan.');
+export const appUserPassword = (id, payload = {}) => request(`/admin/app-users/${id}/password`, json('POST', payload), 'We could not reset the password.');
+export const verifyAppUserEmail = (id) => request(`/admin/app-users/${id}/verify-email`, json('POST', {}), 'We could not mark the email as confirmed.');
 export const deleteAppUser = (id) => request(`/admin/app-users/${id}`, json('DELETE'), 'We could not delete this user.');
 export const exportAppUser = (id) => request(`/admin/app-users/${id}/export`, { isProtected: true }, 'We could not export this user.');
 export const pushDeviceSettings = (id, deviceId, settings) =>
