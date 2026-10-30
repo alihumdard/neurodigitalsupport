@@ -182,7 +182,7 @@ function Dashboard({ token, onSignedOut }) {
       const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
       const a = document.createElement('a');
       a.href = url;
-      a.download = `nurotok-data-${new Date().toISOString().slice(0, 10)}.json`;
+      a.download = `nurotok-data-${new Date().toLocaleDateString('en-CA')}.json`;
       a.click();
       URL.revokeObjectURL(url);
     } catch (e) {
