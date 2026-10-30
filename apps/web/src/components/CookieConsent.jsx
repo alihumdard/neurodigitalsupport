@@ -37,8 +37,15 @@ function readConsent() {
   return null;
 }
 
+/**
+ * Pages whose address is itself a secret (a therapist share link holds its key in the path):
+ * analytics never runs on them, so the address can't be sent anywhere, and no banner is shown.
+ */
+const isPrivatePath = (pathname) => pathname.startsWith('/share/');
+
 const CookieConsent = () => {
   const { pathname } = useLocation();
+  const privatePage = isPrivatePath(pathname);
   const [consent, setConsent] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const analyticsLoaded = useRef(false);
@@ -55,7 +62,7 @@ const CookieConsent = () => {
   }, []);
 
   useEffect(() => {
-    if (!consent) return;
+    if (!consent || privatePage) return;
 
     if (!consent.analytics) {
       window[`ga-disable-${GOOGLE_ANALYTICS_ID}`] = true;
@@ -113,7 +120,7 @@ const CookieConsent = () => {
       page_title: document.title,
       page_location: window.location.href
     });
-  }, [consent, pathname]);
+  }, [consent, pathname, privatePage]);
 
   const saveConsent = (analytics) => {
     const nextConsent = { analytics, updatedAt: Date.now() };
@@ -126,7 +133,7 @@ const CookieConsent = () => {
     setIsOpen(false);
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || privatePage) return null;
 
   return (
     <aside
