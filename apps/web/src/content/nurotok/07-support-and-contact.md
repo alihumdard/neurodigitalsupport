@@ -13,3 +13,6 @@ For billing, use You > Account > Manage or cancel. Restore purchases uses the or
 
 ## Accessibility, safety and security feedback
 Report inaccessible controls, filtering errors, distressing content or security issues to the same email. Describe the issue without sending sensitive material unless necessary and requested. Support is not an emergency or clinical service and has no promised live monitoring. For immediate danger, contact local emergency services.
+
+## Safeguarding and privacy requests
+For a safeguarding concern, put "Safeguarding" in the subject; we respond within 1 working day (see the Safeguarding and Crisis Support page). For a privacy or data request (a copy of your information, correction or deletion), put "Privacy" or "NuroTok account/data deletion" in the subject; we normally reply within one month. For accessibility, put "Accessibility" in the subject; we aim to reply within 5 working days.
