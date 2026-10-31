@@ -153,6 +153,57 @@ function DeleteAccount({ token, onDeleted }) {
   );
 }
 
+/** Where the account is signed in, with sign-out for one or for all but this website session. */
+function SignedIn({ token }) {
+  const [sessions, setSessions] = useState(null);
+  const [error, setError] = useState(null);
+  const [busy, setBusy] = useState(false);
+
+  const load = useCallback(() => {
+    call('/app/me/sessions', { token }).then((r) => { setSessions(r.sessions); setError(null); }).catch((e) => setError(e.message));
+  }, [token]);
+  useEffect(load, [load]);
+
+  const act = async (path, method, confirmText) => {
+    if (!window.confirm(confirmText)) return;
+    setBusy(true);
+    try {
+      await call(path, { token, method });
+      load();
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const others = (sessions ?? []).filter((s) => !s.current);
+  return (
+    <Section title="Where you're signed in" note="Sign out anything you don't recognise, then change your password in the app.">
+      {error ? <p role="alert" className="mt-3 text-sm text-[#b42318]">{error}</p> : null}
+      {sessions === null && !error ? <p className="mt-3 text-sm text-[#536b64]">Loading…</p> : null}
+      {sessions?.length ? (
+        <ul className="mt-3 divide-y divide-[#eef3f1]">
+          {sessions.map((s) => (
+            <li key={s.id} className="flex flex-wrap items-center gap-2 py-2 text-sm">
+              <span className="font-semibold">{s.name}{s.current ? ' (this browser)' : ''}</span>
+              <span className="flex-1 text-[#536b64]">{s.last_used_at ? `last used ${fmtDate(s.last_used_at)}` : `signed in ${fmtDate(s.signed_in_at)}`}{s.app_version ? ` · app ${s.app_version}` : ''}</span>
+              {!s.current ? (
+                <button type="button" className={`${quiet} py-1 text-xs`} disabled={busy} onClick={() => act(`/app/me/sessions/${s.id}`, 'DELETE', `Sign out ${s.name}?`)}>Sign out</button>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {others.length ? (
+        <button type="button" className={`${quiet} mt-3`} disabled={busy} onClick={() => act('/app/me/sessions/sign-out-others', 'POST', 'Sign out every phone and other session? You stay signed in here.')}>
+          Sign out everywhere else
+        </button>
+      ) : null}
+    </Section>
+  );
+}
+
 function Dashboard({ token, onSignedOut }) {
   const [state, setState] = useState({ loading: true, error: null, data: null });
   const [downloading, setDownloading] = useState(false);
@@ -243,6 +294,8 @@ function Dashboard({ token, onSignedOut }) {
           </ul>
         ) : <p className="mt-3 text-sm text-[#536b64]">No phones signed in yet.</p>}
       </Section>
+
+      <SignedIn token={token} />
 
       {d.children.length || d.parents.length ? (
         <Section title="Family" note="Manage links from the app, under Family.">
