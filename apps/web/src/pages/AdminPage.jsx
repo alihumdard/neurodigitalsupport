@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { Activity, BarChart3, Eye, FileText, FolderKanban, Gift, Inbox, LayoutDashboard, LogOut, Megaphone, Pencil, Plus, ScrollText, Settings2, ShieldCheck, Trash2, Users, UsersRound, X } from 'lucide-react';
+import { Activity, BarChart3, KeyRound, Eye, FileText, FolderKanban, Gift, Inbox, LayoutDashboard, LogOut, Megaphone, Pencil, Plus, ScrollText, Settings2, ShieldCheck, Trash2, Users, UsersRound, X } from 'lucide-react';
 import { AnalyticsSection, DashboardSection } from '@/components/admin/DashboardSection.jsx';
 import { AppUsersSection } from '@/components/admin/AppUsersSection.jsx';
+import { IntegrationsSection } from '@/components/admin/IntegrationsSection.jsx';
 import {
   AdminsSection,
   AnnouncementsSection,
@@ -108,6 +109,7 @@ const allNavItems = [
   { key: 'announcements', label: 'Announcements', icon: Megaphone },
   { key: 'pages', label: 'Pages', icon: ScrollText },
   { key: 'app-config', label: 'App settings', icon: Settings2, adminOnly: true },
+  { key: 'integrations', label: 'Integrations', icon: KeyRound, adminOnly: true },
   { key: 'blogs', label: 'Blogs', icon: FileText },
   { key: 'categories', label: 'Categories', icon: FolderKanban },
   { key: 'inquiries', label: 'Inquiries', icon: Inbox },
@@ -850,6 +852,7 @@ const AdminPage = () => {
                 {activeSection === 'announcements' ? <AnnouncementsSection onUnauthorized={sectionUnauthorized} /> : null}
                 {activeSection === 'pages' ? <PagesSection onUnauthorized={sectionUnauthorized} /> : null}
                 {activeSection === 'app-config' ? <AppConfigSection onUnauthorized={sectionUnauthorized} /> : null}
+                {activeSection === 'integrations' ? <IntegrationsSection onUnauthorized={sectionUnauthorized} /> : null}
                 {activeSection === 'admins' ? <AdminsSection onUnauthorized={sectionUnauthorized} /> : null}
                 {activeSection === 'audit' ? <AuditSection onUnauthorized={sectionUnauthorized} /> : null}
               </>

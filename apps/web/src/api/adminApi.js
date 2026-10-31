@@ -333,3 +333,8 @@ export const saveAdmin = (id, payload) => request(id ? `/admin/admins/${id}` : '
 export const deleteAdmin = (id) => request(`/admin/admins/${id}`, json('DELETE'), 'We could not remove this admin.');
 
 export const listAudit = (params) => request(`/admin/audit${qs(params)}`, { isProtected: true }, 'We could not load the activity log.');
+
+// SMTP and third-party credentials. Secrets are write-only: the server never sends them back.
+export const getIntegrations = () => request('/admin/integrations', { isProtected: true }, 'We could not load the integrations.');
+export const saveIntegrations = (values, password) => request('/admin/integrations', json('POST', { values, password }), 'We could not save the integrations.');
+export const sendTestMail = (to) => request('/admin/integrations/test-mail', json('POST', { to }), 'The test email could not be sent.');
