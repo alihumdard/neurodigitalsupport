@@ -8,16 +8,20 @@ import { nuroTokPolicies } from '@/content/nurotok/policies.js';
 import { canonicalFor } from '@/lib/seo';
 import API_BASE_URL from '@/api/api.js';
 
-function renderInline(text, keyPrefix) {
+const LINK_CLASS = 'font-semibold text-emerald-800 underline decoration-emerald-300 underline-offset-4 transition-colors hover:text-emerald-950 dark:text-emerald-300 dark:hover:text-emerald-200';
+
+/** Web addresses and email addresses in plain text, as links. */
+function renderLinks(text, keyPrefix) {
   const segments = [];
-  const urlPattern = /https?:\/\/[^\s<>]+/g;
+  const pattern = /https?:\/\/[^\s<>]+|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
   let lastIndex = 0;
   let match;
 
-  while ((match = urlPattern.exec(text)) !== null) {
-    const rawUrl = match[0];
-    const url = rawUrl.replace(/[.,;:!?)}\]]+$/, '');
-    const trailingText = rawUrl.slice(url.length);
+  while ((match = pattern.exec(text)) !== null) {
+    const raw = match[0];
+    const value = raw.replace(/[.,;:!?)}\]]+$/, '');
+    const trailingText = raw.slice(value.length);
+    const isEmail = !value.startsWith('http');
 
     if (match.index > lastIndex) {
       segments.push(text.slice(lastIndex, match.index));
@@ -26,20 +30,32 @@ function renderInline(text, keyPrefix) {
     segments.push(
       <a
         key={`${keyPrefix}-${match.index}`}
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-semibold text-emerald-800 underline decoration-emerald-300 underline-offset-4 transition-colors hover:text-emerald-950 dark:text-emerald-300 dark:hover:text-emerald-200"
+        href={isEmail ? `mailto:${value}` : value}
+        {...(isEmail ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+        className={LINK_CLASS}
       >
-        {url}
+        {value}
       </a>
     );
     if (trailingText) segments.push(trailingText);
-    lastIndex = match.index + rawUrl.length;
+    lastIndex = match.index + raw.length;
   }
 
   if (lastIndex < text.length) segments.push(text.slice(lastIndex));
   return segments;
+}
+
+/** Inline Markdown the policies use: **bold**, plus web and email addresses as links. */
+function renderInline(text, keyPrefix) {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  // split with one capture group alternates: plain, bold, plain, bold, ...
+  return parts.flatMap((part, i) => {
+    if (!part) return [];
+    const key = `${keyPrefix}-${i}`;
+    return i % 2 === 1
+      ? [<strong key={key} className="font-bold text-slate-900 dark:text-white">{renderLinks(part, key)}</strong>]
+      : renderLinks(part, key);
+  });
 }
 
 function renderMarkdown(markdown) {
@@ -116,7 +132,7 @@ function renderMarkdown(markdown) {
       return (
         <ListTag
           key={`${block.type}-${blockIndex}`}
-          className="space-y-2 pl-6 text-[15px] leading-7 text-slate-700 marker:text-emerald-700 dark:text-slate-300 dark:marker:text-emerald-300"
+          className={`${block.type === 'ol' ? 'list-decimal' : 'list-disc'} space-y-2 pl-6 text-[15px] leading-7 text-slate-700 marker:text-emerald-700 dark:text-slate-300 dark:marker:text-emerald-300`}
         >
           {block.items.map((item, itemIndex) => (
             <li key={`${block.type}-${itemIndex}`}>{renderInline(item, `list-${blockIndex}-${itemIndex}`)}</li>
