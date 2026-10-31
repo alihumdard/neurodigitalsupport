@@ -29,10 +29,11 @@ export const clearAdminToken = () => {
 };
 
 export class UnauthorizedError extends Error {
-  constructor(message, status = 401) {
+  constructor(message, status = 401, code = null) {
     super(message);
     this.name = 'UnauthorizedError';
     this.status = status;
+    this.code = code;
   }
 }
 
@@ -62,7 +63,8 @@ const request = async (path, { method = 'GET', headers = {}, body, isProtected =
   if (response.status === 401 || response.status === 403) {
     throw new UnauthorizedError(
       response.status === 403 ? data?.message || 'Your account can’t open this section.' : data?.message || 'Your session has expired. Please log in again.',
-      response.status
+      response.status,
+      data?.code ?? null
     );
   }
 
@@ -338,3 +340,8 @@ export const listAudit = (params) => request(`/admin/audit${qs(params)}`, { isPr
 export const getIntegrations = () => request('/admin/integrations', { isProtected: true }, 'We could not load the integrations.');
 export const saveIntegrations = (values, password) => request('/admin/integrations', json('POST', { values, password }), 'We could not save the integrations.');
 export const sendTestMail = (to) => request('/admin/integrations/test-mail', json('POST', { to }), 'The test email could not be sent.');
+
+// Server health, the admin two-step policy, and checking a plan against RevenueCat.
+export const getHealth = () => request('/admin/health', { isProtected: true }, 'We could not load system health.');
+export const setAdminSecurity = (requireAdmin2fa, password) => request('/admin/security', json('POST', { require_admin_2fa: requireAdmin2fa, password }), 'We could not change the sign-in policy.');
+export const reconcileAppUser = (id, apply = false) => request(`/admin/app-users/${id}/reconcile`, json('POST', { apply }), 'We could not check with RevenueCat.');

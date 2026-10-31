@@ -5,6 +5,7 @@ import { Activity, BarChart3, KeyRound, Eye, FileText, FolderKanban, Gift, Inbox
 import { AnalyticsSection, DashboardSection } from '@/components/admin/DashboardSection.jsx';
 import { AppUsersSection } from '@/components/admin/AppUsersSection.jsx';
 import { IntegrationsSection } from '@/components/admin/IntegrationsSection.jsx';
+import { TwoFactorCard } from '@/components/admin/TwoFactorCard.jsx';
 import {
   AdminsSection,
   AnnouncementsSection,
@@ -260,8 +261,10 @@ const AdminPage = () => {
   };
 
   // New sections report auth failures here; only an expired session (401) signs out.
+  const [needsTwoFactor, setNeedsTwoFactor] = useState(false);
   const sectionUnauthorized = (error) => {
     if (error?.status === 401) handleUnauthorized(error, '');
+    if (error?.code === 'two_factor_setup_required') setNeedsTwoFactor(true);
   };
 
   const handleLogout = async () => {
@@ -843,6 +846,13 @@ const AdminPage = () => {
                       </Table>
                     </div>
                   </section>
+                ) : null}
+                {needsTwoFactor ? (
+                  <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
+                    <p className="font-semibold">Two-step sign-in is required for admin accounts.</p>
+                    <p className="mt-1">Set it up below, then reload this page to continue.</p>
+                    <TwoFactorCard />
+                  </div>
                 ) : null}
                 {activeSection === 'dashboard' ? <DashboardSection onUnauthorized={sectionUnauthorized} /> : null}
                 {activeSection === 'analytics' ? <AnalyticsSection onUnauthorized={sectionUnauthorized} /> : null}

@@ -5,6 +5,7 @@ import {
   appUserPassword, assignAppUserPlan, createAppUser, deleteAppUser, exportAppUser, getAppUser, listAppUsers,
   pushDeviceSettings, updateAppUser, verifyAppUserEmail,
 } from '@/api/adminApi.js';
+import { ReconcileCard } from './OpsCards.jsx';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -290,6 +291,10 @@ function AppUserDetail({ id, onBack, onUnauthorized }) {
                   )}
                 </div>
               </div>
+            </div>
+
+            <div className="mt-5">
+              <ReconcileCard userId={id} onChanged={reload} />
             </div>
 
             <div className="mt-5 grid gap-4 md:grid-cols-2">

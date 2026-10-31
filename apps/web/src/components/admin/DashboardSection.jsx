@@ -4,6 +4,8 @@ import { Bars, LoadState, SectionHeader, StatCard, useAdminData } from './shared
 
 const APP_NAMES = { instagram: 'Instagram', youtube: 'YouTube', tiktok: 'TikTok', snapchat: 'Snapchat', facebook: 'Facebook', x: 'X', reddit: 'Reddit', linkedin: 'LinkedIn' };
 
+import { SystemHealthCard } from './OpsCards.jsx';
+
 export function DashboardSection({ onUnauthorized }) {
   const { data, error, isLoading, reload } = useAdminData(getDashboard, [], onUnauthorized);
   return (
@@ -27,6 +29,7 @@ export function DashboardSection({ onUnauthorized }) {
               <StatCard label="Blocked opens today" value={data.today.blocked_opens} />
               <StatCard label="Focus minutes today" value={data.today.focus_minutes} />
             </div>
+            <SystemHealthCard />
             <div className="mt-5 rounded-2xl border border-[#dcece6] bg-white p-5">
               <h2 className="text-base font-semibold text-[#0b3b31]">Sign-ups, last 30 days</h2>
               <div className="mt-4">
