@@ -53,13 +53,12 @@ function Field({ field, value, onChange, error }) {
 /**
  * Admin > Integrations: SMTP and every third-party credential, set here instead of on the server.
  * Secrets are never shown again once saved; type a new value to replace one, or clear it to fall
- * back to the server's .env. Saving asks for your password again.
+ * back to the server's .env. Every change is recorded in the Activity log (without the values).
  */
 export function IntegrationsSection({ onUnauthorized }) {
   const { data, error, isLoading, reload, setData } = useAdminData(getIntegrations, [], onUnauthorized);
   const [edits, setEdits] = useState({});
   const [errors, setErrors] = useState({});
-  const [password, setPassword] = useState('');
   const [saving, setSaving] = useState(false);
   const [testTo, setTestTo] = useState('');
   const [testing, setTesting] = useState(false);
@@ -70,19 +69,17 @@ export function IntegrationsSection({ onUnauthorized }) {
 
   const save = async () => {
     if (!changed) return;
-    if (!password) { setErrors({ password: 'Enter your admin password to save.' }); return; }
     setSaving(true);
     setErrors({});
     try {
-      const res = await saveIntegrations(edits, password);
+      const res = await saveIntegrations(edits);
       setData(res);
       setEdits({});
-      setPassword('');
       toast.success('Saved. New values are used straight away.');
     } catch (e) {
       const fieldErrors = Object.fromEntries(Object.entries(e.data?.errors || {}).map(([k, v]) => [k.replace(/^values\./, ''), v[0]]));
       // Shown next to the fields and the save button, not as a toast that could cover the button.
-      setErrors(Object.keys(fieldErrors).length ? fieldErrors : { password: e.message });
+      setErrors(Object.keys(fieldErrors).length ? fieldErrors : { form: e.message });
     } finally {
       setSaving(false);
     }
@@ -137,17 +134,13 @@ export function IntegrationsSection({ onUnauthorized }) {
           ))}
 
           <div className="sticky bottom-0 flex flex-wrap items-end gap-3 rounded-2xl border border-[#dcece6] bg-white p-4 shadow-sm">
-            <div className="w-full max-w-xs space-y-1">
-              <Label htmlFor="int-password">Your admin password, to confirm</Label>
-              <Input id="int-password" type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
             <Button type="button" onClick={save} disabled={saving || !changed}>
               {saving ? 'Saving…' : changed ? `Save ${changed} change${changed === 1 ? '' : 's'}` : 'No changes'}
             </Button>
             {changed ? <Button type="button" variant="ghost" onClick={() => { setEdits({}); setErrors({}); }}>Discard</Button> : null}
             {Object.keys(errors).length ? (
               <p role="alert" className="w-full text-sm text-red-700">
-                {errors.password || 'Some values need fixing. See the messages above.'}
+                {errors.form || 'Some values need fixing. See the messages above.'}
               </p>
             ) : null}
           </div>

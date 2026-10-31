@@ -338,7 +338,7 @@ export const listAudit = (params) => request(`/admin/audit${qs(params)}`, { isPr
 
 // SMTP and third-party credentials. Secrets are write-only: the server never sends them back.
 export const getIntegrations = () => request('/admin/integrations', { isProtected: true }, 'We could not load the integrations.');
-export const saveIntegrations = (values, password) => request('/admin/integrations', json('POST', { values, password }), 'We could not save the integrations.');
+export const saveIntegrations = (values) => request('/admin/integrations', json('POST', { values }), 'We could not save the integrations.');
 export const sendTestMail = (to) => request('/admin/integrations/test-mail', json('POST', { to }), 'The test email could not be sent.');
 
 // Server health, the admin two-step policy, and checking a plan against RevenueCat.
