@@ -340,7 +340,7 @@ function Dashboard({ token, onSignedOut }) {
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <Tile label="Reels, last 7 days" value={sum(week, 'reels')} />
               <Tile label="Shielded opens, 7 days" value={sum(week, 'blocked')} />
-              <Tile label="Focus, 7 days" value={`${sum(week, 'focus')} min`} />
+              <Tile label="Focus sessions, 7 days" value={`${sum(week, 'focus')} min`} />
             </div>
             <Bars rows={days} />
             <Trends days={days} byApp={d.by_app ?? []} />
