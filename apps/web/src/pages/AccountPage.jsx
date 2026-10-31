@@ -153,6 +153,57 @@ function DeleteAccount({ token, onDeleted }) {
   );
 }
 
+const APP_NAMES = { instagram: 'Instagram', youtube: 'YouTube', tiktok: 'TikTok', snapchat: 'Snapchat', facebook: 'Facebook', x: 'X', reddit: 'Reddit', linkedin: 'LinkedIn' };
+const WEEKDAYS = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
+const mean = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
+
+/**
+ * Trends in the shared counts: this week against last, the busiest day of the week, where the
+ * reels are, and the Calm Score over time. Each one only shows with enough days behind it.
+ */
+function Trends({ days, byApp }) {
+  const counted = days.filter((x) => x.reels > 0);
+  const thisWeek = days.slice(-7).filter((x) => x.reels > 0).map((x) => x.reels);
+  const lastWeek = days.slice(-14, -7).filter((x) => x.reels > 0).map((x) => x.reels);
+  const byWeekday = WEEKDAYS.map((name, i) => ({ name, values: counted.filter((x) => new Date(`${x.day}T12:00:00`).getDay() === i).map((x) => x.reels) }))
+    .filter((w) => w.values.length >= 2);
+  const busiest = byWeekday.length >= 3 ? byWeekday.reduce((a, b) => (mean(b.values) > mean(a.values) ? b : a)) : null;
+  const totalApps = byApp.reduce((a, x) => a + x.reels, 0);
+  const calm = days.filter((x) => x.calm !== null && x.calm !== undefined);
+  const change = thisWeek.length >= 3 && lastWeek.length >= 3 ? Math.round(((mean(thisWeek) - mean(lastWeek)) / Math.max(1, mean(lastWeek))) * 100) : null;
+
+  return (
+    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+      {change !== null ? (
+        <Tile label="This week against last" value={change === 0 ? 'The same' : `${Math.abs(change)}% ${change < 0 ? 'fewer' : 'more'}`} hint={`About ${Math.round(mean(thisWeek))} a day, from ${Math.round(mean(lastWeek))}`} />
+      ) : null}
+      {busiest ? <Tile label="Busiest day of the week" value={busiest.name} hint={`About ${Math.round(mean(busiest.values))} reels on those days`} /> : null}
+      {totalApps > 0 ? (
+        <div className="rounded-2xl border border-[#dcece6] bg-white p-4 sm:col-span-2">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[#536b64]">Where the reels are</p>
+          <ul className="mt-2 space-y-1">
+            {byApp.slice(0, 6).map((a) => (
+              <li key={a.app} className="text-sm">
+                <div className="flex justify-between"><span>{APP_NAMES[a.app] || a.app}</span><span className="text-[#536b64]">{a.reels} · {Math.round((a.reels / totalApps) * 100)}%</span></div>
+                <div className="mt-1 h-1.5 rounded-full bg-[#eef3f1]"><div className="h-1.5 rounded-full bg-[#2f7a66]" style={{ width: `${(a.reels / byApp[0].reels) * 100}%` }} /></div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      {calm.length >= 3 ? (
+        <div className="rounded-2xl border border-[#dcece6] bg-white p-4 sm:col-span-2">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[#536b64]">Calm Score</p>
+          <p className="mt-1 text-sm text-[#536b64]">Average {Math.round(mean(calm.map((x) => x.calm)))} over {calm.length} days. Higher is calmer.</p>
+          <div role="img" aria-label="Calm Score each day" className="mt-2 flex h-20 items-end gap-[3px]">
+            {calm.map((x) => <div key={x.day} className="flex-1 rounded-t bg-[#7fb8a4]" style={{ height: `${Math.max(4, x.calm)}%` }} title={`${fmtDay(x.day)}: ${x.calm}`} />)}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 /** Where the account is signed in, with sign-out for one or for all but this website session. */
 function SignedIn({ token }) {
   const [sessions, setSessions] = useState(null);
@@ -278,6 +329,7 @@ function Dashboard({ token, onSignedOut }) {
               <Tile label="Focus, 7 days" value={`${sum(week, 'focus')} min`} />
             </div>
             <Bars rows={days} />
+            <Trends days={days} byApp={d.by_app ?? []} />
           </>
         ) : u.usage_consent ? <p className="mt-3 text-sm text-[#536b64]">Nothing yet. Counts arrive after your phone next syncs.</p> : null}
       </Section>
