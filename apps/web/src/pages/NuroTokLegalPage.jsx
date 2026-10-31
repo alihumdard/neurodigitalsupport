@@ -163,16 +163,22 @@ function useCmsPage(slug) {
     if (!slug || slug === 'legal') return undefined;
     let live = true;
     setPage(undefined);
-    fetch(`${API_BASE_URL}/pages/${encodeURIComponent(slug)}`, { headers: { Accept: 'application/json' } })
+    // A slow server falls back to the built-in copy rather than leaving the page waiting.
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    fetch(`${API_BASE_URL}/pages/${encodeURIComponent(slug)}`, { headers: { Accept: 'application/json' }, signal: ctrl.signal })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (live) setPage(data?.page || null);
       })
       .catch(() => {
         if (live) setPage(null);
-      });
+      })
+      .finally(() => clearTimeout(timer));
     return () => {
       live = false;
+      ctrl.abort();
+      clearTimeout(timer);
     };
   }, [slug]);
   return page;

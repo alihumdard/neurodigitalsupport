@@ -13,13 +13,27 @@ const sum = (rows, k) => rows.reduce((a, r) => a + (Number(r[k]) || 0), 0);
 const readToken = () => { try { return sessionStorage.getItem(KEY); } catch { return null; } };
 const saveToken = (t) => { try { if (t) sessionStorage.setItem(KEY, t); else sessionStorage.removeItem(KEY); } catch { /* private mode */ } };
 
+/** No request waits longer than this, including reading the answer. */
+const DEADLINE_MS = 15000;
+
 async function call(path, { token, method, body } = {}) {
-  const r = await fetch(`${API}${path}`, {
-    method: method ?? (body ? 'POST' : 'GET'),
-    headers: { Accept: 'application/json', ...(body ? { 'Content-Type': 'application/json' } : {}), ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  const data = await r.json().catch(() => ({}));
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), DEADLINE_MS);
+  let r;
+  let data;
+  try {
+    r = await fetch(`${API}${path}`, {
+      method: method ?? (body ? 'POST' : 'GET'),
+      headers: { Accept: 'application/json', ...(body ? { 'Content-Type': 'application/json' } : {}), ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+      body: body ? JSON.stringify(body) : undefined,
+      signal: ctrl.signal,
+    });
+    data = await r.json().catch(() => ({}));
+  } catch (e) {
+    throw new Error(e?.name === 'AbortError' ? 'The server took too long to answer. Please try again.' : 'Could not reach NuroTok. Check your connection and try again.');
+  } finally {
+    clearTimeout(timer);
+  }
   if (!r.ok) {
     const first = data.errors ? Object.values(data.errors)[0]?.[0] : null;
     const err = new Error(first || data.message || 'Something went wrong. Please try again.');

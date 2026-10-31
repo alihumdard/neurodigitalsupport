@@ -64,15 +64,18 @@ export default function SharePage() {
 
   useEffect(() => {
     let live = true;
-    fetch(`${API}/share/${encodeURIComponent(token || '')}`, { headers: { Accept: 'application/json' } })
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 15000);
+    fetch(`${API}/share/${encodeURIComponent(token || '')}`, { headers: { Accept: 'application/json' }, signal: ctrl.signal })
       .then(async (r) => {
         const body = await r.json().catch(() => ({}));
         if (!r.ok) throw new Error(body.message || 'This link could not be opened.');
         return body;
       })
       .then((data) => live && setState({ loading: false, error: null, data }))
-      .catch((e) => live && setState({ loading: false, error: e.message, data: null }));
-    return () => { live = false; };
+      .catch((e) => live && setState({ loading: false, error: e.name === 'AbortError' ? 'The server took too long to answer. Please reload the page.' : e.message, data: null }))
+      .finally(() => clearTimeout(timer));
+    return () => { live = false; ctrl.abort(); clearTimeout(timer); };
   }, [token]);
 
   const d = state.data;
