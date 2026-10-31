@@ -80,7 +80,7 @@ const GROUPS = [
     icon: Chrome,
     items: [
       'NuroTok for Chrome hides YouTube Shorts and Instagram and Facebook Reels, adds a breathing pause and a daily limit.',
-      'Connect it to the app so your phone and computer share one daily reel goal.',
+      'Connect it to the app to see one combined daily total; the computer stops at your goal counting both (computer counts are pages opened, an estimate).',
       'Your account online: see your trends, download your data or delete your account from the website.',
       'Sign in with Google, Apple or email; see every signed-in device and sign any of them out.',
     ],
