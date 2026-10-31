@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import AffiliationsSection from '@/components/AffiliationsSection.jsx';
+import NuroTokAllFeatures from '@/components/NuroTokAllFeatures.jsx';
 
 const storeButtons = [
   { label: 'App Store', icon: Apple },
@@ -417,6 +418,8 @@ const NuroTokPage = () => {
             </div>
           </div>
         </section>
+
+        <NuroTokAllFeatures />
 
         <section className="bg-gradient-to-br from-[#eaf9f2] via-[#fbfffd] to-[#dcf4ea] py-20">
           <div className="mx-auto max-w-[1180px] px-4 text-center sm:px-6 lg:px-10">
