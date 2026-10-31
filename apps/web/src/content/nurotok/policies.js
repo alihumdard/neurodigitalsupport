@@ -8,6 +8,7 @@ import support from './07-support-and-contact.md?raw';
 import cookies from './08-cookies-and-third-party-websites.md?raw';
 import accessibility from './09-accessibility-statement.md?raw';
 import safeguarding from './10-safeguarding-and-crisis-support.md?raw';
+import easyRead from './11-easy-read.md?raw';
 
 // Built-in copies. The live text comes from the CMS (admin > Pages) and falls back to these.
 
@@ -71,5 +72,11 @@ export const nuroTokPolicies = [
     title: 'Safeguarding and Crisis Support',
     description: 'Where to get urgent help, how parent controls protect children, and reporting a concern.',
     content: safeguarding
+  },
+  {
+    slug: 'easy-read',
+    title: 'Easy Read',
+    description: 'The main points of our privacy policy and terms, in short sentences and everyday words.',
+    content: easyRead
   }
 ];
