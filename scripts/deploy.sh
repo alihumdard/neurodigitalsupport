@@ -24,8 +24,9 @@ echo "==> Building"
 # apps/web/.env on the server holds VITE_API_BASE_URL; it is not in git.
 NEXT="$APP_DIR/dist/.web-next"
 rm -rf "$NEXT"
-(cd apps/web && node tools/generate-llms.js || true)
 (cd apps/web && npx vite build --outDir "$NEXT" --emptyOutDir)
+# A real HTML page per route for crawlers, plus sitemap.xml, robots.txt and llms.txt.
+(cd apps/web && node tools/seo-build.js "$NEXT")
 test -f "$NEXT/index.html"
 
 echo "==> Switching to the new build"

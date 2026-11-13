@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FileText, BarChart3, TrendingUp, Download, Smartphone, Megaphone, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
+import { STORE_URLS } from '@/lib/stores';
 import {
   Dialog,
   DialogContent,
@@ -256,8 +257,12 @@ const ProductsHome = () => {
                   
                   {/* Platform Badges - Using slate for better light mode contrast */}
                   <div className="flex items-center gap-1.5">
-                    {module.platforms.map((platform, idx) => (
-                      <span 
+                    {module.platforms.map((platform, idx) => {
+                      const Badge = STORE_URLS[platform] ? 'a' : 'span';
+                      const link = STORE_URLS[platform] ? { href: STORE_URLS[platform], target: '_blank', rel: 'noopener noreferrer', 'aria-label': `Get ${module.name} on ${platform}` } : {};
+                      return (
+                      <Badge
+                        {...link}
                         key={idx}
                         className="text-[9px] font-bold tracking-wider uppercase text-slate-600 dark:text-muted-foreground bg-slate-100 dark:bg-muted/60 px-2 py-1 rounded flex items-center gap-1"
                       >
@@ -265,8 +270,9 @@ const ProductsHome = () => {
                         {['iOS', 'Android', 'App Store', 'Google Play'].includes(platform) ? <Download className="w-2.5 h-2.5" /> : 
                          platform === 'Mobile & Tablet' ? <Smartphone className="w-2.5 h-2.5" /> : null}
                         {platform}
-                      </span>
-                    ))}
+                      </Badge>
+                      );
+                    })}
                   </div>
 
                   {/* Action Button */}

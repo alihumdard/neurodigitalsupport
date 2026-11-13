@@ -22,10 +22,12 @@ import {
 import Header from '@/components/Header.jsx';
 import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 import NuroTokAllFeatures from '@/components/NuroTokAllFeatures.jsx';
+import { APP_STORE_URL, PLAY_STORE_URL } from '@/lib/stores';
+import { NUROTOK_FAQ } from '@/lib/seoMeta';
 
 const storeButtons = [
-  { label: 'App Store', icon: Apple },
-  { label: 'Google Play' }
+  { label: 'App Store', icon: Apple, href: APP_STORE_URL },
+  { label: 'Google Play', href: PLAY_STORE_URL }
 ];
 
 const visionItems = [
@@ -199,15 +201,17 @@ const GooglePlayMark = () => (
   </svg>
 );
 
-const StoreButton = ({ label, icon: Icon, light = false }) => (
-  <button
-    type="button"
+const StoreButton = ({ label, icon: Icon, href, light = false }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
     className={`group inline-flex h-[54px] min-w-[158px] items-center justify-center gap-3 rounded-[14px] border px-4 text-left shadow-[0_14px_30px_rgba(15,23,42,0.14)] transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(15,23,42,0.18)] active:scale-[0.98] ${
       light
         ? 'border-slate-900 bg-slate-950 text-white'
         : 'border-slate-950 bg-slate-950 text-white'
     }`}
-    aria-label={`Download on ${label}`}
+    aria-label={label === 'App Store' ? 'Download NuroTok on the App Store' : 'Get NuroTok on Google Play'}
   >
     <span className="flex h-7 w-7 shrink-0 items-center justify-center text-white">
       {label === 'App Store' && Icon ? <Icon className="h-6 w-6" aria-hidden="true" /> : <GooglePlayMark />}
@@ -220,7 +224,7 @@ const StoreButton = ({ label, icon: Icon, light = false }) => (
         {label}
       </span>
     </span>
-  </button>
+  </a>
 );
 
 const PhoneMockup = ({ label = 'NuroTok', variant = 'hero' }) => (
@@ -340,8 +344,6 @@ const NuroTokPage = () => {
   return (
     <>
       <Helmet>
-        <title>NuroTok | Sensory regulation app for neurodivergent adults</title>
-        <meta name="description" content="NuroTok is a calming digital companion that supports sensory regulation, emotional wellbeing, and stress reduction for autistic and neurodivergent adults." />
               <link rel="canonical" href={canonicalFor('/nurotok')} />
 </Helmet>
 
@@ -433,6 +435,23 @@ const NuroTokPage = () => {
               <br />
               Home | Profile | Toolkit | Insights
             </p>
+          </div>
+        </section>
+
+        <section className="bg-white py-20 dark:bg-background" aria-labelledby="nurotok-faq">
+          <div className="mx-auto max-w-[860px] px-4 sm:px-6 lg:px-10">
+            <h2 id="nurotok-faq" className="text-center text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 dark:text-foreground sm:text-4xl">NuroTok questions, answered</h2>
+            <div className="mt-10 divide-y divide-emerald-100 rounded-2xl border border-emerald-100 bg-[#fbfffd] dark:divide-border dark:border-border dark:bg-card/30">
+              {NUROTOK_FAQ.map(({ q, a }) => (
+                <details key={q} className="group px-6 py-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-extrabold text-slate-950 dark:text-foreground">
+                    <h3>{q}</h3>
+                    <ChevronRight className="h-5 w-5 shrink-0 text-emerald-700 transition-transform group-open:rotate-90" aria-hidden="true" />
+                  </summary>
+                  <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600 dark:text-muted-foreground">{a}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 
