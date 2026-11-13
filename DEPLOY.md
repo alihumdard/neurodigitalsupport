@@ -14,3 +14,13 @@ succeeded.
 - It refuses to pull over changes made by hand on the server; commit or discard them first.
 - To deploy right away: `bash scripts/deploy.sh` in `/var/www/neurodigitalsupport`.
 - GitHub Actions only checks that the site builds.
+
+## SEO files
+
+After `vite build`, `apps/web/tools/seo-build.js` writes a static HTML page per route (title,
+description, canonical, social tags, JSON-LD and a crawlable summary), plus `sitemap.xml`,
+`robots.txt` and `llms.txt`, all from `apps/web/src/lib/seoMeta.js`. They are build output, not
+files in `public/`. To add a page to search: add it to `PAGES` in `seoMeta.js`.
+
+A change to `scripts/deploy.sh` takes effect from the deploy after the one that pulled it (bash
+had already read the old script).
