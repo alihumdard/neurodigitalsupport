@@ -43,7 +43,12 @@ function bodyFor(route, page) {
     main += `<p><a href="/nurotok">About the NuroTok app</a> · <a href="/nurotok/legal">All NuroTok policies</a></p>${STORE_LINKS}`;
   }
   const nav = NAV.map(([href, label]) => `<a href="${href}">${label}</a>`).join(' · ');
-  return `<div id="root"><div data-prerender="true"><nav aria-label="Main">${nav}</nav><main>${main}</main><footer><p>${SITE_NAME} · <a href="mailto:info@neurodigitalsupport.com">info@neurodigitalsupport.com</a></p></footer></div></div>`;
+  // The text is for crawlers (and screen readers) only: people see a centred logo for the moment
+  // before React starts and replaces all of this, not a flash of unstyled text.
+  const logo = route.startsWith('/nurotok') ? '/images/products/nurotok-logo.jpeg' : '/logo.jpeg';
+  const loader = `<div aria-hidden="true" style="min-height:100vh;display:flex;align-items:center;justify-content:center"><img src="${logo}" alt="" width="64" height="64" style="border-radius:16px;opacity:.85;object-fit:contain"></div>`;
+  const hidden = 'position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0';
+  return `<div id="root">${loader}<div data-prerender="true" style="${hidden}"><nav aria-label="Main">${nav}</nav><main>${main}</main><footer><p>${SITE_NAME} · <a href="mailto:info@neurodigitalsupport.com">info@neurodigitalsupport.com</a></p></footer></div></div>`;
 }
 
 function headFor(route, page) {
