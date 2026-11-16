@@ -75,9 +75,9 @@ const navigationLinks = [
   { name: 'About', path: '/about' },
   { name: 'Features', path: '/features' },
   { name: 'Training', path: '/consultancy-training-workshops' },
-  { name: 'Store', path: '/store' },
   { name: 'Research', path: '/research' },
   { name: 'Blogs', path: '/blogs' },
+  { name: 'Store', path: '/store' },
   { name: 'Contact', path: '/contact' }
 ];
 

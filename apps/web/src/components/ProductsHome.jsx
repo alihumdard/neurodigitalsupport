@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FileText, BarChart3, TrendingUp, Download, Smartphone, Megaphone, ChevronLeft, ChevronRight } from 'lucide-react';
+import { FileText, BarChart3, TrendingUp, Download, Smartphone, Megaphone, ChevronLeft, ChevronRight, GraduationCap, ShoppingBag } from 'lucide-react';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 import { STORE_URLS } from '@/lib/stores';
 import {
@@ -164,6 +164,24 @@ const ProductsHome = () => {
       platforms: ['Web', 'AI', 'SOURCES'],
       path: '/social-listening-dashboard',
       color: 'text-pink-500'
+    }, {
+      icon: GraduationCap,
+      name: 'Training & Consultancy',
+      subtitle: 'Consultancy, Training & Workshops',
+      description: 'Practical consultancy, structured training and interactive workshops for organisations supporting autistic and neurodivergent adults.',
+      features: ['Consultancy', '10 Training Modules', 'Workshops'],
+      platforms: ['Online', 'In Person'],
+      path: '/consultancy-training-workshops',
+      color: 'text-violet-500'
+    }, {
+      icon: ShoppingBag,
+      name: 'ND Support Store',
+      subtitle: 'Official Merchandise',
+      description: 'Colourful T-shirts, hoodies, bags, bottles and comfort picks featuring our ND support branding, designed to share the message.',
+      features: ['Apparel', 'Accessories', 'Comfort & Sensory'],
+      platforms: ['Coming Soon'],
+      path: '/store',
+      color: 'text-amber-500'
     }
   ];
 
