@@ -38,19 +38,19 @@ const contactCategories = [
   {
     title: 'Support & Technical Help',
     description: 'For users of NuroTok, AltiTok, OliTok, Care Logging App, or any other NeuroDigital tool. We also offer guided onboarding for teams.',
-    email: 'support@neurodigitalsupport.com',
+    email: 'info@neurodigitalsupport.com',
     icon: Headphones
   },
   {
     title: 'Research & Insights Hub',
     description: 'For researchers, institutions, charities, and policymakers. Request access to anonymised datasets, collaborate on studies, or enquire about research partnerships.',
-    email: 'research@neurodigitalsupport.com',
+    email: 'info@neurodigitalsupport.com',
     icon: Database
   },
   {
     title: 'Media & Partnerships',
     description: 'For press enquiries, speaking engagements, strategic partnerships, or volunteering with OliTok.',
-    email: 'partners@neurodigitalsupport.com',
+    email: 'info@neurodigitalsupport.com',
     icon: Handshake
   }
 ];

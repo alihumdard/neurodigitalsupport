@@ -151,7 +151,7 @@ const Footer = () => {
               >
                 Cookie settings
               </button>
-              <Link to="/accessibility" className="rounded transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring dark:hover:text-foreground">
+              <Link to="/nurotok/accessibility" className="rounded transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring dark:hover:text-foreground">
                 Accessibility Statement
               </Link>
               <Link to="/nurotok/privacy" className="rounded transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring dark:hover:text-foreground">
