@@ -390,7 +390,7 @@ const ConsultancyTrainingPage = () => {
         {/* Hero */}
         <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7fffb_38%,#dff6ed_100%)]">
           <div className="pointer-events-none absolute left-1/2 top-10 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/30 blur-3xl dark:bg-emerald-500/10" aria-hidden="true" data-focus-distraction />
-          <div className="relative mx-auto grid max-w-[1220px] items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pb-12 lg:pt-14">
+          <div className="relative mx-auto grid max-w-[1220px] items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pb-10 lg:pt-12">
             <div className="text-center lg:text-left">
               <Chip>Services</Chip>
               <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-[#082f27] sm:text-5xl">
@@ -416,7 +416,7 @@ const ConsultancyTrainingPage = () => {
         </section>
 
         {/* Intro + three ways we can help */}
-        <Section>
+        <Section className="!pt-10 lg:!pt-12">
           <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
             <div>
               <Chip>How We Help</Chip>
