@@ -9,7 +9,12 @@ import AltiTokPage from './pages/AltiTokPage.jsx';
 import BlogDetailPage from './pages/BlogDetailPage.jsx';
 import BlogPage from './pages/BlogPage.jsx';
 import CareLoggingPage from './pages/CareLoggingPage.jsx';
+import { CartProvider } from '@/contexts/CartContext.jsx';
+import { CartDrawer } from '@/components/store/StoreParts.jsx';
+import CheckoutPage from './pages/CheckoutPage.jsx';
 import ConsultancyTrainingPage from './pages/ConsultancyTrainingPage.jsx';
+import ProductPage from './pages/ProductPage.jsx';
+import StorePage from './pages/StorePage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import DigitalAdvocacyHubPage from './pages/DigitalAdvocacyHubPage.jsx';
 import FeaturesPage from './pages/FeaturesPage.jsx';
@@ -33,6 +38,7 @@ const PageLoading = () => <p className="p-8 text-center text-sm text-muted-foreg
 function App() {
   return (
     <AccessibilityProvider>
+      <CartProvider>
       <Router>
         <SeoFoundation />
         <ScrollToTop />
@@ -56,12 +62,17 @@ function App() {
           <Route path="/research" element={<ResearchInsightsHubPage />} />
           <Route path="/research-insights-hub" element={<ResearchInsightsHubPage />} />
           <Route path="/social-listening-dashboard" element={<SocialListeningDashboardPage />} />
+          <Route path="/store" element={<StorePage />} />
+          <Route path="/store/checkout" element={<CheckoutPage />} />
+          <Route path="/store/:slug" element={<ProductPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
           <Route path="/share/:token" element={<Suspense fallback={<PageLoading />}><SharePage /></Suspense>} />
         </Routes>
+        <CartDrawer />
         <CookieConsent />
         <Toaster />
       </Router>
+      </CartProvider>
     </AccessibilityProvider>
   );
 }

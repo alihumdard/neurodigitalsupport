@@ -13,7 +13,7 @@ export const DEFAULT_TITLE = 'NeuroDigital Support | Inclusive digital support f
 export const DEFAULT_DESCRIPTION = 'NeuroDigital Support builds sensory-aware digital platforms and evidence-led tools for autistic and neurodivergent adults, caregivers, and teams, including the NuroTok sensory regulation app.';
 
 /** Never in the sitemap, always noindex. */
-export const PRIVATE_PATHS = ['/admin', '/thank-you', '/nurotok/account'];
+export const PRIVATE_PATHS = ['/admin', '/thank-you', '/nurotok/account', '/store/checkout'];
 
 export const PAGES = {
   '/': { name: 'Home', title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION, priority: '1.0' },
@@ -54,6 +54,13 @@ export const PAGES = {
     description: 'Explore consultancy, training and workshops on digital inclusion, advocacy and sensory-aware digital experiences for organisations across the UK.',
     priority: '0.8',
     image: `${SITE_URL}/images/training/training-hero-1600.webp`
+  },
+  '/store': {
+    name: 'Store',
+    title: 'Store | NeuroDigital Support Merchandise',
+    description: 'Shop NeuroDigital Support merchandise: T-shirts, hoodies, mugs, tote bags, notebooks and comfort and sensory items featuring our colourful ND support branding.',
+    priority: '0.7',
+    image: `${SITE_URL}/images/store/tshirt.webp`
   },
   '/nurotok/legal': { name: 'NuroTok Policies & Support', title: 'NuroTok Policies and Support | NeuroDigital Support', description: 'Find NuroTok privacy, terms, deletion, subscriptions, wellbeing, permissions, support, and cookies information.', priority: '0.5' },
   '/nurotok/privacy': { name: 'NuroTok Privacy Policy', title: 'NuroTok Privacy Policy | NeuroDigital Support', description: 'How the NuroTok app handles data: on-device filtering, optional usage sharing, privacy choices, and your data rights.', priority: '0.5' },

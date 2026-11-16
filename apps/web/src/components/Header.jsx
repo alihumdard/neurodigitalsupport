@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Eye, Menu, Moon, Sun } from "lucide-react";
 import AccessibilityWidget from "@/components/AccessibilityWidget.jsx";
+import { CartButton } from "@/components/store/StoreParts.jsx";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import {
@@ -31,6 +32,7 @@ const Header = () => {
     { name: "Features", path: "/features" },
     { name: "Research", path: "/research" },
     { name: "Training", path: "/consultancy-training-workshops" },
+    { name: "Store", path: "/store" },
     { name: "Blogs", path: "/blogs" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
@@ -47,10 +49,13 @@ const Header = () => {
     "/social-listening-dashboard",
   ];
 
-  const isActive = (path) =>
-    path === "/features"
-      ? featurePaths.includes(location.pathname) || location.pathname.startsWith("/nurotok/")
-      : location.pathname === path;
+  const isActive = (path) => {
+    if (path === "/features") {
+      return featurePaths.includes(location.pathname) || location.pathname.startsWith("/nurotok/");
+    }
+    if (path === "/store") return location.pathname === "/store" || location.pathname.startsWith("/store/");
+    return location.pathname === path;
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 shadow-sm shadow-slate-950/5 backdrop-blur supports-[backdrop-filter]:bg-background/75 dark:shadow-none">
@@ -131,6 +136,8 @@ const Header = () => {
           <div className="hidden shrink-0 items-center sm:flex" data-focus-distraction>
             <AccessibilityWidget />
           </div>
+
+          <CartButton className="ml-auto shrink-0 sm:ml-0" />
 
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild className="xl:hidden">
