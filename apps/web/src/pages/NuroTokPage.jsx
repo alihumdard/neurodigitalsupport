@@ -74,7 +74,8 @@ const screens = [
 const navigationLinks = [
   { name: 'About', path: '/about' },
   { name: 'Features', path: '/features' },
-  { name: 'Ecosystem', path: '/modules' },
+  { name: 'Training', path: '/consultancy-training-workshops' },
+  { name: 'Store', path: '/store' },
   { name: 'Research', path: '/research' },
   { name: 'Blogs', path: '/blogs' },
   { name: 'Contact', path: '/contact' }
@@ -528,7 +529,7 @@ const NuroTokPage = () => {
               <p className="text-sm font-semibold text-slate-600 dark:text-muted-foreground">&copy; 2026 NeuroDigital Support. All rights reserved.</p>
               <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-semibold text-slate-600 dark:text-muted-foreground">
                 <button type="button" onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))} className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">Cookie settings</button>
-                <Link to="/accessibility" className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">Accessibility Statement</Link>
+                <Link to="/nurotok/accessibility" className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">Accessibility Statement</Link>
                 <Link to="/nurotok/privacy" className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">Privacy Policy</Link>
                 <Link to="/nurotok/terms" className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">Terms of Service</Link>
                 <Link to="/nurotok/legal" className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">All NuroTok policies</Link>

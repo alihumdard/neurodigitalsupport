@@ -33,7 +33,8 @@ const HomeCTA = () => {
   const navigationLinks = [
     { name: 'About', path: '/about' },
     { name: 'Features', path: '/features' },
-    { name: 'Ecosystem', path: '/modules' },
+    { name: 'Training', path: '/consultancy-training-workshops' },
+    { name: 'Store', path: '/store' },
     { name: 'Research', path: '/research' },
     { name: 'Blogs', path: '/blogs' },
     { name: 'Contact', path: '/contact' }
@@ -274,7 +275,7 @@ const HomeCTA = () => {
                 <button type="button" onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))} className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">
                   Cookie settings
                 </button>
-                <Link to="/accessibility" className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">
+                <Link to="/nurotok/accessibility" className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">
                   Accessibility Statement
                 </Link>
                 <Link to="/nurotok/privacy" className="transition-colors duration-200 hover:text-[#4a957e] focus-visible-ring rounded dark:hover:text-foreground">
