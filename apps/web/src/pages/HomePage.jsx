@@ -7,6 +7,7 @@ import ProductsHome from '@/components/ProductsHome.jsx';
 // import AccesiblityFeatures from '@/components/AccesiblityFeatures.jsx';
 // import HowNurotokWorks from '@/components/HowNurotokWorks.jsx';
 import HomeCTA from '@/components/HomeCTA.jsx';
+import HomeServicesStore from '@/components/HomeServicesStore.jsx';
 
 const HomePage = () => {
   return (
@@ -31,6 +32,9 @@ const HomePage = () => {
 
         {/* ── HOW NUROTOK WORKS ── */}
         {/* <HowNurotokWorks /> */}
+
+        {/* ── CONSULTANCY & TRAINING + STORE ── */}
+        <HomeServicesStore />
 
         {/* ── CTA SECTIONS ── */}
         <HomeCTA />
