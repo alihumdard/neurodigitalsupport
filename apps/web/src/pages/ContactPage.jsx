@@ -253,11 +253,11 @@ const ContactPage = () => {
 
       <section className="border-b border-[#e4f1ec] bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-10">
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4 xl:gap-4">
             {contactCategories.map(({ title, description, email, icon: Icon }) => (
               <article
                 key={title}
-                className="flex min-h-[17rem] flex-col rounded-3xl border border-[#dbece5] bg-white p-6 shadow-[0_16px_50px_rgba(15,61,50,0.055)] transition duration-300 hover:-translate-y-1 hover:border-[#bfe1d5] hover:shadow-[0_24px_70px_rgba(15,61,50,0.09)]"
+                className="flex min-h-[17rem] flex-col rounded-3xl border border-[#dbece5] bg-white p-6 xl:p-5 shadow-[0_16px_50px_rgba(15,61,50,0.055)] transition duration-300 hover:-translate-y-1 hover:border-[#bfe1d5] hover:shadow-[0_24px_70px_rgba(15,61,50,0.09)]"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e8f7f1] text-[#167158]">
                   <Icon className="h-6 w-6" aria-hidden="true" />
@@ -267,11 +267,11 @@ const ContactPage = () => {
                 <a
                   href={`mailto:${email}`}
                   title={email}
-                  className="mt-6 inline-flex min-h-11 w-full items-center gap-2 rounded-xl border border-[#bfe1d5] bg-[#f3fbf7] px-3 py-2.5 text-xs font-bold leading-snug text-[#0f765a] shadow-[0_10px_24px_rgba(15,61,50,0.045)] transition duration-300 hover:border-[#167158] hover:bg-[#e5f5ee] hover:text-[#0b4f3f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2"
+                  className="mt-6 inline-flex min-h-11 w-full items-center gap-2 rounded-xl border border-[#bfe1d5] bg-[#f3fbf7] px-3 py-2.5 text-xs xl:gap-1.5 xl:px-2.5 xl:text-[11px] font-bold leading-snug text-[#0f765a] shadow-[0_10px_24px_rgba(15,61,50,0.045)] transition duration-300 hover:border-[#167158] hover:bg-[#e5f5ee] hover:text-[#0b4f3f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2"
                 >
-                  <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <Mail className="h-4 w-4 shrink-0 xl:h-3.5 xl:w-3.5" aria-hidden="true" />
                   {/* Show the whole address; on narrow cards it wraps after the @ instead of being cut off. */}
-                  <span className="min-w-0 flex-1 text-left [overflow-wrap:anywhere]">
+                  <span className="min-w-0 flex-1 text-left [overflow-wrap:anywhere] xl:whitespace-nowrap">
                     {email.split('@')[0]}@<wbr />
                     {email.split('@')[1]}
                   </span>
