@@ -463,6 +463,12 @@
   border-color: hsl(var(--border)) !important;
 }
 
+/* A form that sits inside another card (e.g. the store "Notify me" form) should not get its own panel. */
+.dark .theme-aware-page form.theme-transparent {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
 .dark .theme-aware-page [class*="text-[#28745f]"],
 .dark .theme-aware-page [class*="text-[#167158]"],
 .dark .theme-aware-page [class*="text-[#0f765a]"] {

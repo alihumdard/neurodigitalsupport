@@ -443,7 +443,7 @@ const ConsultancyTrainingPage = () => {
         <section className="bg-white py-20 sm:py-28">
           <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-10">
             <SectionHeading chip="How We Help" title="Three ways" accent="we can help" />
-            <div className="mt-14 grid gap-5 rounded-[2rem] bg-[#f4fbf8] p-5 shadow-[0_22px_70px_rgba(15,50,40,0.055)] sm:p-6 md:grid-cols-3">
+            <div className="mt-14 grid gap-5 rounded-[2rem] bg-[#f4fbf8] p-5 dark:bg-white/5 shadow-[0_22px_70px_rgba(15,50,40,0.055)] sm:p-6 md:grid-cols-3">
               {services.map(({ title, text, icon: Icon }) => (
                 <article key={title} className="rounded-[1.5rem] bg-white p-8 shadow-[0_16px_44px_rgba(15,50,40,0.045)]">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf5f0] dark:bg-emerald-950/70 text-[#2f8066]">
@@ -472,8 +472,8 @@ const ConsultancyTrainingPage = () => {
                 <article key={area.title} className={`rounded-[1.6rem] border border-[#e0eee8] bg-white p-8 shadow-[0_18px_54px_rgba(15,50,40,0.045)] ${index === consultancyAreas.length - 1 ? 'md:col-span-2' : ''}`}>
                   <h3 className="text-lg font-extrabold tracking-tight text-[#082f27]">{area.title}</h3>
                   <p className="mt-3 text-sm font-medium leading-relaxed text-[#536862]">{area.text}</p>
-                  <p className="mt-5 rounded-2xl bg-[#f4fbf8] p-4 text-sm font-medium leading-relaxed text-[#31544c]">
-                    <strong className="font-extrabold text-[#17483b]">Possible outputs: </strong>
+                  <p className="mt-5 rounded-2xl bg-[#f4fbf8] p-4 text-sm font-medium leading-relaxed text-[#31544c] dark:bg-emerald-950/40">
+                    <strong className="font-extrabold text-[#17483b] dark:text-emerald-300">Possible outputs: </strong>
                     {area.outputs}
                   </p>
                 </article>
@@ -518,17 +518,17 @@ const ConsultancyTrainingPage = () => {
                   </AccordionTrigger>
                   <AccordionContent className="pb-6 sm:pl-14">
                     <p className="text-sm font-semibold leading-relaxed text-[#31544c]">{module.intro}</p>
-                    <dl className="mt-4 space-y-3 text-sm leading-relaxed text-[#536862]">
+                    <dl className="mt-4 space-y-3 text-sm leading-relaxed text-[#536862] dark:text-slate-200">
                       <div>
-                        <dt className="font-extrabold text-[#17483b]">Topics</dt>
+                        <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Topics</dt>
                         <dd className="mt-1 font-medium">{module.topics}</dd>
                       </div>
                       <div>
-                        <dt className="font-extrabold text-[#17483b]">Practical activity</dt>
+                        <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Practical activity</dt>
                         <dd className="mt-1 font-medium">{module.activity}</dd>
                       </div>
                       <div>
-                        <dt className="font-extrabold text-[#17483b]">Learning outcome</dt>
+                        <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Learning outcome</dt>
                         <dd className="mt-1 font-medium">{module.outcome}</dd>
                       </div>
                     </dl>
@@ -688,7 +688,7 @@ const ConsultancyTrainingPage = () => {
                   <AccordionTrigger className="py-5 text-left text-base font-extrabold text-[#082f27] hover:no-underline">
                     {faq.q}
                   </AccordionTrigger>
-                  <AccordionContent className="pb-5 text-sm font-medium leading-relaxed text-[#536862]">{faq.a}</AccordionContent>
+                  <AccordionContent className="pb-5 text-sm font-medium leading-relaxed text-[#536862] dark:text-slate-200">{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>

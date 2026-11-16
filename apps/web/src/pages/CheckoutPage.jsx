@@ -93,9 +93,9 @@ const CheckoutPage = () => {
                   Thank you, we will email you when the store opens.
                 </p>
               ) : (
-                <form onSubmit={notifyMe} className="flex w-full flex-col gap-2 sm:flex-row lg:max-w-md" noValidate>
+                <form onSubmit={notifyMe} className="theme-transparent flex w-full flex-col gap-2 sm:flex-row lg:max-w-md" noValidate>
                   <label htmlFor="notify-email" className="sr-only">Email address</label>
-                  <input id="notify-email" type="email" autoComplete="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className="h-12 flex-1 rounded-xl border border-[#e8d6ae] bg-white px-4 text-sm font-medium text-[#102f28] outline-none focus-visible:ring-2 focus-visible:ring-[#167158]" />
+                  <input id="notify-email" type="email" autoComplete="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className="h-12 w-full rounded-xl border border-[#e8d6ae] sm:flex-1 bg-white px-4 text-sm font-medium text-[#102f28] outline-none focus-visible:ring-2 focus-visible:ring-[#167158]" />
                   <button type="submit" disabled={sending} className="h-12 rounded-xl bg-[#167158] px-5 text-sm font-extrabold text-white transition hover:bg-[#0f5c47] disabled:opacity-70">
                     {sending ? 'Saving…' : 'Notify me'}
                   </button>
