@@ -390,7 +390,7 @@ const ConsultancyTrainingPage = () => {
         {/* Hero */}
         <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7fffb_38%,#dff6ed_100%)]">
           <div className="pointer-events-none absolute left-1/2 top-10 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/30 blur-3xl dark:bg-emerald-500/10" aria-hidden="true" data-focus-distraction />
-          <div className="relative mx-auto grid max-w-[1220px] items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:py-16">
+          <div className="relative mx-auto grid max-w-[1220px] items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pb-12 lg:pt-14">
             <div className="text-center lg:text-left">
               <Chip>Services</Chip>
               <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-[#082f27] sm:text-5xl">
@@ -411,7 +411,7 @@ const ConsultancyTrainingPage = () => {
                 </a>
               </div>
             </div>
-            <Photo name="training-hero" eager alt="Adults sharing ideas with a facilitator in a calm learning studio. AI-generated illustrative image." />
+            <Photo name="training-hero" eager className="lg:aspect-[4/3] lg:object-[90%_50%]" alt="Adults sharing ideas with a facilitator in a calm learning studio. AI-generated illustrative image." />
           </div>
         </section>
 
