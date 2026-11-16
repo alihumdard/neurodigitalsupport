@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -213,57 +213,71 @@ const EMPTY_FORM = {
 
 // Shared visual pieces, matching the existing product and content pages.
 const Chip = ({ children }) => (
-  <span className="inline-flex rounded-full bg-[#eaf5f0] dark:bg-emerald-950/70 px-4 py-2 text-sm font-extrabold text-[#2f8066]">{children}</span>
+  <span className="inline-flex rounded-full bg-[#eaf5f0] px-4 py-1.5 text-sm font-extrabold text-[#2f8066] dark:bg-emerald-950/70">{children}</span>
 );
 
-const SectionHeading = ({ chip, title, accent, children, center = true }) => (
+const SectionHeading = ({ chip, title, accent, children, center = true, as: Tag = 'h2' }) => (
   <div className={center ? 'mx-auto max-w-3xl text-center' : 'max-w-2xl'}>
     {chip && <Chip>{chip}</Chip>}
-    <h2 className="mt-6 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl lg:text-[2.75rem]">
+    <Tag className="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl">
       {title}
       {accent && (
         <>
-          <br />
+          {' '}
           <span className="text-[#2f8066]">{accent}</span>
         </>
       )}
-    </h2>
+    </Tag>
     {children && (
-      <p className={`mt-5 text-base font-semibold leading-relaxed text-[#536862] sm:text-lg ${center ? 'mx-auto max-w-2xl' : 'max-w-xl'}`}>
+      <p className={`mt-4 text-base font-semibold leading-relaxed text-[#536862] ${center ? 'mx-auto max-w-2xl' : 'max-w-xl'}`}>
         {children}
       </p>
     )}
   </div>
 );
 
+// Section rhythm used across the page: one width, one vertical spacing.
+const Section = ({ id, tone = 'white', className = '', children, ...rest }) => (
+  <section
+    id={id}
+    className={`${id ? 'scroll-mt-24 ' : ''}${tone === 'mint' ? 'bg-[#f7fffb]' : 'bg-white'} py-14 lg:py-20 ${className}`}
+    {...rest}
+  >
+    <div className="mx-auto max-w-[1220px] px-5 sm:px-8 lg:px-10">{children}</div>
+  </section>
+);
+
 const buttonBase =
-  'inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-extrabold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2';
-const primaryButton = `${buttonBase} bg-[#4aa384] text-white shadow-[0_18px_42px_rgba(29,118,88,0.24)] hover:-translate-y-0.5 hover:bg-[#3f9275]`;
+  'inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-extrabold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2';
+const primaryButton = `${buttonBase} bg-[#4aa384] text-white shadow-[0_18px_42px_rgba(29,118,88,0.22)] hover:-translate-y-0.5 hover:bg-[#3f9275]`;
 const outlineButton = `${buttonBase} border border-[#b7dcca] bg-white/80 text-[#17483b] hover:-translate-y-0.5 hover:border-[#8bc7ad] hover:bg-white`;
 
-const Photo = ({ name, alt, className = '', eager = false }) => (
+const cardClass = 'rounded-[1.25rem] border border-[#e0eee8] bg-white shadow-[0_14px_40px_rgba(15,50,40,0.045)]';
+const iconTile = 'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eaf5f0] text-[#2f8066] dark:bg-emerald-950/70';
+
+const Photo = ({ name, alt, className = '', eager = false, sizes = '(min-width: 1024px) 560px, 100vw' }) => (
   <img
     src={`/images/training/${name}-1600.webp`}
     srcSet={`/images/training/${name}-800.webp 800w, /images/training/${name}-1600.webp 1600w`}
-    sizes="(min-width: 1024px) 560px, 100vw"
+    sizes={sizes}
     width="1600"
     height="900"
     alt={alt}
     loading={eager ? 'eager' : 'lazy'}
     decoding="async"
-    className={`aspect-[16/9] w-full rounded-[1.75rem] object-cover shadow-[0_28px_80px_rgba(15,61,50,0.14)] ${className}`}
+    className={`aspect-[16/9] w-full rounded-[1.5rem] object-cover shadow-[0_24px_64px_rgba(15,61,50,0.13)] ${className}`}
   />
 );
 
 const inputClass =
-  'h-12 w-full rounded-xl border border-[#d2e7df] bg-white px-4 text-sm font-medium text-[#102f28] outline-none transition focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2 aria-[invalid=true]:border-red-500';
-const labelClass = 'mb-2 block text-sm font-bold text-[#17483b]';
+  'h-11 w-full rounded-xl border border-[#d2e7df] bg-white px-4 text-sm font-medium text-[#102f28] outline-none transition focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2 aria-[invalid=true]:border-red-500';
+const labelClass = 'mb-1.5 block text-sm font-bold text-[#17483b]';
 
 const Field = ({ id, label, required, error, hint, children }) => (
   <div>
     <label htmlFor={id} className={labelClass}>
       {label}
-      {required ? <span className="text-red-600" aria-hidden="true"> *</span> : <span className="font-medium text-[#6b817a]"> (optional)</span>}
+      {required && <span className="text-red-600" aria-hidden="true"> *</span>}
     </label>
     {children}
     {hint && !error && <p id={`${id}-hint`} className="mt-1.5 text-xs font-medium text-[#6b817a]">{hint}</p>}
@@ -277,7 +291,6 @@ const Field = ({ id, label, required, error, hint, children }) => (
 
 const ConsultancyTrainingPage = () => {
   const navigate = useNavigate();
-  const formRef = useRef(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -298,8 +311,7 @@ const ConsultancyTrainingPage = () => {
   const goToEnquiry = (service) => (event) => {
     event.preventDefault();
     if (service) setForm((current) => ({ ...current, service }));
-    const target = document.getElementById('enquiry');
-    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     window.setTimeout(() => document.getElementById('enquiry-name')?.focus({ preventScroll: true }), 450);
   };
 
@@ -359,8 +371,7 @@ const ConsultancyTrainingPage = () => {
     }
   };
 
-  const describedBy = (id, hasHint = false) =>
-    [errors[id.replace('enquiry-', '')] ? `${id}-error` : null, hasHint ? `${id}-hint` : null].filter(Boolean).join(' ') || undefined;
+  const describedBy = (id) => (errors[id.replace('enquiry-', '')] ? `${id}-error` : undefined);
 
   return (
     <>
@@ -378,20 +389,20 @@ const ConsultancyTrainingPage = () => {
       <main className="theme-aware-page min-h-screen overflow-hidden bg-[#f8fffb] text-[#10231d]">
         {/* Hero */}
         <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7fffb_38%,#dff6ed_100%)]">
-          <div className="pointer-events-none absolute left-1/2 top-16 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/30 blur-3xl" aria-hidden="true" data-focus-distraction />
-          <div className="relative mx-auto grid max-w-[1220px] items-center gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1fr_0.95fr] lg:px-10 lg:py-24">
+          <div className="pointer-events-none absolute left-1/2 top-10 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/30 blur-3xl dark:bg-emerald-500/10" aria-hidden="true" data-focus-distraction />
+          <div className="relative mx-auto grid max-w-[1220px] items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:py-16">
             <div className="text-center lg:text-left">
               <Chip>Services</Chip>
-              <h1 className="mt-7 text-4xl font-extrabold leading-[1.1] tracking-tight text-[#082f27] sm:text-5xl">
+              <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-[#082f27] sm:text-5xl">
                 Consultancy, Training <span className="text-[#2f8066]">and Workshops</span>
               </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-xl font-extrabold leading-snug text-[#17483b] sm:text-2xl lg:mx-0">
+              <p className="mx-auto mt-5 max-w-2xl text-xl font-extrabold leading-snug text-[#17483b] lg:mx-0">
                 Build digital environments where more people can participate
               </p>
-              <p className="mx-auto mt-5 max-w-2xl text-base font-semibold leading-relaxed text-[#314b41] sm:text-lg lg:mx-0">
+              <p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-relaxed text-[#314b41] sm:text-lg lg:mx-0">
                 Practical support for organisations that want to make technology, communication and services more inclusive of autistic and neurodivergent adults.
               </p>
-              <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
                 <a href="#enquiry" onClick={goToEnquiry()} className={primaryButton}>
                   Discuss Your Needs <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </a>
@@ -404,341 +415,324 @@ const ConsultancyTrainingPage = () => {
           </div>
         </section>
 
-        {/* Intro */}
-        <section className="bg-white py-20 sm:py-24">
-          <div className="mx-auto max-w-[900px] px-5 text-center sm:px-8">
-            <p className="mx-auto text-lg font-semibold leading-relaxed text-[#314b41]">
-              NeuroDigital Support helps your team understand sensory needs, remove barriers to digital participation and put inclusion into everyday practice. Through tailored consultancy, structured training and interactive workshops, we turn awareness into actions you can apply across your workplace, learning environment, care service or community.
-            </p>
-            <p className="mx-auto mt-5 text-base font-medium leading-relaxed text-[#536862]">
-              Whether you are reviewing an online service, supporting digital wellbeing, developing an advocacy campaign or strengthening staff confidence, we work with you to identify what needs to change and how to move forward.
-            </p>
-            <p className="mx-auto mt-8 text-xl font-extrabold tracking-tight text-[#2f8066] sm:text-2xl">
-              Changing Digital Environments, Changing Outcomes.
-            </p>
+        {/* Intro + three ways we can help */}
+        <Section>
+          <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+            <div>
+              <Chip>How We Help</Chip>
+              <h2 className="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl">
+                Changing digital environments, <span className="text-[#2f8066]">changing outcomes.</span>
+              </h2>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-[#314b41]">
+                NeuroDigital Support helps your team understand sensory needs, remove barriers to digital participation and put inclusion into everyday practice. Through tailored consultancy, structured training and interactive workshops, we turn awareness into actions you can apply across your workplace, learning environment, care service or community.
+              </p>
+              <p className="mt-4 text-sm font-medium leading-relaxed text-[#536862]">
+                Whether you are reviewing an online service, supporting digital wellbeing, developing an advocacy campaign or strengthening staff confidence, we work with you to identify what needs to change and how to move forward.
+              </p>
+            </div>
+            <div className="grid gap-4">
+              {services.map(({ title, text, icon: Icon }) => (
+                <article key={title} className={`${cardClass} flex gap-4 p-5`}>
+                  <span className={iconTile}>
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-extrabold tracking-tight text-[#082f27]">{title}</h3>
+                    <p className="mt-1.5 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-        </section>
+        </Section>
 
         {/* Who we support */}
-        <section className="bg-[#f7fffb] py-20 sm:py-28">
-          <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-10">
-            <SectionHeading chip="Who We Support" title="Who we support">
-              Our services are designed for organisations and people shaping the digital experiences of autistic and neurodivergent adults.
-            </SectionHeading>
-            <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {audiences.map(({ title, text, icon: Icon }) => (
-                <li key={title} className="rounded-[1.5rem] border border-[#e0eee8] bg-white p-7 lg:last:col-start-2 shadow-[0_18px_54px_rgba(15,50,40,0.045)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_72px_rgba(15,50,40,0.08)]">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf5f0] dark:bg-emerald-950/70 text-[#2f8066]">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <h3 className="mt-6 text-base font-extrabold tracking-tight text-[#082f27]">{title}</h3>
-                  <p className="mt-3 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* Three ways */}
-        <section className="bg-white py-20 sm:py-28">
-          <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-10">
-            <SectionHeading chip="How We Help" title="Three ways" accent="we can help" />
-            <div className="mt-14 grid gap-5 rounded-[2rem] bg-[#f4fbf8] p-5 dark:bg-white/5 shadow-[0_22px_70px_rgba(15,50,40,0.055)] sm:p-6 md:grid-cols-3">
-              {services.map(({ title, text, icon: Icon }) => (
-                <article key={title} className="rounded-[1.5rem] bg-white p-8 shadow-[0_16px_44px_rgba(15,50,40,0.045)]">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf5f0] dark:bg-emerald-950/70 text-[#2f8066]">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <h3 className="mt-6 text-xl font-extrabold tracking-tight text-[#17483b]">{title}</h3>
-                  <p className="mt-3 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Section tone="mint">
+          <SectionHeading chip="Who We Support" title="Who we support">
+            Our services are designed for organisations and people shaping the digital experiences of autistic and neurodivergent adults.
+          </SectionHeading>
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {audiences.map(({ title, text, icon: Icon }) => (
+              <li key={title} className={`${cardClass} p-5`}>
+                <span className={iconTile}>
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 text-base font-extrabold leading-snug tracking-tight text-[#082f27]">{title}</h3>
+                <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
+              </li>
+            ))}
+            <li className="flex flex-col justify-center rounded-[1.25rem] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-5 dark:bg-none">
+              <p className="text-base font-extrabold tracking-tight text-[#082f27]">Your organisation not listed?</p>
+              <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">We work with any team shaping digital experiences for neurodivergent adults.</p>
+              <a href="#enquiry" onClick={goToEnquiry()} className="mt-4 inline-flex items-center gap-1.5 text-sm font-extrabold text-[#167158] hover:underline">
+                Talk to us <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </li>
+          </ul>
+        </Section>
 
         {/* Consultancy */}
-        <section id="consultancy" className="scroll-mt-24 bg-[#f7fffb] py-20 sm:py-28">
-          <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
-              <SectionHeading chip="Consultancy" title="Consultancy shaped" accent="around your organisation" center={false}>
-                We connect inclusion goals with practical decisions about your services, communications, technology and support.
-              </SectionHeading>
-              <Photo name="consultancy" alt="A consultant and two participants reviewing a digital service journey. AI-generated illustrative image." />
-            </div>
+        <Section id="consultancy">
+          <div className="grid items-center gap-8 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
+            <SectionHeading chip="Consultancy" title="Consultancy shaped" accent="around your organisation" center={false}>
+              We connect inclusion goals with practical decisions about your services, communications, technology and support.
+            </SectionHeading>
+            <Photo name="consultancy" alt="A consultant and two participants reviewing a digital service journey. AI-generated illustrative image." />
+          </div>
 
-            <div className="mt-14 grid gap-5 md:grid-cols-2">
-              {consultancyAreas.map((area, index) => (
-                <article key={area.title} className={`rounded-[1.6rem] border border-[#e0eee8] bg-white p-8 shadow-[0_18px_54px_rgba(15,50,40,0.045)] ${index === consultancyAreas.length - 1 ? 'md:col-span-2' : ''}`}>
-                  <h3 className="text-lg font-extrabold tracking-tight text-[#082f27]">{area.title}</h3>
-                  <p className="mt-3 text-sm font-medium leading-relaxed text-[#536862]">{area.text}</p>
-                  <p className="mt-5 rounded-2xl bg-[#f4fbf8] p-4 text-sm font-medium leading-relaxed text-[#31544c] dark:bg-emerald-950/40">
-                    <strong className="font-extrabold text-[#17483b] dark:text-emerald-300">Possible outputs: </strong>
-                    {area.outputs}
-                  </p>
-                </article>
-              ))}
-            </div>
-
-            <div className="mt-10 text-center">
-              <a href="#enquiry" onClick={goToEnquiry('Consultancy')} className={primaryButton}>
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {consultancyAreas.map((area) => (
+              <article key={area.title} className={`${cardClass} flex flex-col p-6`}>
+                <h3 className="text-base font-extrabold tracking-tight text-[#082f27]">{area.title}</h3>
+                <p className="mt-2 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{area.text}</p>
+                <p className="mt-4 rounded-xl bg-[#f4fbf8] p-3.5 text-sm font-medium leading-relaxed text-[#31544c] dark:bg-emerald-950/40">
+                  <strong className="font-extrabold text-[#17483b] dark:text-emerald-300">Possible outputs: </strong>
+                  {area.outputs}
+                </p>
+              </article>
+            ))}
+            <div className="flex flex-col items-start justify-center rounded-[1.25rem] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-6 dark:bg-none">
+              <p className="text-lg font-extrabold tracking-tight text-[#082f27]">Not sure where to start?</p>
+              <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">Tell us about your challenge and we will suggest the right approach.</p>
+              <a href="#enquiry" onClick={goToEnquiry('Consultancy')} className={`${primaryButton} mt-5`}>
                 Enquire About Consultancy <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
           </div>
-        </section>
+        </Section>
 
-        {/* Training modules */}
-        <section id="training-modules" className="scroll-mt-24 bg-white py-20 sm:py-28">
-          <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
+        {/* Training modules: heading + photo on the left, modules on the right */}
+        <Section id="training-modules" tone="mint">
+          <div className="grid items-start gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+            <div className="lg:sticky lg:top-24">
               <SectionHeading chip="Training" title="Explore our" accent="training modules" center={false}>
                 Build a programme around your priorities. Modules can introduce a subject, deepen existing knowledge or support a specific organisational project. Each module combines clear explanations, practical examples and opportunities to apply learning.
               </SectionHeading>
-              <Photo name="digital-wellbeing" alt="An adult exploring a smartphone with support from a digital inclusion facilitator. AI-generated illustrative image." />
+              <Photo name="digital-wellbeing" className="mt-7" sizes="(min-width: 1024px) 440px, 100vw" alt="An adult exploring a smartphone with support from a digital inclusion facilitator. AI-generated illustrative image." />
+              <a href="#enquiry" onClick={goToEnquiry('Training')} className={`${primaryButton} mt-7`}>
+                Build Your Training Programme <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
             </div>
 
-            <Accordion type="multiple" className="mx-auto mt-14 max-w-4xl space-y-4">
+            <Accordion type="multiple" className="space-y-3">
               {modules.map((module, index) => (
                 <AccordionItem
                   key={module.title}
                   value={`module-${index + 1}`}
-                  className="theme-surface rounded-[1.4rem] border border-[#e0eee8] bg-[#fbfffd] px-6 shadow-[0_12px_36px_rgba(15,50,40,0.04)]"
+                  className="theme-surface rounded-[1.1rem] border border-[#e0eee8] bg-white px-5 shadow-[0_10px_30px_rgba(15,50,40,0.04)]"
                 >
-                  <AccordionTrigger className="gap-4 py-5 text-left hover:no-underline">
-                    <span className="flex items-center gap-4">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eaf5f0] dark:bg-emerald-950/70 text-sm font-extrabold text-[#2f8066]" aria-hidden="true">
+                  <AccordionTrigger className="gap-4 py-4 text-left hover:no-underline">
+                    <span className="flex items-center gap-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#eaf5f0] text-sm font-extrabold text-[#2f8066] dark:bg-emerald-950/70" aria-hidden="true">
                         {index + 1}
                       </span>
-                      <span className="text-base font-extrabold tracking-tight text-[#082f27] sm:text-lg">
+                      <span className="text-base font-extrabold tracking-tight text-[#082f27]">
                         <span className="sr-only">Module {index + 1}: </span>
                         {module.title}
                       </span>
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-6 sm:pl-14">
+                  <AccordionContent className="pb-5 sm:pl-[3.1rem]">
                     <p className="text-sm font-semibold leading-relaxed text-[#31544c]">{module.intro}</p>
-                    <dl className="mt-4 space-y-3 text-sm leading-relaxed text-[#536862] dark:text-slate-200">
+                    <dl className="mt-3 space-y-2.5 text-sm leading-relaxed text-[#536862] dark:text-slate-200">
                       <div>
                         <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Topics</dt>
-                        <dd className="mt-1 font-medium">{module.topics}</dd>
+                        <dd className="mt-0.5 font-medium">{module.topics}</dd>
                       </div>
                       <div>
                         <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Practical activity</dt>
-                        <dd className="mt-1 font-medium">{module.activity}</dd>
+                        <dd className="mt-0.5 font-medium">{module.activity}</dd>
                       </div>
                       <div>
                         <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Learning outcome</dt>
-                        <dd className="mt-1 font-medium">{module.outcome}</dd>
+                        <dd className="mt-0.5 font-medium">{module.outcome}</dd>
                       </div>
                     </dl>
                   </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
-
-            <div className="mt-10 text-center">
-              <a href="#enquiry" onClick={goToEnquiry('Training')} className={primaryButton}>
-                Build Your Training Programme <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
           </div>
-        </section>
+        </Section>
 
         {/* Workshops */}
-        <section id="workshops" className="scroll-mt-24 bg-[#f7fffb] py-20 sm:py-28">
-          <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
+        <Section id="workshops">
+          <div className="grid items-center gap-8 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
+            <div>
               <SectionHeading chip="Workshops" title="Workshops that turn" accent="learning into action" center={false}>
-                Bring a real challenge to a facilitated session and work towards a practical response.
+                Bring a real challenge to a facilitated session and work towards a practical response. Activities and outputs are agreed around your goals, participants and available time. Participation in personal disclosure or sensory demonstrations is never required.
               </SectionHeading>
-              <Photo name="workshops" alt="Adults contributing to an inclusive small-group workshop. AI-generated illustrative image." />
-            </div>
-
-            <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {workshops.map(({ title, text }) => (
-                <li key={title} className="rounded-[1.5rem] border border-[#e0eee8] bg-white p-6 shadow-[0_18px_54px_rgba(15,50,40,0.045)]">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#eaf5f0] dark:bg-emerald-950/70 text-[#2f8066]">
-                    <Lightbulb className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <h3 className="mt-5 text-base font-extrabold tracking-tight text-[#082f27]">{title}</h3>
-                  <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
-                </li>
-              ))}
-            </ul>
-
-            <p className="mx-auto mt-10 max-w-3xl text-center text-sm font-semibold leading-relaxed text-[#31544c]">
-              Activities and outputs are agreed around your goals, participants and available time. Participation in personal disclosure or sensory demonstrations is never required.
-            </p>
-
-            <div className="mt-8 text-center">
-              <a href="#enquiry" onClick={goToEnquiry('Workshop')} className={primaryButton}>
+              <a href="#enquiry" onClick={goToEnquiry('Workshop')} className={`${primaryButton} mt-7`}>
                 Plan a Workshop <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
+            <Photo name="workshops" alt="Adults contributing to an inclusive small-group workshop. AI-generated illustrative image." />
           </div>
-        </section>
+
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {workshops.map(({ title, text }) => (
+              <li key={title} className={`${cardClass} p-5`}>
+                <span className={iconTile}>
+                  <Lightbulb className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 text-base font-extrabold leading-snug tracking-tight text-[#082f27]">{title}</h3>
+                <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
+              </li>
+            ))}
+          </ul>
+        </Section>
 
         {/* Ecosystem */}
-        <section className="bg-white py-20 sm:py-28">
-          <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-10">
-            <SectionHeading chip="Our Ecosystem" title="Learning connected to" accent="our digital ecosystem">
-              Our services connect the principles of inclusion with tools designed around sensory needs, wellbeing, research and human connection.
-            </SectionHeading>
-            <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {ecosystem.map((item) => (
-                <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    className="group flex h-full flex-col rounded-[1.4rem] border border-[#e0eee8] bg-[#fbfffd] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#bfe1d5] hover:shadow-[0_22px_60px_rgba(15,50,40,0.07)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2"
-                  >
-                    <span className="text-base font-extrabold tracking-tight text-[#082f27]">{item.name}</span>
-                    <span className="mt-2 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{item.text}</span>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-[#167158]">
-                      Explore {item.name}
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <p className="mx-auto mt-10 max-w-3xl text-center text-sm font-medium leading-relaxed text-[#536862]">
-              Relevant demonstrations can be included in the agreed programme. Any product access, subscriptions or licences required for ongoing use will be set out separately in your proposal.
-            </p>
-          </div>
-        </section>
+        <Section tone="mint">
+          <SectionHeading chip="Our Ecosystem" title="Learning connected to" accent="our digital ecosystem">
+            Our services connect the principles of inclusion with tools designed around sensory needs, wellbeing, research and human connection.
+          </SectionHeading>
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {ecosystem.map((item) => (
+              <li key={item.path}>
+                <Link
+                  to={item.path}
+                  className={`${cardClass} group flex h-full flex-col p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#bfe1d5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2`}
+                >
+                  <span className="text-base font-extrabold tracking-tight text-[#082f27]">{item.name}</span>
+                  <span className="mt-1.5 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{item.text}</span>
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-[#167158]">
+                    Explore
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+            <li className="flex items-center rounded-[1.25rem] border border-dashed border-[#cfe5dc] p-5 text-sm font-medium leading-relaxed text-[#536862]">
+              Relevant demonstrations can be included in the agreed programme. Any product access, subscriptions or licences for ongoing use are set out separately in your proposal.
+            </li>
+          </ul>
+        </Section>
 
-        {/* Delivery + accessibility */}
-        <section className="bg-[#f7fffb] py-20 sm:py-28">
-          <div className="mx-auto grid max-w-[1160px] gap-6 px-5 sm:px-8 lg:grid-cols-2 lg:px-10">
-            <article className="rounded-[1.75rem] border border-[#e0eee8] bg-white p-8 shadow-[0_18px_54px_rgba(15,50,40,0.045)] sm:p-10">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf5f0] dark:bg-emerald-950/70 text-[#2f8066]">
-                <Route className="h-5 w-5" aria-hidden="true" />
+        {/* Delivery, accessibility and how we work */}
+        <Section>
+          <div className="grid gap-4 lg:grid-cols-2">
+            <article className={`${cardClass} p-6`}>
+              <div className="flex items-center gap-3">
+                <span className={iconTile}>
+                  <Route className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h2 className="text-xl font-extrabold tracking-tight text-[#082f27]">Flexible delivery with accessibility in mind</h2>
               </div>
-              <h2 className="mt-6 text-2xl font-extrabold tracking-tight text-[#082f27]">Flexible delivery with accessibility in mind</h2>
               <p className="mt-4 text-sm font-medium leading-relaxed text-[#536862]">
                 Discuss live online sessions, in-person workshops or a blended programme with us. Delivery can range from a focused introductory session to a half-day workshop, full-day programme or a series of sessions that gives your team time to apply learning between meetings.
               </p>
             </article>
-            <article className="rounded-[1.75rem] border border-[#e0eee8] bg-white p-8 shadow-[0_18px_54px_rgba(15,50,40,0.045)] sm:p-10">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eaf5f0] dark:bg-emerald-950/70 text-[#2f8066]">
-                <MessagesSquare className="h-5 w-5" aria-hidden="true" />
+            <article className={`${cardClass} p-6`}>
+              <div className="flex items-center gap-3">
+                <span className={iconTile}>
+                  <MessagesSquare className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h3 className="text-xl font-extrabold tracking-tight text-[#082f27]">Planned around your group</h3>
               </div>
-              <h3 className="mt-6 text-2xl font-extrabold tracking-tight text-[#082f27]">Planned around your group</h3>
               <p className="mt-4 text-sm font-medium leading-relaxed text-[#536862]">
                 Tell us about access requirements when enquiring so we can agree appropriate arrangements. These may include advance agendas, clear written instructions, planned breaks, reduced visual clutter, captions and different ways to contribute. Online participation can include speaking, using chat or listening with the camera off.
               </p>
-              <p className="mt-4 text-sm font-semibold leading-relaxed text-[#31544c]">
-                We respect different communication preferences. Participants do not need to disclose a diagnosis or share personal experiences to take part.
+              <p className="mt-3 text-sm font-semibold leading-relaxed text-[#31544c]">
+                Participants do not need to disclose a diagnosis or share personal experiences to take part.
               </p>
             </article>
           </div>
-        </section>
 
-        {/* How we work */}
-        <section className="bg-white py-20 sm:py-28">
-          <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-10">
+          <div className="mt-14 lg:mt-16">
             <SectionHeading chip="Our Process" title="How we work" accent="with you" />
-            <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {steps.map((step, index) => (
-                <li key={step.title} className="rounded-[1.5rem] border border-[#e0eee8] bg-[#fbfffd] p-7">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#4aa384] text-base font-extrabold text-white" aria-hidden="true">
+                <li key={step.title} className="rounded-[1.25rem] border border-[#e0eee8] bg-[#fbfffd] p-5">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#4aa384] text-sm font-extrabold text-white" aria-hidden="true">
                     {index + 1}
                   </span>
-                  <h3 className="mt-5 text-base font-extrabold tracking-tight text-[#082f27]">
+                  <h3 className="mt-4 text-base font-extrabold tracking-tight text-[#082f27]">
                     <span className="sr-only">Step {index + 1}: </span>
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">{step.text}</p>
+                  <p className="mt-1.5 text-sm font-medium leading-relaxed text-[#536862]">{step.text}</p>
                 </li>
               ))}
             </ol>
-            <p className="mx-auto mt-10 max-w-3xl text-center text-sm font-medium leading-relaxed text-[#536862]">
+            <p className="mx-auto mt-6 max-w-3xl text-center text-sm font-medium leading-relaxed text-[#536862]">
               Success measures are agreed around the work. These might include participants&apos; confidence, completion of an action plan, changes to selected digital materials or feedback from people using a service.
             </p>
           </div>
-        </section>
+        </Section>
 
-        {/* Why us */}
-        <section className="bg-[#f7fffb] py-20 sm:py-28">
-          <div className="mx-auto grid max-w-[1160px] items-start gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
-            <SectionHeading chip="Why Us" title="Why NeuroDigital" accent="Support" center={false} />
-            <div className="space-y-5 text-base font-medium leading-relaxed text-[#536862]">
-              <p>
-                Our focus is the relationship between neurodivergence, sensory needs and digital life. We connect awareness with practical choices about interfaces, communication, online communities and support systems.
-              </p>
-              <p>
-                Our approach brings together the principles behind our ecosystem: calm design, inclusion, evidence-informed learning, ethical technology and respect for individual choice. We encourage organisations to listen to the people affected by their decisions and to make improvements that can be reviewed and refined over time.
-              </p>
-              <p className="flex gap-3 rounded-2xl border border-[#e0eee8] bg-white p-5 font-semibold text-[#17483b]">
-                <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[#2f8066]" aria-hidden="true" />
-                The aim is straightforward: help your team understand barriers, make considered changes and support more meaningful participation.
-              </p>
+        {/* Why us + FAQ */}
+        <Section tone="mint">
+          <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+            <div>
+              <SectionHeading chip="Why Us" title="Why NeuroDigital" accent="Support" center={false} />
+              <div className="mt-5 space-y-4 text-sm font-medium leading-relaxed text-[#536862]">
+                <p>
+                  Our focus is the relationship between neurodivergence, sensory needs and digital life. We connect awareness with practical choices about interfaces, communication, online communities and support systems.
+                </p>
+                <p>
+                  Our approach brings together the principles behind our ecosystem: calm design, inclusion, evidence-informed learning, ethical technology and respect for individual choice. We encourage organisations to listen to the people affected by their decisions and to make improvements that can be reviewed and refined over time.
+                </p>
+                <p className={`${cardClass} flex gap-3 p-4 font-semibold text-[#17483b]`}>
+                  <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[#2f8066]" aria-hidden="true" />
+                  The aim is straightforward: help your team understand barriers, make considered changes and support more meaningful participation.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-extrabold tracking-tight text-[#082f27]">Frequently asked questions</h2>
+              <Accordion type="single" collapsible className="mt-5 space-y-3">
+                {faqs.map((faq, index) => (
+                  <AccordionItem key={faq.q} value={`faq-${index}`} className="theme-surface rounded-[1.1rem] border border-[#e0eee8] bg-white px-5">
+                    <AccordionTrigger className="py-4 text-left text-base font-extrabold text-[#082f27] hover:no-underline">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-4 text-sm font-medium leading-relaxed text-[#536862] dark:text-slate-200">{faq.a}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
-        </section>
+        </Section>
 
-        {/* FAQ */}
-        <section className="bg-white py-20 sm:py-28">
-          <div className="mx-auto max-w-[900px] px-5 sm:px-8">
-            <SectionHeading chip="FAQ" title="Frequently asked questions" />
-            <Accordion type="single" collapsible className="mt-12 space-y-4">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={faq.q} value={`faq-${index}`} className="theme-surface rounded-[1.25rem] border border-[#e0eee8] bg-[#fbfffd] px-6">
-                  <AccordionTrigger className="py-5 text-left text-base font-extrabold text-[#082f27] hover:no-underline">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-5 text-sm font-medium leading-relaxed text-[#536862] dark:text-slate-200">{faq.a}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="bg-[linear-gradient(135deg,#dff6ed_0%,#effbf7_52%,#ffffff_100%)] py-20 sm:py-24">
-          <div className="mx-auto flex max-w-[980px] flex-col items-center px-5 text-center sm:px-8">
-            <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-[#10231d] sm:text-4xl lg:text-5xl">
-              Let us help you take
-              <br />
-              <span className="text-[#2f8066]">the next step</span>
-            </h2>
-            <p className="mt-6 max-w-2xl text-lg font-semibold leading-relaxed text-[#536862]">
-              Tell us what your organisation wants to improve. We will help you shape a consultancy, training or workshop programme around your people, your digital environment and your goals.
-            </p>
-            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href="#enquiry" onClick={goToEnquiry()} className={primaryButton}>
-                Request a Tailored Proposal <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <a href="#enquiry" onClick={goToEnquiry('Training')} className={outlineButton}>
-                Ask About Training
+        {/* Call to action + enquiry form */}
+        <Section id="enquiry">
+          <div className="grid items-start gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+            <div className="lg:sticky lg:top-24">
+              <Chip>Enquiry</Chip>
+              <h2 className="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl">
+                Let us help you take <span className="text-[#2f8066]">the next step</span>
+              </h2>
+              <p className="mt-4 text-base font-semibold leading-relaxed text-[#536862]">
+                Tell us what your organisation wants to improve. We will help you shape a consultancy, training or workshop programme around your people, your digital environment and your goals.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm font-semibold text-[#31544c]">
+                <li className="flex items-center gap-3"><ClipboardCheck className="h-5 w-5 text-[#2f8066]" aria-hidden="true" /> A tailored proposal for your organisation</li>
+                <li className="flex items-center gap-3"><Building2 className="h-5 w-5 text-[#2f8066]" aria-hidden="true" /> Online, in person or blended across the UK</li>
+                <li className="flex items-center gap-3"><Megaphone className="h-5 w-5 text-[#2f8066]" aria-hidden="true" /> No personal disclosure required</li>
+              </ul>
+              <a href={`mailto:${EMAIL}`} className={`${cardClass} mt-7 inline-flex items-center gap-3 px-5 py-4 text-sm font-bold text-[#167158] hover:border-[#bfe1d5]`}>
+                <Mail className="h-5 w-5" aria-hidden="true" />
+                <span>
+                  <span className="block text-xs font-semibold text-[#6b817a]">Prefer email?</span>
+                  {EMAIL}
+                </span>
               </a>
             </div>
-            <a href={`mailto:${EMAIL}`} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#167158] underline-offset-4 hover:underline">
-              <Mail className="h-4 w-4" aria-hidden="true" /> {EMAIL}
-            </a>
-          </div>
-        </section>
-
-        {/* Enquiry form */}
-        <section id="enquiry" className="scroll-mt-24 bg-[#f7fffb] py-20 sm:py-28">
-          <div className="mx-auto max-w-[880px] px-5 sm:px-8">
-            <SectionHeading chip="Enquiry" title="Tell us about" accent="your needs">
-              Share a few details so we can understand your needs. Please do not include confidential service-user information or personal health records.
-            </SectionHeading>
 
             <form
-              ref={formRef}
               onSubmit={handleSubmit}
               noValidate
-              aria-describedby="enquiry-required-note"
-              className="mt-12 rounded-[1.75rem] border border-[#dbece5] bg-white p-6 shadow-[0_18px_60px_rgba(15,61,50,0.06)] sm:p-10"
+              aria-labelledby="enquiry-form-title"
+              className="rounded-[1.5rem] border border-[#dbece5] bg-white p-6 shadow-[0_18px_60px_rgba(15,61,50,0.06)] sm:p-8"
             >
-              <p id="enquiry-required-note" className="mb-6 text-xs font-semibold text-[#6b817a]">
-                Fields marked <span className="text-red-600">*</span> are required.
+              <h3 id="enquiry-form-title" className="text-xl font-extrabold tracking-tight text-[#082f27]">Tell us about your needs</h3>
+              <p className="mt-1.5 text-sm font-medium leading-relaxed text-[#536862]">
+                Please do not include confidential service-user information or personal health records. Fields marked <span className="text-red-600">*</span> are required.
               </p>
 
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div className="mt-6 grid gap-5 sm:grid-cols-2">
                 <Field id="enquiry-name" label="Name" required error={errors.name}>
                   <input id="enquiry-name" type="text" autoComplete="name" value={form.name} onChange={update('name')} className={inputClass} aria-required="true" aria-invalid={Boolean(errors.name)} aria-describedby={describedBy('enquiry-name')} />
                 </Field>
@@ -758,13 +752,13 @@ const ConsultancyTrainingPage = () => {
                 </Field>
               </div>
 
-              <fieldset className="mt-6 rounded-2xl border border-[#dbece5] bg-[#fbfffd] p-5">
+              <fieldset className="mt-5 rounded-xl border border-[#dbece5] bg-[#fbfffd] p-4">
                 <legend className="px-1 text-sm font-bold text-[#17483b]">
-                  Topics of interest <span className="font-medium text-[#6b817a]">(optional)</span>
+                  Topics of interest
                 </legend>
-                <div className="mt-2 grid gap-3 sm:grid-cols-2">
+                <div className="mt-1 grid gap-2.5 sm:grid-cols-2">
                   {modules.map((module) => (
-                    <label key={module.title} className="flex cursor-pointer items-start gap-3 text-sm font-medium leading-snug text-[#31544c]">
+                    <label key={module.title} className="flex cursor-pointer items-start gap-2.5 text-sm font-medium leading-snug text-[#31544c]">
                       <input
                         type="checkbox"
                         checked={form.topics.includes(module.title)}
@@ -777,8 +771,8 @@ const ConsultancyTrainingPage = () => {
                 </div>
               </fieldset>
 
-              <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <Field id="enquiry-audience" label="Intended audience and approximate participant numbers">
+              <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                <Field id="enquiry-audience" label="Audience and participant numbers">
                   <input id="enquiry-audience" type="text" value={form.audience} onChange={update('audience')} placeholder="e.g. 20 support workers" className={inputClass} />
                 </Field>
                 <Field id="enquiry-format" label="Preferred delivery format">
@@ -795,17 +789,14 @@ const ConsultancyTrainingPage = () => {
                 <Field id="enquiry-location" label="Location, if in person">
                   <input id="enquiry-location" type="text" value={form.location} onChange={update('location')} className={inputClass} />
                 </Field>
-              </div>
-
-              <div className="mt-6 grid gap-6">
                 <Field id="enquiry-goals" label="What would you like to achieve?">
-                  <textarea id="enquiry-goals" rows={4} value={form.goals} onChange={update('goals')} className={`${inputClass} h-auto min-h-28 py-3`} />
+                  <textarea id="enquiry-goals" rows={3} value={form.goals} onChange={update('goals')} className={`${inputClass} h-auto min-h-24 py-2.5`} />
                 </Field>
-                <Field id="enquiry-access" label="Accessibility arrangements to discuss" hint="For example captions, planned breaks or advance agendas." >
-                  <textarea id="enquiry-access" rows={3} value={form.access} onChange={update('access')} aria-describedby="enquiry-access-hint" className={`${inputClass} h-auto min-h-24 py-3`} />
+                <Field id="enquiry-access" label="Accessibility arrangements" hint="For example captions, planned breaks or advance agendas.">
+                  <textarea id="enquiry-access" rows={3} value={form.access} onChange={update('access')} aria-describedby="enquiry-access-hint" className={`${inputClass} h-auto min-h-24 py-2.5`} />
                 </Field>
                 <Field id="enquiry-budget" label="Budget range">
-                  <select id="enquiry-budget" value={form.budget} onChange={update('budget')} className={`${inputClass} sm:max-w-xs`}>
+                  <select id="enquiry-budget" value={form.budget} onChange={update('budget')} className={inputClass}>
                     <option value="">Choose a range</option>
                     {BUDGET_OPTIONS.map((option) => (
                       <option key={option} value={option}>{option}</option>
@@ -814,8 +805,8 @@ const ConsultancyTrainingPage = () => {
                 </Field>
               </div>
 
-              <div className="mt-6">
-                <label htmlFor="enquiry-consent" className="flex items-start gap-3 rounded-2xl border border-[#dbece5] bg-white p-4 text-sm font-medium leading-relaxed text-[#405b54]">
+              <div className="mt-5">
+                <label htmlFor="enquiry-consent" className="flex items-start gap-3 rounded-xl border border-[#dbece5] bg-white p-3.5 text-sm font-medium leading-relaxed text-[#405b54]">
                   <input
                     id="enquiry-consent"
                     type="checkbox"
@@ -835,25 +826,13 @@ const ConsultancyTrainingPage = () => {
                 {errors.consent && <p id="enquiry-consent-error" className="mt-1.5 text-xs font-bold text-red-600">{errors.consent}</p>}
               </div>
 
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <button type="submit" disabled={isSubmitting} className={`${primaryButton} disabled:cursor-not-allowed disabled:opacity-70`}>
-                  <Send className="h-4 w-4" aria-hidden="true" />
-                  {isSubmitting ? 'Sending…' : 'Send Enquiry'}
-                </button>
-                <p className="text-sm font-medium text-[#536862]">
-                  Prefer email?{' '}
-                  <a href={`mailto:${EMAIL}`} className="font-bold text-[#167158] underline underline-offset-2">{EMAIL}</a>
-                </p>
-              </div>
+              <button type="submit" disabled={isSubmitting} className={`${primaryButton} mt-6 w-full sm:w-auto disabled:cursor-not-allowed disabled:opacity-70`}>
+                <Send className="h-4 w-4" aria-hidden="true" />
+                {isSubmitting ? 'Sending…' : 'Send Enquiry'}
+              </button>
             </form>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-[#6b817a]">
-              <span className="inline-flex items-center gap-1.5"><ClipboardCheck className="h-4 w-4" aria-hidden="true" /> Tailored proposal</span>
-              <span className="inline-flex items-center gap-1.5"><Building2 className="h-4 w-4" aria-hidden="true" /> For organisations across the UK</span>
-              <span className="inline-flex items-center gap-1.5"><Megaphone className="h-4 w-4" aria-hidden="true" /> No disclosure required</span>
-            </div>
           </div>
-        </section>
+        </Section>
       </main>
 
       <AffiliationsSection />
