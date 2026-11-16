@@ -222,8 +222,8 @@ const ContactPage = () => {
 
     <main className="theme-aware-page min-h-screen bg-[#fbfffd] text-[#102f28]">
       <section className="relative overflow-hidden border-b border-[#dbece5] bg-[linear-gradient(115deg,#ffffff_0%,#fbfffd_48%,#edf8f3_100%)]">
-        <div className="absolute -right-28 -top-28 h-[34rem] w-[34rem] rounded-full border border-[#d3eee4] bg-[#e6f7f1]/45" aria-hidden="true" />
-        <div className="absolute right-0 top-16 h-80 w-80 rounded-full bg-[#cdeee1]/35 blur-3xl" aria-hidden="true" />
+        <div className="absolute -right-28 -top-28 h-[34rem] w-[34rem] rounded-full border border-[#d3eee4] bg-[#e6f7f1]/45 dark:border-white/5 dark:bg-emerald-400/5" aria-hidden="true" />
+        <div className="absolute right-0 top-16 h-80 w-80 rounded-full bg-[#cdeee1]/35 blur-3xl dark:bg-emerald-500/10" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-[1160px] items-center gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:px-10">
           <div>
             <h1 className="text-balance text-3xl font-semibold leading-[1.15] tracking-normal text-[#0a332b] sm:text-4xl lg:text-5xl">
