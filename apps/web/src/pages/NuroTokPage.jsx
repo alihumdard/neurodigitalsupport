@@ -356,7 +356,7 @@ const NuroTokPage = () => {
             <div className="text-center lg:text-left">
               <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_18px_46px_rgba(15,23,42,0.12)] ring-1 ring-emerald-100 lg:mx-0">
                 <img
-                  src="/images/products/nurotok-logo.jpeg"
+                  src="/images/products/nurotok-logo-2026.jpg"
                   alt="NuroTok logo"
                   className="h-full w-full object-cover"
                 />

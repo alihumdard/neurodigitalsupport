@@ -45,7 +45,7 @@ function bodyFor(route, page) {
   const nav = NAV.map(([href, label]) => `<a href="${href}">${label}</a>`).join(' · ');
   // The text is for crawlers (and screen readers) only: people see a centred logo for the moment
   // before React starts and replaces all of this, not a flash of unstyled text.
-  const logo = route.startsWith('/nurotok') ? '/images/products/nurotok-logo.jpeg' : '/logo.jpeg';
+  const logo = route.startsWith('/nurotok') ? '/images/products/nurotok-logo-2026.jpg' : '/logo.jpeg';
   const loader = `<div aria-hidden="true" style="min-height:100vh;display:flex;align-items:center;justify-content:center"><img src="${logo}" alt="" width="64" height="64" style="border-radius:16px;opacity:.85;object-fit:contain"></div>`;
   const hidden = 'position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0';
   return `<div id="root">${loader}<div data-prerender="true" style="${hidden}"><nav aria-label="Main">${nav}</nav><main>${main}</main><footer><p>${SITE_NAME} · <a href="mailto:info@neurodigitalsupport.com">info@neurodigitalsupport.com</a></p></footer></div></div>`;

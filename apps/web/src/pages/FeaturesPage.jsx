@@ -35,7 +35,7 @@ const products = [
     label: 'Sensory Regulation App',
     description: 'A calming wellbeing companion for sensory overload, emotional stress, daily check-ins, adaptive regulation tools, and personal wellbeing insights.',
     image: '/images/products/nurotok.jpeg',
-    logo: '/images/products/nurotok-logo.jpeg',
+    logo: '/images/products/nurotok-logo-2026.jpg',
     detailPath: '/nurotok',
     accent: 'emerald',
     icon: Brain,

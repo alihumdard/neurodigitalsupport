@@ -73,7 +73,7 @@ const ProductsHome = () => {
 
   const coreModules = [
     {
-      logo: '/images/products/nurotok-logo.jpeg',
+      logo: '/images/products/nurotok-logo-2026.jpg',
       name: 'NuroTok',
       subtitle: 'Sensory Regulation App',
       description: 'A calming wellbeing app helping users manage sensory overload, stress, and daily regulation in a supportive digital environment.',

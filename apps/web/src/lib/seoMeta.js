@@ -8,7 +8,7 @@ import { ANDROID_PACKAGE, APP_STORE_ID, APP_STORE_URL, PLAY_STORE_URL } from './
 
 export const SITE_NAME = 'NeuroDigital Support';
 export const ORG_LOGO = `${SITE_URL}/images/products/logo.png`;
-export const NUROTOK_LOGO = `${SITE_URL}/images/products/nurotok-logo.jpeg`;
+export const NUROTOK_LOGO = `${SITE_URL}/images/products/nurotok-logo-2026.jpg`;
 export const DEFAULT_TITLE = 'NeuroDigital Support | Inclusive digital support for neurodivergent adults';
 export const DEFAULT_DESCRIPTION = 'NeuroDigital Support builds sensory-aware digital platforms and evidence-led tools for autistic and neurodivergent adults, caregivers, and teams, including the NuroTok sensory regulation app.';
 
