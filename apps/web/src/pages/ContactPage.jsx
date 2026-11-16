@@ -404,7 +404,7 @@ const ContactPage = () => {
             </div>
             <h2 className="mt-5 text-2xl font-semibold leading-tight tracking-normal text-[#102f28]">Office & Correspondence</h2>
             <p className="mt-5 text-sm font-medium leading-7 text-[#536b64]">
-              NeuroDigital Support Ltd (Registered address available on request - we operate primarily remotely to reduce environmental impact and support neurodivergent working patterns.) For formal documentation or safeguarding concerns, please use the support or research email addresses above.
+              NeuroDigital Support Ltd (Registered address available on request - we operate primarily remotely to reduce environmental impact and support neurodivergent working patterns.) For formal documentation or safeguarding concerns, please email info@neurodigitalsupport.com.
             </p>
             <div className="mt-7 space-y-4">
               <div className="flex gap-3 rounded-2xl border border-[#dbece5] bg-white p-4">
@@ -413,7 +413,7 @@ const ContactPage = () => {
               </div>
               <div className="flex gap-3 rounded-2xl border border-[#dbece5] bg-white p-4">
                 <LockKeyhole className="mt-0.5 h-5 w-5 shrink-0 text-[#167158]" aria-hidden="true" />
-                <p className="text-sm font-semibold leading-6 text-[#31544c]">For formal documentation or safeguarding concerns, please use the support or research email addresses above.</p>
+                <p className="text-sm font-semibold leading-6 text-[#31544c]">For formal documentation or safeguarding concerns, please email info@neurodigitalsupport.com.</p>
               </div>
             </div>
           </aside>
@@ -447,7 +447,7 @@ const ContactPage = () => {
               <div>
                 <h2 className="text-xl font-semibold leading-tight tracking-normal text-[#102f28]">Office & Correspondence</h2>
                 <p className="mt-2 text-sm font-medium leading-6 text-[#536b64]">
-                  NeuroDigital Support Ltd (Registered address available on request - we operate primarily remotely to reduce environmental impact and support neurodivergent working patterns.) For formal documentation or safeguarding concerns, please use the support or research email addresses above.
+                  NeuroDigital Support Ltd (Registered address available on request - we operate primarily remotely to reduce environmental impact and support neurodivergent working patterns.) For formal documentation or safeguarding concerns, please email info@neurodigitalsupport.com.
                 </p>
               </div>
             </div>
