@@ -186,7 +186,7 @@ const AboutPage = () => (
                   rel="noopener noreferrer"
                   className="h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-white shadow-[0_14px_34px_rgba(15,61,50,0.2)]"
                 >
-                  <img src="/images/products/kofi-ofori-mensah.jpeg" alt="Kofi Ofori-Mensah" className="h-full w-full object-cover" />
+                  <img src="/images/products/kofi-ofori-mensah-2026.jpg" alt="Kofi Ofori-Mensah" className="h-full w-full object-cover" />
                 </a>
                 <div>
                   <a
