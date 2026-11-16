@@ -10,7 +10,7 @@ const logoSrc = '/logo-footer.jpeg';
 const navigationLinks = [
   { name: 'About', path: '/about' },
   { name: 'Features', path: '/features' },
-  { name: 'Ecosystem', path: '/modules' },
+  { name: 'Training', path: '/consultancy-training-workshops' },
   { name: 'Research', path: '/research' },
   { name: 'Blogs', path: '/blogs' },
   { name: 'Contact', path: '/contact' }

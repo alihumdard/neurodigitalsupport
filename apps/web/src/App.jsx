@@ -9,6 +9,7 @@ import AltiTokPage from './pages/AltiTokPage.jsx';
 import BlogDetailPage from './pages/BlogDetailPage.jsx';
 import BlogPage from './pages/BlogPage.jsx';
 import CareLoggingPage from './pages/CareLoggingPage.jsx';
+import ConsultancyTrainingPage from './pages/ConsultancyTrainingPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import DigitalAdvocacyHubPage from './pages/DigitalAdvocacyHubPage.jsx';
 import FeaturesPage from './pages/FeaturesPage.jsx';
@@ -41,6 +42,7 @@ function App() {
           <Route path="/admin" element={<Suspense fallback={<PageLoading />}><AdminPage /></Suspense>} />
           <Route path="/blogs" element={<BlogPage />} />
           <Route path="/blogs/:slug" element={<BlogDetailPage />} />
+          <Route path="/consultancy-training-workshops" element={<ConsultancyTrainingPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/nurotok" element={<NuroTokPage />} />

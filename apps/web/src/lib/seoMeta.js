@@ -48,6 +48,13 @@ export const PAGES = {
     description: 'Contact NeuroDigital Support for NuroTok help, demos, partnerships, accessibility advice, research enquiries, or support.',
     priority: '0.7'
   },
+  '/consultancy-training-workshops': {
+    name: 'Consultancy and Training',
+    title: 'Consultancy, Training & Workshops | NeuroDigital Support',
+    description: 'Explore consultancy, training and workshops on digital inclusion, advocacy and sensory-aware digital experiences for organisations across the UK.',
+    priority: '0.8',
+    image: `${SITE_URL}/images/training/training-hero-1600.webp`
+  },
   '/nurotok/legal': { name: 'NuroTok Policies & Support', title: 'NuroTok Policies and Support | NeuroDigital Support', description: 'Find NuroTok privacy, terms, deletion, subscriptions, wellbeing, permissions, support, and cookies information.', priority: '0.5' },
   '/nurotok/privacy': { name: 'NuroTok Privacy Policy', title: 'NuroTok Privacy Policy | NeuroDigital Support', description: 'How the NuroTok app handles data: on-device filtering, optional usage sharing, privacy choices, and your data rights.', priority: '0.5' },
   '/nurotok/terms': { name: 'NuroTok Terms and Conditions', title: 'NuroTok Terms and Conditions | NeuroDigital Support', description: 'Terms and conditions for NuroTok features, wellbeing tools, and subscriptions.', priority: '0.4' },
