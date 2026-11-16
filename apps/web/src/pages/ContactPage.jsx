@@ -4,8 +4,6 @@ import { canonicalFor } from '@/lib/seo';
 import { useNavigate } from 'react-router-dom';
 import {
   Accessibility,
-  ArrowRight,
-  AtSign,
   Building2,
   CalendarDays,
   Clock3,
@@ -255,7 +253,7 @@ const ContactPage = () => {
 
       <section className="border-b border-[#e4f1ec] bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-10">
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {contactCategories.map(({ title, description, email, icon: Icon }) => (
               <article
                 key={title}
@@ -269,11 +267,14 @@ const ContactPage = () => {
                 <a
                   href={`mailto:${email}`}
                   title={email}
-                  className="mt-6 inline-flex h-11 w-full items-center justify-between gap-2 rounded-xl border border-[#bfe1d5] bg-[#f3fbf7] px-3 text-xs font-bold text-[#0f765a] shadow-[0_10px_24px_rgba(15,61,50,0.045)] transition duration-300 hover:border-[#167158] hover:bg-[#e5f5ee] hover:text-[#0b4f3f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2"
+                  className="mt-6 inline-flex min-h-11 w-full items-center gap-2 rounded-xl border border-[#bfe1d5] bg-[#f3fbf7] px-3 py-2.5 text-xs font-bold leading-snug text-[#0f765a] shadow-[0_10px_24px_rgba(15,61,50,0.045)] transition duration-300 hover:border-[#167158] hover:bg-[#e5f5ee] hover:text-[#0b4f3f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2"
                 >
-                  <AtSign className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  <span className="min-w-0 flex-1 truncate text-left">{email}</span>
-                  <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  {/* Show the whole address; on narrow cards it wraps after the @ instead of being cut off. */}
+                  <span className="min-w-0 flex-1 text-left [overflow-wrap:anywhere]">
+                    {email.split('@')[0]}@<wbr />
+                    {email.split('@')[1]}
+                  </span>
                 </a>
               </article>
             ))}
@@ -491,7 +492,7 @@ const ContactPage = () => {
               </article>
 
               <article className="flex gap-4 rounded-2xl border border-[#dbece5] bg-white p-5">
-                <AtSign className="mt-1 h-7 w-7 shrink-0 text-[#102f28]" aria-hidden="true" />
+                <MessageSquare className="mt-1 h-7 w-7 shrink-0 text-[#102f28]" aria-hidden="true" />
                 <p className="text-sm font-semibold leading-6 text-[#31544c]">
                   We read every message. Your input shapes our roadmap, whether it&apos;s a feature request, a bug report, or simply sharing how our tools have helped you.
                 </p>
