@@ -360,9 +360,9 @@ const RealPhone = ({ src, alt, variant = 'mini', eager = false }) => (
         <div className="absolute -right-2 top-28 h-14 w-1 rounded-r bg-slate-800" aria-hidden="true" />
       </>
     )}
-    <div className={`relative overflow-hidden bg-[#f4f3ee] ${variant === 'hero' ? 'h-[530px] w-[260px] rounded-[2rem]' : 'h-[490px] w-[240px] rounded-[1.6rem]'}`}>
-      <div className={`absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-black ${variant === 'hero' ? 'top-2.5 h-[22px] w-[80px]' : 'top-2 h-5 w-[70px]'}`} aria-hidden="true" />
-      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" className="h-full w-full object-cover object-top pt-7" />
+    <div className={`relative overflow-hidden bg-[#f4f3ee] ${variant === 'hero' ? 'h-[426px] w-[200px] rounded-[1.9rem]' : 'h-[508px] w-[240px] rounded-[1.6rem]'}`}>
+      <div className={`absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-black ${variant === 'hero' ? 'top-2 h-[18px] w-[64px]' : 'top-2 h-5 w-[70px]'}`} aria-hidden="true" />
+      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" className="h-full w-full object-contain object-top pt-4" />
     </div>
   </div>
 );
