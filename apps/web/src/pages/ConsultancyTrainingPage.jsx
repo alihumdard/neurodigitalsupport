@@ -208,6 +208,12 @@ const faqs = [
   { q: 'Is this clinical care or an accredited qualification?', a: 'These services provide organisational advice, education and practical skills development. They do not provide diagnosis, therapy, legal advice or a substitute for specialist safeguarding training. Unless explicitly stated for a particular programme, training does not lead to an accredited qualification.' }
 ];
 
+const nextSteps = [
+  'We read your enquiry and reply by email.',
+  'We talk through your priorities, audience and access requirements.',
+  'You receive a tailored proposal with scope, delivery and fees.'
+];
+
 const SERVICE_OPTIONS = ['Consultancy', 'Training', 'Workshop', 'A combination', 'Not sure yet'];
 const FORMAT_OPTIONS = ['Live online', 'In person', 'Blended', 'Not sure yet'];
 const BUDGET_OPTIONS = ['Prefer not to say', 'Under £500', '£500 – £1,500', '£1,500 – £5,000', 'Over £5,000'];
@@ -499,18 +505,18 @@ const ConsultancyTrainingPage = () => {
 
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {consultancyAreas.map(({ icon: Icon, ...area }) => (
-              <article key={area.title} className={`${cardClass} flex flex-col p-5`}>
-                <div className="flex items-center gap-3">
-                  <span className={iconTile}>
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <h3 className="text-base font-extrabold leading-snug tracking-tight text-[#082f27]">{area.title}</h3>
+              <article key={area.title} className={`${cardClass} flex flex-col p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#bfe1d5]`}>
+                <span className={iconTile}>
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 text-lg font-extrabold leading-snug tracking-tight text-[#082f27] lg:min-h-[3.1rem]">{area.title}</h3>
+                <p className="mt-2 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{area.text}</p>
+                <div className="mt-5 border-t border-[#e0eee8] pt-4 dark:border-border">
+                  <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#2f8066] dark:text-emerald-300">
+                    <ClipboardCheck className="h-4 w-4" aria-hidden="true" /> Possible outputs
+                  </p>
+                  <p className="mt-1.5 text-sm font-semibold leading-relaxed text-[#31544c] dark:text-slate-200">{area.outputs}</p>
                 </div>
-                <p className="mt-3 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{area.text}</p>
-                <p className="mt-3 rounded-xl bg-[#f4fbf8] p-3 text-sm font-medium leading-relaxed text-[#31544c] dark:bg-emerald-950/40">
-                  <strong className="font-extrabold text-[#17483b] dark:text-emerald-300">Possible outputs: </strong>
-                  {area.outputs}
-                </p>
               </article>
             ))}
             <div className="flex flex-col items-start justify-center rounded-[1.25rem] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-5 dark:bg-none">
@@ -783,8 +789,8 @@ const ConsultancyTrainingPage = () => {
 
         {/* Call to action + enquiry form */}
         <Section id="enquiry">
-          <div className="grid items-center gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
-            <div>
+          <div className="grid items-stretch gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
+            <div className="flex flex-col items-start">
               <Chip>Enquiry</Chip>
               <h2 className="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl">
                 Let us help you take <span className="text-[#2f8066]">the next step</span>
@@ -792,35 +798,46 @@ const ConsultancyTrainingPage = () => {
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#536862]">
                 Tell us what your organisation wants to improve. We will help you shape a consultancy, training or workshop programme around your people, your digital environment and your goals.
               </p>
-            </div>
-            <div>
-              <ul className="space-y-3 text-sm font-semibold text-[#31544c]">
+              <ul className="mt-6 space-y-3 text-sm font-semibold text-[#31544c]">
                 <li className="flex items-center gap-3"><ClipboardCheck className="h-5 w-5 text-[#2f8066]" aria-hidden="true" /> A tailored proposal for your organisation</li>
                 <li className="flex items-center gap-3"><Building2 className="h-5 w-5 text-[#2f8066]" aria-hidden="true" /> Online, in person or blended across the UK</li>
                 <li className="flex items-center gap-3"><Megaphone className="h-5 w-5 text-[#2f8066]" aria-hidden="true" /> No personal disclosure required</li>
               </ul>
-              <a href={`mailto:${EMAIL}`} className={`${cardClass} mt-5 inline-flex items-center gap-3 px-5 py-4 text-sm font-bold text-[#167158] hover:border-[#bfe1d5]`}>
-                <Mail className="h-5 w-5" aria-hidden="true" />
-                <span>
+              <div className={`${cardClass} mt-7 w-full p-5`}>
+                <p className="text-base font-extrabold tracking-tight text-[#082f27]">What happens next</p>
+                <ol className="mt-4 space-y-4">
+                  {nextSteps.map((item, index) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#4aa384] text-xs font-extrabold text-white" aria-hidden="true">{index + 1}</span>
+                      <span className="pt-0.5 text-sm font-medium leading-relaxed text-[#536862]">{item}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <Photo name="training-hero" className="mt-5 hidden min-h-[180px] lg:block lg:flex-1 lg:aspect-auto lg:object-[90%_50%]" sizes="(min-width: 1024px) 440px, 100vw" alt="Adults sharing ideas with a facilitator in a calm learning studio. AI-generated illustrative image." />
+              <a href={`mailto:${EMAIL}`} className={`${cardClass} mt-5 flex w-full items-center gap-3 px-5 py-4`}>
+                <span className={iconTile}>
+                  <Mail className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span className="text-sm font-bold text-[#167158] dark:text-emerald-300">
                   <span className="block text-xs font-semibold text-[#6b817a]">Prefer email?</span>
                   {EMAIL}
                 </span>
               </a>
             </div>
-          </div>
 
             <form
               onSubmit={handleSubmit}
               noValidate
               aria-labelledby="enquiry-form-title"
-              className="mt-8 rounded-[1.5rem] border border-[#dbece5] bg-white p-6 shadow-[0_18px_60px_rgba(15,61,50,0.06)] sm:p-8"
+              className="rounded-[1.5rem] border border-[#dbece5] bg-white p-6 shadow-[0_18px_60px_rgba(15,61,50,0.06)] sm:p-8"
             >
               <h3 id="enquiry-form-title" className="text-xl font-extrabold tracking-tight text-[#082f27]">Tell us about your needs</h3>
               <p className="mt-1.5 text-sm font-medium leading-relaxed text-[#536862]">
                 Please do not include confidential service-user information or personal health records. Fields marked <span className="text-red-600">*</span> are required.
               </p>
 
-              <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-6 grid gap-5 sm:grid-cols-2">
                 <Field id="enquiry-name" label="Name" required error={errors.name}>
                   <input id="enquiry-name" type="text" autoComplete="name" value={form.name} onChange={update('name')} className={inputClass} aria-required="true" aria-invalid={Boolean(errors.name)} aria-describedby={describedBy('enquiry-name')} />
                 </Field>
@@ -844,7 +861,7 @@ const ConsultancyTrainingPage = () => {
                 <legend className="px-1 text-sm font-bold text-[#17483b]">
                   Topics of interest
                 </legend>
-                <div className="mt-1 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-1 grid gap-2.5 sm:grid-cols-2">
                   {modules.map((module) => (
                     <label key={module.title} className="flex cursor-pointer items-start gap-2.5 text-sm font-medium leading-snug text-[#31544c]">
                       <input
@@ -859,7 +876,7 @@ const ConsultancyTrainingPage = () => {
                 </div>
               </fieldset>
 
-              <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-5 grid gap-5 sm:grid-cols-2">
                 <Field id="enquiry-audience" label="Audience and participant numbers">
                   <input id="enquiry-audience" type="text" value={form.audience} onChange={update('audience')} placeholder="e.g. 20 support workers" className={inputClass} />
                 </Field>
@@ -877,8 +894,6 @@ const ConsultancyTrainingPage = () => {
                 <Field id="enquiry-location" label="Location, if in person">
                   <input id="enquiry-location" type="text" value={form.location} onChange={update('location')} className={inputClass} />
                 </Field>
-              </div>
-              <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 <Field id="enquiry-goals" label="What would you like to achieve?">
                   <textarea id="enquiry-goals" rows={3} value={form.goals} onChange={update('goals')} className={`${inputClass} h-auto min-h-24 py-2.5`} />
                 </Field>
@@ -921,6 +936,7 @@ const ConsultancyTrainingPage = () => {
                 {isSubmitting ? 'Sending…' : 'Send Enquiry'}
               </button>
             </form>
+          </div>
         </Section>
       </main>
 
