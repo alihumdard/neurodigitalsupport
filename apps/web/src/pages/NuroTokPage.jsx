@@ -375,12 +375,82 @@ const RealMiniScreen = ({ label, subtitle, image, alt }) => (
   </div>
 );
 
+// Product demo video (client: "Let's put the video under NuroTok").
+// Captions are burned into the video, so there is no <track>; the transcript is below the player.
+const DEMO_TRANSCRIPT = [
+  'When everything asks for your attention… make space with NuroTok.',
+  'A calmer space, starting with you.',
+  'Start with your sensory profile.',
+  'Explore app protection and filtering settings.',
+  'Find breathing, sounds, mood check-ins… and guided practices for your day.',
+  'Review your activity in Insights.',
+  'Within the wider NeuroDigital Support ecosystem.',
+  'NuroTok. A calmer, brighter you.'
+];
+
+const DEMO_VIDEO_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'NuroTok product demo',
+  description: 'A 37-second look at the sensory profile, app protection, the sensory toolkit and Insights.',
+  thumbnailUrl: 'https://neurodigitalsupport.com/videos/nurotok-demo-poster.jpg',
+  contentUrl: 'https://neurodigitalsupport.com/videos/nurotok-demo-1080p.mp4',
+  uploadDate: '2026-11-17',
+  duration: 'PT37S'
+};
+
+const DemoVideoSection = () => {
+  // Smaller file on phones; no autoplay, metadata only until the user presses play.
+  const src =
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+      ? '/videos/nurotok-demo-720p.mp4'
+      : '/videos/nurotok-demo-1080p.mp4';
+
+  return (
+    <section aria-labelledby="nurotok-video-heading" className="bg-white py-14 dark:bg-background lg:py-16">
+      <div className="mx-auto max-w-[1180px] px-4 text-center sm:px-6 lg:px-10">
+        <span className="inline-flex rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-emerald-700 ring-1 ring-emerald-100 dark:bg-emerald-950/60 dark:text-emerald-300 dark:ring-emerald-900">
+          Watch
+        </span>
+        <h2 id="nurotok-video-heading" className="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-emerald-800 dark:text-emerald-300 sm:text-4xl">
+          See NuroTok in action
+        </h2>
+        <p className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-relaxed text-slate-600 dark:text-muted-foreground">
+          A 37-second look at the sensory profile, app protection, the sensory toolkit and Insights.
+        </p>
+        <div className="mx-auto mt-8 aspect-video max-w-[1040px] overflow-hidden rounded-2xl bg-emerald-50 shadow-[0_24px_64px_rgba(15,61,50,0.14)] ring-1 ring-emerald-100 dark:bg-card dark:ring-border sm:rounded-[1.75rem]">
+          <video
+            className="h-full w-full bg-black object-contain"
+            controls
+            playsInline
+            preload="metadata"
+            poster="/videos/nurotok-demo-poster.jpg"
+            aria-describedby="nurotok-video-transcript"
+          >
+            <source src={src} type="video/mp4" />
+            Your browser does not support HTML video.
+          </video>
+        </div>
+        <details id="nurotok-video-transcript" className="mx-auto mt-5 max-w-3xl rounded-xl border border-emerald-100 bg-[#f7fffb] px-5 py-3 text-left dark:border-border dark:bg-card/40">
+          <summary className="cursor-pointer text-sm font-bold text-emerald-800 dark:text-emerald-300">Read the transcript</summary>
+          <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-sm font-medium leading-relaxed text-slate-600 dark:text-slate-200">
+            {DEMO_TRANSCRIPT.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ol>
+        </details>
+      </div>
+    </section>
+  );
+};
+
 const NuroTokPage = () => {
   return (
     <>
       <Helmet>
-              <link rel="canonical" href={canonicalFor('/nurotok')} />
-</Helmet>
+        <link rel="canonical" href={canonicalFor('/nurotok')} />
+        <script type="application/ld+json">{JSON.stringify(DEMO_VIDEO_LD)}</script>
+      </Helmet>
 
       <Header />
 
@@ -414,6 +484,8 @@ const NuroTokPage = () => {
             </div>
           </div>
         </section>
+
+        <DemoVideoSection />
 
         <section className="bg-white py-20 dark:bg-background">
           <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-10">
