@@ -52,15 +52,15 @@ export const ProductCard = ({ product }) => (
         </span>
       )}
     </div>
-    <div className="flex flex-1 flex-col p-5">
-      <h3 className="text-base font-extrabold tracking-tight text-[#082f27]">
+    <div className="flex flex-1 flex-col p-3.5 sm:p-5">
+      <h3 className="break-words text-sm font-extrabold leading-snug tracking-tight text-[#082f27] [overflow-wrap:anywhere] sm:text-base">
         {/* The whole card is clickable through this link's stretched overlay. */}
         <Link to={`/store/${product.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:rounded-[1.6rem] focus-visible:after:ring-2 focus-visible:after:ring-[#167158]">
           {product.name}
         </Link>
       </h3>
-      <p className="mt-1.5 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{product.summary}</p>
-      <p className="mt-4 text-lg font-extrabold text-[#17483b]">{formatPrice(product.price)}</p>
+      <p className="mt-1.5 flex-1 text-xs font-medium leading-relaxed text-[#536862] sm:text-sm">{product.summary}</p>
+      <p className="mt-3 text-base sm:mt-4 sm:text-lg font-extrabold text-[#17483b]">{formatPrice(product.price)}</p>
     </div>
   </article>
 );

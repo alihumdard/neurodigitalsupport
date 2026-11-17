@@ -182,13 +182,13 @@ const deliveryLengths = ['Introductory session', 'Half-day workshop', 'Full-day 
 const accessOptions = ['Advance agendas', 'Clear written instructions', 'Planned breaks', 'Reduced visual clutter', 'Captions', 'Different ways to contribute'];
 
 const ecosystem = [
-  { name: 'NuroTok', path: '/nurotok', text: 'Explore sensory profiles, regulation tools, daily check-ins and wellbeing insights.' },
-  { name: 'AltiTok', path: '/altitok', text: 'Examine sensory-aware social design, content controls and community moderation.' },
-  { name: 'Digital Advocacy Hub', path: '/digital-advocacy-hub', text: 'Use awareness materials, inclusion resources and campaign tools.' },
-  { name: 'Research & Insights Hub', path: '/research-insights-hub', text: 'Explore studies, sensory environment reports and visual research insights.' },
-  { name: 'Social Listening Dashboard', path: '/social-listening-dashboard', text: 'Understand emerging themes, topic clusters and public online conversations.' },
-  { name: 'Care Logging App', path: '/care-logging', text: 'Practise structured observations, sensory trigger recording and team communication.' },
-  { name: 'OliTok', path: '/olitok', text: 'Explore inclusive companionship, volunteer boundaries and supported online connection.' }
+  { name: 'NuroTok', icon: Sparkles, path: '/nurotok', text: 'Explore sensory profiles, regulation tools, daily check-ins and wellbeing insights.' },
+  { name: 'AltiTok', icon: ShieldCheck, path: '/altitok', text: 'Examine sensory-aware social design, content controls and community moderation.' },
+  { name: 'Digital Advocacy Hub', icon: Megaphone, path: '/digital-advocacy-hub', text: 'Use awareness materials, inclusion resources and campaign tools.' },
+  { name: 'Research & Insights Hub', icon: Microscope, path: '/research-insights-hub', text: 'Explore studies, sensory environment reports and visual research insights.' },
+  { name: 'Social Listening Dashboard', icon: ChartNoAxesCombined, path: '/social-listening-dashboard', text: 'Understand emerging themes, topic clusters and public online conversations.' },
+  { name: 'Care Logging App', icon: NotebookPen, path: '/care-logging', text: 'Practise structured observations, sensory trigger recording and team communication.' },
+  { name: 'OliTok', icon: UsersRound, path: '/olitok', text: 'Explore inclusive companionship, volunteer boundaries and supported online connection.' }
 ];
 
 const steps = [
@@ -642,8 +642,13 @@ const ConsultancyTrainingPage = () => {
                   to={item.path}
                   className={`${cardClass} group flex h-full flex-col p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#bfe1d5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2`}
                 >
-                  <span className="text-base font-extrabold tracking-tight text-[#082f27]">{item.name}</span>
-                  <span className="mt-1.5 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{item.text}</span>
+                  <span className="flex items-center gap-3">
+                    <span className={iconTile}>
+                      <item.icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <span className="text-base font-extrabold leading-snug tracking-tight text-[#082f27]">{item.name}</span>
+                  </span>
+                  <span className="mt-3 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{item.text}</span>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-[#167158]">
                     Explore
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
@@ -651,7 +656,10 @@ const ConsultancyTrainingPage = () => {
                 </Link>
               </li>
             ))}
-            <li className="flex items-center rounded-[1.25rem] border border-dashed border-[#cfe5dc] p-5 text-sm font-medium leading-relaxed text-[#536862]">
+            <li className="flex flex-col justify-center gap-3 rounded-[1.25rem] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-5 text-sm font-medium leading-relaxed text-[#31544c] dark:bg-none dark:border dark:border-border">
+              <span className={iconTile}>
+                <Presentation className="h-5 w-5" aria-hidden="true" />
+              </span>
               Relevant demonstrations can be included in the agreed programme. Any product access, subscriptions or licences for ongoing use are set out separately in your proposal.
             </li>
           </ul>
