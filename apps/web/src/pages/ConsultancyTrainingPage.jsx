@@ -62,26 +62,31 @@ const services = [
 const consultancyAreas = [
   {
     title: 'Digital inclusion and sensory accessibility',
+    icon: ScanSearch,
     text: 'Review how people experience your website, app, online forms, learning materials or internal systems. Explore barriers linked to navigation, language, information density, motion, sound, notifications and the effort needed to complete a task.',
     outputs: 'A prioritised barrier review, recommendations for calmer digital experiences and an improvement roadmap with agreed responsibilities.'
   },
   {
     title: 'Neuroinclusive workplaces and learning environments',
+    icon: Building2,
     text: 'Examine how digital tools and communication practices affect participation at work or in education. Identify ways to make instructions clearer, offer communication choices, reduce unnecessary interruption and support individual preferences.',
     outputs: 'A digital communication guide, staff learning priorities and practical recommendations for improving access and participation.'
   },
   {
     title: 'Digital wellbeing and care practice',
+    icon: HeartPulse,
     text: "Help teams recognise the relationship between digital environments, sensory experiences and everyday wellbeing. Explore person-centred use of NuroTok and approaches to recording observations through the Care Logging App, while keeping the individual's preferences and choices central.",
     outputs: 'A staff support workflow, guidance on objective sensory observations and a plan for introducing relevant tools into existing practice.'
   },
   {
     title: 'Digital advocacy and community engagement',
+    icon: Megaphone,
     text: 'Develop accessible campaigns that communicate a clear issue, include community perspectives and invite meaningful action. Explore how the Digital Advocacy Hub can support awareness activities, resources and campaign planning.',
     outputs: 'A campaign plan, accessible messaging framework, stakeholder map and suitable measures of engagement.'
   },
   {
     title: 'Research insights and responsible innovation',
+    icon: Microscope,
     text: 'Use the Research & Insights Hub and Social Listening Dashboard to explore questions affecting neurodivergent communities. We help teams think critically about themes, evidence gaps and the limits of online data, and translate relevant findings into service questions and improvement priorities.',
     outputs: 'An insight brief, research questions, a community engagement approach and recommendations for further investigation.'
   }
@@ -252,7 +257,7 @@ const SectionHeading = ({ chip, title, accent, children, center = true, as: Tag 
 const Section = ({ id, tone = 'white', className = '', children, ...rest }) => (
   <section
     id={id}
-    className={`${id ? 'scroll-mt-20 ' : ''}${tone === 'mint' ? 'bg-[#f7fffb]' : 'bg-white'} py-10 lg:py-14 ${className}`}
+    className={`${id ? 'scroll-mt-20 ' : ''}${tone === 'mint' ? 'bg-[#f7fffb]' : 'bg-white'} py-8 lg:py-12 ${className}`}
     {...rest}
   >
     <div className="mx-auto max-w-[1220px] px-5 sm:px-8 lg:px-10">{children}</div>
@@ -489,21 +494,26 @@ const ConsultancyTrainingPage = () => {
             <SectionHeading chip="Consultancy" title="Consultancy shaped" accent="around your organisation" center={false}>
               We connect inclusion goals with practical decisions about your services, communications, technology and support.
             </SectionHeading>
-            <Photo name="consultancy" alt="A consultant and two participants reviewing a digital service journey. AI-generated illustrative image." />
+            <Photo name="consultancy" className="lg:aspect-[2/1]" alt="A consultant and two participants reviewing a digital service journey. AI-generated illustrative image." />
           </div>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {consultancyAreas.map((area) => (
-              <article key={area.title} className={`${cardClass} flex flex-col p-6`}>
-                <h3 className="text-base font-extrabold tracking-tight text-[#082f27]">{area.title}</h3>
-                <p className="mt-2 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{area.text}</p>
-                <p className="mt-4 rounded-xl bg-[#f4fbf8] p-3.5 text-sm font-medium leading-relaxed text-[#31544c] dark:bg-emerald-950/40">
+            {consultancyAreas.map(({ icon: Icon, ...area }) => (
+              <article key={area.title} className={`${cardClass} flex flex-col p-5`}>
+                <div className="flex items-center gap-3">
+                  <span className={iconTile}>
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <h3 className="text-base font-extrabold leading-snug tracking-tight text-[#082f27]">{area.title}</h3>
+                </div>
+                <p className="mt-3 flex-1 text-sm font-medium leading-relaxed text-[#536862]">{area.text}</p>
+                <p className="mt-3 rounded-xl bg-[#f4fbf8] p-3 text-sm font-medium leading-relaxed text-[#31544c] dark:bg-emerald-950/40">
                   <strong className="font-extrabold text-[#17483b] dark:text-emerald-300">Possible outputs: </strong>
                   {area.outputs}
                 </p>
               </article>
             ))}
-            <div className="flex flex-col items-start justify-center rounded-[1.25rem] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-6 dark:bg-none">
+            <div className="flex flex-col items-start justify-center rounded-[1.25rem] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-5 dark:bg-none">
               <p className="text-lg font-extrabold tracking-tight text-[#082f27]">Not sure where to start?</p>
               <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">Tell us about your challenge and we will suggest the right approach.</p>
               <a href="#enquiry" onClick={goToEnquiry('Consultancy')} className={`${primaryButton} mt-5`}>
@@ -513,58 +523,65 @@ const ConsultancyTrainingPage = () => {
           </div>
         </Section>
 
-        {/* Training modules: heading + photo on the left, modules on the right */}
+        {/* Training modules: heading + photo, then modules in two balanced columns */}
         <Section id="training-modules" tone="mint">
-          <div className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
-            <div className="lg:sticky lg:top-24">
+          <div className="grid items-center gap-8 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
+            <div>
               <SectionHeading chip="Training" title="Explore our" accent="training modules" center={false}>
                 Build a programme around your priorities. Modules can introduce a subject, deepen existing knowledge or support a specific organisational project. Each module combines clear explanations, practical examples and opportunities to apply learning.
               </SectionHeading>
-              <Photo name="digital-wellbeing" className="mt-7" sizes="(min-width: 1024px) 440px, 100vw" alt="An adult exploring a smartphone with support from a digital inclusion facilitator. AI-generated illustrative image." />
-              <a href="#enquiry" onClick={goToEnquiry('Training')} className={`${primaryButton} mt-7`}>
+              <a href="#enquiry" onClick={goToEnquiry('Training')} className={`${primaryButton} mt-6`}>
                 Build Your Training Programme <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
-
-            <Accordion type="multiple" className="space-y-3">
-              {modules.map((module, index) => (
-                <AccordionItem
-                  key={module.title}
-                  value={`module-${index + 1}`}
-                  className="theme-surface rounded-[1.1rem] border border-[#e0eee8] bg-white px-5 shadow-[0_10px_30px_rgba(15,50,40,0.04)]"
-                >
-                  <AccordionTrigger className="gap-4 py-4 text-left hover:no-underline">
-                    <span className="flex items-center gap-3.5">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#eaf5f0] text-sm font-extrabold text-[#2f8066] dark:bg-emerald-950/70" aria-hidden="true">
-                        {index + 1}
-                      </span>
-                      <span className="text-base font-extrabold tracking-tight text-[#082f27]">
-                        <span className="sr-only">Module {index + 1}: </span>
-                        {module.title}
-                      </span>
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-5 sm:pl-[3.1rem]">
-                    <p className="text-sm font-semibold leading-relaxed text-[#31544c]">{module.intro}</p>
-                    <dl className="mt-3 space-y-2.5 text-sm leading-relaxed text-[#536862] dark:text-slate-200">
-                      <div>
-                        <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Topics</dt>
-                        <dd className="mt-0.5 font-medium">{module.topics}</dd>
-                      </div>
-                      <div>
-                        <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Practical activity</dt>
-                        <dd className="mt-0.5 font-medium">{module.activity}</dd>
-                      </div>
-                      <div>
-                        <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Learning outcome</dt>
-                        <dd className="mt-0.5 font-medium">{module.outcome}</dd>
-                      </div>
-                    </dl>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <Photo name="digital-wellbeing" className="lg:aspect-[2/1]" alt="An adult exploring a smartphone with support from a digital inclusion facilitator. AI-generated illustrative image." />
           </div>
+
+          <Accordion type="multiple" className="mt-8 grid items-start gap-3 lg:grid-cols-2 lg:gap-4">
+            {[modules.slice(0, 5), modules.slice(5)].map((column, col) => (
+              <div key={col} className="space-y-3 lg:space-y-4">
+                {column.map((module, i) => {
+                  const index = col * 5 + i;
+                  return (
+                    <AccordionItem
+                      key={module.title}
+                      value={`module-${index + 1}`}
+                      className="theme-surface rounded-[1.1rem] border border-[#e0eee8] bg-white px-5 shadow-[0_10px_30px_rgba(15,50,40,0.04)]"
+                    >
+                      <AccordionTrigger className="gap-4 py-4 text-left hover:no-underline">
+                        <span className="flex items-center gap-3.5">
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#eaf5f0] text-sm font-extrabold text-[#2f8066] dark:bg-emerald-950/70" aria-hidden="true">
+                            {index + 1}
+                          </span>
+                          <span className="text-base font-extrabold tracking-tight text-[#082f27]">
+                            <span className="sr-only">Module {index + 1}: </span>
+                            {module.title}
+                          </span>
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-5 sm:pl-[3.1rem]">
+                        <p className="text-sm font-semibold leading-relaxed text-[#31544c]">{module.intro}</p>
+                        <dl className="mt-3 space-y-2.5 text-sm leading-relaxed text-[#536862] dark:text-slate-200">
+                          <div>
+                            <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Topics</dt>
+                            <dd className="mt-0.5 font-medium">{module.topics}</dd>
+                          </div>
+                          <div>
+                            <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Practical activity</dt>
+                            <dd className="mt-0.5 font-medium">{module.activity}</dd>
+                          </div>
+                          <div>
+                            <dt className="font-extrabold text-[#17483b] dark:text-emerald-300">Learning outcome</dt>
+                            <dd className="mt-0.5 font-medium">{module.outcome}</dd>
+                          </div>
+                        </dl>
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
+              </div>
+            ))}
+          </Accordion>
         </Section>
 
         {/* Workshops */}
@@ -578,7 +595,7 @@ const ConsultancyTrainingPage = () => {
                 Plan a Workshop <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
-            <Photo name="workshops" alt="Adults contributing to an inclusive small-group workshop. AI-generated illustrative image." />
+            <Photo name="workshops" className="lg:aspect-[2/1]" alt="Adults contributing to an inclusive small-group workshop. AI-generated illustrative image." />
           </div>
 
           <ul className="mt-8 grid gap-4 md:grid-cols-2">
@@ -766,8 +783,8 @@ const ConsultancyTrainingPage = () => {
 
         {/* Call to action + enquiry form */}
         <Section id="enquiry">
-          <div className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
-            <div className="lg:sticky lg:top-24">
+          <div className="grid items-center gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+            <div>
               <Chip>Enquiry</Chip>
               <h2 className="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl">
                 Let us help you take <span className="text-[#2f8066]">the next step</span>
@@ -775,12 +792,14 @@ const ConsultancyTrainingPage = () => {
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#536862]">
                 Tell us what your organisation wants to improve. We will help you shape a consultancy, training or workshop programme around your people, your digital environment and your goals.
               </p>
-              <ul className="mt-6 space-y-3 text-sm font-semibold text-[#31544c]">
+            </div>
+            <div>
+              <ul className="space-y-3 text-sm font-semibold text-[#31544c]">
                 <li className="flex items-center gap-3"><ClipboardCheck className="h-5 w-5 text-[#2f8066]" aria-hidden="true" /> A tailored proposal for your organisation</li>
                 <li className="flex items-center gap-3"><Building2 className="h-5 w-5 text-[#2f8066]" aria-hidden="true" /> Online, in person or blended across the UK</li>
                 <li className="flex items-center gap-3"><Megaphone className="h-5 w-5 text-[#2f8066]" aria-hidden="true" /> No personal disclosure required</li>
               </ul>
-              <a href={`mailto:${EMAIL}`} className={`${cardClass} mt-7 inline-flex items-center gap-3 px-5 py-4 text-sm font-bold text-[#167158] hover:border-[#bfe1d5]`}>
+              <a href={`mailto:${EMAIL}`} className={`${cardClass} mt-5 inline-flex items-center gap-3 px-5 py-4 text-sm font-bold text-[#167158] hover:border-[#bfe1d5]`}>
                 <Mail className="h-5 w-5" aria-hidden="true" />
                 <span>
                   <span className="block text-xs font-semibold text-[#6b817a]">Prefer email?</span>
@@ -788,19 +807,20 @@ const ConsultancyTrainingPage = () => {
                 </span>
               </a>
             </div>
+          </div>
 
             <form
               onSubmit={handleSubmit}
               noValidate
               aria-labelledby="enquiry-form-title"
-              className="rounded-[1.5rem] border border-[#dbece5] bg-white p-6 shadow-[0_18px_60px_rgba(15,61,50,0.06)] sm:p-8"
+              className="mt-8 rounded-[1.5rem] border border-[#dbece5] bg-white p-6 shadow-[0_18px_60px_rgba(15,61,50,0.06)] sm:p-8"
             >
               <h3 id="enquiry-form-title" className="text-xl font-extrabold tracking-tight text-[#082f27]">Tell us about your needs</h3>
               <p className="mt-1.5 text-sm font-medium leading-relaxed text-[#536862]">
                 Please do not include confidential service-user information or personal health records. Fields marked <span className="text-red-600">*</span> are required.
               </p>
 
-              <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 <Field id="enquiry-name" label="Name" required error={errors.name}>
                   <input id="enquiry-name" type="text" autoComplete="name" value={form.name} onChange={update('name')} className={inputClass} aria-required="true" aria-invalid={Boolean(errors.name)} aria-describedby={describedBy('enquiry-name')} />
                 </Field>
@@ -824,7 +844,7 @@ const ConsultancyTrainingPage = () => {
                 <legend className="px-1 text-sm font-bold text-[#17483b]">
                   Topics of interest
                 </legend>
-                <div className="mt-1 grid gap-2.5 sm:grid-cols-2">
+                <div className="mt-1 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
                   {modules.map((module) => (
                     <label key={module.title} className="flex cursor-pointer items-start gap-2.5 text-sm font-medium leading-snug text-[#31544c]">
                       <input
@@ -839,7 +859,7 @@ const ConsultancyTrainingPage = () => {
                 </div>
               </fieldset>
 
-              <div className="mt-5 grid gap-5 sm:grid-cols-2">
+              <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 <Field id="enquiry-audience" label="Audience and participant numbers">
                   <input id="enquiry-audience" type="text" value={form.audience} onChange={update('audience')} placeholder="e.g. 20 support workers" className={inputClass} />
                 </Field>
@@ -857,6 +877,8 @@ const ConsultancyTrainingPage = () => {
                 <Field id="enquiry-location" label="Location, if in person">
                   <input id="enquiry-location" type="text" value={form.location} onChange={update('location')} className={inputClass} />
                 </Field>
+              </div>
+              <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 <Field id="enquiry-goals" label="What would you like to achieve?">
                   <textarea id="enquiry-goals" rows={3} value={form.goals} onChange={update('goals')} className={`${inputClass} h-auto min-h-24 py-2.5`} />
                 </Field>
@@ -899,7 +921,6 @@ const ConsultancyTrainingPage = () => {
                 {isSubmitting ? 'Sending…' : 'Send Enquiry'}
               </button>
             </form>
-          </div>
         </Section>
       </main>
 
