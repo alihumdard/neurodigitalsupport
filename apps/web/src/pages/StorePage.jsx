@@ -60,7 +60,7 @@ const StorePage = () => {
           </div>
         </section>
 
-        <section className="bg-white py-6 lg:py-8" aria-labelledby="products-heading">
+        <section className="bg-white pt-6 pb-5 lg:pt-8 lg:pb-6" aria-labelledby="products-heading">
           <div className="mx-auto max-w-[1220px] px-5 sm:px-8 lg:px-10">
             <h2 id="products-heading" className="sr-only">Products</h2>
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -103,7 +103,7 @@ const StorePage = () => {
           </div>
         </section>
 
-        <section className="bg-[#f7fffb] py-6 lg:py-8">
+        <section className="bg-[#f7fffb] py-4 lg:py-5">
           <ul className="mx-auto grid max-w-[1220px] gap-4 px-5 sm:px-8 md:grid-cols-3 lg:px-10">
             {highlights.map(({ title, text, icon: Icon }) => (
               <li key={title} className="flex items-start gap-4 rounded-[1.25rem] border border-[#e0eee8] bg-white p-5">
