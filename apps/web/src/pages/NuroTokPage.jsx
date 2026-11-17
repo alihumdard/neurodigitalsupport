@@ -348,7 +348,7 @@ const MiniScreen = ({ label, subtitle }) => (
 /** Phone frame showing a real NuroTok app screenshot. */
 const RealPhone = ({ src, alt, variant = 'mini', eager = false }) => (
   <div
-    className={`relative mx-auto inline-flex bg-slate-950 ${
+    className={`relative mx-auto flex w-fit bg-slate-950 ${
       variant === 'hero'
         ? 'rounded-[2.35rem] border-[7px] border-[#07101f] bg-[#07101f] shadow-[0_28px_70px_rgba(15,23,42,0.34),0_12px_24px_rgba(79,159,132,0.2)]'
         : 'rounded-[1.85rem] border-[4px] border-slate-950 shadow-[0_22px_44px_rgba(15,23,42,0.24)]'
