@@ -360,8 +360,8 @@ const RealPhone = ({ src, alt, variant = 'mini', eager = false }) => (
         <div className="absolute -right-2 top-28 h-14 w-1 rounded-r bg-slate-800" aria-hidden="true" />
       </>
     )}
-    <div className={`relative overflow-hidden bg-[#f4f3ee] ${variant === 'hero' ? 'h-[426px] w-[200px] rounded-[1.9rem]' : 'h-[508px] w-[240px] rounded-[1.6rem]'}`}>
-      <div className={`absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-black ${variant === 'hero' ? 'top-2 h-[18px] w-[64px]' : 'top-2 h-5 w-[70px]'}`} aria-hidden="true" />
+    <div className={`relative overflow-hidden bg-[#f4f3ee] ${variant === 'hero' ? 'h-[426px] w-[200px] rounded-[1.9rem]' : 'h-[385px] w-[180px] rounded-[1.45rem]'}`}>
+      <div className={`absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-black ${variant === 'hero' ? 'top-2 h-[18px] w-[64px]' : 'top-1.5 h-4 w-[54px]'}`} aria-hidden="true" />
       <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" className="h-full w-full object-contain object-top pt-4" />
     </div>
   </div>
@@ -370,8 +370,8 @@ const RealPhone = ({ src, alt, variant = 'mini', eager = false }) => (
 const RealMiniScreen = ({ label, subtitle, image, alt }) => (
   <div className="flex flex-col items-center text-center">
     <RealPhone src={image} alt={alt} />
-    <h4 className="mt-5 w-full text-center text-2xl font-extrabold text-slate-950">{label}</h4>
-    <p className="mt-2 min-h-[2.5rem] max-w-[10.5rem] text-center text-xs font-medium leading-snug text-slate-600">{subtitle}</p>
+    <h4 className="mt-4 w-full text-center text-2xl font-extrabold text-slate-950">{label}</h4>
+    <p className="mt-1.5 max-w-[10.5rem] text-center text-xs font-medium leading-snug text-slate-600">{subtitle}</p>
   </div>
 );
 
@@ -466,7 +466,7 @@ const NuroTokPage = () => {
           <div className="mx-auto max-w-[1180px] px-4 text-center sm:px-6 lg:px-10">
             <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">A Calming, Intuitive Experience</h2>
             <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-slate-950">Distraction-free, easy navigation.</p>
-            <div className={`mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 ${USE_REAL_APP_SCREENSHOTS ? 'lg:gap-6' : 'lg:gap-12'}`}>
+            <div className={`grid gap-10 sm:grid-cols-2 lg:grid-cols-4 ${USE_REAL_APP_SCREENSHOTS ? 'mt-8 lg:gap-8' : 'mt-12 lg:gap-12'}`}>
               {screens.map((screen) =>
                 USE_REAL_APP_SCREENSHOTS ? <RealMiniScreen key={screen.label} {...screen} /> : <MiniScreen key={screen.label} {...screen} />
               )}
