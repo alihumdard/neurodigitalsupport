@@ -519,10 +519,21 @@ const ConsultancyTrainingPage = () => {
                 </div>
               </article>
             ))}
-            <div className="flex flex-col items-start justify-center rounded-[1.25rem] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-5 dark:bg-none">
-              <p className="text-lg font-extrabold tracking-tight text-[#082f27]">Not sure where to start?</p>
+            <div className="flex flex-col rounded-[1.25rem] border border-[#cfe5dc] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-6 dark:border-border dark:bg-none">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#2f8066] shadow-sm dark:bg-emerald-950/70">
+                <Compass className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <p className="mt-4 text-lg font-extrabold tracking-tight text-[#082f27]">Not sure where to start?</p>
               <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">Tell us about your challenge and we will suggest the right approach.</p>
-              <a href="#enquiry" onClick={goToEnquiry('Consultancy')} className={`${primaryButton} mt-5`}>
+              <ul className="mt-5 space-y-2.5">
+                {['Share your challenge', 'Get a suggested approach', 'Receive a tailored proposal'].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm font-semibold text-[#17483b] dark:text-slate-100">
+                    <Check className="h-4 w-4 shrink-0 text-[#2f8066] dark:text-emerald-300" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a href="#enquiry" onClick={goToEnquiry('Consultancy')} className={`${primaryButton} mt-6 self-start lg:mt-auto`}>
                 Enquire About Consultancy <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
