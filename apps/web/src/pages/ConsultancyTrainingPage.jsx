@@ -7,20 +7,27 @@ import {
   BookOpenCheck,
   Briefcase,
   Building2,
+  ChartNoAxesCombined,
+  Check,
   ClipboardCheck,
   Compass,
   GraduationCap,
   HandHeart,
+  HeartPulse,
   Landmark,
   Lightbulb,
   Mail,
   Megaphone,
   MessagesSquare,
   Microscope,
+  NotebookPen,
   Palette,
+  PenLine,
   Presentation,
   Route,
+  ScanSearch,
   Send,
+  ShieldCheck,
   Sparkles,
   UsersRound
 } from 'lucide-react';
@@ -154,15 +161,20 @@ const modules = [
 ];
 
 const workshops = [
-  { title: 'Digital inclusion review', text: 'Examine a website, form or service journey and create a prioritised list of improvements.' },
-  { title: 'Calmer content workshop', text: 'Rework selected emails, social posts or learning materials for clarity, accessibility and sensory consideration.' },
-  { title: 'Digital advocacy campaign lab', text: 'Develop a campaign concept, audience message and action plan using Advocacy Hub resources.' },
-  { title: 'Sensory-aware digital wellbeing workshop', text: 'Explore NuroTok and develop a practical approach to supporting individual preferences and routines.' },
-  { title: 'Safer community workshop', text: 'Use AltiTok and OliTok scenarios to practise communication boundaries, moderation and escalation decisions.' },
-  { title: 'Care recording workshop', text: 'Use fictional scenarios to practise clear observations and structured records with the Care Logging App.' },
-  { title: 'Insight into action workshop', text: "Explore research or social listening findings and identify what they mean for your organisation's next steps." },
-  { title: 'Inclusive design workshop', text: 'Bring staff and intended users together to explore a service challenge and develop ideas for testing.' }
+  { title: 'Digital inclusion review', text: 'Examine a website, form or service journey and create a prioritised list of improvements.', icon: ScanSearch },
+  { title: 'Calmer content workshop', text: 'Rework selected emails, social posts or learning materials for clarity, accessibility and sensory consideration.', icon: PenLine },
+  { title: 'Digital advocacy campaign lab', text: 'Develop a campaign concept, audience message and action plan using Advocacy Hub resources.', icon: Megaphone },
+  { title: 'Sensory-aware digital wellbeing workshop', text: 'Explore NuroTok and develop a practical approach to supporting individual preferences and routines.', icon: HeartPulse },
+  { title: 'Safer community workshop', text: 'Use AltiTok and OliTok scenarios to practise communication boundaries, moderation and escalation decisions.', icon: ShieldCheck },
+  { title: 'Care recording workshop', text: 'Use fictional scenarios to practise clear observations and structured records with the Care Logging App.', icon: NotebookPen },
+  { title: 'Insight into action workshop', text: "Explore research or social listening findings and identify what they mean for your organisation's next steps.", icon: ChartNoAxesCombined },
+  { title: 'Inclusive design workshop', text: 'Bring staff and intended users together to explore a service challenge and develop ideas for testing.', icon: Lightbulb }
 ];
+
+// Short summaries of the delivery copy, used to balance the two delivery cards.
+const deliveryFormats = ['Live online', 'In person', 'Blended'];
+const deliveryLengths = ['Introductory session', 'Half-day workshop', 'Full-day programme', 'Series of sessions'];
+const accessOptions = ['Advance agendas', 'Clear written instructions', 'Planned breaks', 'Reduced visual clutter', 'Captions', 'Different ways to contribute'];
 
 const ecosystem = [
   { name: 'NuroTok', path: '/nurotok', text: 'Explore sensory profiles, regulation tools, daily check-ins and wellbeing insights.' },
@@ -240,7 +252,7 @@ const SectionHeading = ({ chip, title, accent, children, center = true, as: Tag 
 const Section = ({ id, tone = 'white', className = '', children, ...rest }) => (
   <section
     id={id}
-    className={`${id ? 'scroll-mt-24 ' : ''}${tone === 'mint' ? 'bg-[#f7fffb]' : 'bg-white'} py-14 lg:py-20 ${className}`}
+    className={`${id ? 'scroll-mt-20 ' : ''}${tone === 'mint' ? 'bg-[#f7fffb]' : 'bg-white'} py-10 lg:py-14 ${className}`}
     {...rest}
   >
     <div className="mx-auto max-w-[1220px] px-5 sm:px-8 lg:px-10">{children}</div>
@@ -417,7 +429,7 @@ const ConsultancyTrainingPage = () => {
 
         {/* Intro + three ways we can help */}
         <Section>
-          <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+          <div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
             <div>
               <Chip>How We Help</Chip>
               <h2 className="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl">
@@ -451,7 +463,7 @@ const ConsultancyTrainingPage = () => {
           <SectionHeading chip="Who We Support" title="Who we support">
             Our services are designed for organisations and people shaping the digital experiences of autistic and neurodivergent adults.
           </SectionHeading>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {audiences.map(({ title, text, icon: Icon }) => (
               <li key={title} className={`${cardClass} p-5`}>
                 <span className={iconTile}>
@@ -480,7 +492,7 @@ const ConsultancyTrainingPage = () => {
             <Photo name="consultancy" alt="A consultant and two participants reviewing a digital service journey. AI-generated illustrative image." />
           </div>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {consultancyAreas.map((area) => (
               <article key={area.title} className={`${cardClass} flex flex-col p-6`}>
                 <h3 className="text-base font-extrabold tracking-tight text-[#082f27]">{area.title}</h3>
@@ -503,7 +515,7 @@ const ConsultancyTrainingPage = () => {
 
         {/* Training modules: heading + photo on the left, modules on the right */}
         <Section id="training-modules" tone="mint">
-          <div className="grid items-start gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+          <div className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
             <div className="lg:sticky lg:top-24">
               <SectionHeading chip="Training" title="Explore our" accent="training modules" center={false}>
                 Build a programme around your priorities. Modules can introduce a subject, deepen existing knowledge or support a specific organisational project. Each module combines clear explanations, practical examples and opportunities to apply learning.
@@ -569,14 +581,16 @@ const ConsultancyTrainingPage = () => {
             <Photo name="workshops" alt="Adults contributing to an inclusive small-group workshop. AI-generated illustrative image." />
           </div>
 
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {workshops.map(({ title, text }) => (
-              <li key={title} className={`${cardClass} p-5`}>
+          <ul className="mt-8 grid gap-4 md:grid-cols-2">
+            {workshops.map(({ title, text, icon: Icon }) => (
+              <li key={title} className={`${cardClass} flex items-start gap-4 p-5 transition-colors duration-300 hover:border-[#bfe1d5]`}>
                 <span className={iconTile}>
-                  <Lightbulb className="h-5 w-5" aria-hidden="true" />
+                  <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
-                <h3 className="mt-4 text-base font-extrabold leading-snug tracking-tight text-[#082f27]">{title}</h3>
-                <p className="mt-2 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
+                <div>
+                  <h3 className="text-base font-extrabold leading-snug tracking-tight text-[#082f27]">{title}</h3>
+                  <p className="mt-1.5 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
+                </div>
               </li>
             ))}
           </ul>
@@ -587,7 +601,7 @@ const ConsultancyTrainingPage = () => {
           <SectionHeading chip="Our Ecosystem" title="Learning connected to" accent="our digital ecosystem">
             Our services connect the principles of inclusion with tools designed around sensory needs, wellbeing, research and human connection.
           </SectionHeading>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {ecosystem.map((item) => (
               <li key={item.path}>
                 <Link
@@ -612,7 +626,7 @@ const ConsultancyTrainingPage = () => {
         {/* Delivery, accessibility and how we work */}
         <Section>
           <div className="grid gap-4 lg:grid-cols-2">
-            <article className={`${cardClass} p-6`}>
+            <article className={`${cardClass} flex flex-col p-6 sm:p-7`}>
               <div className="flex items-center gap-3">
                 <span className={iconTile}>
                   <Route className="h-5 w-5" aria-hidden="true" />
@@ -622,8 +636,29 @@ const ConsultancyTrainingPage = () => {
               <p className="mt-4 text-sm font-medium leading-relaxed text-[#536862]">
                 Discuss live online sessions, in-person workshops or a blended programme with us. Delivery can range from a focused introductory session to a half-day workshop, full-day programme or a series of sessions that gives your team time to apply learning between meetings.
               </p>
+              <div className="mt-auto grid gap-4 pt-5 sm:grid-cols-2">
+                <div className="rounded-xl bg-[#f4fbf8] p-4 dark:bg-emerald-950/40">
+                  <p className="text-xs font-extrabold uppercase tracking-wider text-[#2f8066] dark:text-emerald-300">Format</p>
+                  <ul className="mt-2.5 flex flex-wrap gap-2">
+                    {deliveryFormats.map((item) => (
+                      <li key={item} className="rounded-full border border-[#cfe5dc] bg-white px-3 py-1 text-xs font-bold text-[#17483b] dark:border-border dark:bg-card dark:text-slate-100">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-xl bg-[#f4fbf8] p-4 dark:bg-emerald-950/40">
+                  <p className="text-xs font-extrabold uppercase tracking-wider text-[#2f8066] dark:text-emerald-300">Length</p>
+                  <ul className="mt-2.5 space-y-1.5">
+                    {deliveryLengths.map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-xs font-bold text-[#17483b] dark:text-slate-100">
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#4aa384]" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </article>
-            <article className={`${cardClass} p-6`}>
+            <article className={`${cardClass} flex flex-col p-6 sm:p-7`}>
               <div className="flex items-center gap-3">
                 <span className={iconTile}>
                   <MessagesSquare className="h-5 w-5" aria-hidden="true" />
@@ -631,17 +666,27 @@ const ConsultancyTrainingPage = () => {
                 <h3 className="text-xl font-extrabold tracking-tight text-[#082f27]">Planned around your group</h3>
               </div>
               <p className="mt-4 text-sm font-medium leading-relaxed text-[#536862]">
-                Tell us about access requirements when enquiring so we can agree appropriate arrangements. These may include advance agendas, clear written instructions, planned breaks, reduced visual clutter, captions and different ways to contribute. Online participation can include speaking, using chat or listening with the camera off.
+                Tell us about access requirements when enquiring so we can agree appropriate arrangements. Online participation can include speaking, using chat or listening with the camera off.
               </p>
-              <p className="mt-3 text-sm font-semibold leading-relaxed text-[#31544c]">
-                Participants do not need to disclose a diagnosis or share personal experiences to take part.
+              <ul className="mt-4 grid gap-x-4 gap-y-2 sm:grid-cols-2">
+                {accessOptions.map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm font-semibold text-[#31544c] dark:text-slate-100">
+                    <Check className="h-4 w-4 shrink-0 text-[#2f8066] dark:text-emerald-300" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-auto pt-5">
+                <span className="block rounded-xl bg-[#f4fbf8] p-4 text-sm font-semibold leading-relaxed text-[#17483b] dark:bg-emerald-950/40 dark:text-slate-100">
+                  Participants do not need to disclose a diagnosis or share personal experiences to take part.
+                </span>
               </p>
             </article>
           </div>
 
-          <div className="mt-14 lg:mt-16">
+          <div className="mt-10 lg:mt-12">
             <SectionHeading chip="Our Process" title="How we work" accent="with you" />
-            <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {steps.map((step, index) => (
                 <li key={step.title} className="rounded-[1.25rem] border border-[#e0eee8] bg-[#fbfffd] p-5">
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#4aa384] text-sm font-extrabold text-white" aria-hidden="true">
@@ -663,42 +708,65 @@ const ConsultancyTrainingPage = () => {
 
         {/* Why us + FAQ */}
         <Section tone="mint">
-          <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-            <div>
-              <SectionHeading chip="Why Us" title="Why NeuroDigital" accent="Support" center={false} />
-              <div className="mt-5 space-y-4 text-sm font-medium leading-relaxed text-[#536862]">
-                <p>
-                  Our focus is the relationship between neurodivergence, sensory needs and digital life. We connect awareness with practical choices about interfaces, communication, online communities and support systems.
-                </p>
-                <p>
-                  Our approach brings together the principles behind our ecosystem: calm design, inclusion, evidence-informed learning, ethical technology and respect for individual choice. We encourage organisations to listen to the people affected by their decisions and to make improvements that can be reviewed and refined over time.
-                </p>
-                <p className={`${cardClass} flex gap-3 p-4 font-semibold text-[#17483b]`}>
-                  <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[#2f8066]" aria-hidden="true" />
-                  The aim is straightforward: help your team understand barriers, make considered changes and support more meaningful participation.
-                </p>
-              </div>
+          {/* Why us: heading on the left, copy on the right, same width as every other section */}
+          <div className="grid items-center gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+            <SectionHeading chip="Why Us" title="Why NeuroDigital" accent="Support" center={false} />
+            <div className="space-y-3 text-sm font-medium leading-relaxed text-[#536862]">
+              <p>
+                Our focus is the relationship between neurodivergence, sensory needs and digital life. We connect awareness with practical choices about interfaces, communication, online communities and support systems.
+              </p>
+              <p>
+                Our approach brings together the principles behind our ecosystem: calm design, inclusion, evidence-informed learning, ethical technology and respect for individual choice. We encourage organisations to listen to the people affected by their decisions and to make improvements that can be reviewed and refined over time.
+              </p>
             </div>
+          </div>
+          <div className={`${cardClass} mt-6 flex items-start gap-3 p-4 sm:items-center sm:p-5`}>
+            <Sparkles className="h-5 w-5 shrink-0 text-[#2f8066]" aria-hidden="true" />
+            <p className="text-sm font-semibold leading-relaxed text-[#17483b]">
+              The aim is straightforward: help your team understand barriers, make considered changes and support more meaningful participation.
+            </p>
+          </div>
 
-            <div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-[#082f27]">Frequently asked questions</h2>
-              <Accordion type="single" collapsible className="mt-5 space-y-3">
-                {faqs.map((faq, index) => (
-                  <AccordionItem key={faq.q} value={`faq-${index}`} className="theme-surface rounded-[1.1rem] border border-[#e0eee8] bg-white px-5">
-                    <AccordionTrigger className="py-4 text-left text-base font-extrabold text-[#082f27] hover:no-underline">
-                      {faq.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="pb-4 text-sm font-medium leading-relaxed text-[#536862] dark:text-slate-200">{faq.a}</AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+          {/* FAQ: full width, two balanced columns */}
+          <div className="mt-10 lg:mt-12">
+            <SectionHeading chip="FAQ" title="Frequently asked" accent="questions" />
+            <Accordion type="single" collapsible className="mt-8 grid items-start gap-3 lg:grid-cols-2 lg:gap-4">
+              {[faqs.slice(0, 4), faqs.slice(4)].map((column, col) => (
+                <div key={col} className="space-y-3 lg:space-y-4">
+                  {column.map((faq, i) => {
+                    const index = col * 4 + i;
+                    return (
+                      <AccordionItem key={faq.q} value={`faq-${index}`} className="theme-surface rounded-[1.1rem] border border-[#e0eee8] bg-white px-5 shadow-[0_10px_30px_rgba(15,50,40,0.04)]">
+                        <AccordionTrigger className="gap-4 py-4 text-left text-base font-extrabold text-[#082f27] hover:no-underline">
+                          {faq.q}
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-4 text-sm font-medium leading-relaxed text-[#536862] dark:text-slate-200">{faq.a}</AccordionContent>
+                      </AccordionItem>
+                    );
+                  })}
+                  {col === 1 && (
+                    <a
+                      href={`mailto:${EMAIL}`}
+                      className="flex items-center gap-4 rounded-[1.1rem] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] px-5 py-4 transition-colors hover:brightness-[0.98] dark:bg-none dark:border dark:border-border"
+                    >
+                      <span className={iconTile}>
+                        <Mail className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                      <span>
+                        <span className="block text-base font-extrabold text-[#082f27]">Still have a question?</span>
+                        <span className="block text-sm font-semibold text-[#167158] dark:text-emerald-300">{EMAIL}</span>
+                      </span>
+                    </a>
+                  )}
+                </div>
+              ))}
+            </Accordion>
           </div>
         </Section>
 
         {/* Call to action + enquiry form */}
         <Section id="enquiry">
-          <div className="grid items-start gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+          <div className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
             <div className="lg:sticky lg:top-24">
               <Chip>Enquiry</Chip>
               <h2 className="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#082f27] sm:text-4xl">
