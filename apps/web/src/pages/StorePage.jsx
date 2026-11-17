@@ -93,7 +93,7 @@ const StorePage = () => {
               {products.length} {products.length === 1 ? 'product' : 'products'}
             </p>
 
-            <ul className="mt-4 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+            <ul className="mt-4 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
               {products.map((product) => (
                 <li key={product.slug}>
                   <ProductCard product={product} />

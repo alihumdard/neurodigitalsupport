@@ -43,24 +43,24 @@ export const StoreNotice = ({ className = '' }) => (
 );
 
 export const ProductCard = ({ product }) => (
-  <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.6rem] border border-[#e0eee8] bg-white shadow-[0_18px_54px_rgba(15,50,40,0.045)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_72px_rgba(15,50,40,0.09)]">
+  <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border sm:rounded-[1.6rem] border-[#e0eee8] bg-white shadow-[0_18px_54px_rgba(15,50,40,0.045)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_72px_rgba(15,50,40,0.09)]">
     <div className="relative aspect-square overflow-hidden bg-[#f4fbf8]">
       <ProductImage product={product} className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]" />
       {product.badge && (
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-[#167158] shadow-sm dark:bg-emerald-950/80">
+        <span className="absolute left-2 top-2 rounded-full bg-white/90 px-2.5 py-0.5 text-[10px] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[11px] font-extrabold uppercase tracking-wider text-[#167158] shadow-sm dark:bg-emerald-950/80">
           {product.badge}
         </span>
       )}
     </div>
-    <div className="flex flex-1 flex-col p-3.5 sm:p-5">
+    <div className="flex flex-1 flex-col p-3 sm:p-5">
       <h3 className="break-words text-sm font-extrabold leading-snug tracking-tight text-[#082f27] [overflow-wrap:anywhere] sm:text-base">
         {/* The whole card is clickable through this link's stretched overlay. */}
         <Link to={`/store/${product.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:rounded-[1.6rem] focus-visible:after:ring-2 focus-visible:after:ring-[#167158]">
           {product.name}
         </Link>
       </h3>
-      <p className="mt-1.5 flex-1 text-xs font-medium leading-relaxed text-[#536862] sm:text-sm">{product.summary}</p>
-      <p className="mt-3 text-base sm:mt-4 sm:text-lg font-extrabold text-[#17483b]">{formatPrice(product.price)}</p>
+      <p className="mt-1 line-clamp-2 text-xs font-medium leading-relaxed text-[#536862] sm:mt-1.5 sm:line-clamp-none sm:text-sm">{product.summary}</p>
+      <p className="mt-auto pt-2 text-base sm:pt-4 sm:text-lg font-extrabold text-[#17483b]">{formatPrice(product.price)}</p>
     </div>
   </article>
 );
