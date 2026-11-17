@@ -455,14 +455,14 @@ const ConsultancyTrainingPage = () => {
             </div>
             <div className="grid gap-4">
               {services.map(({ title, text, icon: Icon }) => (
-                <article key={title} className={`${cardClass} flex gap-4 p-5`}>
-                  <span className={iconTile}>
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <div>
+                <article key={title} className={`${cardClass} p-5`}>
+                  <div className="flex items-center gap-3">
+                    <span className={iconTile}>
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
                     <h3 className="text-lg font-extrabold tracking-tight text-[#082f27]">{title}</h3>
-                    <p className="mt-1.5 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
                   </div>
+                  <p className="mt-3 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
                 </article>
               ))}
             </div>
@@ -617,14 +617,14 @@ const ConsultancyTrainingPage = () => {
 
           <ul className="mt-8 grid gap-4 md:grid-cols-2">
             {workshops.map(({ title, text, icon: Icon }) => (
-              <li key={title} className={`${cardClass} flex items-start gap-4 p-5 transition-colors duration-300 hover:border-[#bfe1d5]`}>
-                <span className={iconTile}>
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <div>
+              <li key={title} className={`${cardClass} p-5 transition-colors duration-300 hover:border-[#bfe1d5]`}>
+                <div className="flex items-center gap-3">
+                  <span className={iconTile}>
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
                   <h3 className="text-base font-extrabold leading-snug tracking-tight text-[#082f27]">{title}</h3>
-                  <p className="mt-1.5 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
                 </div>
+                <p className="mt-3 text-sm font-medium leading-relaxed text-[#536862]">{text}</p>
               </li>
             ))}
           </ul>
@@ -656,11 +656,14 @@ const ConsultancyTrainingPage = () => {
                 </Link>
               </li>
             ))}
-            <li className="flex flex-col justify-center gap-3 rounded-[1.25rem] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-5 text-sm font-medium leading-relaxed text-[#31544c] dark:bg-none dark:border dark:border-border">
-              <span className={iconTile}>
-                <Presentation className="h-5 w-5" aria-hidden="true" />
+            <li className="flex flex-col rounded-[1.25rem] border border-[#cfe5dc] bg-[linear-gradient(135deg,#dff6ed_0%,#f4fbf8_100%)] p-5 shadow-[0_14px_40px_rgba(15,50,40,0.045)] dark:bg-none dark:border-border">
+              <span className="flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#2f8066] shadow-sm dark:bg-emerald-950/70">
+                  <Presentation className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span className="text-base font-extrabold leading-snug tracking-tight text-[#082f27]">Demonstrations &amp; access</span>
               </span>
-              Relevant demonstrations can be included in the agreed programme. Any product access, subscriptions or licences for ongoing use are set out separately in your proposal.
+              <span className="mt-3 text-sm font-medium leading-relaxed text-[#31544c]">Relevant demonstrations can be included in the agreed programme. Any product access, subscriptions or licences for ongoing use are set out separately in your proposal.</span>
             </li>
           </ul>
         </Section>
