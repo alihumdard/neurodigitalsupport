@@ -64,11 +64,15 @@ const features = [
   }
 ];
 
+// true: show real screenshots from the NuroTok app (supplied by the client, Nov 2026).
+// false: show the original illustrated mockups below (PhoneMockup / MiniScreen), kept for easy revert.
+const USE_REAL_APP_SCREENSHOTS = true;
+
 const screens = [
-  { label: 'Home', subtitle: 'Distraction-free daily navigation.' },
-  { label: 'Profile', subtitle: 'Personal sensory preferences.' },
-  { label: 'Toolkit', subtitle: 'Calming tools within easy reach.' },
-  { label: 'Insights', subtitle: 'Weekly wellbeing patterns.' }
+  { label: 'Home', subtitle: 'Distraction-free daily navigation.', image: '/images/nurotok/screens/home.webp', alt: 'NuroTok home screen: A calmer mind, a brighter you, with a guided breathing card and the sensory toolkit' },
+  { label: 'Profile', subtitle: 'Personal sensory preferences.', image: '/images/nurotok/screens/profile.webp', alt: 'NuroTok profile and preferences screen with the sensory profile set-up' },
+  { label: 'Toolkit', subtitle: 'Calming tools within easy reach.', image: '/images/nurotok/screens/toolkit.webp', alt: 'NuroTok toolkit screen with meditation, breathing, sounds, sleep and filters' },
+  { label: 'Insights', subtitle: 'Weekly wellbeing patterns.', image: '/images/nurotok/screens/insights.webp', alt: 'NuroTok insights screen showing blocked opens, filtered content and streaks' }
 ];
 
 const navigationLinks = [
@@ -341,6 +345,36 @@ const MiniScreen = ({ label, subtitle }) => (
   </div>
 );
 
+/** Phone frame showing a real NuroTok app screenshot. */
+const RealPhone = ({ src, alt, variant = 'mini', eager = false }) => (
+  <div
+    className={`relative mx-auto inline-flex bg-slate-950 ${
+      variant === 'hero'
+        ? 'rounded-[2.35rem] border-[7px] border-[#07101f] bg-[#07101f] shadow-[0_28px_70px_rgba(15,23,42,0.34),0_12px_24px_rgba(79,159,132,0.2)]'
+        : 'rounded-[1.85rem] border-[4px] border-slate-950 shadow-[0_22px_44px_rgba(15,23,42,0.24)]'
+    }`}
+  >
+    {variant === 'hero' && (
+      <>
+        <div className="absolute -left-2 top-20 h-10 w-1 rounded-l bg-slate-800" aria-hidden="true" />
+        <div className="absolute -right-2 top-28 h-14 w-1 rounded-r bg-slate-800" aria-hidden="true" />
+      </>
+    )}
+    <div className={`relative overflow-hidden bg-[#f4f3ee] ${variant === 'hero' ? 'h-[364px] w-[176px] rounded-[1.8rem]' : 'h-[270px] w-[134px] rounded-[1.38rem]'}`}>
+      <div className={`absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-black ${variant === 'hero' ? 'top-2 h-[19px] w-[68px]' : 'top-1.5 h-3.5 w-11'}`} aria-hidden="true" />
+      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" className="h-full w-full object-cover object-top pt-5" />
+    </div>
+  </div>
+);
+
+const RealMiniScreen = ({ label, subtitle, image, alt }) => (
+  <div className="flex flex-col items-center text-center">
+    <RealPhone src={image} alt={alt} />
+    <h4 className="mt-5 w-full text-center text-2xl font-extrabold text-slate-950">{label}</h4>
+    <p className="mt-2 min-h-[2.5rem] max-w-[10.5rem] text-center text-xs font-medium leading-snug text-slate-600">{subtitle}</p>
+  </div>
+);
+
 const NuroTokPage = () => {
   return (
     <>
@@ -372,7 +406,11 @@ const NuroTokPage = () => {
             </div>
             <div className="relative">
               <div className="absolute inset-x-10 bottom-0 h-28 rounded-full bg-emerald-300/25 blur-3xl" aria-hidden="true" />
-              <PhoneMockup />
+              {USE_REAL_APP_SCREENSHOTS ? (
+                <RealPhone variant="hero" eager src={screens[0].image} alt={screens[0].alt} />
+              ) : (
+                <PhoneMockup />
+              )}
             </div>
           </div>
         </section>
@@ -429,7 +467,9 @@ const NuroTokPage = () => {
             <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">A Calming, Intuitive Experience</h2>
             <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-slate-950">Distraction-free, easy navigation.</p>
             <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
-              {screens.map((screen) => <MiniScreen key={screen.label} {...screen} />)}
+              {screens.map((screen) =>
+                USE_REAL_APP_SCREENSHOTS ? <RealMiniScreen key={screen.label} {...screen} /> : <MiniScreen key={screen.label} {...screen} />
+              )}
             </div>
             <p className="mx-auto mt-10 max-w-xl text-base font-medium leading-relaxed text-slate-950">
               Minimal, calming, and distraction-free with easy navigation:
