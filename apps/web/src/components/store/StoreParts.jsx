@@ -44,7 +44,7 @@ export const StoreNotice = ({ className = '' }) => (
 
 export const ProductCard = ({ product }) => (
   <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.6rem] border border-[#e0eee8] bg-white shadow-[0_18px_54px_rgba(15,50,40,0.045)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_72px_rgba(15,50,40,0.09)]">
-    <div className="relative aspect-[4/5] overflow-hidden bg-[#f4fbf8]">
+    <div className="relative aspect-square overflow-hidden bg-[#f4fbf8]">
       <ProductImage product={product} className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]" />
       {product.badge && (
         <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-[#167158] shadow-sm dark:bg-emerald-950/80">

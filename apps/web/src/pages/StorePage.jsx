@@ -46,21 +46,21 @@ const StorePage = () => {
       <main className="theme-aware-page min-h-screen overflow-hidden bg-[#f8fffb] text-[#10231d]">
         <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7fffb_38%,#dff6ed_100%)]">
           <div className="pointer-events-none absolute left-1/2 top-10 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-[#b7ead8]/30 blur-3xl" aria-hidden="true" data-focus-distraction />
-          <div className="relative mx-auto max-w-[1220px] px-5 py-16 text-center sm:px-8 sm:py-20 lg:px-10">
+          <div className="relative mx-auto max-w-[1220px] px-5 py-10 text-center sm:px-8 lg:px-10 lg:py-12">
             <span className="inline-flex items-center gap-2 rounded-full bg-[#eaf5f0] px-4 py-2 text-sm font-extrabold text-[#2f8066] dark:bg-emerald-950/70">
               <ShoppingBag className="h-4 w-4" aria-hidden="true" /> NeuroDigital Support Merchandise
             </span>
             <h1 className="mt-7 text-4xl font-extrabold leading-[1.1] tracking-tight text-[#082f27] sm:text-5xl">
               The ND Support <span className="text-[#2f8066]">Store</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg font-semibold leading-relaxed text-[#314b41]">
+            <p className="mx-auto mt-4 max-w-2xl text-lg font-semibold leading-relaxed text-[#314b41]">
               Colourful everyday essentials and comfort picks, designed to share our message of neurodivergent-inclusive digital life.
             </p>
-            <StoreNotice className="mx-auto mt-8 max-w-2xl text-left" />
+            <StoreNotice className="mx-auto mt-6 max-w-2xl text-left" />
           </div>
         </section>
 
-        <section className="bg-white py-14 sm:py-20" aria-labelledby="products-heading">
+        <section className="bg-white py-8 lg:py-12" aria-labelledby="products-heading">
           <div className="mx-auto max-w-[1220px] px-5 sm:px-8 lg:px-10">
             <h2 id="products-heading" className="sr-only">Products</h2>
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -89,7 +89,7 @@ const StorePage = () => {
               </div>
             </div>
 
-            <p className="mt-6 text-sm font-semibold text-[#536862]" aria-live="polite">
+            <p className="mt-5 text-sm font-semibold text-[#536862]" aria-live="polite">
               {products.length} {products.length === 1 ? 'product' : 'products'}
             </p>
 
@@ -103,10 +103,10 @@ const StorePage = () => {
           </div>
         </section>
 
-        <section className="bg-[#f7fffb] py-16 sm:py-20">
-          <ul className="mx-auto grid max-w-[1160px] gap-5 px-5 sm:px-8 md:grid-cols-3 lg:px-10">
+        <section className="bg-[#f7fffb] py-8 lg:py-12">
+          <ul className="mx-auto grid max-w-[1220px] gap-4 px-5 sm:px-8 md:grid-cols-3 lg:px-10">
             {highlights.map(({ title, text, icon: Icon }) => (
-              <li key={title} className="flex gap-4 rounded-[1.5rem] border border-[#e0eee8] bg-white p-6">
+              <li key={title} className="flex items-start gap-4 rounded-[1.25rem] border border-[#e0eee8] bg-white p-5">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#eaf5f0] text-[#2f8066] dark:bg-emerald-950/70">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
