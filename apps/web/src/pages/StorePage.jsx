@@ -63,15 +63,15 @@ const StorePage = () => {
         <section className="bg-white pt-6 pb-5 lg:pt-8 lg:pb-6" aria-labelledby="products-heading">
           <div className="mx-auto max-w-[1220px] px-5 sm:px-8 lg:px-10">
             <h2 id="products-heading" className="sr-only">Products</h2>
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-              <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+              <div className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden" role="group" aria-label="Filter by category">
                 {CATEGORIES.map((c) => (
                   <button
                     key={c.id}
                     type="button"
                     aria-pressed={category === c.id}
                     onClick={() => setCategory(c.id)}
-                    className={`rounded-full px-4 py-2 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2 ${
+                    className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#167158] focus-visible:ring-offset-2 ${
                       category === c.id ? 'bg-[#167158] text-white' : 'border border-[#d2e7df] bg-white text-[#17483b] hover:border-[#8bc7ad]'
                     }`}
                   >
@@ -80,8 +80,8 @@ const StorePage = () => {
                 ))}
               </div>
               <div className="flex items-center gap-3">
-                <label htmlFor="store-sort" className="text-sm font-bold text-[#17483b]">Sort by</label>
-                <select id="store-sort" value={sort} onChange={(e) => setSort(e.target.value)} className="h-11 rounded-xl border border-[#d2e7df] bg-white px-3 text-sm font-medium text-[#102f28] outline-none focus-visible:ring-2 focus-visible:ring-[#167158]">
+                <label htmlFor="store-sort" className="shrink-0 text-sm font-bold text-[#17483b]">Sort by</label>
+                <select id="store-sort" value={sort} onChange={(e) => setSort(e.target.value)} className="h-11 flex-1 rounded-xl border border-[#d2e7df] bg-white px-3 text-sm sm:flex-none font-medium text-[#102f28] outline-none focus-visible:ring-2 focus-visible:ring-[#167158]">
                   {SORTS.map((s) => (
                     <option key={s.id} value={s.id}>{s.label}</option>
                   ))}
