@@ -360,9 +360,9 @@ const RealPhone = ({ src, alt, variant = 'mini', eager = false }) => (
         <div className="absolute -right-2 top-28 h-14 w-1 rounded-r bg-slate-800" aria-hidden="true" />
       </>
     )}
-    <div className={`relative overflow-hidden bg-[#f4f3ee] ${variant === 'hero' ? 'h-[364px] w-[176px] rounded-[1.8rem]' : 'h-[270px] w-[134px] rounded-[1.38rem]'}`}>
-      <div className={`absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-black ${variant === 'hero' ? 'top-2 h-[19px] w-[68px]' : 'top-1.5 h-3.5 w-11'}`} aria-hidden="true" />
-      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" className="h-full w-full object-cover object-top pt-5" />
+    <div className={`relative overflow-hidden bg-[#f4f3ee] ${variant === 'hero' ? 'h-[530px] w-[260px] rounded-[2rem]' : 'h-[490px] w-[240px] rounded-[1.6rem]'}`}>
+      <div className={`absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-black ${variant === 'hero' ? 'top-2.5 h-[22px] w-[80px]' : 'top-2 h-5 w-[70px]'}`} aria-hidden="true" />
+      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" className="h-full w-full object-cover object-top pt-7" />
     </div>
   </div>
 );
@@ -466,7 +466,7 @@ const NuroTokPage = () => {
           <div className="mx-auto max-w-[1180px] px-4 text-center sm:px-6 lg:px-10">
             <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">A Calming, Intuitive Experience</h2>
             <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-slate-950">Distraction-free, easy navigation.</p>
-            <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+            <div className={`mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 ${USE_REAL_APP_SCREENSHOTS ? 'lg:gap-6' : 'lg:gap-12'}`}>
               {screens.map((screen) =>
                 USE_REAL_APP_SCREENSHOTS ? <RealMiniScreen key={screen.label} {...screen} /> : <MiniScreen key={screen.label} {...screen} />
               )}
