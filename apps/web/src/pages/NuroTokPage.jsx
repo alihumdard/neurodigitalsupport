@@ -418,7 +418,7 @@ const DemoVideoSection = () => {
         <p className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-relaxed text-slate-600 dark:text-muted-foreground">
           A 37-second look at the sensory profile, app protection, the sensory toolkit and Insights.
         </p>
-        <div className="mx-auto mt-8 aspect-video max-w-[1040px] overflow-hidden rounded-2xl bg-emerald-50 shadow-[0_24px_64px_rgba(15,61,50,0.14)] ring-1 ring-emerald-100 dark:bg-card dark:ring-border sm:rounded-[1.75rem]">
+        <div className="mx-auto mt-8 aspect-video w-full max-w-[min(1040px,calc((100svh_-_7rem)*16/9))] overflow-hidden rounded-2xl bg-emerald-50 shadow-[0_24px_64px_rgba(15,61,50,0.14)] ring-1 ring-emerald-100 dark:bg-card dark:ring-border sm:rounded-[1.75rem]">
           <video
             className="h-full w-full bg-black object-contain"
             controls
