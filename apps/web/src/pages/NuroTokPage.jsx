@@ -466,7 +466,7 @@ const NuroTokPage = () => {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <p className="text-3xl font-black leading-[1.15] tracking-tight text-[#46987d] drop-shadow-[0_10px_24px_rgba(79,159,132,0.18)] sm:text-4xl lg:text-5xl">NuroTok</p>
+              <p className="text-3xl font-black leading-[1.15] tracking-tight text-[#46987d] drop-shadow-[0_10px_24px_rgba(79,159,132,0.18)] sm:text-4xl lg:text-5xl"><a href={NUROTOK_SITE_URL} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">NuroTok</a></p>
               <h1 className="mt-5 text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 dark:text-foreground sm:text-4xl lg:text-5xl">Sensory Regulation App</h1>
               <p className="mx-auto mt-5 max-w-xl text-lg font-semibold leading-relaxed text-slate-700 dark:text-muted-foreground lg:mx-0">
                 A calming wellbeing companion designed to help you manage sensory overload and emotional stress.

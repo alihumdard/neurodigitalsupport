@@ -249,7 +249,7 @@ const ProductsHome = () => {
 
                 {/* Card Title & Subtitle */}
                 <h3 className="text-xl font-extrabold mb-1 text-foreground">
-                  {module.name}
+                  {module.site ? <a href={NUROTOK_SITE_URL} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">{module.name}</a> : module.name}
                 </h3>
                 <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-emerald-600 dark:text-emerald-500 mb-4">
                   {module.subtitle}
