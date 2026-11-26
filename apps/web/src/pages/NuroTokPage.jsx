@@ -414,7 +414,7 @@ const DemoVideoSection = () => {
           Watch
         </span>
         <h2 id="nurotok-video-heading" className="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-emerald-800 dark:text-emerald-300 sm:text-4xl">
-          See NuroTok in action
+          See <a href="https://nurotok.co.uk/" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">NuroTok</a> in action
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-relaxed text-slate-600 dark:text-muted-foreground">
           A 37-second look at the sensory profile, app protection, the sensory toolkit and Insights.
@@ -499,7 +499,7 @@ const NuroTokPage = () => {
                     Most digital platforms are overwhelming. They compete for attention, increase noise, and make regulation harder during already difficult moments.
                   </p>
                   <p>
-                    NuroTok creates a softer alternative: a focused sensory wellbeing space that helps adults understand patterns, reduce stress, and regain calm.
+                    <a href="https://nurotok.co.uk/" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">NuroTok</a> creates a softer alternative: a focused sensory wellbeing space that helps adults understand patterns, reduce stress, and regain calm.
                   </p>
                 </div>
               </div>
@@ -555,7 +555,7 @@ const NuroTokPage = () => {
 
         <section className="bg-white py-20 dark:bg-background" aria-labelledby="nurotok-faq">
           <div className="mx-auto max-w-[860px] px-4 sm:px-6 lg:px-10">
-            <h2 id="nurotok-faq" className="text-center text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 dark:text-foreground sm:text-4xl">NuroTok questions, answered</h2>
+            <h2 id="nurotok-faq" className="text-center text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 dark:text-foreground sm:text-4xl"><a href="https://nurotok.co.uk/" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">NuroTok</a> questions, answered</h2>
             <div className="mt-10 divide-y divide-emerald-100 rounded-2xl border border-emerald-100 bg-[#fbfffd] dark:divide-border dark:border-border dark:bg-card/30">
               {NUROTOK_FAQ.map(({ q, a }) => (
                 <details key={q} className="group px-6 py-5">

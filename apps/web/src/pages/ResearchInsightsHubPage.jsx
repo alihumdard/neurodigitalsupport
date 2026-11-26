@@ -179,7 +179,7 @@ const ResearchInsightsHubPage = () => {
               Two landmark papers from Kofi Ofori-Mensah (MSc, University of Roehampton), founder of NeuroDigital Support, form the evidence base for our ecosystem.
             </p>
             <p className="mt-5 max-w-3xl text-balance text-base font-semibold leading-7 text-[#173f34]">
-              These works directly inform the design of NuroTok, AltiTok, the Social Listening Dashboard, and every other tool we build.
+              These works directly inform the design of <a href="https://nurotok.co.uk/" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">NuroTok</a>, AltiTok, the Social Listening Dashboard, and every other tool we build.
             </p>
           </div>
 

@@ -93,7 +93,7 @@ export default function NuroTokAllFeatures() {
       <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-10">
         <div className="text-center">
           <h2 id="all-features" className="text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-950 dark:text-foreground sm:text-4xl lg:text-5xl">
-            Everything NuroTok can do
+            Everything <a href="https://nurotok.co.uk/" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">NuroTok</a> can do
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-base font-medium leading-relaxed text-slate-600 dark:text-muted-foreground">
             A calmer phone, made for neurodivergent minds and anyone who finds it all a bit much. Here is the whole of it.

@@ -198,12 +198,15 @@ const HeroSection = () => {
               </Button>
 
               <Button
+                asChild
                 variant="outline"
                 size="sm"
                 className="inline-flex h-9 min-w-[12.5rem] items-center justify-center gap-1.5 rounded-full border-white/30 bg-white/10 px-4 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/18 hover:text-white active:scale-[0.98] sm:h-10 sm:min-w-0 sm:px-5"
               >
-                <Download className="w-3.5 h-3.5 mr-0.5" aria-hidden="true" />
-                Download NuroTok
+                <a href="https://nurotok.co.uk/" target="_blank" rel="noopener noreferrer">
+                  <Download className="w-3.5 h-3.5 mr-0.5" aria-hidden="true" />
+                  Download NuroTok
+                </a>
               </Button>
 
               <Button
@@ -317,7 +320,7 @@ const HeroSection = () => {
               </div>
               <div>
                 <p className="text-sm font-bold text-foreground leading-none mb-1">
-                  NuroTok
+                  <a href="https://nurotok.co.uk/" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">NuroTok</a>
                 </p>
                 <p className="text-[11px] font-medium text-muted-foreground leading-none">
                   Sensory regulation
