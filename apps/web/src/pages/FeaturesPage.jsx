@@ -356,7 +356,7 @@ const FeaturesPage = () => {
                       {String(index + 1).padStart(2, '0')} / {product.label}
                     </p>
                     <h2 className="mt-3 text-3xl font-black leading-[1.15] tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">
-                      {product.name}
+                      {product.site ? <a href={NUROTOK_SITE_URL} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">{product.name}</a> : product.name}
                     </h2>
                     <p className="mt-5 text-base font-semibold leading-relaxed text-slate-600 dark:text-slate-300 sm:text-lg">
                       {product.description}
