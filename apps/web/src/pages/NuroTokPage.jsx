@@ -17,12 +17,13 @@ import {
   ShieldCheck,
   Twitter,
   UserRound,
-  Zap
+  Zap,
+  ArrowUpRight
 } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 import NuroTokAllFeatures from '@/components/NuroTokAllFeatures.jsx';
-import { APP_STORE_URL, PLAY_STORE_URL } from '@/lib/stores';
+import { APP_STORE_URL, PLAY_STORE_URL, NUROTOK_SITE_URL } from '@/lib/stores';
 import { NUROTOK_FAQ } from '@/lib/seoMeta';
 
 const storeButtons = [
@@ -473,6 +474,7 @@ const NuroTokPage = () => {
               <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
                 {storeButtons.map((button) => <StoreButton key={button.label} {...button} />)}
               </div>
+              <p className="mt-4 text-center lg:text-left"><a href={NUROTOK_SITE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-[#167158] underline underline-offset-4 hover:text-[#0f5a46] dark:text-emerald-300">Visit nurotok.co.uk <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></a></p>
             </div>
             <div className="relative">
               <div className="absolute inset-x-10 bottom-0 h-28 rounded-full bg-emerald-300/25 blur-3xl" aria-hidden="true" />
@@ -574,6 +576,7 @@ const NuroTokPage = () => {
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               {storeButtons.map((button) => <StoreButton key={button.label} {...button} light />)}
             </div>
+            <p className="mt-5"><a href={NUROTOK_SITE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-[#167158] underline underline-offset-4 hover:text-[#0f5a46] ">Visit nurotok.co.uk <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></a></p>
           </div>
         </section>
       </main>

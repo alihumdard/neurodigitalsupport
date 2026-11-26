@@ -26,6 +26,7 @@ import {
 import Footer from '@/components/Footer.jsx';
 import AffiliationsSection from '@/components/AffiliationsSection.jsx';
 import Header from '@/components/Header.jsx';
+import { NUROTOK_SITE_URL } from '@/lib/stores';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
 
 const products = [
@@ -37,6 +38,7 @@ const products = [
     image: '/images/products/nurotok.jpeg',
     logo: '/images/products/nurotok-logo-2026.jpg',
     detailPath: '/nurotok',
+    site: true,
     accent: 'emerald',
     icon: Brain,
     metrics: ['Sensory profile', 'Calm toolkit', 'Weekly insights'],
@@ -367,6 +369,7 @@ const FeaturesPage = () => {
                       Open Product Page
                       <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
+                    {product.site && <div className="mt-4"><a href={NUROTOK_SITE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-[#167158] underline underline-offset-4 hover:text-[#0f5a46] dark:text-emerald-300">Visit nurotok.co.uk <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></a></div>}
                   </div>
 
                   <ProductVisual product={product} />

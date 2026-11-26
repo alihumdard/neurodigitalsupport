@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FileText, BarChart3, TrendingUp, Download, Smartphone, Megaphone, ChevronLeft, ChevronRight, GraduationCap, ShoppingBag } from 'lucide-react';
 import { useAccessibility } from '@/hooks/useAccessibility.jsx';
-import { STORE_URLS } from '@/lib/stores';
+import { STORE_URLS, NUROTOK_SITE_URL } from '@/lib/stores';
+import { ArrowUpRight } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -81,6 +82,7 @@ const ProductsHome = () => {
       platforms: ['App Store', 'Google Play'],
       logoCircle: true,
       path: '/nurotok',
+      site: true,
       color: 'text-blue-500'
     }, {
       logo: '/images/products/AltiTok.png',
@@ -269,6 +271,8 @@ const ProductsHome = () => {
                     </span>
                   ))}
                 </div>
+
+                {module.site && <a href={NUROTOK_SITE_URL} target="_blank" rel="noopener noreferrer" className="mb-4 inline-flex items-center gap-1 text-sm font-bold text-[#167158] underline underline-offset-4 hover:text-[#0f5a46] dark:text-emerald-300">Visit nurotok.co.uk <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></a>}
 
                 {/* Card Footer: Platforms & Button */}
                 <div className="mt-auto w-full pt-5 border-t border-slate-100 dark:border-border/50 flex flex-row items-center justify-between">
