@@ -286,8 +286,8 @@ const FeaturesPage = () => {
 
                   <div className="mt-5 grid gap-3">
                     {products.slice(0, 3).map((product) => (
+                      <React.Fragment key={product.id}>
                       <a
-                        key={product.id}
                         href={`#${product.id}`}
                         className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50/80 p-3 transition hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50/70 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
                       >
@@ -299,6 +299,12 @@ const FeaturesPage = () => {
                           <span className="block text-xs font-bold text-slate-500 dark:text-slate-400">{product.label}</span>
                         </span>
                       </a>
+                      {product.site && (
+                        <a href={NUROTOK_SITE_URL} target="_blank" rel="noopener noreferrer" className="-mt-1 inline-flex items-center gap-1 pl-1 text-xs font-bold text-[#167158] underline underline-offset-4 hover:text-[#0f5a46] dark:text-emerald-300">
+                          Visit nurotok.co.uk <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                        </a>
+                      )}
+                      </React.Fragment>
                     ))}
                   </div>
 
